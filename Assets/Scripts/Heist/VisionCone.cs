@@ -15,7 +15,7 @@ namespace Outclaw.Heist{
 		[SerializeField]
 		private int numSamples = 10;
 
-		public UnityEvent OnDetect;
+		public UnityEvent onDetect;
 
 	    // Start is called before the first frame update
 	    void Start()
@@ -26,11 +26,15 @@ namespace Outclaw.Heist{
 	    // Update is called once per frame
 	    void Update()
 	    {
-	        GenerateCone();
+	        if(TestCone()){
+	        	onDetect.Invoke();
+	        }
 	    }
 
-	    private void GenerateCone(){
+	    // returns if the player was found
+	    private bool TestCone(){
 
+	    	bool foundPlayer = false;
 	    	List<Vector3> meshVerts = new List<Vector3>();
 	    	meshVerts.Add(Vector3.zero);
 
@@ -57,9 +61,14 @@ namespace Outclaw.Heist{
 	    		}
 	    		else{ // hit, draw where it hit
 	    			localLineEnd = hit.point - (Vector2)transform.position;
+
+	    			if(!foundPlayer && hit.collider.gameObject.CompareTag("Player")){
+	    				foundPlayer = true;
+	    			}
 	    		}
     			// meshVerts.Add(rotInverse * localLineEnd);
     			meshVerts.Add(rotInverse * localLineEnd);
+
 	    	}
 
 	    	// create mesh
@@ -73,6 +82,8 @@ namespace Outclaw.Heist{
 	    		tris.Add(i - 1);
 	    	}
 	    	m.triangles = tris.ToArray();
+
+	    	return foundPlayer;
 	    }
 	}
 }
