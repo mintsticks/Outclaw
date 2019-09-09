@@ -2,75 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolMovement : MonoBehaviour
-{
+namespace Outclaw.Heist{
+	public class PatrolMovement : MonoBehaviour
+	{
+		[SerializeField] private Transform waypointParent;
+		[SerializeField] private float speed = 5;
+		[SerializeField] private float arrivalTolerance = 3;
 
-	[SerializeField] private Transform waypointParent;
-	[SerializeField] private float speed = 5;
-	[SerializeField] private float arrivalTolerance = 3;
+		[SerializeField]
+		[Range(0, 1)]
+		private float turnSpeed = .5f;
+		private float turnTime = 1f;
 
-	[SerializeField]
-	[Range(0, 1)]
-	private float turnSpeed = .5f;
-	private float turnTime = 1f;
+		private Coroutine patrolRoutine;
 
-	private Coroutine patrolRoutine;
-
-    // Update is called once per frame
-    void Start()
-    {
-    	transform.position = waypointParent.GetChild(0).position;
-    	StartPatrol();
-    }
-
-    public void StartPatrol(){
-    	if(waypointParent.childCount > 0){
-	        patrolRoutine = StartCoroutine(Patrol());
+	    // Update is called once per frame
+	    void Start()
+	    {
+	    	transform.position = waypointParent.GetChild(0).position;
+	    	StartPatrol();
 	    }
-    }
 
-    public void EndPatrol(){
-    	StopCoroutine(patrolRoutine);
-    }
+	    public void StartPatrol(){
+	    	if(waypointParent.childCount > 0){
+		        patrolRoutine = StartCoroutine(Patrol());
+		    }
+	    }
 
-    private IEnumerator Patrol(){
+	    public void EndPatrol(){
+	    	StopCoroutine(patrolRoutine);
+	    }
 
-    	int currentGoal = 0;
-    	while(true){
-			Vector2 dir = waypointParent.GetChild(currentGoal).position - transform.position;
+	    private IEnumerator Patrol(){
 
-			bool changedDir = false;
-	        while(dir.magnitude < arrivalTolerance){
-	        	currentGoal = (currentGoal + 1) % waypointParent.childCount;
-	        	dir = waypointParent.GetChild(currentGoal).position - transform.position;
-	        	changedDir = true;
-	        }
-	        if(changedDir){
-				yield return TurnHead(dir);
-	        }
+	    	int currentGoal = 0;
+	    	while(true){
+				Vector2 dir = waypointParent.GetChild(currentGoal).position - transform.position;
 
-	        dir.Normalize();
-	        transform.Translate(dir * speed * Time.deltaTime);
-	        yield return null;
-    	}
-    }
+				bool changedDir = false;
+		        while(dir.magnitude < arrivalTolerance){
+		        	currentGoal = (currentGoal + 1) % waypointParent.childCount;
+		        	dir = waypointParent.GetChild(currentGoal).position - transform.position;
+		        	changedDir = true;
+		        }
+		        if(changedDir){
+					yield return TurnHead(dir);
+		        }
 
-    private IEnumerator TurnHead(Vector3 dir){
+		        dir.Normalize();
+		        transform.Translate(dir * speed * Time.deltaTime);
+		        yield return null;
+	    	}
+	    }
 
-    	float timePassed = 0;
-    	while(timePassed < turnTime){
-	        Quaternion oldRot = transform.GetChild(0).rotation;
-	        Quaternion goal = Quaternion.identity;
-	        goal.SetLookRotation(Vector3.forward, dir);
-	        transform.GetChild(0).transform.rotation = Quaternion.Lerp(
-	        		oldRot,
-	        		goal,
-	        		turnSpeed
-	        	);
-	        timePassed += Time.deltaTime;
-	        yield return null;
-    	}
+	    private IEnumerator TurnHead(Vector3 dir){
 
-    	yield break;
-    }
+	    	float timePassed = 0;
+	    	while(timePassed < turnTime){
+		        Quaternion oldRot = transform.GetChild(0).rotation;
+		        Quaternion goal = Quaternion.identity;
+		        goal.SetLookRotation(Vector3.forward, dir);
+		        transform.GetChild(0).transform.rotation = Quaternion.Lerp(
+		        		oldRot,
+		        		goal,
+		        		turnSpeed
+		        	);
+		        timePassed += Time.deltaTime;
+		        yield return null;
+	    	}
+
+	    	yield break;
+	    }
+	}
 }

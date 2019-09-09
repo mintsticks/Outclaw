@@ -715,6 +715,15 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 2
+  - first: {x: -9, y: -8, z: 0}
+    second:
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 2
   - first: {x: 17, y: -8, z: 0}
     second:
       m_TileIndex: 0
@@ -2067,7 +2076,7 @@ Tilemap:
       m_ColliderType: 2
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 169
+  - m_RefCount: 170
     m_Data: {fileID: 11400000, guid: f033217a6b3cb734182a1a2faeb439b8, type: 2}
   - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: 9f18d92f0c0caee41a38ef7cbeb61940, type: 2}
@@ -2076,7 +2085,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 7e28c2de9b7f844438d6ce451b403601, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 169
+  - m_RefCount: 170
     m_Data: {fileID: 2868539044483428322, guid: e36ec89b0bf17794dbec1385086d1226,
       type: 3}
   - m_RefCount: 11
@@ -2089,7 +2098,7 @@ Tilemap:
     m_Data: {fileID: 8976897334908718771, guid: 1e1b052b665c2ad4a87ceb2358ad11ee,
       type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 193
+  - m_RefCount: 194
     m_Data:
       e00: 1
       e01: 0
@@ -2108,7 +2117,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 193
+  - m_RefCount: 194
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3210,7 +3219,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051597004}
   m_Enabled: 1
-  m_CellSize: {x: 0.5, y: 0.5, z: 0}
+  m_CellSize: {x: 0.5, y: 0.5, z: 0.5}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -3281,8 +3290,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1686539385
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5840708840826660535, guid: ee589d34a30aa9647b12a6610efa0498,
     type: 3}
