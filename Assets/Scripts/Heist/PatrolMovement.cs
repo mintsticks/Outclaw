@@ -30,7 +30,10 @@ namespace Outclaw.Heist{
 	    }
 
 	    public void EndPatrol(){
-	    	StopCoroutine(patrolRoutine);
+	    	if(patrolRoutine != null){
+	    		StopCoroutine(patrolRoutine);
+	    		patrolRoutine = null;
+	    	}
 	    }
 
 	    private IEnumerator Patrol(){
