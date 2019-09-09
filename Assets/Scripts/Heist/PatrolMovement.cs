@@ -14,13 +14,22 @@ public class PatrolMovement : MonoBehaviour
 	private float turnSpeed = .5f;
 	private float turnTime = 1f;
 
+	private Coroutine patrolRoutine;
+
     // Update is called once per frame
     void Start()
     {
     	transform.position = waypointParent.GetChild(0).position;
+    }
+
+    public void StartPatrol(){
     	if(waypointParent.childCount > 0){
-	        StartCoroutine(Patrol());
+	        patrolRoutine = StartCoroutine(Patrol());
 	    }
+    }
+
+    public void EndPatrol(){
+    	StopCoroutine(patrolRoutine);
     }
 
     private IEnumerator Patrol(){
