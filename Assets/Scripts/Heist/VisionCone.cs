@@ -15,6 +15,9 @@ namespace Outclaw.Heist{
 		[SerializeField]
 		private int numSamples = 10;
 
+		[SerializeField]
+		private LayerMask hitLayers;
+
 		public UnityEvent onDetect;
 
 	    // Start is called before the first frame update
@@ -52,7 +55,7 @@ namespace Outclaw.Heist{
 
 	    		// cast
 	    		RaycastHit2D hit = Physics2D.Raycast(transform.position,
-	    			currVec, visionDistance);
+	    			currVec, visionDistance, hitLayers);
 
 	    		// move points to local space
 	    		Vector3 localLineEnd;
@@ -66,7 +69,10 @@ namespace Outclaw.Heist{
 	    				foundPlayer = true;
 	    			}
 	    		}
-    			// meshVerts.Add(rotInverse * localLineEnd);
+
+	    		if(foundPlayer){
+	    			localLineEnd = currVec * visionDistance;
+	    		}
     			meshVerts.Add(rotInverse * localLineEnd);
 
 	    	}
