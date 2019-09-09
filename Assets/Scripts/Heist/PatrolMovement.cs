@@ -20,6 +20,7 @@ public class PatrolMovement : MonoBehaviour
     void Start()
     {
     	transform.position = waypointParent.GetChild(0).position;
+    	StartPatrol();
     }
 
     public void StartPatrol(){
