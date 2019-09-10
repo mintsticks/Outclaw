@@ -14,6 +14,9 @@ namespace Outclaw.Heist
         private InteractableType interactType;
         private GameObject interactObj;
 
+        [SerializeField] private GameObject visuals = null;
+        private Animator anim = null;
+
         public enum InteractableType
         {
             NONE,
@@ -43,6 +46,8 @@ namespace Outclaw.Heist
             isInteracting = false;
             interactType = InteractableType.NONE;
             interactObj = null;
+
+            anim = visuals.GetComponent<Animator>();
         }
 
         // Update is called once per frame
@@ -94,7 +99,9 @@ namespace Outclaw.Heist
 
             Vector2 movement = new Vector2(moveHorizontal, moveVertical);
 
-            rbody.velocity = (movement * speed);
+            Vector2 vel = (movement * speed);
+            rbody.velocity = vel;
+            anim.SetFloat("moveSpeed", vel.magnitude);
         }
 
         public void InteractWithObject(InteractableType type, GameObject obj)
