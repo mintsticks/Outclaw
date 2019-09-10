@@ -32,6 +32,10 @@ namespace Outclaw.Heist
         [SerializeField] private GameObject visuals = null;
         private PlayerAnimController animController = null;
 
+        [SerializeField] private SceneSwitcher switcher = null;
+        public string exitScene = "Main";
+
+
         public enum InteractableType
         {
             NONE,
@@ -118,6 +122,7 @@ namespace Outclaw.Heist
                     if (isObjectiveComplete)
                     {
                         //TODO SCENE EXIT
+                        switcher.SwitchToScene(exitScene);
                     }
                 }
             }

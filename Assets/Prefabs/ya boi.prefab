@@ -226,7 +226,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ventOffset: {x: 0.3, y: -0.5, z: 0}
   speed: 4
+  ambushCooldown: 7
+  ventCooldown: 2
   visuals: {fileID: 7146408721634142939}
+  switcher: {fileID: 0}
 --- !u!114 &1267642361
 MonoBehaviour:
   m_ObjectHideFlags: 0
