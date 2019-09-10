@@ -3133,7 +3133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869849645}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.51, y: 1.11, z: 0}
+  m_LocalPosition: {x: -0.48, y: 1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3331,6 +3331,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2402802730085940781, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: onCapture.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402802730085940781, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: onCapture.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402802730085940781, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: onCapture.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2076869829}
+    - target: {fileID: 2402802730085940781, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: onCapture.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402802730085940781, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: onCapture.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1580715188014506704, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
         type: 3}
       propertyPath: m_Name
@@ -3400,21 +3425,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580715188901723500, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
-        type: 3}
-      propertyPath: arrivalTolerance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580715188901723500, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
-        type: 3}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580715188236945764, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
-        type: 3}
-      propertyPath: visionDistance
-      value: 1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83b2e6d8592e5be4ca379c0414fc8ff5, type: 3}

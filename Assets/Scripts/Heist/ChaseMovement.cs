@@ -6,15 +6,20 @@ using UnityEngine.Events;
 namespace Outclaw.Heist{
 	public class ChaseMovement : MonoBehaviour
 	{
-		[SerializeField] private float speed;
-	    public GameObject target;
-	    [SerializeField] private LayerMask hitLayers;
-	    private Coroutine chaseRoutine;
+		[SerializeField] private float speed = 3;
+	    public GameObject target = null;
+	    [SerializeField] private LayerMask hitLayers = default(LayerMask);
+	    private Coroutine chaseRoutine = null;
+	    public UnityEvent onTargetLost = new UnityEvent();
 
-	    public UnityEvent onTargetLost;
+	    [SerializeField] private float captureRadius = .1f;
+	    public UnityEvent onCapture = new UnityEvent();
 
 	    public void StartChase(GameObject target){
-
+	    	if(chaseRoutine == null){
+	    		this.target = target;
+	    		chaseRoutine = StartCoroutine(Chase());
+	    	}
 	    }
 
 	    public void EndChase(){
@@ -28,16 +33,25 @@ namespace Outclaw.Heist{
 	    private IEnumerator Chase(){
 
 	    	while(true){
-	    		Vector3 toPlayer = target.transform.position - transform.position;
-	    		RaycastHit2D hit = Physics2D.Raycast(transform.position,
-	    			toPlayer, toPlayer.magnitude, hitLayers);
+	    		Vector3 toTarget = target.transform.position - transform.position;
+	    		if(toTarget.magnitude < captureRadius){
+	    			chaseRoutine = null;
+	    			target = null;
+	    			onCapture.Invoke();
+	    			yield break;
+	    		}
 
-	    		if(hit.collider.gameObject.CompareTag("Player")){
-		        	transform.Translate(Vector3.Normalize(toPlayer) * speed * Time.deltaTime);
+	    		RaycastHit2D hit = Physics2D.Raycast(transform.position,
+	    			toTarget, Mathf.Infinity, hitLayers);
+	    		Debug.DrawRay(transform.position, toTarget);
+
+	    		if(hit.collider != null && hit.collider.gameObject.CompareTag("Player")){
+		        	transform.Translate(Vector3.Normalize(toTarget) * speed * Time.deltaTime);
 	    		}
 	    		else{
 	    			chaseRoutine = null;
 	    			target = null;
+	    			onTargetLost.Invoke();
 	    			yield break;
 	    		}
 
