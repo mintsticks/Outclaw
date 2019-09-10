@@ -74,6 +74,8 @@ GameObject:
   - component: {fileID: 1580715188236945766}
   - component: {fileID: 1580715188236945767}
   - component: {fileID: 1580715188236945764}
+  - component: {fileID: 5328724585290159773}
+  - component: {fileID: 246936987761221614}
   m_Layer: 2
   m_Name: Vision Cone
   m_TagString: Untagged
@@ -197,6 +199,34 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: Outclaw.Heist.VisionCone+OnDetect, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!70 &5328724585290159773
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580715188236945760}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.36}
+  m_Size: {x: 0.79, y: 1.16}
+  m_Direction: 0
+--- !u!114 &246936987761221614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580715188236945760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14463c3c23e47064983c534e311bfc4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1580715188901723503
 GameObject:
   m_ObjectHideFlags: 0

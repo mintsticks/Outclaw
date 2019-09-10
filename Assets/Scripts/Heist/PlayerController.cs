@@ -72,6 +72,18 @@ namespace Outclaw.Heist
                     interactType = InteractableType.NONE;
                     isInteracting = false;
                 }
+                else if (interactType == InteractableType.GUARD)
+                {
+                    Destroy(interactObj);
+
+                    interactObj = null;
+                    interactType = InteractableType.NONE;
+                    isInteracting = false;
+                }
+                else if (interactType == InteractableType.EXIT)
+                {
+                    //TODO SCENE EXIT
+                }
             }
         }
 
