@@ -13,6 +13,19 @@ namespace Outclaw.Heist
         private bool isInteracting;
         private InteractableType interactType;
         private GameObject interactObj;
+        private bool isObjectiveComplete;
+        
+        private bool VentUsable
+        {
+            get;
+            set;
+        }
+
+        private bool AmbushUsable
+        {
+            get;
+            set;
+        }
 
         public enum InteractableType
         {
@@ -43,6 +56,7 @@ namespace Outclaw.Heist
             isInteracting = false;
             interactType = InteractableType.NONE;
             interactObj = null;
+            isObjectiveComplete = false;
         }
 
         // Update is called once per frame
@@ -53,6 +67,7 @@ namespace Outclaw.Heist
                 if (interactType == InteractableType.OBJECTIVE)
                 {
                     interactObj.GetComponent<Objective>().IsComplete = true;
+                    isObjectiveComplete = true;
                     interactObj = null;
                     interactType = InteractableType.NONE;
                     isInteracting = false;
@@ -82,7 +97,10 @@ namespace Outclaw.Heist
                 }
                 else if (interactType == InteractableType.EXIT)
                 {
-                    //TODO SCENE EXIT
+                    if (isObjectiveComplete)
+                    {
+                        //TODO SCENE EXIT
+                    }
                 }
             }
         }
