@@ -6,7 +6,7 @@ namespace Outclaw.Heist
 {
     public class Objective : MonoBehaviour
     {
-        private CircleCollider2D collider;
+        private CircleCollider2D col;
         private Rigidbody2D rbody;
         private SpriteRenderer spriteRend;
         private GameObject promptObj;
@@ -35,20 +35,10 @@ namespace Outclaw.Heist
             }
         }
 
-        public enum InteractableType
-        {
-            NONE,
-            OBJECTIVE,
-            VENT,
-            GUARD,
-            COVER,
-            EXIT
-        }
-
         // Start is called before the first frame update
         void Start()
         {
-            collider = GetComponent<CircleCollider2D>();
+            col = GetComponent<CircleCollider2D>();
             rbody = GetComponent<Rigidbody2D>();
             spriteRend = GetComponent<SpriteRenderer>();
             isComplete = false;
@@ -71,9 +61,9 @@ namespace Outclaw.Heist
             else
             {
                 promptObj.GetComponent<SpriteRenderer>().color = Color.red;
-                other.gameObject.GetComponent<PlayerController>().IsInteracting = true;
                 other.gameObject.GetComponent<PlayerController>().
                     InteractWithObject(PlayerController.InteractableType.OBJECTIVE, this.gameObject);
+                other.gameObject.GetComponent<PlayerController>().IsInteracting = true;
             }
         }
 

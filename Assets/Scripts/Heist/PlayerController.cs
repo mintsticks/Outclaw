@@ -7,6 +7,7 @@ namespace Outclaw.Heist
    public class PlayerController : MonoBehaviour
     {
 
+        public Vector3 ventOffset;
         public float speed;
         private Rigidbody2D rbody;
         private bool isInteracting;
@@ -31,11 +32,7 @@ namespace Outclaw.Heist
             }
             set 
             {
-                // isInteracting = value;
-                // if (isInteracting)
-                // {
-                //     Debug.Log("Interact!");
-                // }
+                isInteracting = value;
             }
         }
 
@@ -51,11 +48,26 @@ namespace Outclaw.Heist
         // Update is called once per frame
         void Update()
         {
-            if (isInteracting && Input.GetKey(KeyCode.Space))
+            if (isInteracting && Input.GetKeyDown(KeyCode.Space))
             {
                 if (interactType == InteractableType.OBJECTIVE)
                 {
                     interactObj.GetComponent<Objective>().IsComplete = true;
+                    interactObj = null;
+                    interactType = InteractableType.NONE;
+                    isInteracting = false;
+                }
+                else if (interactType == InteractableType.VENT)
+                {
+                    //move position to other vent
+                    string vent1 = "Vent1";
+                    string vent2 = "Vent2";
+                    string ventName = interactObj.name;
+                    string otherVentName = (ventName == vent1 ? vent2 : vent1);
+                    GameObject otherVent = interactObj.transform.parent.Find(otherVentName).gameObject;
+
+                    this.gameObject.transform.position = otherVent.transform.position + ventOffset;
+
                     interactObj = null;
                     interactType = InteractableType.NONE;
                     isInteracting = false;
