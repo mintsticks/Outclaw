@@ -23,14 +23,20 @@ namespace Outclaw.Heist
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            other.gameObject.GetComponent<PlayerController>().
-                InteractWithObject(PlayerController.InteractableType.VENT, this.gameObject);
-            other.gameObject.GetComponent<PlayerController>().IsInteracting = true;
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.gameObject.GetComponent<PlayerController>().
+                    InteractWithObject(PlayerController.InteractableType.VENT, this.gameObject);
+                other.gameObject.GetComponent<PlayerController>().IsInteracting = true;
+            }
         }
 
         void OnTriggerExit2D(Collider2D other)
         {
-            other.gameObject.GetComponent<PlayerController>().IsInteracting = false;
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.gameObject.GetComponent<PlayerController>().IsInteracting = false;
+            }
         }
     }
 }
