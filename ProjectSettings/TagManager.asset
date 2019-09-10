@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -38,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3095695651
+    locked: 0
   - name: Ground
     uniqueID: 225666283
     locked: 0
@@ -47,8 +51,14 @@ TagManager:
   - name: Enemy
     uniqueID: 1506042843
     locked: 0
+  - name: Cat
+    uniqueID: 1749279607
+    locked: 0
   - name: Player
     uniqueID: 277806313
+    locked: 0
+  - name: Icons
+    uniqueID: 24026869
     locked: 0
   - name: Fog of War
     uniqueID: 244063553
