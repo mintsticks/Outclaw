@@ -14,6 +14,8 @@ namespace Outclaw.Heist
         private InteractableType interactType;
         private GameObject interactObj;
         private bool isObjectiveComplete;
+        public float ambushCooldown;
+        public float ventCooldown;
         
         private bool VentUsable
         {
@@ -61,6 +63,8 @@ namespace Outclaw.Heist
             interactObj = null;
             isObjectiveComplete = false;
             animController = visuals.GetComponent<PlayerAnimController>();
+            VentUsable = true;
+            AmbushUsable = true;
         }
 
         // Update is called once per frame
@@ -78,26 +82,36 @@ namespace Outclaw.Heist
                 }
                 else if (interactType == InteractableType.VENT)
                 {
-                    //move position to other vent
-                    string vent1 = "Vent1";
-                    string vent2 = "Vent2";
-                    string ventName = interactObj.name;
-                    string otherVentName = (ventName == vent1 ? vent2 : vent1);
-                    GameObject otherVent = interactObj.transform.parent.Find(otherVentName).gameObject;
+                    if (VentUsable)
+                    {
+                        //move position to other vent
+                        string vent1 = "Vent1";
+                        string vent2 = "Vent2";
+                        string ventName = interactObj.name;
+                        string otherVentName = (ventName == vent1 ? vent2 : vent1);
+                        GameObject otherVent = interactObj.transform.parent.Find(otherVentName).gameObject;
 
-                    this.gameObject.transform.position = otherVent.transform.position + ventOffset;
+                        this.gameObject.transform.position = otherVent.transform.position + ventOffset;
 
-                    interactObj = null;
-                    interactType = InteractableType.NONE;
-                    isInteracting = false;
+                        interactObj = null;
+                        interactType = InteractableType.NONE;
+                        isInteracting = false;
+
+                        StartCoroutine(VentCooldown(ventCooldown));
+                    }
                 }
                 else if (interactType == InteractableType.GUARD)
                 {
-                    Destroy(interactObj);
+                    if (AmbushUsable)
+                    {
+                        Destroy(interactObj);
 
-                    interactObj = null;
-                    interactType = InteractableType.NONE;
-                    isInteracting = false;
+                        interactObj = null;
+                        interactType = InteractableType.NONE;
+                        isInteracting = false;
+
+                        StartCoroutine(AmbushCooldown(ambushCooldown));
+                    }
                 }
                 else if (interactType == InteractableType.EXIT)
                 {
@@ -106,6 +120,11 @@ namespace Outclaw.Heist
                         //TODO SCENE EXIT
                     }
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                this.gameObject.GetComponent<SenseAbility>().UseAbility();
             }
         }
 
@@ -125,6 +144,20 @@ namespace Outclaw.Heist
         {
             interactType = type;
             interactObj = obj;
+        }
+
+        private IEnumerator VentCooldown(float time){
+            VentUsable = false;
+            yield return new WaitForSeconds(time);
+            VentUsable = true;
+            yield break;
+        }
+
+        private IEnumerator AmbushCooldown(float time){
+            AmbushUsable = false;
+            yield return new WaitForSeconds(time);
+            AmbushUsable = true;
+            yield break;
         }
     } 
 }
