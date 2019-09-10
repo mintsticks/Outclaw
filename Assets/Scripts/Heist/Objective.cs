@@ -52,25 +52,31 @@ namespace Outclaw.Heist
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            promptObj = Instantiate(prompt, new Vector2(transform.position.x, transform.position.y + offset),
-            Quaternion.identity, this.transform);
-            if (isComplete)
+            if (other.gameObject.CompareTag("Player"))
             {
-                promptObj.GetComponent<SpriteRenderer>().color = Color.green;
-            }
-            else
-            {
-                promptObj.GetComponent<SpriteRenderer>().color = Color.red;
-                other.gameObject.GetComponent<PlayerController>().
-                    InteractWithObject(PlayerController.InteractableType.OBJECTIVE, this.gameObject);
-                other.gameObject.GetComponent<PlayerController>().IsInteracting = true;
+                promptObj = Instantiate(prompt, new Vector2(transform.position.x, transform.position.y + offset),
+                Quaternion.identity, this.transform);
+                if (isComplete)
+                {
+                    promptObj.GetComponent<SpriteRenderer>().color = Color.green;
+                }
+                else
+                {
+                    promptObj.GetComponent<SpriteRenderer>().color = Color.red;
+                    other.gameObject.GetComponent<PlayerController>().
+                        InteractWithObject(PlayerController.InteractableType.OBJECTIVE, this.gameObject);
+                    other.gameObject.GetComponent<PlayerController>().IsInteracting = true;   
+                }
             }
         }
 
         void OnTriggerExit2D(Collider2D other)
         {
-            Destroy(promptObj);
-            other.gameObject.GetComponent<PlayerController>().IsInteracting = false;
+            if (other.gameObject.CompareTag("Player"))
+            {
+                Destroy(promptObj);
+                other.gameObject.GetComponent<PlayerController>().IsInteracting = false;
+            }
         }
 
     }
