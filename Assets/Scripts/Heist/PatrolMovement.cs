@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Outclaw.Heist{
 	public class PatrolMovement : MonoBehaviour
 	{
-		[SerializeField] private Transform waypointParent;
+		[SerializeField] private Transform waypointParent = null;
 		[SerializeField] private float speed = 5;
 		[SerializeField] private float arrivalTolerance = 3;
 
@@ -14,7 +14,7 @@ namespace Outclaw.Heist{
 		private float turnSpeed = .5f;
 		private float turnTime = 1f;
 
-		private Coroutine patrolRoutine;
+		private Coroutine patrolRoutine = null;
 
 	    // Update is called once per frame
 	    void Start()

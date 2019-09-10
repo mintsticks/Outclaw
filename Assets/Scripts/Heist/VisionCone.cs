@@ -6,7 +6,10 @@ using UnityEngine.Events;
 namespace Outclaw.Heist{
 	public class VisionCone : MonoBehaviour
 	{
-		private MeshFilter filter;
+		[System.Serializable]
+		public class OnDetect : UnityEvent<GameObject>{}
+
+		private MeshFilter filter = null;
 		[SerializeField]
 		[Range(0, 360)]	
 		private float coneAngle = 90;
@@ -16,9 +19,9 @@ namespace Outclaw.Heist{
 		private int numSamples = 10;
 
 		[SerializeField]
-		private LayerMask hitLayers;
+		private LayerMask hitLayers = default(LayerMask);
 
-		public UnityEvent onDetect;
+		public OnDetect onDetect = new OnDetect();
 
 	    // Start is called before the first frame update
 	    void Start()
@@ -29,15 +32,16 @@ namespace Outclaw.Heist{
 	    // Update is called once per frame
 	    void Update()
 	    {
-	        if(TestCone()){
-	        	onDetect.Invoke();
+	    	GameObject player = TestCone();
+	        if(player != null){
+	        	onDetect.Invoke(player);
 	        }
 	    }
 
 	    // returns if the player was found
-	    private bool TestCone(){
+	    private GameObject TestCone(){
 
-	    	bool foundPlayer = false;
+	    	GameObject player = null;
 	    	List<Vector3> meshVerts = new List<Vector3>();
 	    	meshVerts.Add(Vector3.zero);
 
@@ -65,12 +69,12 @@ namespace Outclaw.Heist{
 	    		else{ // hit, draw where it hit
 	    			localLineEnd = hit.point - (Vector2)transform.position;
 
-	    			if(!foundPlayer && hit.collider.gameObject.CompareTag("Player")){
-	    				foundPlayer = true;
+	    			if(player == null && hit.collider.gameObject.CompareTag("Player")){
+	    				player = hit.collider.gameObject;
 	    			}
 	    		}
 
-	    		if(foundPlayer){
+	    		if(player != null){
 	    			localLineEnd = currVec * visionDistance;
 	    		}
     			meshVerts.Add(rotInverse * localLineEnd);
@@ -89,7 +93,7 @@ namespace Outclaw.Heist{
 	    	}
 	    	m.triangles = tris.ToArray();
 
-	    	return foundPlayer;
+	    	return player;
 	    }
 	}
 }
