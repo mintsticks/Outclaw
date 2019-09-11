@@ -20,18 +20,9 @@ namespace Outclaw.City {
       parent = _parent;
     }
     
-    public void CreateIndicator() {
-      Destroy(indicator);
-      indicator = Instantiate(indicatorPrefab, parent.transform.position + offset, Quaternion.identity, parent.transform);
-      spriteRenderer = indicator.GetComponent<SpriteRenderer>();
-    }
-
     public IEnumerator FadeIn() {
       for (var i = 0f; i <= fadeTime; i += Time.deltaTime) {
-        if (spriteRenderer == null) {
-          CreateIndicator();
-        }
-
+        MaybeCreateIndicator();
         spriteRenderer.color = new Color(1, 1, 1, i / fadeTime);
         yield return null;
       }
@@ -39,12 +30,26 @@ namespace Outclaw.City {
 
     public IEnumerator FadeOut() {
       for (var i = fadeTime; i >= 0; i -= Time.deltaTime) {
+        MaybeCreateIndicator();
         spriteRenderer.color = new Color(1, 1, 1, i / fadeTime);
         yield return null;
       }
 
       Destroy(indicator);
       spriteRenderer = null;
+    }
+
+    private void MaybeCreateIndicator() {
+      if (spriteRenderer != null) {
+        return;
+      }
+      CreateIndicator();
+    }
+    
+    public void CreateIndicator() {
+      Destroy(indicator);
+      indicator = Instantiate(indicatorPrefab, parent.transform.position + offset, Quaternion.identity, parent.transform);
+      spriteRenderer = indicator.GetComponent<SpriteRenderer>();
     }
   }
 }
