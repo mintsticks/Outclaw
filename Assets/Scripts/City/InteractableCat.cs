@@ -2,6 +2,7 @@
 using System.Collections;
 using Outclaw.City;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Outclaw.City {
   public class InteractableCat : MonoBehaviour, Interactable {
@@ -38,9 +39,12 @@ namespace Outclaw.City {
     }
 
     public void Interact() {
-      if (heart == null) {
+      // Later replace this with hook into minigame or cat socialization
+      SceneManager.LoadScene("Heist");
+      /*
+       if (heart == null) {
         StartCoroutine(HandleHeart());
-      }
+      }*/
     }
 
     private IEnumerator HandleHeart() {

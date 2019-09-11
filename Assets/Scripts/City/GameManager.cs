@@ -10,7 +10,18 @@ namespace Outclaw.City {
     
     private Player player;
     
-    public static GameManager Instance => instance ?? (instance = new GameManager());
-    public Player PlayerInstance => player;
+    public static GameManager Instance {
+      get { return instance ?? (instance = new GameManager()); }
+    }
+
+    public Player PlayerInstance {
+      get {
+        if (player == null) {
+          player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+
+        return player;
+      }
+    }
   }
 }
