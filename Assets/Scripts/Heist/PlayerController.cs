@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Outclaw.Heist
 {
@@ -16,6 +17,11 @@ namespace Outclaw.Heist
         private bool isObjectiveComplete;
         public float ambushCooldown;
         public float ventCooldown;
+
+        public Image ambushImage;
+        public Text ambushText;
+        public Image ventImage;
+        public Text ventText;
         
         private bool VentUsable
         {
@@ -69,6 +75,12 @@ namespace Outclaw.Heist
             animController = visuals.GetComponent<PlayerAnimController>();
             VentUsable = true;
             AmbushUsable = true;
+
+            ventImage.color = Color.gray;
+            ventText.enabled = false;
+
+            ambushImage.color = Color.white;
+            ambushText.enabled = true;
         }
 
         // Update is called once per frame
@@ -131,6 +143,12 @@ namespace Outclaw.Heist
             {
                 this.gameObject.GetComponent<SenseAbility>().UseAbility();
             }
+
+            if (!isInteracting)
+            {
+            ventImage.color = Color.gray;
+            ventText.enabled = false;
+            }
         }
 
         void FixedUpdate()
@@ -149,19 +167,33 @@ namespace Outclaw.Heist
         {
             interactType = type;
             interactObj = obj;
+
+            if (VentUsable && interactType == InteractableType.VENT)
+            {
+                ventImage.color = Color.white;
+                ventText.enabled = true;
+            }
         }
 
         private IEnumerator VentCooldown(float time){
             VentUsable = false;
+            ventImage.color = Color.gray;
+            ventText.enabled = false;
             yield return new WaitForSeconds(time);
             VentUsable = true;
+            ventImage.color = Color.white;
+            ventText.enabled = true;
             yield break;
         }
 
         private IEnumerator AmbushCooldown(float time){
             AmbushUsable = false;
+            ambushImage.color = Color.gray;
+            ambushText.enabled = false;
             yield return new WaitForSeconds(time);
             AmbushUsable = true;
+            ambushImage.color = Color.white;
+            ambushText.enabled = true;
             yield break;
         }
     } 
