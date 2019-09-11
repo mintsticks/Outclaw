@@ -23,6 +23,9 @@ namespace Outclaw.City {
     
     [SerializeField]
     private SpriteRenderer sprite;
+
+    [SerializeField]
+    private PlayerAnimController ac;
     
     private bool isWaiting;
     private bool isJumping;
@@ -57,10 +60,12 @@ namespace Outclaw.City {
     private void UpdateHorizontal() {
       var moveDir = GetMoveDirection();
       if (moveDir == 0) {
+        ac.SetHorizontalVelocity(0);
         return;
       }
       
       transform.right = new Vector2(moveDir, 0);
+      ac.SetHorizontalVelocity(walkSpeed);
       transform.Translate(new Vector2(moveDir * walkSpeed * Time.fixedDeltaTime, 0),Space.World);
     }
 
