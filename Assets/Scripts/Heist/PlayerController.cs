@@ -41,6 +41,7 @@ namespace Outclaw.Heist
         [SerializeField] private SceneSwitcher switcher = null;
         public string exitScene = "Main";
 
+        [SerializeField] private AudioSource abilitySound = null;
 
         public enum InteractableType
         {
@@ -114,6 +115,7 @@ namespace Outclaw.Heist
                         isInteracting = false;
 
                         StartCoroutine(VentCooldown(ventCooldown));
+                        abilitySound.Play();
                     }
                 }
                 else if (interactType == InteractableType.GUARD)
@@ -127,6 +129,7 @@ namespace Outclaw.Heist
                         isInteracting = false;
 
                         StartCoroutine(AmbushCooldown(ambushCooldown));
+                        abilitySound.Play();
                     }
                 }
                 else if (interactType == InteractableType.EXIT)
@@ -141,7 +144,11 @@ namespace Outclaw.Heist
 
             if (Input.GetKeyDown(KeyCode.X))
             {
-                this.gameObject.GetComponent<SenseAbility>().UseAbility();
+                SenseAbility ability = this.gameObject.GetComponent<SenseAbility>();
+                ability.UseAbility();
+                if(ability.Useable){
+                    abilitySound.Play();
+                }
             }
 
             if (!isInteracting)
