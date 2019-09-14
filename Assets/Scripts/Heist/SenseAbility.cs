@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SenseAbility : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class SenseAbility : MonoBehaviour
     [SerializeField] private float contractTime = 3f;
     [SerializeField] private float maxSizeScale = 3f;
 
+	public Image senseImage;
+	public Text senseText;
+
     // using
     [SerializeField] private float cooldown = 10f;
     public bool Useable {get; private set;}
@@ -19,6 +23,8 @@ public class SenseAbility : MonoBehaviour
     void Start(){
     	origScale = visionField.transform.localScale.x;
     	Useable = true;
+		senseImage.color = Color.white;
+		senseText.enabled = true;
     }
 
     public void UseAbility(){
@@ -30,8 +36,12 @@ public class SenseAbility : MonoBehaviour
 
     private IEnumerator Cooldown(){
     	Useable = false;
+		senseImage.color = Color.gray;
+		senseText.enabled = false;
     	yield return new WaitForSeconds(cooldown);
     	Useable = true;
+		senseImage.color = Color.white;
+		senseText.enabled = true;
     	yield break;
     }
 
