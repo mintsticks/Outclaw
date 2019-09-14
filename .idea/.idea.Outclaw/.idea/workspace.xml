@@ -2,22 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/CityInstaller.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/CityInstaller.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerData.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/NewJumpClip.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/NewJumpClip.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/RunAcrossClip.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/RunAcrossClip.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/RunAcrossController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/RunAcrossController.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/gamejam.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/gamejam.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/walk.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/MainCatAnims/walk.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/UI/ScalingStartClip.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/UI/ScalingStartClip.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/UI/StartAnimController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/UI/StartAnimController.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/CafeBottom.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/CafeBottom.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/CafeTop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/CafeTop.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Main2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Main2.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/Indicator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/Indicator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/Player.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,15 +29,18 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/ChaseMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/PatrolMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Internal/Assert.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Swarm/Assets/Scripts/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Resources/CityInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/Vent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Player/PlayerInputHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Installers/PlayerInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/StartListener.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Installers/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectSettings/TagManager.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/Interactable.cs" root0="FORCE_HIGHLIGHTING" />
@@ -73,10 +70,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/City/CameraBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/City/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/Indicator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/StartListener.cs" />
+        <option value="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" />
+        <option value="$PROJECT_DIR$/Assets/Resources/CityInstaller.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/City/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerData.cs" />
       </list>
     </option>
   </component>
@@ -134,7 +134,8 @@
       <workItem from="1568155708147" duration="74000" />
       <workItem from="1568155795219" duration="483000" />
       <workItem from="1568156723918" duration="117000" />
-      <workItem from="1568156883666" duration="8470000" />
+      <workItem from="1568156883666" duration="9591000" />
+      <workItem from="1568446973347" duration="4985000" />
     </task>
     <servers />
   </component>

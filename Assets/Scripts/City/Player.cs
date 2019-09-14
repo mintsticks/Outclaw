@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Zenject;
 
 namespace Outclaw.City {
   public class Player : MonoBehaviour {
@@ -26,15 +27,24 @@ namespace Outclaw.City {
 
     [SerializeField]
     private PlayerAnimController ac;
+
+    [Inject]
+    private IPlayerData playerData;
     
     private bool isWaiting;
     private bool isJumping;
     private Interactable interactable;
-    
+
+    public void Awake() {
+      playerData.Load();
+    }
+
     void FixedUpdate() {
       UpdateHorizontal();
       UpdateVertical();
       UpdateInteraction();
+      playerData.Save();
+      Debug.Log(playerData.Name + " " + playerData.CatCount);
     }
 
     private void UpdateInteraction() {
@@ -53,6 +63,8 @@ namespace Outclaw.City {
     }
 
     private void Jump() {
+      playerData.Name = "Robby";
+      playerData.CatCount++;
       rb.velocity = new Vector2(rb.velocity.x, jumpForce);
       isJumping = true;
     }
