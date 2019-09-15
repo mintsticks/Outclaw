@@ -2,12 +2,26 @@
 using UnityEngine;
 
 namespace Outclaw {
+  /// <summary>
+  /// Class to hold all data stored for the player.
+  /// </summary>
   public interface IPlayerData {
+    /// <summary>
+    /// Name that the player has chosen for their cat.
+    /// </summary>
     string Name { get; set; }
+    
     //TODO(dwong): for now, represents number of jumps. replace with actual cat data
     int CatCount { get; set; }
 
+    /// <summary>
+    /// Save instance data to the system.
+    /// </summary>
     void Save();
+    
+    /// <summary>
+    /// Load data stored in system to instance.
+    /// </summary>
     void Load();
   }
 

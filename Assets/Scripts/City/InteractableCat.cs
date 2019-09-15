@@ -3,30 +3,20 @@ using System.Collections;
 using Outclaw.City;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace Outclaw.City {
   public class InteractableCat : MonoBehaviour, Interactable {
     [SerializeField]
-    private GameObject indicatorPrefab;
-
-    [SerializeField]
-    private GameObject heartPrefab;
-
-    [SerializeField]
-    private float fadeTime;
-
-    [SerializeField]
-    private Vector3 offset;
-
-    [SerializeField]
     private Indicator talkIndicator;
+   
+    [Inject]
+    private IPlayer player;
     
-    private GameObject heart;
-    private SpriteRenderer heartRenderer;
     private Transform parent;
 
     public void Awake() {
-      talkIndicator.Initialize(GameManager.Instance.PlayerInstance.transform);
+      talkIndicator.Initialize(player.PlayerTransform);
     }
 
     public void InRange() {
@@ -39,18 +29,8 @@ namespace Outclaw.City {
     }
 
     public void Interact() {
-      // Later replace this with hook into minigame or cat socialization
+      //TODO(dwong): Later replace this with hook into minigame or cat socialization
       SceneManager.LoadScene("Heist");
-      /*
-       if (heart == null) {
-        StartCoroutine(HandleHeart());
-      }*/
-    }
-
-    private IEnumerator HandleHeart() {
-      heart = Instantiate(heartPrefab, transform.position + offset, Quaternion.identity, transform);
-      yield return new WaitForSeconds(fadeTime);
-      Destroy(heart);
     }
   }
 }

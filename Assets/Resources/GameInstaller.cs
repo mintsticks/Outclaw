@@ -10,6 +10,9 @@ namespace Outclaw {
       Container.Bind<IPlayerData>()
         .To<PlayerData>()
         .AsSingle();
+      Container.Bind<IPlayerInput>()
+        .To<PlayerInput>()
+        .AsSingle();
     }
   }
 }

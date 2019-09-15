@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace Outclaw.City {
   public class InteractableLocation : MonoBehaviour, Interactable {
@@ -8,9 +9,12 @@ namespace Outclaw.City {
 
     [SerializeField]
     private string locationName;
+
+    [Inject]
+    private IPlayer player;
     
     public void Awake() {
-      enterIndicator.Initialize(GameManager.Instance.PlayerInstance.transform);
+      enterIndicator.Initialize(player.PlayerTransform);
     }
     
     public void InRange() {

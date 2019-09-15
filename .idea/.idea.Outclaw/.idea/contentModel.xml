@@ -449,11 +449,13 @@
         <e p="Scripts" t="Include">
           <e p="City" t="Include">
             <e p="CameraBehavior.cs" t="Include" />
-            <e p="GameManager.cs" t="Include" />
+            <e p="GroundHelper.cs" t="Include" />
             <e p="Indicator.cs" t="Include" />
             <e p="Interactable.cs" t="Include" />
             <e p="InteractableCat.cs" t="Include" />
             <e p="InteractableLocation.cs" t="Include" />
+            <e p="InteractionController.cs" t="Include" />
+            <e p="MovementController.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
           <e p="Heist" t="Include">
@@ -469,6 +471,7 @@
           </e>
           <e p="PlayerAnimController.cs" t="Include" />
           <e p="PlayerData.cs" t="Include" />
+          <e p="PlayerInput.cs" t="Include" />
           <e p="SceneSwitcher.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="StartListener.cs" t="Include" />
