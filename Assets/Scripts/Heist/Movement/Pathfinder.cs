@@ -20,12 +20,13 @@ namespace Outclaw.Heist{
 	    [SerializeField] private Transform destination = null;
 
 	    public float speed = 5;
-	    public float minTargetDistance = .8f;
 	    private List<Vector3Int> path = null;
 	    private Coroutine pathRoutine = null;
+	    private Rigidbody2D rb = null;
 
 	    void Start(){
 	    	grid = map.layoutGrid;
+	    	rb = GetComponent<Rigidbody2D>();
 	    	ComputePath();
 	    }
 
@@ -104,7 +105,7 @@ namespace Outclaw.Heist{
 	    					cellCurrentBest[neighbor] = new Tuple<int, Vector3Int>(cost, current);
 
 	    					// prioritize by min cost to travel + min distance to go
-	    					int weightedCost = cost + Distance(neighbor, end);
+	    					int weightedCost = cost + Distance(neighbor, end) + (IsNearWall(neighbor) ? 3 : 0);
 	    					if(!toVisit.ContainsKey(weightedCost)){
 	    						toVisit[weightedCost] = new Stack<Vector3Int>();
 	    					}
@@ -211,8 +212,10 @@ namespace Outclaw.Heist{
 	    		DrawCellCrosshair(NearestCell(targetPoint), Color.green);
 
 	    		// compute velocity vector to move
-	    		Vector3 velocityDir = targetPoint - transform.position;
+	    		Vector3 targetDir = targetPoint - transform.position;
+	    		Vector3 velocityDir = targetDir;
 	    		float maxSpeed = velocityDir.magnitude;
+	    		targetDir.Normalize();
 
 	    		// don't walk over obstacles
 	    		Vector3Int dx = new Vector3Int((int)Mathf.Sign(velocityDir.x), 0, 0);
@@ -223,10 +226,14 @@ namespace Outclaw.Heist{
 	    		if(map.GetTile(nearestCell + dy) != null){
 	    			velocityDir.y = 0;
 	    		}
+	    		velocityDir.Normalize();
+
+	    		// rewind target progress if not moving directly towards it
+	    		totalTime -= (1 - Mathf.Max(Vector3.Dot(targetDir, velocityDir), 0)) * dt;
+	    		
 
 	    		// apply velocity
-	    		velocityDir.Normalize();
-	    		GetComponent<Rigidbody2D>().velocity = velocityDir * Mathf.Min(speed, maxSpeed);
+	    		rb.velocity = velocityDir * Mathf.Min(speed, maxSpeed);
 	    		Debug.DrawRay(transform.position, velocityDir, Color.red);
 
 	    		// prepare for next loop
@@ -234,7 +241,7 @@ namespace Outclaw.Heist{
 	    		yield return new WaitForSeconds(fixedDt);
 	    	}
 
-	    	GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+	    	rb.velocity = Vector2.zero;
 	    	yield break;
 	    }
 	}
