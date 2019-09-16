@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Outclaw.City {
+namespace Outclaw {
   public class InteractionController : MonoBehaviour {
     [SerializeField]
     private LayerMask interactableLayer;
@@ -21,8 +21,8 @@ namespace Outclaw.City {
       if ((1 << other.gameObject.layer & interactableLayer) == 0) {
         return;
       }
-      
-      currentInteractable = other.GetComponent<Interactable>();
+
+      currentInteractable = other.GetComponentInParent<Interactable>();
       currentInteractable.InRange();
     }
 
@@ -31,7 +31,7 @@ namespace Outclaw.City {
         return;
       }
       
-      other.GetComponent<Interactable>().ExitRange();
+      other.GetComponentInParent<Interactable>().ExitRange();
       currentInteractable = null;
     }
   }

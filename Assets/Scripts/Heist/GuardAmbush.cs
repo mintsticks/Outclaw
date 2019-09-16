@@ -1,42 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Outclaw.City;
 using UnityEngine;
+using Zenject;
 
-namespace Outclaw.Heist
-{
-    public class GuardAmbush : MonoBehaviour
-    {
+namespace Outclaw.Heist {
+  public class GuardAmbush : MonoBehaviour, Interactable {
+    [SerializeField]
+    private AbilityType ambushAbilityType = AbilityType.AMBUSH;
+    
+    [SerializeField]
+    private Indicator ambushIndicator;
 
-        private CapsuleCollider2D col;
+    [Inject]
+    private IAbilityCooldownManager abilityCooldownManager;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            col = GetComponent<CapsuleCollider2D>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-
-        void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                other.gameObject.GetComponent<PlayerController>().
-                    InteractWithObject(PlayerController.InteractableType.GUARD, this.gameObject.transform.parent.parent.gameObject);
-                other.gameObject.GetComponent<PlayerController>().IsInteracting = true;
-            }
-        }
-
-        void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                other.gameObject.GetComponent<PlayerController>().IsInteracting = false;
-            }
-        }
+    [Inject]
+    private IPlayer player;
+    
+    public void Awake() {
+      ambushIndicator.Initialize(player.PlayerTransform);
     }
+    
+    public void InRange() {
+      ambushIndicator.CreateIndicator();
+      StartCoroutine(ambushIndicator.FadeIn());
+    }
+
+    public void ExitRange() {
+      StartCoroutine(ambushIndicator.FadeOut());
+    }
+
+    public void Interact() {
+      if (!abilityCooldownManager.CanUseAbility(ambushAbilityType)) {
+        return;
+      }
+      
+      abilityCooldownManager.UseAbility(ambushAbilityType);
+      ambushIndicator.DestroyIndicator();
+      Destroy(transform.root.gameObject);
+      //TODO(dwong): add sound
+    }
+  }
 }

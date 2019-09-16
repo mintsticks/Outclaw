@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4027692468184027391}
   - component: {fileID: 4027692468184027390}
   - component: {fileID: 4027692468184027387}
-  m_Layer: 0
+  - component: {fileID: 4027692468300810346}
+  m_Layer: 11
   m_Name: Objective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,5 +133,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad725d2070a831a448af0a74fc83cf2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prompt: {fileID: 4774280234640519627, guid: 69a74baa0e69bc043848bbfe035b1825, type: 3}
-  offset: 1
+  objectiveIndicator: {fileID: 4027692468300810346}
+--- !u!114 &4027692468300810346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4027692468184027360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6e7808c3c617145b2c2ba283a156ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicatorPrefab: {fileID: 4774280234640519627, guid: 69a74baa0e69bc043848bbfe035b1825,
+    type: 3}
+  fadeTime: 0.25
+  offset: {x: 0, y: 1, z: 0}

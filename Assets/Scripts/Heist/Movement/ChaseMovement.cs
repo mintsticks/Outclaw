@@ -3,60 +3,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Outclaw.Heist{
-	public class ChaseMovement : MonoBehaviour
-	{
-		[SerializeField] private float speed = 3;
-	    public GameObject target = null;
-	    [SerializeField] private LayerMask hitLayers = default(LayerMask);
-	    private Coroutine chaseRoutine = null;
-	    public UnityEvent onTargetLost = new UnityEvent();
+namespace Outclaw.Heist {
+  public class ChaseMovement : MonoBehaviour {
+    [SerializeField]
+    private float speed = 3;
 
-	    [SerializeField] private float captureRadius = .1f;
-	    public UnityEvent onCapture = new UnityEvent();
+    public GameObject target = null;
 
-	    public void StartChase(GameObject target){
-	    	if(chaseRoutine == null){
-	    		this.target = target;
-	    		chaseRoutine = StartCoroutine(Chase());
-	    	}
-	    }
+    [SerializeField]
+    private LayerMask hitLayers = default(LayerMask);
 
-	    public void EndChase(){
-	    	if(chaseRoutine != null){
-	    		StopCoroutine(chaseRoutine);
-	    		chaseRoutine = null;
-	    		target = null;
-	    	}
-	    }
+    private Coroutine chaseRoutine = null;
+    public UnityEvent onTargetLost = new UnityEvent();
 
-	    private IEnumerator Chase(){
+    [SerializeField]
+    private float captureRadius = .1f;
 
-	    	while(true){
-	    		Vector3 toTarget = target.transform.position - transform.position;
-	    		if(toTarget.magnitude < captureRadius){
-	    			chaseRoutine = null;
-	    			target = null;
-	    			onCapture.Invoke();
-	    			yield break;
-	    		}
+    public UnityEvent onCapture = new UnityEvent();
 
-	    		RaycastHit2D hit = Physics2D.Raycast(transform.position,
-	    			toTarget, Mathf.Infinity, hitLayers);
-	    		Debug.DrawRay(transform.position, toTarget);
+    public void StartChase(GameObject target) {
+      if (chaseRoutine == null) {
+        this.target = target;
+        chaseRoutine = StartCoroutine(Chase());
+      }
+    }
 
-	    		if(hit.collider != null && hit.collider.gameObject.CompareTag("Player")){
-		        	transform.Translate(Vector3.Normalize(toTarget) * speed * Time.deltaTime);
-	    		}
-	    		else{
-	    			chaseRoutine = null;
-	    			target = null;
-	    			onTargetLost.Invoke();
-	    			yield break;
-	    		}
+    public void EndChase() {
+      if (chaseRoutine != null) {
+        StopCoroutine(chaseRoutine);
+        chaseRoutine = null;
+        target = null;
+      }
+    }
 
-	    		yield return null;
-	    	}
-	    }
-	}
+    private IEnumerator Chase() {
+      while (true) {
+        Vector3 toTarget = target.transform.position - transform.position;
+        if (toTarget.magnitude < captureRadius) {
+          chaseRoutine = null;
+          target = null;
+          onCapture.Invoke();
+          yield break;
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position,
+          toTarget, Mathf.Infinity, hitLayers);
+        Debug.DrawRay(transform.position, toTarget);
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Player")) {
+          transform.Translate(Vector3.Normalize(toTarget) * speed * Time.deltaTime);
+        } else {
+          chaseRoutine = null;
+          target = null;
+          onTargetLost.Invoke();
+          yield break;
+        }
+
+        yield return null;
+      }
+    }
+  }
 }

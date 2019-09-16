@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using Outclaw.City;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 

@@ -8,7 +8,7 @@ namespace Outclaw.City {
     
     /// <summary>
     /// For all classes common to city scenes.
-    /// Bind the interfaces to the concrete classes.z
+    /// Bind the interfaces to the concrete classes.
     /// </summary>
     public override void InstallBindings() {
       Container.Bind<IPlayer>()

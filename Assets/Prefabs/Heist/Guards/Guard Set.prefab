@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1580715188014506711}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Guard Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1580715188227192446}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Guard Waypoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,8 +75,7 @@ GameObject:
   - component: {fileID: 1580715188236945767}
   - component: {fileID: 1580715188236945764}
   - component: {fileID: 5328724585290159773}
-  - component: {fileID: 246936987761221614}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Vision Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,18 +236,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.36}
   m_Size: {x: 0.79, y: 1.16}
   m_Direction: 0
---- !u!114 &246936987761221614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580715188236945760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14463c3c23e47064983c534e311bfc4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1893420406625349389
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218439107457159152}
   - component: {fileID: 5899073249479156652}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Alert sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +525,7 @@ MonoBehaviour:
   onCapture:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9128697227011098454}
         m_MethodName: SwitchToScene
         m_Mode: 5
         m_Arguments:
@@ -551,6 +538,48 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &9128697227011098454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807844603436143462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3fa4e3cfaedea4d831fc179cfb9762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &812726191598609837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807844603436143462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14463c3c23e47064983c534e311bfc4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambushAbilityType: 1
+  ambushIndicator: {fileID: 4705483580025662077}
+--- !u!114 &4705483580025662077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807844603436143462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6e7808c3c617145b2c2ba283a156ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicatorPrefab: {fileID: 4898193627876080030, guid: a038904332997e747b5709ceed877c57,
+    type: 3}
+  fadeTime: 0.1
+  offset: {x: 0, y: 1, z: 0}
 --- !u!1001 &6667506221444047857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -562,6 +591,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Guard Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 215591200378204311, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 215591200378204299, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
@@ -617,6 +651,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 215591200003001308, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 215591200378204296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d, type: 3}

@@ -1,42 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Outclaw.City;
 using UnityEngine;
+using Zenject;
 
-namespace Outclaw.Heist
-{
-    public class Vent : MonoBehaviour
-    {
+namespace Outclaw.Heist {
+  public class Vent : MonoBehaviour, Interactable {
+    [SerializeField]
+    private AbilityType ventAbilityType = AbilityType.VENT;
 
-        private CircleCollider2D col;
+    [SerializeField]
+    private Vector3 ventOffset;
+    
+    [SerializeField]
+    private Vent destination;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            col = GetComponent<CircleCollider2D>();
-        }
+    [SerializeField]
+    private Indicator ventIndicator;
+    
+    [Inject]
+    private IAbilityCooldownManager abilityCooldownManager;
 
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
+    [Inject]
+    private IPlayer player;
 
-        void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                other.gameObject.GetComponent<PlayerController>().
-                    InteractWithObject(PlayerController.InteractableType.VENT, this.gameObject);
-                other.gameObject.GetComponent<PlayerController>().IsInteracting = true;
-            }
-        }
-
-        void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                other.gameObject.GetComponent<PlayerController>().IsInteracting = false;
-            }
-        }
+    public void Awake() {
+      ventIndicator.Initialize(player.PlayerTransform);
     }
+    
+    public void InRange() {
+      //TODO(dwong): update UI to show vent enabled
+      //ventImage.color = Color.white;
+      //ventText.enabled = true;
+      
+      ventIndicator.CreateIndicator();
+      StartCoroutine(ventIndicator.FadeIn());
+    }
+
+    public void ExitRange() {
+      StartCoroutine(ventIndicator.FadeOut());
+    }
+
+    public void Interact() {
+      if (!abilityCooldownManager.CanUseAbility(ventAbilityType)) {
+        return;
+      }
+      
+      abilityCooldownManager.UseAbility(ventAbilityType);
+      
+      player.PlayerTransform.position = destination.transform.position + ventOffset;
+      
+      //TODO(dwong): add sound
+    }
+  }
 }

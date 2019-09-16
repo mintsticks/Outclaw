@@ -2,92 +2,98 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Outclaw.Heist{
-	public class PatrolMovement : MonoBehaviour
-	{
-		[SerializeField] private Transform waypointParent = null;
-		[SerializeField] private float speed = 5;
-		[SerializeField] private float arrivalTolerance = 3;
+namespace Outclaw.Heist {
+  public class PatrolMovement : MonoBehaviour {
+    [SerializeField]
+    private Transform waypointParent = null;
 
-		[SerializeField]
-		[Range(0, 1)]
-		private float turnSpeed = .5f;
-		private float turnTime = 1f;
+    [SerializeField]
+    private float speed = 5;
 
-		[SerializeField] private float visionRecoverTime = 1f;
-		[SerializeField] private GameObject visionCone = null;
+    [SerializeField]
+    private float arrivalTolerance = 3;
 
-		private Coroutine patrolRoutine = null;
+    [SerializeField]
+    [Range(0, 1)]
+    private float turnSpeed = .5f;
 
-	    // Update is called once per frame
-	    void Start()
-	    {
-	    	transform.position = waypointParent.GetChild(0).position;
-	    	StartPatrol();
-	    }
+    private float turnTime = 1f;
 
-	    public void StartPatrol(){
-	    	if(waypointParent.childCount > 0 && patrolRoutine == null){
-		        patrolRoutine = StartCoroutine(Patrol());
-		    }
-	    }
+    [SerializeField]
+    private float visionRecoverTime = 1f;
 
-	    public void EndPatrol(){
-	    	if(patrolRoutine != null){
-	    		StopCoroutine(patrolRoutine);
-	    		patrolRoutine = null;
-	    	}
-	    }
+    [SerializeField]
+    private GameObject visionCone = null;
 
-	    private IEnumerator Patrol(){
+    private Coroutine patrolRoutine = null;
 
-	    	int currentGoal = 0;
-	    	while(true){
-				Vector2 dir = waypointParent.GetChild(currentGoal).position - transform.position;
+    // Update is called once per frame
+    void Start() {
+      transform.position = waypointParent.GetChild(0).position;
+      StartPatrol();
+    }
 
-				bool changedDir = false;
-		        while(dir.magnitude < arrivalTolerance){
-		        	currentGoal = (currentGoal + 1) % waypointParent.childCount;
-		        	dir = waypointParent.GetChild(currentGoal).position - transform.position;
-		        	changedDir = true;
-		        }
-		        if(changedDir){
-					yield return TurnHead(dir);
-		        }
+    public void StartPatrol() {
+      if (waypointParent.childCount > 0 && patrolRoutine == null) {
+        patrolRoutine = StartCoroutine(Patrol());
+      }
+    }
 
-		        dir.Normalize();
-		        transform.Translate(dir * speed * Time.deltaTime);
-		        yield return null;
-	    	}
-	    }
+    public void EndPatrol() {
+      if (patrolRoutine != null) {
+        StopCoroutine(patrolRoutine);
+        patrolRoutine = null;
+      }
+    }
 
-	    private IEnumerator TurnHead(Vector3 dir){
+    private IEnumerator Patrol() {
+      int currentGoal = 0;
+      while (true) {
+        Vector2 dir = waypointParent.GetChild(currentGoal).position - transform.position;
 
-	    	float timePassed = 0;
-	    	while(timePassed < turnTime){
-		        Quaternion oldRot = visionCone.transform.rotation;
-		        Quaternion goal = Quaternion.identity;
-		        goal.SetLookRotation(Vector3.forward, dir);
-		        visionCone.transform.rotation = Quaternion.Lerp(
-		        		oldRot,
-		        		goal,
-		        		turnSpeed
-		        	);
-		        timePassed += Time.deltaTime;
-		        yield return null;
-	    	}
+        bool changedDir = false;
+        while (dir.magnitude < arrivalTolerance) {
+          currentGoal = (currentGoal + 1) % waypointParent.childCount;
+          dir = waypointParent.GetChild(currentGoal).position - transform.position;
+          changedDir = true;
+        }
 
-	    	yield break;
-	    }
+        if (changedDir) {
+          yield return TurnHead(dir);
+        }
 
-	    public void RecoverVision(GameObject visionCone){
-	    	StartCoroutine(RestartVision(visionCone));
-	    }
+        dir.Normalize();
+        transform.Translate(dir * speed * Time.deltaTime);
+        yield return null;
+      }
+    }
 
-	    private IEnumerator RestartVision(GameObject visionCone){
-	    	yield return new WaitForSeconds(visionRecoverTime);
-	    	visionCone.SetActive(true);
-	    	yield break;
-	    }
-	}
+    private IEnumerator TurnHead(Vector3 dir) {
+      float timePassed = 0;
+      while (timePassed < turnTime) {
+        Quaternion oldRot = visionCone.transform.rotation;
+        Quaternion goal = Quaternion.identity;
+        goal.SetLookRotation(Vector3.forward, dir);
+        visionCone.transform.rotation = Quaternion.Lerp(
+          oldRot,
+          goal,
+          turnSpeed
+        );
+        timePassed += Time.deltaTime;
+        yield return null;
+      }
+
+      yield break;
+    }
+
+    public void RecoverVision(GameObject visionCone) {
+      StartCoroutine(RestartVision(visionCone));
+    }
+
+    private IEnumerator RestartVision(GameObject visionCone) {
+      yield return new WaitForSeconds(visionRecoverTime);
+      visionCone.SetActive(true);
+      yield break;
+    }
+  }
 }
