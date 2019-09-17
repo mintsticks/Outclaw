@@ -4,32 +4,37 @@ using UnityEngine;
 
 namespace Outclaw.Heist {
   public class PatrolMovement : MonoBehaviour {
-    [SerializeField]
-    private Transform waypointParent = null;
+    [Header("Movement")]
+    [SerializeField] private Transform waypointParent = null;
+    [SerializeField] private float speed = 5;
+    [SerializeField] private float arrivalTolerance = 3;
+    private int currentGoal = 0;
 
-    [SerializeField]
-    private float speed = 5;
-
-    [SerializeField]
-    private float arrivalTolerance = 3;
-
+    [Header("Turning")]
     [SerializeField]
     [Range(0, 1)]
     private float turnSpeed = .5f;
-
     private float turnTime = 1f;
 
-    [SerializeField]
-    private float visionRecoverTime = 1f;
-
-    [SerializeField]
-    private GameObject visionCone = null;
+    [Header("Vision")]
+    [SerializeField] private float visionRecoverTime = 1f;
+    [SerializeField] private GameObject visionCone = null;
 
     private Coroutine patrolRoutine = null;
 
+    public Vector3 NextDestination{
+      get{
+        return (waypointParent.childCount > currentGoal) 
+          ? waypointParent.GetChild(currentGoal).position
+          : transform.position;
+      }
+    }
+
     // Update is called once per frame
     void Start() {
-      transform.position = waypointParent.GetChild(0).position;
+      if(waypointParent.childCount > currentGoal){
+        transform.position = waypointParent.GetChild(currentGoal).position;
+      }
       StartPatrol();
     }
 
@@ -47,7 +52,6 @@ namespace Outclaw.Heist {
     }
 
     private IEnumerator Patrol() {
-      int currentGoal = 0;
       while (true) {
         Vector2 dir = waypointParent.GetChild(currentGoal).position - transform.position;
 

@@ -5,20 +5,17 @@ using UnityEngine.Events;
 
 namespace Outclaw.Heist {
   public class ChaseMovement : MonoBehaviour {
+    [Header("Chasing")]
     [SerializeField]
     private float speed = 3;
-
     public GameObject target = null;
-
     [SerializeField]
     private LayerMask hitLayers = default(LayerMask);
-
     private Coroutine chaseRoutine = null;
     public UnityEvent onTargetLost = new UnityEvent();
 
-    [SerializeField]
-    private float captureRadius = .1f;
-
+    [Header("Capture")]
+    [SerializeField] private float captureRadius = .1f;
     public UnityEvent onCapture = new UnityEvent();
 
     public void StartChase(GameObject target) {

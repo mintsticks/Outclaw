@@ -2431,7 +2431,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -2894,6 +2894,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5874250219009274692, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 326045070}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83b2e6d8592e5be4ca379c0414fc8ff5, type: 3}
 --- !u!1 &761569688
@@ -3136,6 +3141,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5874250219009274692, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 326045070}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83b2e6d8592e5be4ca379c0414fc8ff5, type: 3}
 --- !u!1 &1009676773
@@ -3462,6 +3472,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1580715188236945764, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: visionDistance
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 1580715188901723502, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -3527,11 +3542,6 @@ PrefabInstance:
       propertyPath: onCapture.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Heist
       objectReference: {fileID: 0}
-    - target: {fileID: 1580715188236945764, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
-        type: 3}
-      propertyPath: visionDistance
-      value: 1.4
-      objectReference: {fileID: 0}
     - target: {fileID: 629963820, guid: 83b2e6d8592e5be4ca379c0414fc8ff5, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -3564,6 +3574,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 5874250219009274692, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 326045070}
     m_RemovedComponents:
     - {fileID: 812726191598609837, guid: 83b2e6d8592e5be4ca379c0414fc8ff5, type: 3}
     - {fileID: 4705483580025662077, guid: 83b2e6d8592e5be4ca379c0414fc8ff5, type: 3}
