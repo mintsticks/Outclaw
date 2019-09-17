@@ -18,6 +18,9 @@ namespace Outclaw.Heist{
     public float speed = 5;
     private List<Vector3Int> path = null;
     private Coroutine pathRoutine = null;
+    [SerializeField]
+    [Range(0, 1)]
+    private float turnSpeed = .5f;
 
     [SerializeField] private UnityEvent onArrival = new UnityEvent();
     public UnityEvent OnArrival { get => onArrival; }
@@ -27,6 +30,7 @@ namespace Outclaw.Heist{
     private Grid grid = null;
     [SerializeField] private Transform destination = null;
     [SerializeField] private Rigidbody2D rb = null;
+    [SerializeField] private Transform visionCone = null;
 
     void Start(){
     	grid = map.layoutGrid;
@@ -230,7 +234,7 @@ namespace Outclaw.Heist{
     		// compute velocity vector to move
     		Vector3 targetDir = targetPoint - transform.position;
     		Vector3 velocityDir = targetDir;
-    		float maxSpeed = velocityDir.magnitude;
+    		float maxSpeed = velocityDir.magnitude / fixedDt;
     		targetDir.Normalize();
 
     		// don't walk over obstacles
@@ -246,17 +250,19 @@ namespace Outclaw.Heist{
 
     		// rewind target progress if not moving directly towards it
     		totalTime -= (1 - Mathf.Max(Vector3.Dot(targetDir, velocityDir), 0)) * dt;
-    		
 
     		// apply velocity
-    		rb.velocity = velocityDir * Mathf.Min(speed, maxSpeed);
+    		transform.Translate(velocityDir * Mathf.Min(speed, maxSpeed) * fixedDt);
+
+    		Quaternion rot = visionCone.rotation;
+    		rot.SetLookRotation(Vector3.forward, velocityDir);
+    		visionCone.rotation = Quaternion.Lerp(visionCone.rotation, rot, turnSpeed);
 
     		// prepare for next loop
 				nearestCell = NearestCell(transform.position);
     		yield return new WaitForSeconds(fixedDt);
     	}
 
-    	rb.velocity = Vector2.zero;
     	onArrival.Invoke();
     	yield break;
     }
