@@ -27,21 +27,16 @@ namespace Outclaw.Heist{
 
     [Header("Other Components")]
     [SerializeField] private Tilemap map = null;
-    private Grid grid = null;
     [SerializeField] private Transform destination = null;
     [SerializeField] private Rigidbody2D rb = null;
     [SerializeField] private Transform visionCone = null;
-
-    void Start(){
-    	grid = map.layoutGrid;
-    }
 
     /*
      *  Debug Functions
      */
     private void DrawDebug(){
     	DrawCellCrosshair(NearestCell(transform.position), Color.white);
-    	DrawCellCrosshair(NearestCell(destination.position), Color.black);
+    	//DrawCellCrosshair(NearestCell(destination.position), Color.black);
 
     	if(path != null){
 	    	foreach(Vector3Int cell in path){
@@ -78,8 +73,8 @@ namespace Outclaw.Heist{
     // returns the cell closest to a given point
     private Vector3Int NearestCell(Vector3 point){
     	return new Vector3Int(
-    			(int)Mathf.Floor(point.x / grid.cellSize.x),
-    			(int)Mathf.Floor(point.y / grid.cellSize.y),
+    			(int)Mathf.Floor(point.x / map.layoutGrid.cellSize.x),
+    			(int)Mathf.Floor(point.y / map.layoutGrid.cellSize.y),
     			0
     		);
     }
@@ -194,7 +189,7 @@ namespace Outclaw.Heist{
     		StopMoving();
     	}
     	path = ShortestPath(NearestCell(transform.position),
-    	NearestCell(position));
+    	  NearestCell(position));
     	StartMoving();
     }
 
@@ -202,12 +197,18 @@ namespace Outclaw.Heist{
     	if(path.Count > 1){
     		pathRoutine = StartCoroutine(FollowPath());
     	}
+    	// already at the destination
+    	else{
+    		onArrival.Invoke();
+    		path = null;
+    	}
     }
 
     public void StopMoving(){
     	if(pathRoutine != null){
     		StopCoroutine(pathRoutine);
     		pathRoutine = null;
+    		path = null;
     	}
     }
 
@@ -219,6 +220,7 @@ namespace Outclaw.Heist{
 
     	float fixedDt = Time.fixedDeltaTime;
     	while(nearestCell != end){
+
     		float dt = fixedDt * speed;
     		totalTime += dt;
     		currentIdx = Mathf.Min((int)Mathf.Floor(totalTime), path.Count - 2);
@@ -263,6 +265,7 @@ namespace Outclaw.Heist{
     		yield return new WaitForSeconds(fixedDt);
     	}
 
+    	pathRoutine = null;
     	onArrival.Invoke();
     	yield break;
     }

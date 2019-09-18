@@ -17,7 +17,6 @@ namespace Outclaw.Heist {
     private float turnTime = 1f;
 
     [Header("Vision")]
-    [SerializeField] private float visionRecoverTime = 1f;
     [SerializeField] private GameObject visionCone = null;
 
     private Coroutine patrolRoutine = null;
@@ -28,14 +27,6 @@ namespace Outclaw.Heist {
           ? waypointParent.GetChild(currentGoal).position
           : transform.position;
       }
-    }
-
-    // Update is called once per frame
-    void Start() {
-      if(waypointParent.childCount > currentGoal){
-        transform.position = waypointParent.GetChild(currentGoal).position;
-      }
-      StartPatrol();
     }
 
     public void StartPatrol() {
@@ -87,16 +78,6 @@ namespace Outclaw.Heist {
         yield return null;
       }
 
-      yield break;
-    }
-
-    public void RecoverVision(GameObject visionCone) {
-      StartCoroutine(RestartVision(visionCone));
-    }
-
-    private IEnumerator RestartVision(GameObject visionCone) {
-      yield return new WaitForSeconds(visionRecoverTime);
-      visionCone.SetActive(true);
       yield break;
     }
   }

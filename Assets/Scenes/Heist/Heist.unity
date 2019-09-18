@@ -3482,16 +3482,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 385027091947720511, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
-        type: 3}
-      propertyPath: turnSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580715188236945764, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
-        type: 3}
-      propertyPath: visionDistance
-      value: 1.4
-      objectReference: {fileID: 0}
     - target: {fileID: 1580715188901723502, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -3594,6 +3584,26 @@ PrefabInstance:
       propertyPath: map
       value: 
       objectReference: {fileID: 326045070}
+    - target: {fileID: 385027091947720511, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: turnSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580715188236945764, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: visionDistance
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5284233122919975454, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: onTargetLost.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartInvestigate
+      objectReference: {fileID: 0}
+    - target: {fileID: 5284233122919975454, guid: 83b2e6d8592e5be4ca379c0414fc8ff5,
+        type: 3}
+      propertyPath: onTargetLost.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 812726191598609837, guid: 83b2e6d8592e5be4ca379c0414fc8ff5, type: 3}
     - {fileID: 4705483580025662077, guid: 83b2e6d8592e5be4ca379c0414fc8ff5, type: 3}
