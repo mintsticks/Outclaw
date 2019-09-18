@@ -6,6 +6,9 @@ namespace Outclaw.City {
   public class InteractableCat : MonoBehaviour, Interactable {
     [SerializeField]
     private Indicator talkIndicator;
+
+    [SerializeField]
+    private string nextScene = "Jail";
    
     [Inject]
     private IPlayer player;
@@ -27,7 +30,7 @@ namespace Outclaw.City {
 
     public void Interact() {
       //TODO(dwong): Later replace this with hook into minigame or cat socialization
-      SceneManager.LoadScene("Heist");
+      SceneManager.LoadScene(nextScene);
     }
   }
 }
