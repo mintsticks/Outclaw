@@ -34,8 +34,7 @@ public class SenseAbility : MonoBehaviour {
   void Start() {
     origScale = visionField.transform.localScale.x;
     Useable = true;
-    //senseImage.color = Color.white;
-    //senseText.enabled = true;
+
   }
 
   public void UseAbility() {

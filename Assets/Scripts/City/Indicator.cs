@@ -28,7 +28,6 @@ namespace Outclaw.City {
         if (spriteRenderer != null) {
           spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b,oldAlpha);
         }
-        
       }
     }
     

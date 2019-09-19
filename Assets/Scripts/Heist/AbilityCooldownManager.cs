@@ -16,11 +16,13 @@ namespace Outclaw.Heist {
   public class AbilityInfo {
     public AbilityType type;
     public int cooldown;
+    public bool rangeDependent;
   }
 
   public interface IAbilityCooldownManager {
     bool CanUseAbility(AbilityType type);
     void UseAbility(AbilityType type);
+    void SetInAbilityRange(AbilityType type, bool canUse);
   }
   
   public class AbilityCooldownManager : MonoBehaviour, IAbilityCooldownManager {
@@ -28,7 +30,8 @@ namespace Outclaw.Heist {
     private List<AbilityInfo> abilityInfos;
 
     private Dictionary<AbilityType, bool> abilityStates;
-
+    private Dictionary<AbilityType, bool> inAbilityRange;
+    
     public void Awake() {
       InitializeAbilityStates();
     }
@@ -38,8 +41,12 @@ namespace Outclaw.Heist {
       StartCoroutine(CooldownForAbility(type));
     }
 
+    public void SetInAbilityRange(AbilityType type, bool canUse) {
+      inAbilityRange[type] = canUse;
+    }
+
     public bool CanUseAbility(AbilityType type) {
-      return abilityStates[type];
+      return abilityStates[type] && inAbilityRange[type];
     }
 
     private IEnumerator CooldownForAbility(AbilityType type) {
@@ -54,8 +61,10 @@ namespace Outclaw.Heist {
 
     private void InitializeAbilityStates() {
       abilityStates = new Dictionary<AbilityType, bool>();
+      inAbilityRange =new Dictionary<AbilityType, bool>();
       foreach (var abilityInfo in abilityInfos) {
         abilityStates.Add(abilityInfo.type, true);
+        inAbilityRange.Add(abilityInfo.type, !abilityInfo.rangeDependent);
       }
     }
   }

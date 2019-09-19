@@ -21,11 +21,13 @@ namespace Outclaw.Heist {
     }
     
     public void InRange() {
+      abilityCooldownManager.SetInAbilityRange(ambushAbilityType, true);
       ambushIndicator.CreateIndicator();
       StartCoroutine(ambushIndicator.FadeIn());
     }
 
     public void ExitRange() {
+      abilityCooldownManager.SetInAbilityRange(ambushAbilityType, false);
       StartCoroutine(ambushIndicator.FadeOut());
     }
 
@@ -35,6 +37,7 @@ namespace Outclaw.Heist {
       }
       
       abilityCooldownManager.UseAbility(ambushAbilityType);
+      abilityCooldownManager.SetInAbilityRange(ambushAbilityType, false);
       ambushIndicator.DestroyIndicator();
       Destroy(transform.root.gameObject);
       //TODO(dwong): add sound

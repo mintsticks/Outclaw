@@ -27,15 +27,13 @@ namespace Outclaw.Heist {
     }
     
     public void InRange() {
-      //TODO(dwong): update UI to show vent enabled
-      //ventImage.color = Color.white;
-      //ventText.enabled = true;
-      
+      abilityCooldownManager.SetInAbilityRange(ventAbilityType, true);
       ventIndicator.CreateIndicator();
       StartCoroutine(ventIndicator.FadeIn());
     }
 
     public void ExitRange() {
+      abilityCooldownManager.SetInAbilityRange(ventAbilityType, false);
       StartCoroutine(ventIndicator.FadeOut());
     }
 

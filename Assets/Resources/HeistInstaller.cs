@@ -20,6 +20,10 @@ namespace Outclaw.Heist {
         .FromComponentInNewPrefab(abilityManagerPrefab)
         .AsSingle()
         .NonLazy();
+      Container.Bind<IObjectiveManager>()
+        .To<ObjectiveManager>()
+        .AsSingle()
+        .NonLazy();
       Container.Bind<IPlayer>()
         .To<PlayerController>()
         .FromComponentInNewPrefab(playerPrefab)

@@ -1,6 +1,7 @@
 ﻿using Outclaw.City;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace Outclaw.Heist {
   public class Exit : MonoBehaviour, Interactable {
@@ -9,6 +10,9 @@ namespace Outclaw.Heist {
 
     [SerializeField]
     private string exitScene = "Main";
+
+    [Inject]
+    private IObjectiveManager objectiveManager;
     
     private bool isComplete;
 
@@ -26,7 +30,9 @@ namespace Outclaw.Heist {
     }
 
     public void Interact() {
-      //TODO(dwong): check if heist objectives have been completed in injected class
+      if (!objectiveManager.ObjectivesComplete()) {
+        return;
+      }
       SceneManager.LoadScene(exitScene);
     }
   }

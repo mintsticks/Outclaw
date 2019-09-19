@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using Outclaw.City;
 using UnityEngine;
+using Zenject;
 
 namespace Outclaw.Heist {
   public class Objective : MonoBehaviour, Interactable {
     [SerializeField]
     private Indicator objectiveIndicator;
 
+    [Inject]
+    private IObjectiveManager objectiveManager;
+    
+    public bool IsComplete {
+      get => isComplete;
+    }
+
     private bool isComplete;
 
     public void Awake() {
       objectiveIndicator.Initialize(transform);
+      objectiveManager.AddObjective(this);
     }
     
     public void InRange() {

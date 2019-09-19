@@ -11,11 +11,17 @@ namespace Outclaw.Heist {
     private InteractionController interactionController;
 
     [SerializeField]
-    private AudioSource abilitySound = null;
-
+    private AudioClip senseSfx;
+    
+    [Inject]
+    private IAbilityCooldownManager abilityCooldownManager;
+    
     [Inject]
     private IPlayerInput playerInput;
 
+    [Inject]
+    private ISoundManager soundManager;
+    
     public Transform PlayerTransform {
       get { return transform; }
     }
@@ -35,13 +41,16 @@ namespace Outclaw.Heist {
 
     // Update is called once per frame
     void Update() {
-      if (playerInput.IsSense()) {
-        SenseAbility ability = this.gameObject.GetComponent<SenseAbility>();
-        ability.UseAbility();
-        if (ability.Useable) {
-          abilitySound.Play();
-        }
+      if (!playerInput.IsSense()) {
+        return;
       }
+
+      if (!abilityCooldownManager.CanUseAbility(AbilityType.SENSE)) {
+        return;
+      }
+      
+      abilityCooldownManager.UseAbility(AbilityType.SENSE);
+      soundManager.PlaySFX(senseSfx);
     }
   }
 }
