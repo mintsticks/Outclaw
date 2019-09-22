@@ -20,12 +20,19 @@ namespace Outclaw.City {
 
     [SerializeField]
     private GameObject optionIndicatorPrefab;
-    
+
+    [SerializeField]
+    private GameObject dialogueIconManagerPrefab;
     /// <summary>
     /// For all classes common to city scenes.
     /// Bind the interfaces to the concrete classes.
     /// </summary>
     public override void InstallBindings() {
+      BindComponents();
+      BindFactories();
+    }
+
+    private void BindComponents() {
       Container.Bind<IPlayer>()
         .To<Player>()
         .FromComponentInNewPrefab(playerPrefab)
@@ -37,13 +44,20 @@ namespace Outclaw.City {
         .AsSingle()
         .NonLazy();
       Container.Bind<IRelationshipManager>()
-        .To<IRelationshipManager>()
+        .To<RelationshipManager>()
         .FromComponentInNewPrefab(relationshipManagerPrefab)
         .AsSingle()
         .NonLazy();
+      Container.Bind<IDialogueIconManager>()
+        .To<DialogueIconManager>()
+        .FromComponentInNewPrefab(dialogueIconManagerPrefab)
+        .AsSingle();
+    }
+    
+    private void BindFactories() {
       Container.BindFactory<SpeechBubble.Data, 
-        SpeechBubble, 
-        SpeechBubble.Factory>()
+          SpeechBubble, 
+          SpeechBubble.Factory>()
         .FromComponentInNewPrefab(speechBubblePrefab);
       Container.BindFactory<ThoughtBubble.Data, 
           ThoughtBubble, 

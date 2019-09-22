@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using Yarn.Unity;
 
 namespace Outclaw {
   public class CatVariableStorage : VariableStorageBehaviour {
-    Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value>();
+    private Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value>();
 
     void Awake() {
       ResetToDefaults();

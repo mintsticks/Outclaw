@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using ModestTree;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Outclaw.City {
-  public class ThoughtBubble : MonoBehaviour {
+  public interface Bubble {
+    void SetOpacity(float opacity);
+    Transform BubbleTransform { get; }
+  }
+  
+  public class ThoughtBubble : MonoBehaviour, Bubble {
     public class Factory : PlaceholderFactory<Data, ThoughtBubble> { }
 
     public class Data {
@@ -33,7 +40,10 @@ namespace Outclaw.City {
 
     [SerializeField]
     private Transform rightArrow;
-    
+
+    [SerializeField]
+    private Image icon;
+
     [Inject]
     private IPlayer player;
 
@@ -42,6 +52,9 @@ namespace Outclaw.City {
     
     [Inject]
     private OptionIndicator.Factory optionIndicatorFactory;
+
+    [Inject]
+    private IDialogueIconManager dialogueIconManager;
 
     private List<string> options;
     private List<OptionIndicator> indicators;
@@ -63,6 +76,8 @@ namespace Outclaw.City {
       SetOption(currentIndex);
       SetPosition();
     }
+
+    public Transform BubbleTransform => transform;
 
     private void Update() {
       if (playerInput.IsLeftDown()) {
@@ -107,12 +122,36 @@ namespace Outclaw.City {
     private void SetOption(int index) {
       //TODO(downg): add some animation between options
       UpdateArrows(index);
-      bubbleText.text = options[index];
+      ParseOption(options[index]);
       indicators[currentIndex].Deselect();
       indicators[index].Select();
       currentIndex = index;
     }
 
+    private void ParseOption(string text) {
+      var parsedText = Regex.Match(text, @"\({2}([^)]*)\){2}").Groups[1].Value;
+
+      if (parsedText.IsEmpty()) {
+        SetText(text);
+        return;
+      }
+      var iconMatch = dialogueIconManager.FindIconForString(parsedText);
+      SetImage(iconMatch);
+    }
+    
+    
+    private void SetImage(Sprite image) {
+      icon.gameObject.SetActive(true);
+      icon.sprite = image;
+      bubbleText.gameObject.SetActive(false);
+    }
+
+    private void SetText(string text) {
+      bubbleText.gameObject.SetActive(true);
+      icon.gameObject.SetActive(false);
+      bubbleText.text = text;
+    }
+    
     private void UpdateArrows(int index) {
       leftArrow.gameObject.SetActive(index > 0);
       rightArrow.gameObject.SetActive(index < options.Count - 1);
@@ -121,6 +160,9 @@ namespace Outclaw.City {
     public void SetOpacity(float opacity) {
       var oldTextColor = bubbleText.color;
       bubbleText.color = new Color(oldTextColor.r, oldTextColor.g, oldTextColor.b, opacity);
+
+      var oldImageColor = icon.color;
+      icon.color = new Color(oldImageColor.r, oldImageColor.g, oldImageColor.b, opacity);
       
       var oldBubbleColor = bubble.color;
       bubble.color =  new Color(oldBubbleColor.r, oldBubbleColor.g, oldBubbleColor.b, opacity);

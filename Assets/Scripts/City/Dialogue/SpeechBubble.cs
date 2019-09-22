@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using Zenject;
 
 namespace Outclaw.City {
-  public class SpeechBubble : MonoBehaviour {
+  public class SpeechBubble : MonoBehaviour, Bubble {
     public class Factory : PlaceholderFactory<Data, SpeechBubble> { }
 
     public class Data {
@@ -34,6 +34,8 @@ namespace Outclaw.City {
       transform.position = mainCam.WorldToScreenPoint(data.BubbleParent.position + offset);
     }
 
+    public Transform BubbleTransform => transform;
+    
     public void SetText(string text) {
       bubbleText.text = text;
     }
