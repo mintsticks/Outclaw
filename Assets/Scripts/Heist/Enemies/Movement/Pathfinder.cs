@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+
+using Zenject;
 /*
  *  Using tilemap
  *   - Tilemap.cellBounds gives the cell coord for min-1 and max+1 also provide iterator over all cells
@@ -28,8 +30,7 @@ namespace Outclaw.Heist{
     [Header("Other Components")]
     [SerializeField] private Tilemap map = null;
     [SerializeField] private Transform destination = null;
-    [SerializeField] private Rigidbody2D rb = null;
-    [SerializeField] private Transform visionCone = null;
+    [Inject(Id = "Vision Cone")] private GameObject visionCone;
 
     /*
      *  Debug Functions
@@ -257,9 +258,9 @@ namespace Outclaw.Heist{
     		// apply velocity
     		transform.Translate(velocityDir * Mathf.Min(speed, maxSpeed) * actualDt);
 
-    		Quaternion rot = visionCone.rotation;
+    		Quaternion rot = visionCone.transform.rotation;
     		rot.SetLookRotation(Vector3.forward, velocityDir);
-    		visionCone.rotation = Quaternion.Lerp(visionCone.rotation, rot, turnSpeed);
+    		visionCone.transform.rotation = Quaternion.Lerp(visionCone.transform.rotation, rot, turnSpeed);
 
     		// prepare for next loop
 				nearestCell = NearestCell(transform.position);
@@ -274,5 +275,5 @@ namespace Outclaw.Heist{
     private bool IsShorter(Vector3 vector, float distance){
     	return vector.sqrMagnitude < Mathf.Pow(distance, 2);
     }
-	}
+  }
 }

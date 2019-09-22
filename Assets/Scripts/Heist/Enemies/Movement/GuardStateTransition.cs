@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Outclaw.Heist{
   public class GuardStateTransition : MonoBehaviour
@@ -13,14 +14,11 @@ namespace Outclaw.Heist{
     [SerializeField] private float visionRecoverTime = 1f;
 
     [Header("Component Links")]
-    [SerializeField] private GameObject visionCone;
+    [Inject(Id = "Vision Cone")] private GameObject visionCone;
     [SerializeField] private Pathfinder pathing;
     [SerializeField] private PatrolMovement patrol;
     [SerializeField] private ChaseMovement chase;
     [SerializeField] private InvestigateMovement investigate;
-
-    // temp data
-    private Vector3 investigationLookDir;
 
     void Start() {
       transform.position = patrol.NextDestination;
@@ -78,19 +76,18 @@ namespace Outclaw.Heist{
       yield break;
     }
 
-    public void StartInvestigate(Vector3 location, Vector3 direction){
+    public void StartInvestigate(Vector3 location){
       EndCurrentMovement();
       state = GuardState.TRAVEL;
       pathing.OnArrival.AddListener(TravelToInvestigateCallback);
       pathing.GoTo(location);
       RecoverVision();
-      investigationLookDir = direction;
     }
 
     private void TravelToInvestigateCallback(){
       pathing.OnArrival.RemoveListener(TravelToInvestigateCallback);
       state = GuardState.INVESTIGATE;
-      investigate.StartInvestigation(investigationLookDir);
+      investigate.StartInvestigation();
     }
   }
 }
