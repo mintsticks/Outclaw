@@ -12,8 +12,8 @@ namespace Outclaw {
     private Interactable currentInteractable;
     
     public void UpdateInteraction() {
-      if (playerInput.IsInteract() && currentInteractable != null) {
-        currentInteractable.Interact();
+      if (playerInput.IsInteractDown()) {
+        currentInteractable?.Interact();
       }
     }
 

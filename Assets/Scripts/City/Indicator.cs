@@ -41,7 +41,9 @@ namespace Outclaw.City {
 
     public IEnumerator FadeOut() {
       for (var i = fadeTime; i >= 0; i -= Time.deltaTime) {
-        MaybeCreateIndicator();
+        if (spriteRenderer == null) {
+          yield break;;
+        }
         spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b,i / fadeTime);
         yield return null;
       }

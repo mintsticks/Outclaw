@@ -6,12 +6,15 @@ namespace Outclaw {
   /// </summary>
   public interface IPlayerInput {
     bool IsLeft();
+    bool IsLeftDown();
     bool IsRight();
+    bool IsRightDown();
     bool IsUp();
     bool IsDown();
     
     bool IsJump();
     bool IsInteract();
+    bool IsInteractDown();
     bool IsAbility();
     bool IsSense();
   }
@@ -21,8 +24,16 @@ namespace Outclaw {
       return Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
     }
 
+    public bool IsLeftDown() {
+      return Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
+    }
+
     public bool IsRight() {
       return Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
+    }
+    
+    public bool IsRightDown() {
+      return Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
     }
 
     public bool IsUp() {
@@ -39,6 +50,10 @@ namespace Outclaw {
 
     public bool IsInteract() {
       return Input.GetKey(KeyCode.E);
+    }
+    
+    public bool IsInteractDown() {
+      return Input.GetKeyDown(KeyCode.E);
     }
 
     public bool IsAbility() {

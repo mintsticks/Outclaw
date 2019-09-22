@@ -16,11 +16,17 @@ namespace Outclaw.City {
     [Inject]
     private IPlayerData playerData;
 
+    [Inject]
+    private IDialogueManager dialogueManager;
+    
     public Transform PlayerTransform {
       get { return transform; }
     }
 
     void FixedUpdate() {
+      if (dialogueManager.IsDialogueRunning) {
+        return;
+      }
       movementController.UpdateHorizontal();
       movementController.UpdateVertical();
       interactionController.UpdateInteraction();

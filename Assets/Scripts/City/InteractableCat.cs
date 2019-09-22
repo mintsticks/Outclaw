@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -8,13 +9,20 @@ namespace Outclaw.City {
     private Indicator talkIndicator;
 
     [SerializeField]
-    private string nextScene = "Jail";
-   
+    private CatType type;
+    
     [Inject]
     private IPlayer player;
+
+    [Inject]
+    private IRelationshipManager relationshipManager;
+
+    [Inject]
+    private IDialogueManager dialogueManager;
     
     private Transform parent;
-
+    private bool created;
+    
     public void Awake() {
       talkIndicator.Initialize(player.PlayerTransform);
     }
@@ -29,8 +37,12 @@ namespace Outclaw.City {
     }
 
     public void Interact() {
-      //TODO(dwong): Later replace this with hook into minigame or cat socialization
-      SceneManager.LoadScene(nextScene);
+      StartCoroutine(talkIndicator.FadeOut());
+      var dialogue = relationshipManager.GetDialogueForCat(type);
+      dialogueManager.SetDialogue(dialogue);
+      dialogueManager.SetBubbleParent(transform);
+      dialogueManager.StartDialogue();
+      relationshipManager.RankUpCat(type);
     }
   }
 }
