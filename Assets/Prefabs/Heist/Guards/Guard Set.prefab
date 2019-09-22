@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1580715188014506711}
+  - component: {fileID: 766794388180366492}
+  - component: {fileID: 4345923625559528818}
   m_Layer: 12
   m_Name: Guard Set
   m_TagString: Untagged
@@ -32,6 +34,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &766794388180366492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580715188014506704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 4345923625559528818}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
+--- !u!114 &4345923625559528818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580715188014506704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1733f230eaae1aa489fad7330d827842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visionCone: {fileID: 1580715188236945760}
+  raycastLayers:
+    serializedVersion: 2
+    m_Bits: 1847
 --- !u!1 &1580715188227192447
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,9 +194,6 @@ MonoBehaviour:
   coneAngle: 70
   visionDistance: 1.4
   numSamples: 20
-  hitLayers:
-    serializedVersion: 2
-    m_Bits: 51
   onDetect:
     m_PersistentCalls:
       m_Calls:
@@ -511,7 +544,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  visionCone: {fileID: 1580715188236945765}
+  numAreaSamples: 10
 --- !u!114 &4705483580025662077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,8 +632,6 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   map: {fileID: 0}
   destination: {fileID: 0}
-  rb: {fileID: 6807844603436143480}
-  visionCone: {fileID: 1580715188236945765}
 --- !u!114 &7685334324156247452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,7 +645,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visionRecoverTime: 1
-  visionCone: {fileID: 1580715188236945760}
   pathing: {fileID: 5874250219009274692}
   patrol: {fileID: 385027091947720511}
   chase: {fileID: 5284233122919975454}
@@ -774,12 +804,6 @@ GameObject:
 --- !u!4 &6807844603436143482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 215591200378204299, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6667506221444047857}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &6807844603436143480 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 215591200378204297, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
     type: 3}
   m_PrefabInstance: {fileID: 6667506221444047857}
   m_PrefabAsset: {fileID: 0}

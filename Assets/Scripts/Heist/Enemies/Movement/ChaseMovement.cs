@@ -7,7 +7,7 @@ namespace Outclaw.Heist {
   public class ChaseMovement : MonoBehaviour {
 
     [System.Serializable]
-    public class LostEvent : UnityEvent<Vector3, Vector3> {}
+    public class LostEvent : UnityEvent<Vector3> {}
 
     [Header("Chasing")]
     [SerializeField]
@@ -56,10 +56,9 @@ namespace Outclaw.Heist {
           transform.Translate(Vector3.Normalize(toTarget) * speed * Time.deltaTime);
           lastSeen = target.transform.position;
         } else {
-          Vector3 direction = target.transform.position - lastSeen;
           chaseRoutine = null;
           target = null;
-          onTargetLost.Invoke(lastSeen, direction);
+          onTargetLost.Invoke(lastSeen);
           yield break;
         }
 

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+
+using Zenject;
 /*
  *  Using tilemap
  *   - Tilemap.cellBounds gives the cell coord for min-1 and max+1 also provide iterator over all cells
@@ -28,8 +30,7 @@ namespace Outclaw.Heist{
     [Header("Other Components")]
     [SerializeField] private Tilemap map = null;
     [SerializeField] private Transform destination = null;
-    [SerializeField] private Rigidbody2D rb = null;
-    [SerializeField] private Transform visionCone = null;
+    [Inject(Id = "Vision Cone")] private GameObject visionCone;
 
     /*
      *  Debug Functions
@@ -213,15 +214,15 @@ namespace Outclaw.Heist{
     }
 
     private IEnumerator FollowPath(){
-    	float totalTime = 0;
+    	float totalTime = .5f; // start a little ahead
     	int currentIdx = 0;
     	Vector3Int end = path[path.Count - 1];
     	Vector3Int nearestCell = NearestCell(transform.position);
 
-    	float fixedDt = Time.fixedDeltaTime;
+    	float actualDt = Time.fixedDeltaTime;
     	while(nearestCell != end){
 
-    		float dt = fixedDt * speed;
+    		float dt = actualDt * speed / map.layoutGrid.cellSize.x;
     		totalTime += dt;
     		currentIdx = Mathf.Min((int)Mathf.Floor(totalTime), path.Count - 2);
 
@@ -236,16 +237,17 @@ namespace Outclaw.Heist{
     		// compute velocity vector to move
     		Vector3 targetDir = targetPoint - transform.position;
     		Vector3 velocityDir = targetDir;
-    		float maxSpeed = velocityDir.magnitude / fixedDt;
+    		float maxSpeed = velocityDir.magnitude / actualDt;
     		targetDir.Normalize();
 
-    		// don't walk over obstacles
+    		// don't walk over obstacles if near center of nearest cell
     		Vector3Int dx = new Vector3Int((int)Mathf.Sign(velocityDir.x), 0, 0);
     		Vector3Int dy = new Vector3Int(0, (int)Mathf.Sign(velocityDir.y), 0);
-    		if(map.GetTile(nearestCell + dx) != null){
+    		Vector3 toCellCenter = transform.position - map.GetCellCenterWorld(nearestCell);
+    		if(map.GetTile(nearestCell + dx) != null && IsShorter(toCellCenter, map.layoutGrid.cellSize.x / 4)){
     			velocityDir.x = 0;
     		}
-    		if(map.GetTile(nearestCell + dy) != null){
+    		if(map.GetTile(nearestCell + dy) != null && IsShorter(toCellCenter, map.layoutGrid.cellSize.y / 4)){
     			velocityDir.y = 0;
     		}
     		velocityDir.Normalize();
@@ -254,20 +256,24 @@ namespace Outclaw.Heist{
     		totalTime -= (1 - Mathf.Max(Vector3.Dot(targetDir, velocityDir), 0)) * dt;
 
     		// apply velocity
-    		transform.Translate(velocityDir * Mathf.Min(speed, maxSpeed) * fixedDt);
+    		transform.Translate(velocityDir * Mathf.Min(speed, maxSpeed) * actualDt);
 
-    		Quaternion rot = visionCone.rotation;
+    		Quaternion rot = visionCone.transform.rotation;
     		rot.SetLookRotation(Vector3.forward, velocityDir);
-    		visionCone.rotation = Quaternion.Lerp(visionCone.rotation, rot, turnSpeed);
+    		visionCone.transform.rotation = Quaternion.Lerp(visionCone.transform.rotation, rot, turnSpeed);
 
     		// prepare for next loop
 				nearestCell = NearestCell(transform.position);
-    		yield return new WaitForSeconds(fixedDt);
+    		yield return new WaitForSeconds(actualDt);
     	}
 
     	pathRoutine = null;
     	onArrival.Invoke();
     	yield break;
     }
-	}
+
+    private bool IsShorter(Vector3 vector, float distance){
+    	return vector.sqrMagnitude < Mathf.Pow(distance, 2);
+    }
+  }
 }

@@ -8,7 +8,7 @@ namespace Outclaw.Heist {
     private GameObject abilityManagerPrefab;
 
     [SerializeField]
-    private GameObject playerPrefab;
+    private PlayerController controller;
     
     /// <summary>
     /// For all classes common to heist scenes.
@@ -26,7 +26,7 @@ namespace Outclaw.Heist {
         .NonLazy();
       Container.Bind<IPlayer>()
         .To<PlayerController>()
-        .FromComponentInNewPrefab(playerPrefab)
+        .FromInstance(controller)
         .AsSingle()
         .NonLazy();
     }
