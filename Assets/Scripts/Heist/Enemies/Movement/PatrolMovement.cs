@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿#pragma warning disable 649
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Outclaw.Heist {
   public class PatrolMovement : MonoBehaviour {
     [Header("Movement")]
     [SerializeField] private Transform waypointParent = null;
-    [SerializeField] private float speed = 5;
+    [Inject(Id = "Passive Speed")] private float speed;
     [SerializeField] private float arrivalTolerance = 3;
     private int currentGoal = 0;
 

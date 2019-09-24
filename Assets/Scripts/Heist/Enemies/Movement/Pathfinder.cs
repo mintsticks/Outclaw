@@ -17,7 +17,7 @@ using Zenject;
 namespace Outclaw.Heist{
 	public class Pathfinder : MonoBehaviour
 	{
-    public float speed = 5;
+    [Inject(Id = "Active Speed")] private float speed;
     private List<Vector3Int> path = null;
     private Coroutine pathRoutine = null;
     [SerializeField]

@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿#pragma warning disable 649
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace Outclaw.Heist {
   public class ChaseMovement : MonoBehaviour {
@@ -10,12 +13,11 @@ namespace Outclaw.Heist {
     public class LostEvent : UnityEvent<Vector3> {}
 
     [Header("Chasing")]
+    [Inject(Id = "Active Speed")] private float speed;
+    public GameObject target;
     [SerializeField]
-    private float speed = 3;
-    public GameObject target = null;
-    [SerializeField]
-    private LayerMask hitLayers = default(LayerMask);
-    private Coroutine chaseRoutine = null;
+    private LayerMask hitLayers;
+    private Coroutine chaseRoutine;
     public LostEvent onTargetLost = new LostEvent();
     private Vector3 lastSeen;
 
