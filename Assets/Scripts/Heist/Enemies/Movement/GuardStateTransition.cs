@@ -11,7 +11,6 @@ namespace Outclaw.Heist{
     public enum GuardState { PATROL, CHASE, TRAVEL, INVESTIGATE }
 
     private GuardState state = GuardState.PATROL;
-    [SerializeField] private float visionRecoverTime = 1f;
 
     [Header("Component Links")]
     [Inject(Id = "Vision Cone")] private GameObject visionCone;
@@ -71,7 +70,7 @@ namespace Outclaw.Heist{
     }
 
     private IEnumerator RestartVision() {
-      yield return new WaitForSeconds(visionRecoverTime);
+      yield return null;
       visionCone.SetActive(true);
       yield break;
     }

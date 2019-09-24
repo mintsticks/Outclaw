@@ -15,8 +15,7 @@ namespace Outclaw.Heist {
     [Header("Chasing")]
     [Inject(Id = "Active Speed")] private float speed;
     public GameObject target;
-    [SerializeField]
-    private LayerMask hitLayers;
+    [Inject(Id = "Raycast Layers")] private LayerMask hitLayers;
     private Coroutine chaseRoutine;
     public LostEvent onTargetLost = new LostEvent();
     private Vector3 lastSeen;

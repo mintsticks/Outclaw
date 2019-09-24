@@ -9,58 +9,90 @@ using Zenject;
 namespace Outclaw.Heist{
   public class InvestigateMovement : MonoBehaviour
   {
+    public class OnMove : UnityEvent<Vector3>{}
+
+    [Header("Searching Location")]
     [SerializeField] private float turnDuration;
-    [SerializeField] private int numTurns;
-    [SerializeField] 
     [Tooltip("Angle away from arrival direction. Total angle is double the value.")]
-    private float turnAngle;
+    [SerializeField] private float turnAngle;
     [SerializeField] private UnityEvent onInvestigationEnd;
     public UnityEvent OnInvestigationEnd { get => onInvestigationEnd; }
+
+    [Header("Investigation Points")]
     [Tooltip("Number of samples to determine best search area.")]
     [SerializeField] private int numAreaSamples = 10;
+    [SerializeField] private int numSearchs = 4;
+    [SerializeField] private float minSearchDistance = 1;
+    [SerializeField] private float maxSearchDistance = 7;
 
+    // searching
+    private List<Vector3> searchPoints = null;
+    private int nextPoint = 0;
+    private Coroutine searchRoutine = null;
+
+    [SerializeField] private Pathfinder pathing;
     [Inject(Id = "Vision Cone")] private GameObject visionCone;
     [Inject(Id = "Raycast Layers")] private LayerMask hitLayers;
 
     private Coroutine investigateRoutine;
 
     public void StartInvestigation(){
-      if(investigateRoutine == null){
-        investigateRoutine = StartCoroutine(Investigate());
+      if(searchPoints == null){
+        searchPoints = FindExplorePoints();
+        MoveToNextPoint();
       }
     }
 
     public void StopInvestigation(){
-      if(investigateRoutine != null){
-        StopCoroutine(investigateRoutine);
-        investigateRoutine = null;
+      if(searchPoints != null){
+        // stop pathing if active
+        pathing.StopMoving();
+        nextPoint = 0;
+        searchPoints = null;
+
+        // stop searching if active
+        if(searchRoutine != null){
+          StopCoroutine(searchRoutine);
+          searchRoutine = null;
+        }
       }
     }
 
-    public IEnumerator Investigate(){
-
-      float? idealAngle = SampleArea();
-      Quaternion center = (idealAngle == null)
-        ? visionCone.transform.rotation
-        : Quaternion.AxisAngle(Vector3.forward, idealAngle.Value);
-
-      Quaternion left = Quaternion.AngleAxis(turnAngle, Vector3.forward) * center;
-      Quaternion right = Quaternion.AngleAxis(-turnAngle, Vector3.forward) * center;
-
-
-      Debug.DrawRay(transform.position, left * Vector3.up, Color.red, 100f);
-      Debug.DrawRay(transform.position, right * Vector3.up, Color.blue, 100f);
-
-      for(int i = 0; i < numTurns; ++i){
-        if(i % 2 == 0){
-          yield return TurnHead(right);
-        }
-        else{
-          yield return TurnHead(left);
-        }
+    private void MoveToNextPoint(){
+      Vector3 destination = searchPoints[nextPoint++];
+      pathing.OnArrival.RemoveAllListeners();
+      if(nextPoint < searchPoints.Count){
+        pathing.OnArrival.AddListener(SearchPoint);
       }
-      investigateRoutine = null;
+      else{
+        pathing.OnArrival.AddListener(FinishInvestigation);
+      }
+      pathing.GoTo(destination);
+    }
+
+    private void FinishInvestigation(){
+      pathing.OnArrival.RemoveAllListeners();
       onInvestigationEnd.Invoke();
+    }
+
+    private void SearchPoint(){
+      if(searchRoutine == null){
+        searchRoutine = StartCoroutine(Search());
+      }
+    }
+
+    private IEnumerator Search(){
+
+      Quaternion original = transform.rotation;
+      Quaternion left = original * Quaternion.AngleAxis(turnAngle, Vector3.forward);
+      Quaternion right = original * Quaternion.AngleAxis(-turnAngle, Vector3.forward);
+      Quaternion back = original * Quaternion.AngleAxis(180f, Vector3.forward);
+      yield return TurnHead(left);
+      yield return TurnHead(right);
+      yield return TurnHead(left);
+      yield return TurnHead(back);
+      searchRoutine = null;
+      MoveToNextPoint();
       yield break;
     }
 
@@ -75,36 +107,53 @@ namespace Outclaw.Heist{
       yield break;
     }
 
-    // returns null if evenly spread, otherwise the angle average weighted by distance
-    private float? SampleArea(){
-      Vector3 locationSum = Vector3.zero;
-      float totalWeight = 0;
-
+    private List<Vector3> FindExplorePoints(){
+      List<Vector3> sample = new List<Vector3>();
       for(int i = 0; i < numAreaSamples; ++i){
-        // get the ray to shoot
+
+        // cast ray to sample area
         float angle = 360f * i / numAreaSamples;
         Vector3 ray = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.up;
-
-
-        // cast and add local pos to sum
+        ray.Normalize();
         RaycastHit2D hit = Physics2D.Raycast(transform.position,
           ray, Mathf.Infinity, hitLayers);
+
+        float dist = maxSearchDistance;
+
+        // hit, use dist if within max and min distance
         if(hit.collider != null){
           Vector3 toHit = (Vector3)hit.point - transform.position;
-          locationSum += toHit;
-          totalWeight += toHit.magnitude;
-
-          Debug.DrawRay(transform.position, toHit,
-            Color.Lerp(Color.white, Color.black, (float)i/numAreaSamples), 100f);
+          float testDist = toHit.magnitude;
+          
+          // too close to the hit, ignore ray
+          if(testDist < minSearchDistance){
+            continue;
+          }
+          if(testDist < maxSearchDistance){
+            dist = testDist;
+          }
         }
+
+        float searchDist = Mathf.Abs(RandomUtility.RandomStandardNormal());
+        searchDist = (searchDist - dist) / (dist / 5);
+        if(searchDist < minSearchDistance){
+          searchDist = minSearchDistance;
+        }
+        sample.Add(transform.position + (ray * dist));
       }
 
-      if(locationSum != Vector3.zero){
-        //locationSum /= totalWeight;
-        float aveAngle = Mathf.Atan2(locationSum.y, locationSum.x) * Mathf.Rad2Deg;
-        return aveAngle;
+      // pick numSearches points out of sample
+      List<Vector3> res = new List<Vector3>();
+      int startIndex = 0;
+      for(int i = 0; i < numSearchs; ++i){
+        int nextIndex = Random.Range(startIndex, 
+          startIndex + ((sample.Count - startIndex) / (numSearchs - i)));
+        res.Add(sample[nextIndex]);
+        startIndex = nextIndex + 1;
       }
-      return null;
+      RandomUtility.ShuffleList(res);
+
+      return res;
     }
   }
 }

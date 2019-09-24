@@ -195,13 +195,13 @@ namespace Outclaw.Heist{
     }
 
     private void StartMoving(){
-    	if(path.Count > 1){
+    	if(path != null && path.Count > 1){
     		pathRoutine = StartCoroutine(FollowPath());
     	}
     	// already at the destination
     	else{
+        path = null;
     		onArrival.Invoke();
-    		path = null;
     	}
     }
 
@@ -210,6 +210,7 @@ namespace Outclaw.Heist{
     		StopCoroutine(pathRoutine);
     		pathRoutine = null;
     		path = null;
+        onArrival.RemoveAllListeners();
     	}
     }
 
@@ -268,6 +269,7 @@ namespace Outclaw.Heist{
     	}
 
     	pathRoutine = null;
+      path = null;
     	onArrival.Invoke();
     	yield break;
     }

@@ -786,8 +786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32ec6fe783c36f4c97dc6d125e480bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnDuration: 2
-  numTurns: 3
+  turnDuration: 0.7
   turnAngle: 30
   onInvestigationEnd:
     m_PersistentCalls:
@@ -805,7 +804,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  numAreaSamples: 10
+  numAreaSamples: 15
+  numSearchs: 6
+  minSearchDistance: 1
+  maxSearchDistance: 3
+  pathing: {fileID: 5874250219009274692}
 --- !u!114 &2132676780497922043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,9 +852,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  hitLayers:
-    serializedVersion: 2
-    m_Bits: 51
   onTargetLost:
     m_PersistentCalls:
       m_Calls:
@@ -952,16 +952,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1580715188014506711}
     m_Modifications:
-    - target: {fileID: 5427988819993733870, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
-        type: 3}
-      propertyPath: ambushIndicator
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 306902349224224096, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 215591200378204311, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
       propertyPath: m_Name
@@ -1076,6 +1066,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427988819993733870, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: ambushIndicator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 306902349224224096, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 215591200378204298, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
