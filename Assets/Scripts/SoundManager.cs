@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Outclaw {
   public interface ISoundManager {
@@ -11,11 +12,26 @@ namespace Outclaw {
     [SerializeField]
     private AudioSource sfxSource;
 
+    [Header("Music")]
     [SerializeField]
-    private AudioSource musicSource;
+    private AudioSource currentMusicSource;
 
     [SerializeField]
-    private AudioSource ambientSource;
+    private AudioSource nextMusicSource;
+
+    private Coroutine musicCrossfade;
+
+    [Header("Ambient")]
+    [SerializeField]
+    private AudioSource currentAmbientSource;
+
+    [SerializeField]
+    private AudioSource nextAmbientSource;
+
+    private Coroutine ambientCrossfade;
+
+    [SerializeField]
+    private float crossfadeDuration = .5f;
     
     public void PlaySFX(AudioClip clip) {
       sfxSource.clip = clip;
@@ -24,20 +40,57 @@ namespace Outclaw {
 
     public void PlayMusic(AudioClip clip) {
       // don't replay if already playing
-      if(musicSource.clip == clip){
+      if(currentMusicSource.clip == clip) {
         return;
       }
-      musicSource.clip = clip;
-      musicSource.Play();
+
+      StartCrossfade(clip, ref musicCrossfade, ref currentMusicSource, 
+        ref nextMusicSource);
     }
 
     public void PlayAmbientSound(AudioClip clip) {
       // don't replay if already playing
-      if(ambientSource.clip == clip){
+      if(currentAmbientSource.clip == clip) {
         return;
       }
-      ambientSource.clip = clip;
-      ambientSource.Play();
+
+      StartCrossfade(clip, ref ambientCrossfade, ref currentAmbientSource, 
+        ref nextAmbientSource);
+    }
+
+    private void StartCrossfade(AudioClip clip, ref Coroutine crossfade, 
+        ref AudioSource current, ref AudioSource next) {
+
+      // stop any previous crossfade
+      if(crossfade != null) {
+        StopCoroutine(crossfade);
+      }
+
+      // start up crossfade
+      AudioSource entering = next;
+      AudioSource exiting = current;
+      entering.clip = clip;
+      entering.Play();
+      crossfade = StartCoroutine(Crossfade(entering, exiting));
+
+      // swap values
+      current = entering;
+      next = exiting;
+    }
+
+    private IEnumerator Crossfade(AudioSource entering, AudioSource exiting) {
+
+      float exitStartVolume = exiting.volume;
+      float totalTime = 0;
+      while(totalTime < crossfadeDuration) {
+        totalTime += Time.deltaTime;
+        exiting.volume = Mathf.Lerp(exitStartVolume, 0, totalTime / crossfadeDuration);
+        entering.volume = Mathf.Lerp(0, 1, totalTime / crossfadeDuration);
+        yield return null;
+      }
+
+      exiting.Stop();
+      yield break;
     }
   }
 }
