@@ -17,6 +17,8 @@ namespace Outclaw {
     bool IsInteractDown();
     bool IsAbility();
     bool IsSense();
+
+    bool IsPauseDown();
   }
 
   public class PlayerInput : IPlayerInput{
@@ -62,6 +64,10 @@ namespace Outclaw {
 
     public bool IsSense() {
       return Input.GetKey(KeyCode.F);
+    }
+
+    public bool IsPauseDown() {
+      return Input.GetKeyDown(KeyCode.Escape);
     }
   }
 }

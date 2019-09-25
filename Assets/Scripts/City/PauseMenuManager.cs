@@ -4,34 +4,48 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Outclaw.City
-{
+namespace Outclaw.City {
+  public interface IPauseMenuManager {
+    bool IsPaused { get; }
+  }
 
-    public interface IPauseMenuManager
-    {
-        bool IsPaused { get; }
-    }
-    public class PauseMenuManager : MonoBehaviour, IPauseMenuManager
-    {
-        [SerializeField] private Canvas canvas;
-        
-        public bool IsPaused { get; set; }
-        
-        // Start is called before the first frame update
-        void Start()
-        {
-            IsPaused = false;
-            canvas.gameObject.SetActive(false);
-        }
+  public class PauseMenuManager : MonoBehaviour, IPauseMenuManager {
+    [SerializeField]
+    private Canvas canvas;
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                IsPaused = !IsPaused;
-                canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
-            }
-        }
+    [Inject]
+    private IPlayerInput playerInput;
+    
+    private bool isPaused;
+    public bool IsPaused => isPaused;
+
+    void Start() {
+      isPaused = false;
+      canvas.gameObject.SetActive(false);
     }
+
+    private void Pause() {
+      isPaused = true;
+      canvas.gameObject.SetActive(true);
+      Time.timeScale = 0.0f;
+    }
+
+    private void Unpause() {
+      isPaused = false;
+      canvas.gameObject.SetActive(false);
+      Time.timeScale = 1.0f;
+    }
+    
+    void Update() {
+      if (!playerInput.IsPauseDown()) {
+        return;
+      }
+
+      if (isPaused) {
+        Unpause();
+        return;
+      } 
+      Pause();
+    }
+  }
 }

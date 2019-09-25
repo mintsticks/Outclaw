@@ -39,7 +39,8 @@ namespace Outclaw {
     [Inject]
     private IPlayerInput playerInput;
 
-    [Inject] private IPauseMenuManager pauseMenuManager;
+    [Inject] 
+    private IPauseMenuManager pauseMenuManager;
     
     private OptionChooser SetSelectedOption;
     private Transform bubbleParent;
@@ -67,7 +68,7 @@ namespace Outclaw {
         bubble.SetText(text);
       }
 
-      while (!playerInput.IsInteract() || pauseMenuManager.IsPaused) {
+      while (!IsValidDialogueProgression()) {
         yield return null;
       }
       bubble.RemoveTail();
@@ -75,6 +76,10 @@ namespace Outclaw {
       yield return new WaitForEndOfFrame();
     }
 
+    private bool IsValidDialogueProgression() {
+      return playerInput.IsInteractDown() && !pauseMenuManager.IsPaused;
+    }
+    
     public override IEnumerator RunOptions(Options optionsCollection, OptionChooser optionChooser) {
       SetSelectedOption = optionChooser;
       var bubble = thoughtBubbleFactory.Create(new ThoughtBubble.Data {
@@ -94,7 +99,7 @@ namespace Outclaw {
     private IEnumerator FadeBubble(Bubble bubble) {
       for (var t = 0f; t <= bubbleFadeTime; t += Time.deltaTime) {  
         bubble.SetOpacity(1 - bubbleFade.Evaluate(t / bubbleFadeTime));
-        bubble.BubbleTransform.Translate(new Vector2(0, 1));
+        bubble.BubbleTransform.Translate(new Vector2(0, Time.deltaTime * 10.0f));
         yield return null;
       }
       Destroy(bubble.BubbleTransform.gameObject);
@@ -113,8 +118,7 @@ namespace Outclaw {
     }
 
     private void SetOption(int selectedOption) {
-
-      // TODO: hotfix, probably do something else
+      // TODO    : hotfix, probably do something else
       if(SetSelectedOption == null){
         return;
       }

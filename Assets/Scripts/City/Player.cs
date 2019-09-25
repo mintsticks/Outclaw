@@ -18,23 +18,18 @@ namespace Outclaw.City {
 
     [Inject]
     private IDialogueManager dialogueManager;
-
-    [Inject] 
-    private IPauseMenuManager pauseMenuManager;
     
-    public Transform PlayerTransform {
-      get { return transform; }
-    }
+    public Transform PlayerTransform => transform;
 
     void FixedUpdate() {
-      if (dialogueManager.IsDialogueRunning || pauseMenuManager.IsPaused) {
+      if (dialogueManager.IsDialogueRunning) {
         return;
       }
       movementController.UpdateHorizontal();
       movementController.UpdateVertical();
       interactionController.UpdateInteraction();
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other) {
       interactionController.HandleEnter(other);
     }

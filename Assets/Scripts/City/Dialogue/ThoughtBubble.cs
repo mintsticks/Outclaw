@@ -83,8 +83,7 @@ namespace Outclaw.City {
     public Transform BubbleTransform => transform;
 
     private void Update() {
-      if (pauseMenuManager.IsPaused)
-      {
+      if (pauseMenuManager.IsPaused) {
         return;
       }
       

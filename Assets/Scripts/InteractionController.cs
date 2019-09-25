@@ -16,8 +16,7 @@ namespace Outclaw {
     private Interactable currentInteractable;
     
     public void UpdateInteraction() {
-      if (pauseMenuManager.IsPaused)
-      {
+      if (pauseMenuManager.IsPaused) {
         return;
       }
       if (playerInput.IsInteractDown()) {
