@@ -111,6 +111,12 @@ namespace Outclaw {
     }
 
     private void SetOption(int selectedOption) {
+
+      // TODO: hotfix, probably do something else
+      if(SetSelectedOption == null){
+        return;
+      }
+
       SetSelectedOption(selectedOption);
       SetSelectedOption = null;
     }

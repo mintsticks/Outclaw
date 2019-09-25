@@ -35,7 +35,14 @@ namespace Outclaw.City {
     public TextAsset[] GetDialogueForCat(CatType type) {
       var rank = GetRankForCat(type);
       Debug.Log(rank);
-      return GetInfoForCat(type).rankConversations[rank].conversation;
+
+      // TODO: hotfix, change later
+      var convo = GetInfoForCat(type).rankConversations;
+      if(rank >= convo.Count){
+        rank = convo.Count - 1;
+      }
+
+      return convo[rank].conversation;
     }
 
     public void UpdateRelationshipState() {
