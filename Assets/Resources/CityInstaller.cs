@@ -23,6 +23,10 @@ namespace Outclaw.City {
 
     [SerializeField]
     private GameObject dialogueIconManagerPrefab;
+
+    [SerializeField] 
+    private GameObject pauseMenuManagerPrefab;
+    
     /// <summary>
     /// For all classes common to city scenes.
     /// Bind the interfaces to the concrete classes.
@@ -51,6 +55,10 @@ namespace Outclaw.City {
       Container.Bind<IDialogueIconManager>()
         .To<DialogueIconManager>()
         .FromComponentInNewPrefab(dialogueIconManagerPrefab)
+        .AsSingle();
+      Container.Bind<IPauseMenuManager>()
+        .To<PauseMenuManager>()
+        .FromComponentInNewPrefab(pauseMenuManagerPrefab)
         .AsSingle();
     }
     

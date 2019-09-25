@@ -38,6 +38,8 @@ namespace Outclaw {
     
     [Inject]
     private IPlayerInput playerInput;
+
+    [Inject] private IPauseMenuManager pauseMenuManager;
     
     private OptionChooser SetSelectedOption;
     private Transform bubbleParent;
@@ -65,7 +67,7 @@ namespace Outclaw {
         bubble.SetText(text);
       }
 
-      while (!playerInput.IsInteract()) {
+      while (!playerInput.IsInteract() || pauseMenuManager.IsPaused) {
         yield return null;
       }
       bubble.RemoveTail();

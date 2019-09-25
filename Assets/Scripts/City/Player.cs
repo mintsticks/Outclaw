@@ -18,13 +18,16 @@ namespace Outclaw.City {
 
     [Inject]
     private IDialogueManager dialogueManager;
+
+    [Inject] 
+    private IPauseMenuManager pauseMenuManager;
     
     public Transform PlayerTransform {
       get { return transform; }
     }
 
     void FixedUpdate() {
-      if (dialogueManager.IsDialogueRunning) {
+      if (dialogueManager.IsDialogueRunning || pauseMenuManager.IsPaused) {
         return;
       }
       movementController.UpdateHorizontal();

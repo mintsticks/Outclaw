@@ -55,6 +55,9 @@ namespace Outclaw.City {
 
     [Inject]
     private IDialogueIconManager dialogueIconManager;
+    
+    [Inject] 
+    private IPauseMenuManager pauseMenuManager;
 
     private List<string> options;
     private List<OptionIndicator> indicators;
@@ -80,6 +83,11 @@ namespace Outclaw.City {
     public Transform BubbleTransform => transform;
 
     private void Update() {
+      if (pauseMenuManager.IsPaused)
+      {
+        return;
+      }
+      
       if (playerInput.IsLeftDown()) {
         SelectLeft();
       }

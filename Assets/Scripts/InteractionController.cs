@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Outclaw.City;
+using UnityEngine;
 using Zenject;
 
 namespace Outclaw {
@@ -9,9 +10,16 @@ namespace Outclaw {
     [Inject]
     private IPlayerInput playerInput;
 
+    [Inject] 
+    private IPauseMenuManager pauseMenuManager;
+
     private Interactable currentInteractable;
     
     public void UpdateInteraction() {
+      if (pauseMenuManager.IsPaused)
+      {
+        return;
+      }
       if (playerInput.IsInteractDown()) {
         currentInteractable?.Interact();
       }
