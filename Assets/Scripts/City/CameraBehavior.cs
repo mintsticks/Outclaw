@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using Zenject;
 
 namespace Outclaw.City {
@@ -17,6 +18,9 @@ namespace Outclaw.City {
 
     [Inject]
     private IPlayer player;
+
+    public Vector2 MinBound {get => minBound;}
+    public Vector2 MaxBound {get => maxBound;}
     
     void FixedUpdate() {
       var desiredPos = player.PlayerTransform.position + offset;
