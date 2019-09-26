@@ -1,11 +1,25 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using System.Collections;
+using Outclaw;
+using Outclaw.City;
+using UnityEngine;
+using Zenject;
 
 public class StartListener : MonoBehaviour {
+  [Inject]
+  private IPlayerInput playerInput;
+
+  [Inject]
+  private ISceneTransitionManager sceneTransitionManager;
+  
   void Update() {
-    //TODO(daniel): replace all inputs to a global player input manager
-    if (Input.GetKey(KeyCode.Space)) {
-      SceneManager.LoadScene("Main");
+    if (!playerInput.IsInteractDown()) {
+      return;
     }
+
+    LoadMain();
+  }
+
+  private void LoadMain() {
+    sceneTransitionManager.TransitionToScene("Main");
   }
 }
