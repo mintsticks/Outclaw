@@ -11,7 +11,7 @@ namespace Outclaw.City {
   
   public class SceneTransitionManager : MonoBehaviour, ISceneTransitionManager {
     [SerializeField]
-    private Image fadeImage;
+    private CanvasGroup content;
 
     [SerializeField]
     private float fadeTime;
@@ -51,16 +51,14 @@ namespace Outclaw.City {
     
     private IEnumerator FadeIn() {
       for (var i = 0f; i <= fadeTime; i += Time.deltaTime) {
-        var color = fadeImage.color;
-        fadeImage.color = new Color(color.r, color.g, color.b,i / fadeTime);
+        content.alpha = i / fadeTime;
         yield return null;
       }
     }
 
     private IEnumerator FadeOut() {
       for (var i = fadeTime; i >= 0; i -= Time.deltaTime) {
-        var color = fadeImage.color;
-        fadeImage.color = new Color(color.r, color.g, color.b,i / fadeTime);
+        content.alpha = i / fadeTime;
         yield return null;
       }
     }
