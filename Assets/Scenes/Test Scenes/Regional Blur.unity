@@ -1194,6 +1194,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1880981972 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4509646582438225700, guid: 08348905f0a87854c817ea11fc0434cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2789981770769303766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1880981974 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
@@ -1438,8 +1444,13 @@ PrefabInstance:
     - target: {fileID: 2789981769824438525, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: blurLayer.m_Bits
-      value: 8192
+      value: 16384
       objectReference: {fileID: 0}
+    - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
+        type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1880981972}
     - target: {fileID: 4509646582438225700, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

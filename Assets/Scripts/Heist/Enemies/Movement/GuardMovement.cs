@@ -23,14 +23,18 @@ namespace Outclaw.Heist{
       transform.position += moveDir * speed;
     }
 
+    private bool ContainsLayer(LayerMask layers, int test){
+      return ((1 << test) & layers.value) != 0;
+    }
+
     void OnTriggerEnter2D(Collider2D other){
-      if(other.gameObject.layer == blurLayer){
+      if(ContainsLayer(blurLayer, other.gameObject.layer)){
         visionCone.SetVisible(false);
       }
     }
 
     void OnTriggerExit2D(Collider2D other){
-      if(other.gameObject.layer == blurLayer){
+      if(ContainsLayer(blurLayer, other.gameObject.layer)){
         visionCone.SetVisible(true);
       }
     }

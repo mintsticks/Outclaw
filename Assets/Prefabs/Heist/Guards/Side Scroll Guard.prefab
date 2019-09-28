@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc9b7ffb7c33a94491a06fbf32f2f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionCone: {fileID: 2789981768891533572}
+  blurLayer:
+    serializedVersion: 2
+    m_Bits: 16384
+  visionCone: {fileID: 0}
   speed: 0.1
 --- !u!114 &2789981769824438526
 MonoBehaviour:
@@ -92,6 +95,7 @@ MonoBehaviour:
     m_TypeName: Outclaw.Heist.VisionCone+OnDetect, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   filter: {fileID: 4007598558736983128}
+  rend: {fileID: 4509646582438225700}
 --- !u!33 &4007598558736983128
 MeshFilter:
   m_ObjectHideFlags: 0
