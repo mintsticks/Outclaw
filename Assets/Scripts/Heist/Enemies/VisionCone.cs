@@ -12,21 +12,15 @@ namespace Outclaw.Heist{
     [System.Serializable]
     public class OnDetect : UnityEvent<GameObject>{}
 
-    [SerializeField]
-    [Range(0, 360)] 
-    private float coneAngle = 90;
-    [SerializeField]
-    private float visionDistance = 1;
-    [SerializeField]
-    private int numSamples = 10;
-
+    [SerializeField] [Range(0, 360)] private float coneAngle = 90;
+    [SerializeField] private float visionDistance = 1;
+    [SerializeField] private int numSamples = 10;
+    [SerializeField] private LayerMask hitLayers;
     public OnDetect onDetect = new OnDetect();
 
     [Header("Component Links")]
-    [SerializeField]
-    private MeshFilter filter;
-
-    [Inject(Id = "Raycast Layers")] private LayerMask hitLayers;
+    [SerializeField] private MeshFilter filter;
+    [SerializeField] private MeshRenderer rend;
 
     // Update is called once per frame
     void Update()
@@ -93,6 +87,10 @@ namespace Outclaw.Heist{
       m.triangles = tris.ToArray();
 
       return player;
+    }
+
+    public void SetVisible(bool visible){
+      rend.enabled = visible;
     }
   }
 }
