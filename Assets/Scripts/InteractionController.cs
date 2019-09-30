@@ -6,6 +6,9 @@ namespace Outclaw {
   public class InteractionController : MonoBehaviour {
     [SerializeField]
     private LayerMask interactableLayer;
+
+    [SerializeField]
+    private LayerMask eventSequenceLayer;
     
     [Inject]
     private IPlayerInput playerInput;
@@ -25,12 +28,15 @@ namespace Outclaw {
     }
 
     public void HandleEnter(Collider2D other) {
-      if ((1 << other.gameObject.layer & interactableLayer) == 0) {
-        return;
+      if ((1 << other.gameObject.layer & interactableLayer) != 0) {
+        currentInteractable = other.GetComponentInParent<Interactable>();
+        currentInteractable.InRange();
       }
 
-      currentInteractable = other.GetComponentInParent<Interactable>();
-      currentInteractable.InRange();
+      if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) { 
+        var eventSequence = other.GetComponentInParent<EventSequence>();
+        StartCoroutine(eventSequence.ExecuteSequence());
+      }
     }
 
     public void HandleExit(Collider2D other) {

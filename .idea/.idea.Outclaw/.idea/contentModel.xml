@@ -498,14 +498,19 @@
             <e p="Editor" t="Include">
               <e p="CameraBehaviorEditor.cs" t="Include" />
             </e>
+            <e p="EventSequence.cs" t="Include" />
             <e p="GroundHelper.cs" t="Include" />
             <e p="Indicator.cs" t="Include" />
             <e p="InteractableCat.cs" t="Include" />
             <e p="InteractableLocation.cs" t="Include" />
+            <e p="InteractableObject.cs" t="Include" />
+            <e p="LocationManager.cs" t="Include" />
             <e p="MovementController.cs" t="Include" />
             <e p="PauseMenuManager.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
+          <e p="DismissablePrompt.cs" t="Include" />
+          <e p="GameStateManager.cs" t="Include" />
           <e p="Heist" t="Include">
             <e p="Abilities" t="Include">
               <e p="AbilityCooldownManager.cs" t="Include" />
@@ -540,6 +545,11 @@
           <e p="SceneSwitcher.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
           <e p="UI" t="Include">
+            <e p="DismissablePrompts" t="Include">
+              <e p="InteractDismissablePrompt.cs" t="Include" />
+              <e p="JumpDismissablePrompt.cs" t="Include" />
+              <e p="MoveDismissablePrompt.cs" t="Include" />
+            </e>
             <e p="PauseExitItem.cs" t="Include" />
             <e p="PauseItem.cs" t="Include" />
             <e p="PauseItemText.cs" t="Include" />
@@ -547,6 +557,8 @@
             <e p="PauseOptionItem.cs" t="Include" />
             <e p="PauseResumeItem.cs" t="Include" />
             <e p="PauseSaveItem.cs" t="Include" />
+            <e p="PromptAnimationComponent.cs" t="Include" />
+            <e p="PromptManager.cs" t="Include" />
             <e p="SceneTransitionManager.cs" t="Include" />
             <e p="StartListener.cs" t="Include" />
           </e>

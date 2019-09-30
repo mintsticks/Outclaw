@@ -39,10 +39,15 @@ namespace Outclaw.City {
     public void Interact() {
       StartCoroutine(talkIndicator.FadeOut());
       var dialogue = relationshipManager.GetDialogueForCat(type);
+      dialogueManager.SetDialogueType(DialogueType.SPEECH);
       dialogueManager.SetDialogue(dialogue);
       dialogueManager.SetBubbleParent(transform);
-      dialogueManager.StartDialogue();
+      dialogueManager.StartDialogue(CompleteInteraction);
+    }
+    
+    private void CompleteInteraction() {
       relationshipManager.RankUpCat(type);
+      InRange();
     }
   }
 }

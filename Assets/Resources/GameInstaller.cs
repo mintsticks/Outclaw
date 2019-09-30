@@ -9,6 +9,10 @@ namespace Outclaw {
 
     [SerializeField]
     private GameObject sceneTransitionManagerPrefab;
+    
+    [SerializeField]
+    private GameObject relationshipManagerPrefab;
+
     /// <summary>
     /// For all classes that are common to all scenes.
     /// Bind the interfaces to the concrete classes.
@@ -20,6 +24,12 @@ namespace Outclaw {
       Container.Bind<IPlayerInput>()
         .To<PlayerInput>()
         .AsSingle();
+      
+      InstallManagers();
+      InstallFactories();
+    }
+
+    private void InstallManagers() {
       Container.Bind<ISoundManager>()
         .To<SoundManager>()
         .FromComponentInNewPrefab(soundManagerPrefab)
@@ -28,6 +38,18 @@ namespace Outclaw {
         .To<SceneTransitionManager>()
         .FromComponentInNewPrefab(sceneTransitionManagerPrefab)
         .AsSingle();
+      Container.Bind<IRelationshipManager>()
+        .To<RelationshipManager>()
+        .FromComponentInNewPrefab(relationshipManagerPrefab)
+        .AsSingle()
+        .NonLazy();
+      Container.BindInterfacesAndSelfTo<LocationManager>()
+        .AsSingle();
+      Container.BindInterfacesAndSelfTo<GameStateManager>()
+        .AsSingle();
+    }
+    
+    private void InstallFactories() {
     }
   }
 }

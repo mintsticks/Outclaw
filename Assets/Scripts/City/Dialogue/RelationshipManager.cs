@@ -34,7 +34,6 @@ namespace Outclaw.City {
 
     public TextAsset[] GetDialogueForCat(CatType type) {
       var rank = GetRankForCat(type);
-      Debug.Log(rank);
 
       // TODO: hotfix, change later
       var convo = GetInfoForCat(type).rankConversations;
@@ -42,7 +41,7 @@ namespace Outclaw.City {
         rank = convo.Count - 1;
       }
 
-      return convo[rank].conversation;
+      return convo[rank].dialogue;
     }
 
     public void UpdateRelationshipState() {
@@ -69,12 +68,12 @@ namespace Outclaw.City {
   [Serializable]
   public class CatInfo {
     public CatType type;
-    public List<CatConversation> rankConversations;
+    public List<SerializedDialogue> rankConversations;
   }
   
   // Wrapper class for our conversation list, so it can be serialized.
   [Serializable]
-  public class CatConversation {
-    public TextAsset[] conversation;
+  public class SerializedDialogue {
+    public TextAsset[] dialogue;
   }
 }
