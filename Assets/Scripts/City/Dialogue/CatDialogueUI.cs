@@ -44,15 +44,26 @@ namespace Outclaw {
     
     private OptionChooser SetSelectedOption;
     private Transform bubbleParent;
-
+    private Action onDialogueComplete;
+    private DialogueType dialogueType;
+    
+    public Action OnDialogueComplete {
+      set => onDialogueComplete = value;
+    }
+    
     public Transform BubbleParent {
       set => bubbleParent = value;
+    }
+
+    public DialogueType DialogueType {
+      set => dialogueType = value;
     }
 
     public override IEnumerator RunLine(Line line) {
       var bubble = speechBubbleFactory.Create(new SpeechBubble.Data() {
         BubbleText = "", 
-        BubbleParent = bubbleParent
+        BubbleParent = bubbleParent,
+        Type = dialogueType
       });
       bubble.transform.SetParent(transform);
       
@@ -136,7 +147,11 @@ namespace Outclaw {
     }
     
     public override IEnumerator DialogueComplete() {
-      yield break;
+      if (onDialogueComplete == null) {
+        yield break;
+      }
+      onDialogueComplete.Invoke();
+      onDialogueComplete = null;
     }
   }
 }

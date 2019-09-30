@@ -43,11 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5189865f7e40b59b9b252887d3ce79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6668054844795081123, guid: 9b849348fa7d05a46978ab61e717d52d,
-    type: 3}
+  playerInstance: {fileID: 0}
   dialogueManagerPrefab: {fileID: 7652190617852912222, guid: 93a8915f2eb31e847ae63cf7bcb31492,
-    type: 3}
-  relationshipManagerPrefab: {fileID: 6592331674421719268, guid: a731c1b1b4b8ea84cbb273c6194f4765,
     type: 3}
   speechBubblePrefab: {fileID: 8641793541296546377, guid: a2a408fdeb8b985419734eaec4299fa6,
     type: 3}
@@ -59,3 +56,14 @@ MonoBehaviour:
     type: 3}
   pauseMenuManagerPrefab: {fileID: 145902270607762337, guid: ec39ecbdb98109f40aa955e9e70fe259,
     type: 3}
+  promptSettings:
+    promptPrefabs:
+    - promptType: 1
+      prefab: {fileID: 7532689861681819102, guid: 39d65b80c62ff2d448bd98e1fd2aa181,
+        type: 3}
+    - promptType: 2
+      prefab: {fileID: 1910718599010050522, guid: 6d9f411b1b47e154ca4bbbd7daded44e,
+        type: 3}
+    - promptType: 3
+      prefab: {fileID: 650114432654141598, guid: f7f67620a2e034241b984e46632e1be5,
+        type: 3}

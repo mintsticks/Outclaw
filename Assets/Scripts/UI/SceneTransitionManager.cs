@@ -32,11 +32,16 @@ namespace Outclaw.City {
       StartCoroutine(TransitionRoutine(scene));
     }
 
+    void Update() {
+      if (loadingOp != null) {
+        Debug.Log(loadingOp.progress);
+      }
+    }
     private IEnumerator TransitionRoutine(string scene) {
       yield return FadeIn();
       
       loadingOp = SceneManager.LoadSceneAsync(scene);
-      StartCoroutine(DelayTransition());
+      //StartCoroutine(DelayTransition());
       yield return loadingOp;
       
       yield return FadeOut();

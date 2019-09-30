@@ -4,13 +4,10 @@ using Zenject;
 namespace Outclaw.City {
   public class CityInstaller : MonoInstaller {
     [SerializeField]
-    private GameObject playerPrefab;
+    private Player playerInstance;
 
     [SerializeField]
     private GameObject dialogueManagerPrefab;
-
-    [SerializeField]
-    private GameObject relationshipManagerPrefab;
 
     [SerializeField]
     private GameObject speechBubblePrefab;
@@ -27,11 +24,15 @@ namespace Outclaw.City {
     [SerializeField] 
     private GameObject pauseMenuManagerPrefab;
     
+    [SerializeField]
+    private PromptSettings promptSettings;
+    
     /// <summary>
     /// For all classes common to city scenes.
     /// Bind the interfaces to the concrete classes.
     /// </summary>
     public override void InstallBindings() {
+      Container.BindInstance(promptSettings);
       BindComponents();
       BindFactories();
     }
@@ -39,17 +40,12 @@ namespace Outclaw.City {
     private void BindComponents() {
       Container.Bind<IPlayer>()
         .To<Player>()
-        .FromComponentInNewPrefab(playerPrefab)
+        .FromInstance(playerInstance)
         .AsSingle()
         .NonLazy();
       Container.Bind<IDialogueManager>()
         .To<DialogueManager>()
         .FromComponentInNewPrefab(dialogueManagerPrefab)
-        .AsSingle()
-        .NonLazy();
-      Container.Bind<IRelationshipManager>()
-        .To<RelationshipManager>()
-        .FromComponentInNewPrefab(relationshipManagerPrefab)
         .AsSingle()
         .NonLazy();
       Container.Bind<IDialogueIconManager>()
@@ -74,6 +70,10 @@ namespace Outclaw.City {
       Container.BindFactory<OptionIndicator, 
           OptionIndicator.Factory>()
         .FromComponentInNewPrefab(optionIndicatorPrefab);
+      Container.BindFactory<PromptType,
+          IDismissablePrompt, 
+          DismissablePromptFactory>()
+        .FromFactory<CustomPromptFactory>();
     }
   }
 }

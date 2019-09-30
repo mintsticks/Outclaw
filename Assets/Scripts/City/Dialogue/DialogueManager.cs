@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Yarn.Unity;
 
 namespace Outclaw.City {
   public interface IDialogueManager {
     void SetDialogue(TextAsset[] text);
-    void StartDialogue();
+    void StartDialogue(Action onComplete = null);
     bool IsDialogueRunning { get; }
     void SetBubbleParent(Transform parent);
+    void SetDialogueType(DialogueType type);
   }
   
   public class DialogueManager : MonoBehaviour, IDialogueManager {
@@ -23,7 +25,12 @@ namespace Outclaw.City {
       runner.SourceText = text;
     }
 
-    public void StartDialogue() {
+    public void SetDialogueType(DialogueType type) {
+      uiBehaviour.DialogueType = type;
+    }
+
+    public void StartDialogue(Action onComplete = null) {
+      uiBehaviour.OnDialogueComplete = onComplete;
       runner.StartDialogue();
     }
 

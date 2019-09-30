@@ -9,6 +9,7 @@ namespace Outclaw.City {
     public class Data {
       public string BubbleText;
       public Transform BubbleParent;
+      public DialogueType Type;
     }
 
     [SerializeField]
@@ -18,10 +19,15 @@ namespace Outclaw.City {
     private Text bubbleText;
 
     [SerializeField]
-    private Image tail;
+    private Transform speechTrail;
 
     [SerializeField]
-    private Image bubble;
+    private Transform thoughtTrail;
+    
+    [SerializeField]
+    private CanvasGroup canvas;
+
+    private Transform tail;
     
     [Inject]
     public void Initialize(Data data) {
@@ -32,6 +38,8 @@ namespace Outclaw.City {
         return;
       }
       transform.position = mainCam.WorldToScreenPoint(data.BubbleParent.position + offset);
+      
+      HandleType(data.Type);
     }
 
     public Transform BubbleTransform => transform;
@@ -41,15 +49,26 @@ namespace Outclaw.City {
     }
 
     public void SetOpacity(float opacity) {
-      var oldTextColor = bubbleText.color;
-      bubbleText.color = new Color(oldTextColor.r, oldTextColor.g, oldTextColor.b, opacity);
-      
-      var oldBubbleColor = bubble.color;
-      bubble.color =  new Color(oldBubbleColor.r, oldBubbleColor.g, oldBubbleColor.b, opacity);
+      canvas.alpha = opacity;
     }
 
     public void RemoveTail() {
       tail.gameObject.SetActive(false);
     }
+
+    private void HandleType(DialogueType type) {
+      var isSpeech = type == DialogueType.SPEECH;
+      var isThought = type == DialogueType.THOUGHT;
+      
+      tail = isSpeech ? speechTrail : thoughtTrail;
+      speechTrail.gameObject.SetActive(isSpeech);
+      thoughtTrail.gameObject.SetActive(isThought);
+    }
+  }
+  
+  public enum DialogueType {
+    NONE,
+    THOUGHT,
+    SPEECH
   }
 }
