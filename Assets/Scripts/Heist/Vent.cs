@@ -16,8 +16,8 @@ namespace Outclaw.Heist {
     [SerializeField]
     private Indicator ventIndicator;
     
-    [Inject]
-    private IAbilityCooldownManager abilityCooldownManager;
+//    [Inject]
+//    private IAbilityCooldownManager abilityCooldownManager;
 
     [Inject]
     private IPlayer player;
@@ -27,22 +27,22 @@ namespace Outclaw.Heist {
     }
     
     public void InRange() {
-      abilityCooldownManager.SetInAbilityRange(ventAbilityType, true);
+//      abilityCooldownManager.SetInAbilityRange(ventAbilityType, true);
       ventIndicator.CreateIndicator();
       StartCoroutine(ventIndicator.FadeIn());
     }
 
     public void ExitRange() {
-      abilityCooldownManager.SetInAbilityRange(ventAbilityType, false);
+//      abilityCooldownManager.SetInAbilityRange(ventAbilityType, false);
       StartCoroutine(ventIndicator.FadeOut());
     }
 
     public void Interact() {
-      if (!abilityCooldownManager.CanUseAbility(ventAbilityType)) {
-        return;
-      }
-      
-      abilityCooldownManager.UseAbility(ventAbilityType);
+//      if (!abilityCooldownManager.CanUseAbility(ventAbilityType)) {
+//        return;
+//      }
+//      
+//      abilityCooldownManager.UseAbility(ventAbilityType);
       
       player.PlayerTransform.position = destination.transform.position + ventOffset;
       
