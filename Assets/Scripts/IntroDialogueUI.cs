@@ -34,7 +34,7 @@ namespace Outclaw {
         yield return StartCoroutine(PrintLine(line));
       }
 
-      SceneManager.LoadScene("Main");
+      SceneManager.LoadScene("Home");
     }
     private IEnumerator PrintLine(string line) {
       StringBuilder stringBuilder = new StringBuilder();

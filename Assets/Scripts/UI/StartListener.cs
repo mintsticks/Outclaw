@@ -16,10 +16,14 @@ public class StartListener : MonoBehaviour {
       return;
     }
 
-    LoadMain();
+    LoadIntro();
   }
 
   private void LoadMain() {
     sceneTransitionManager.TransitionToScene("Main");
+  }
+
+  private void LoadIntro() {
+    sceneTransitionManager.TransitionToScene("Intro");
   }
 }
