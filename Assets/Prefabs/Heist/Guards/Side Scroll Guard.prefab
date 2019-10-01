@@ -15,7 +15,7 @@ MonoBehaviour:
   blurLayer:
     serializedVersion: 2
     m_Bits: 16384
-  visionCone: {fileID: 0}
+  visionCone: {fileID: 2305749755026720540}
   speed: 0.1
 --- !u!114 &2789981769824438526
 MonoBehaviour:
@@ -121,7 +121,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e1dd0d5b13833da4f99780b1303ecd92, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -398,6 +398,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.67
       objectReference: {fileID: 0}
+    - target: {fileID: 215591200378204296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.018793225
+      objectReference: {fileID: 0}
+    - target: {fileID: 215591200378204296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.5508468
+      objectReference: {fileID: 0}
     - target: {fileID: 5004973054940129296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -427,16 +437,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayer
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 215591200378204296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.018793225
-      objectReference: {fileID: 0}
-    - target: {fileID: 215591200378204296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.5508468
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5004973054940129296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d, type: 3}
