@@ -5,14 +5,9 @@ using UnityEngine;
 public class PlayerAnimController : MonoBehaviour
 {
     
-	private Animator anim;
-    // Start is called before the first frame update
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
+	[SerializeField] private Animator anim;
 
-    public void SetHorizontalVelocity(float val){
-    	anim.SetFloat("moveSpeed", val);
-    }
+  public void SetHorizontalVelocity(float val){
+  	anim.SetFloat("moveSpeed", val);
+  }
 }

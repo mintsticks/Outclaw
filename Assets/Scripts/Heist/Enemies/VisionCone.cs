@@ -16,11 +16,13 @@ namespace Outclaw.Heist{
     [SerializeField] private float visionDistance = 1;
     [SerializeField] private int numSamples = 10;
     [SerializeField] private LayerMask hitLayers;
+    [SerializeField] private LayerMask playerLayer;
     public OnDetect onDetect = new OnDetect();
 
     [Header("Component Links")]
     [SerializeField] private MeshFilter filter;
     [SerializeField] private MeshRenderer rend;
+    [Inject] private IHideablePlayer player;
 
     // Update is called once per frame
     void Update()
@@ -45,36 +47,42 @@ namespace Outclaw.Heist{
       Quaternion rotInverse = Quaternion.Inverse(transform.rotation);
       for(int i = 0; i < numSamples; ++i){
 
-        // rotate
+        // cast ray into world
         Vector3 currVec = Quaternion.AngleAxis(coneAngle * i / numSamples, Vector3.forward) 
           * coneStart;
         currVec.Normalize();
-
-        // cast
         RaycastHit2D hit = Physics2D.Raycast(transform.position,
           currVec, visionDistance, hitLayers);
 
-        // move points to local space
+        // found the player
+        if(hit.collider != null && (1 << hit.collider.gameObject.layer & playerLayer) != 0){
+          if(!this.player.Hidden && player == null){
+            player = hit.collider.gameObject;
+          }
+
+          // recast while ignoring player
+          hit = Physics2D.Raycast(transform.position,
+            currVec, visionDistance, hitLayers & (~playerLayer));
+        }
+
         Vector3 localLineEnd;
         if(hit.collider == null){ // no hit, draw end of vision
           localLineEnd = currVec * visionDistance;
-        }
-        else{ // hit, draw where it hit
-          localLineEnd = hit.point - (Vector2)transform.position;
-
-          if(player == null && hit.collider.gameObject.CompareTag("Player")){
-            player = hit.collider.gameObject;
-          }
+        } 
+        else { // hit, get position in local space
+          localLineEnd = (Vector3)hit.point - transform.position;
         }
 
-        if(player != null){
-          localLineEnd = currVec * visionDistance;
-        }
         meshVerts.Add(rotInverse * localLineEnd);
 
       }
 
-      // create mesh
+      CreateMesh(meshVerts);
+
+      return player;
+    }
+
+    private void CreateMesh(List<Vector3> meshVerts){
       Mesh m = filter.mesh;
       m.Clear();
       m.vertices = meshVerts.ToArray();
@@ -85,8 +93,6 @@ namespace Outclaw.Heist{
         tris.Add(i - 1);
       }
       m.triangles = tris.ToArray();
-
-      return player;
     }
 
     public void SetVisible(bool visible){
