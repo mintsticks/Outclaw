@@ -45,6 +45,7 @@ namespace Outclaw.Heist{
       coneStart.Normalize();
 
       Quaternion rotInverse = Quaternion.Inverse(transform.rotation);
+
       for(int i = 0; i < numSamples; ++i){
 
         // cast ray into world
@@ -65,15 +66,15 @@ namespace Outclaw.Heist{
             currVec, visionDistance, hitLayers & (~playerLayer));
         }
 
-        Vector3 localLineEnd;
+        Vector3 worldLineEnd;
         if(hit.collider == null){ // no hit, draw end of vision
-          localLineEnd = currVec * visionDistance;
+          worldLineEnd = (currVec * visionDistance) + transform.position;
         } 
         else { // hit, get position in local space
-          localLineEnd = (Vector3)hit.point - transform.position;
+          worldLineEnd = hit.point;
         }
 
-        meshVerts.Add(rotInverse * localLineEnd);
+        meshVerts.Add(transform.InverseTransformPoint(worldLineEnd));
 
       }
 
