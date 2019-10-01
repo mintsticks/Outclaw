@@ -39,9 +39,13 @@ namespace City {
       if (!completedObjectives.ContainsKey(currentState)) {
         return false;
       }
-
+      
       var gameStateObjectives = objectivesForGameStates.FirstOrDefault(gso => gso.state == currentState);
-      return gameStateObjectives == null || completedObjectives[currentState].SetEquals(gameStateObjectives.objectives);
+      if (gameStateObjectives == null) {
+        return true;
+      }
+
+      return gameStateObjectives.objectives.All(neededObjective => completedObjectives[currentState].Contains(neededObjective));
     }
   }
 

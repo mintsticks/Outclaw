@@ -11,7 +11,8 @@ namespace Outclaw.City {
     SHOWER,
     DESK,
     TRAPDOOR,
-    TABLE
+    TABLE,
+    CABINET
   }
 
   [Serializable]

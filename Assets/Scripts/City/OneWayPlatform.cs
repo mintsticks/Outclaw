@@ -22,7 +22,6 @@ namespace City {
     private IPlayer player;
 
     private void Update() {
-      Debug.Log(player.PlayerVelocity.magnitude);
       if (Math.Abs(player.PlayerVelocity.magnitude) < 0.001f) {
         collider.enabled = true;
         return;
