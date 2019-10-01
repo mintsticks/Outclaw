@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &176023213
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -198,7 +198,7 @@ Transform:
   m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &316087401 stripped
 GameObject:
@@ -355,6 +355,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -16.68
       objectReference: {fileID: 0}
+    - target: {fileID: 1429182042726893476, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761028481475047872, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 635330793841077554, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8c4ec5df2f1434243956270ac2470404, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 781c4c76b1cbba544922f33235329f2e, type: 3}
 --- !u!1001 &1317104721
@@ -407,7 +422,7 @@ PrefabInstance:
     - target: {fileID: 5290488612717389675, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5290488612717389675, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
@@ -541,17 +556,17 @@ PrefabInstance:
     - target: {fileID: 2789981769282687884, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: m_Positions.Array.data[2].x
-      value: 5.4767613
+      value: -1.8693709
       objectReference: {fileID: 0}
     - target: {fileID: 2789981769282687884, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: m_Positions.Array.data[2].y
-      value: 6.2800927
+      value: 2.7134738
       objectReference: {fileID: 0}
     - target: {fileID: 2789981769824438525, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: speed
-      value: 0.05
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2613757592767905409, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
