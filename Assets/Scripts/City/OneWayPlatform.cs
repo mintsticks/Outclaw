@@ -1,4 +1,5 @@
-﻿using Outclaw;
+﻿using System;
+using Outclaw;
 using Outclaw.City;
 using UnityEngine;
 using Zenject;
@@ -21,8 +22,13 @@ namespace City {
     private IPlayer player;
 
     private void Update() {
+      Debug.Log(player.PlayerVelocity.magnitude);
+      if (Math.Abs(player.PlayerVelocity.magnitude) < 0.001f) {
+        collider.enabled = true;
+        return;
+      }
+      
       var angle = Vector2.Angle(player.PlayerVelocity, onDirection);
-      Debug.Log(player.PlayerVelocity);
       if (angle < maxOnAngle) {
         collider.enabled = true;
         return;
