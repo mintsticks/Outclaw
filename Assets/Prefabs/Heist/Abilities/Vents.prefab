@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3554640959624558192}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Vents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,6 +43,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vent2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8372688149215242776, guid: 81f5961793edc5a448be3b1df0bfad38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6453947431393914414, guid: 81f5961793edc5a448be3b1df0bfad38,
         type: 3}
@@ -118,6 +123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vent1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8372688149215242776, guid: 81f5961793edc5a448be3b1df0bfad38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6453947431393914414, guid: 81f5961793edc5a448be3b1df0bfad38,
         type: 3}

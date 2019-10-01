@@ -519,16 +519,20 @@
             <e p="Abilities" t="Include">
               <e p="AbilityCooldownManager.cs" t="Include" />
               <e p="GuardAmbush.cs" t="Include" />
+              <e p="HideArea.cs" t="Include" />
+              <e p="IHideablePlayer.cs" t="Include" />
             </e>
             <e p="Enemies" t="Include">
               <e p="GuardInstaller.cs" t="Include" />
               <e p="Movement" t="Include">
                 <e p="ChaseMovement.cs" t="Include" />
-                <e p="GuardMovement.cs" t="Include" />
                 <e p="GuardStateTransition.cs" t="Include" />
                 <e p="InvestigateMovement.cs" t="Include" />
                 <e p="Pathfinder.cs" t="Include" />
                 <e p="PatrolMovement.cs" t="Include" />
+              </e>
+              <e p="Sidescroll Movement" t="Include">
+                <e p="GuardMovement.cs" t="Include" />
                 <e p="SideScrollPatrol.cs" t="Include" />
               </e>
               <e p="VisionCone.cs" t="Include" />
