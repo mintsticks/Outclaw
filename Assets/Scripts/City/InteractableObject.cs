@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using City;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +9,9 @@ namespace Outclaw.City {
     NONE,
     BED,
     SHOWER,
-    DESK
+    DESK,
+    TRAPDOOR,
+    TABLE
   }
 
   [Serializable]
@@ -43,6 +46,9 @@ namespace Outclaw.City {
     [Inject]
     private IDialogueManager dialogueManager;
 
+    [Inject]
+    private IObjectiveManager objectiveManager;
+    
     [Inject]
     private IPlayer player;
     
@@ -79,6 +85,7 @@ namespace Outclaw.City {
     }
 
     private TextAsset[] GetObjectDialogue() {
+      //TODO: add a key to the list elements for game states
       var locProgress = locationManager.GetProgressForLocation(locationType);
       var objProgress = locationManager.GetProgressForLocationObject(locationType, objectType);
       
@@ -88,6 +95,7 @@ namespace Outclaw.City {
         return null;
       }
 
+      //TODO: add conditions to objects. for example, you cant trigger the 2nd dialogue for the trapdoor until youve picked up the key
       var objectDialogues = dialoguesByProgress[locProgress].objectDialogues;
       if (objProgress >= objectDialogues.Count) {
         Debug.Log("No dialogues for object progress");
@@ -99,6 +107,8 @@ namespace Outclaw.City {
     
     private void CompleteInteraction() {
       locationManager.IncreaseProgressForLocationObject(locationType, objectType);
+      //TODO: only complete objective if key dialogue is seen.
+      objectiveManager.CompleteObjective(objectType);
       InRange();
     }
   }

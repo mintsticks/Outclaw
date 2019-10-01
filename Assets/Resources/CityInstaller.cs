@@ -1,5 +1,6 @@
 ﻿#pragma warning disable 649
 
+using City;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,9 @@ namespace Outclaw.City {
 
     [SerializeField] 
     private GameObject pauseMenuManagerPrefab;
+
+    [SerializeField]
+    private GameObject objectiveManagerPrefab;
     
     [SerializeField]
     private PromptSettings promptSettings;
@@ -34,6 +38,11 @@ namespace Outclaw.City {
         .To<PauseMenuManager>()
         .FromComponentInNewPrefab(pauseMenuManagerPrefab)
         .AsSingle();
+      Container.Bind<IObjectiveManager>()
+        .To<ObjectiveManager>()
+        .FromComponentInNewPrefab(objectiveManagerPrefab)
+        .AsSingle()
+        .NonLazy();
     }
     
     private void BindFactories() {

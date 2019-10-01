@@ -38,7 +38,7 @@ namespace Outclaw.City {
     [Inject]
     private IDialogueManager dialogueManager;
     
-    private Vector3 velocity;
+    private Vector3 velocity;  
     public Vector3 Velocity => velocity;
 
     public void UpdateMovement() {
