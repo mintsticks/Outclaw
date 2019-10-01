@@ -82,11 +82,8 @@ namespace Outclaw.City {
     }
 
     private void UpdateAnimationState(Vector3 move) {
-      if (Math.Abs(move.x) < .01) {
-        ac.SetHorizontalVelocity(0);
-        return;
-      }
-      ac.SetHorizontalVelocity(runSpeed);
+      ac.SetHorizontalVelocity(Mathf.Abs(move.x));
+      ac.SetVerticalVelocity(move.y);
     }
   }
 }
