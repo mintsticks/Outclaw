@@ -27,7 +27,6 @@ namespace Outclaw.Heist {
         .AsSingle()
         .NonLazy();
       Container.Bind<IPlayer>()
-        .To<PlayerController>()
         .FromInstance(controller)
         .AsSingle()
         .NonLazy();
