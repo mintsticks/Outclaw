@@ -43,7 +43,7 @@ namespace Outclaw.Heist{
       }
 
       targetIdx = SnapToStart();
-      if(!movingLeft){
+      if(path.positionCount > 1 && !movingLeft){
         ++targetIdx;
       }
     }
@@ -86,6 +86,10 @@ namespace Outclaw.Heist{
 
     // returns true if the direction has changed
     private bool NextPoint(){
+      if(path.positionCount <= 1){
+        return false;
+      }
+
       bool initial = movingLeft;
 
       // move point, turn around if at end
@@ -108,6 +112,7 @@ namespace Outclaw.Heist{
     }
 
     private IEnumerator Patrol(){
+      movement.UpdateVisionCone(movingLeft ? Vector3.left : Vector3.right);
       while(true){
         if((transform.position - path.GetPosition(targetIdx)).magnitude < arrivalTolerance){
           if(NextPoint()){

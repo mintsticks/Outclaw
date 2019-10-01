@@ -10,7 +10,8 @@ namespace Outclaw.Heist{
     [SerializeField] private City.Indicator hideIndicator;
     private bool isHiding = false;
 
-    [Inject] IHideablePlayer player;
+    [Inject] IHideablePlayer hidePlayer;
+    [Inject] City.IPlayer player;
 
     public void Awake() {
       hideIndicator.Initialize(transform);
@@ -26,7 +27,8 @@ namespace Outclaw.Heist{
     }
 
     public void Interact(){
-      player.Hidden = !player.Hidden;
+      player.PlayerTransform.position = transform.position;
+      hidePlayer.Hidden = !hidePlayer.Hidden;
     }
   }
 }

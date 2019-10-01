@@ -43,10 +43,25 @@ namespace Outclaw.Heist{
 
       float halfHeight = col.bounds.extents.y;
 
-      Undo.RecordObject(patrol.Path, "Snapped path");
-      EditorUtility.SetDirty(path);
+      Undo.RecordObject(path, "Snapped path");
 
-      List<Vector3> newPoints = new List<Vector3>();
+      List<Vector3> newPoints = AdjustPoints(path, patrol.GroundLayer, halfHeight);
+      path.positionCount = newPoints.Count;
+      path.SetPositions(newPoints.ToArray());
+      if(path.positionCount > 1){
+        path.Simplify(SIMPLIFY_TOL);
+      }
+    }
+
+    private List<Vector3> AdjustPoints(LineRenderer path, LayerMask groundLayer,
+          float halfHeight){
+      List<Vector3> res = new List<Vector3>();
+      if(path.positionCount == 1){
+        res.Add(AdjustPoint(path.GetPosition(0),
+          groundLayer, halfHeight));
+        return res;
+      }
+
       for(int i = 0; i < path.positionCount - 1; ++i){
         Vector3 start = path.GetPosition(i);
         Vector3 direction = path.GetPosition(i + 1) - start;
@@ -58,16 +73,14 @@ namespace Outclaw.Heist{
           Vector3 testPoint = start + (direction * distance 
             * j / SAMPLES_BETWEEN_POINTS);
 
-          newPoints.Add(AdjustPoint(testPoint, patrol.GroundLayer,
+          res.Add(AdjustPoint(testPoint, groundLayer,
             halfHeight));
         }
       }
-      newPoints.Add(AdjustPoint(path.GetPosition(path.positionCount - 1),
-        patrol.GroundLayer, halfHeight));
+      res.Add(AdjustPoint(path.GetPosition(path.positionCount - 1),
+        groundLayer, halfHeight));
 
-      path.positionCount = newPoints.Count;
-      path.SetPositions(newPoints.ToArray());
-      path.Simplify(SIMPLIFY_TOL);
+      return res;
     }
   }
 }
