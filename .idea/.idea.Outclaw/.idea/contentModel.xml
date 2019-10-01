@@ -480,11 +480,13 @@
           <e p="CityInstaller.cs" t="Include" />
           <e p="GameInstaller.cs" t="Include" />
           <e p="HeistInstaller.cs" t="Include" />
+          <e p="IntroInstaller.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
           <e p="BackgroundMusic.cs" t="Include" />
           <e p="City" t="Include">
             <e p="CameraBehavior.cs" t="Include" />
+            <e p="CharacterController2D.cs" t="Include" />
             <e p="Dialogue" t="Include">
               <e p="CatDialogueUI.cs" t="Include" />
               <e p="CatVariableStorage.cs" t="Include" />
@@ -503,6 +505,7 @@
             <e p="InteractableObject.cs" t="Include" />
             <e p="LocationManager.cs" t="Include" />
             <e p="MovementController.cs" t="Include" />
+            <e p="OneWayPlatform.cs" t="Include" />
             <e p="PauseMenuManager.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
@@ -516,16 +519,20 @@
             <e p="Abilities" t="Include">
               <e p="AbilityCooldownManager.cs" t="Include" />
               <e p="GuardAmbush.cs" t="Include" />
+              <e p="HideArea.cs" t="Include" />
+              <e p="IHideablePlayer.cs" t="Include" />
             </e>
             <e p="Enemies" t="Include">
               <e p="GuardInstaller.cs" t="Include" />
               <e p="Movement" t="Include">
                 <e p="ChaseMovement.cs" t="Include" />
-                <e p="GuardMovement.cs" t="Include" />
                 <e p="GuardStateTransition.cs" t="Include" />
                 <e p="InvestigateMovement.cs" t="Include" />
                 <e p="Pathfinder.cs" t="Include" />
                 <e p="PatrolMovement.cs" t="Include" />
+              </e>
+              <e p="Sidescroll Movement" t="Include">
+                <e p="GuardMovement.cs" t="Include" />
                 <e p="SideScrollPatrol.cs" t="Include" />
               </e>
               <e p="VisionCone.cs" t="Include" />
@@ -542,6 +549,7 @@
           </e>
           <e p="Interactable.cs" t="Include" />
           <e p="InteractionController.cs" t="Include" />
+          <e p="IntroDialogueUI.cs" t="Include" />
           <e p="PlayerAnimController.cs" t="Include" />
           <e p="PlayerData.cs" t="Include" />
           <e p="PlayerInput.cs" t="Include" />

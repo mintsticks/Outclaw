@@ -22,19 +22,20 @@ namespace Outclaw.Heist {
     [Inject]
     private ISoundManager soundManager;
     
+
+    public Transform PlayerTransform => transform;
+    public Vector3 PlayerVelocity { get; }
+
     // hiding player
     [SerializeField]
     private GameObject sprite;
     private bool hidden;
-
-    public Transform PlayerTransform {
-      get { return transform; }
-    }
+    
 
     void FixedUpdate() {
       if(!hidden){
-        movementController.UpdateHorizontal();
-        movementController.UpdateVertical();
+        //movementController.UpdateHorizontal();
+        //movementController.UpdateVertical();
       }
       interactionController.UpdateInteraction();
     }

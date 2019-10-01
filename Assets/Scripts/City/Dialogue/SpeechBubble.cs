@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
@@ -28,18 +29,20 @@ namespace Outclaw.City {
     private CanvasGroup canvas;
 
     private Transform tail;
+    private Transform parent;
+    private Camera main;
     
     [Inject]
     public void Initialize(Data data) {
       bubbleText.text = data.BubbleText;
-
-      var mainCam = Camera.main;
-      if (mainCam == null) {
-        return;
-      }
-      transform.position = mainCam.WorldToScreenPoint(data.BubbleParent.position + offset);
-      
+      parent = data.BubbleParent;
+      main = Camera.main;
+      transform.position = main.WorldToScreenPoint(parent.position + offset);
       HandleType(data.Type);
+    }
+
+    private void Update() {
+      transform.position = main.WorldToScreenPoint(parent.position + offset);
     }
 
     public Transform BubbleTransform => transform;

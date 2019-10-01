@@ -203,72 +203,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &641414017
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 641414020}
-  - component: {fileID: 641414019}
-  - component: {fileID: 641414018}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &641414018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641414017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &641414019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641414017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &641414020
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641414017}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &988416239
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +214,6 @@ GameObject:
   - component: {fileID: 988416243}
   - component: {fileID: 988416242}
   - component: {fileID: 988416241}
-  - component: {fileID: 988416240}
   - component: {fileID: 988416244}
   m_Layer: 5
   m_Name: Canvas
@@ -289,23 +222,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &988416240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988416239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &988416241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,18 +300,16 @@ MonoBehaviour:
   textSpeed: 0.01
   introText: {fileID: 1923259843}
   lines:
-  - "I\u2019ve always had the perfect life. I have a great apartment, plenty of toys,
-    and always have a bowl of fresh food..."
-  - "But none of it would mean anything without my owner. We do everything together,
-    from watching his favorite shows to sleeping. I can\u2019t imagine anyone better."
+  - "I\u2019ve always had the perfect life.n I have a great apartment, plenty of toys,
+    and always have a bowl of fresh food."
+  - "But none of it would mean anything without my owner.n We do everything together,
+    from watching his favorite shows to sleeping.n I can\u2019t imagine anyone better."
   - But then last week, something weird happened.
   - Like any other day, he woke up early, got ready for work, and even fed me before
-    leaving. But that night, he never came home.
-  - "I couldn\u2019t believe it, he would never abandon me! But a week later, he still
-    hadn\u2019t come home. I was starting to get worried, and I started running out
-    of food."
-  - "I know something\u2019s not right. I have to get out of here and find out what
-    happened. I have to bring him home..."
+    leaving.n But that night, he never came home.
+  - I don't believe it he would ever abandon me!
+  - "I know something\u2019s not right.n I have to get out of here and find out what
+    happened.n I have to bring him home..."
 --- !u!1 &1421211503
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +515,7 @@ PrefabInstance:
     - target: {fileID: 8116667929166650568, guid: 62d3b612d4ca8484c8f2322b025eb11c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8116667929166650568, guid: 62d3b612d4ca8484c8f2322b025eb11c,
         type: 3}

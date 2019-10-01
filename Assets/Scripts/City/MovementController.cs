@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Boo.Lang.Runtime.DynamicDispatching;
+using UnityEngine;
 using Zenject;
 
 namespace Outclaw.City {
@@ -7,58 +9,84 @@ namespace Outclaw.City {
   /// </summary>
   public class MovementController : MonoBehaviour {
     [SerializeField]
+    private CharacterController2D controller;
+    
+    [SerializeField]
     private PlayerAnimController ac;
     
     [SerializeField] 
     private Rigidbody2D rb;
 
-    [SerializeField]
-    private GroundHelper groundHelper;
-    
-    [SerializeField]
-    private float walkSpeed;
-    
     [SerializeField] 
-    private float jumpForce;
+    private float jumpHeight;
 
+    [SerializeField]
+    private float gravity;
+
+    [SerializeField]
+    private float runSpeed;
+
+    [SerializeField]
+    private float groundDamping;
+    
+    [SerializeField]
+    private float inAirDamping;
+    
     [Inject]
     private IPlayerInput playerInput;
 
-    public void UpdateHorizontal() {
+    [Inject]
+    private IDialogueManager dialogueManager;
+    
+    private Vector3 velocity;
+    public Vector3 Velocity => velocity;
+
+    public void UpdateMovement() {
+      UpdateHorizontal();
+      UpdateVertical();
+      UpdateAnimationState(velocity);
+      controller.move(velocity * Time.deltaTime);
+      velocity = controller.Velocity;
+    }
+    
+    private void UpdateHorizontal() {
       var moveDir = MoveDirection();
-      UpdateHorizontalPosition(moveDir);
-      UpdateAnimationState(moveDir);
+      var dampingFactor = controller.isGrounded ? groundDamping : inAirDamping;
+      velocity.x = Mathf.Lerp(velocity.x, moveDir * runSpeed, Time.deltaTime * dampingFactor);
+
+      if (moveDir == 0) {
+        return;
+      }
+      
+      rb.transform.right = new Vector2(moveDir, 0);
     }
     
     private int MoveDirection() {
+      if (dialogueManager.IsDialogueRunning) {
+        return 0;
+      }
       return playerInput.IsLeft() ? -1 : playerInput.IsRight() ? 1 : 0;
     }
-    
-    private void UpdateHorizontalPosition(int moveDir) {
-      if (moveDir == 0) {
+
+    private void UpdateVertical() {
+      CheckJump();
+      velocity.y += gravity * Time.deltaTime;
+    }
+
+    private void CheckJump() {
+      if (!controller.isGrounded || dialogueManager.IsDialogueRunning) {
         return;
       }
 
-      rb.transform.right = new Vector2(moveDir, 0);
-      rb.transform.Translate(new Vector2(moveDir * walkSpeed * Time.fixedDeltaTime, 0),Space.World);
+      velocity.y = playerInput.IsJumpDown() ? Mathf.Sqrt(2f * jumpHeight * -gravity) : 0;
     }
 
-    private void UpdateAnimationState(int moveDir) {
-      if (moveDir == 0) {
+    private void UpdateAnimationState(Vector3 move) {
+      if (Math.Abs(move.x) < .01) {
         ac.SetHorizontalVelocity(0);
         return;
       }
-      ac.SetHorizontalVelocity(walkSpeed);
-    }
-    
-    public void UpdateVertical() {
-      if (rb.velocity.y > 0 || 
-          !playerInput.IsJump() || 
-          !groundHelper.IsGrounded()) {
-        return;
-      }
-
-      rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+      ac.SetHorizontalVelocity(runSpeed);
     }
   }
 }
