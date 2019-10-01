@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/City/CharacterController2D.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/City/CharacterController2D.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/City/OneWayPlatform.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/City/OneWayPlatform.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/PauseBack.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/PauseBack.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/City/Dialogue/SpeechBubble.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/City/Dialogue/SpeechBubble.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Home.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Home.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Intro.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Intro.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/Dialogue/SpeechBubble.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/Dialogue/SpeechBubble.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/MovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/MovementController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Heist/HeistMovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Heist/HeistMovementController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/IntroDialogueUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/IntroDialogueUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/HomeBack.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/HomeBack.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +78,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/Dialogue/DialogueManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/PauseExitItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/ObjectiveManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/PromptManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/Dialogue/CatVariableStorage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../CharacterController2D/Assets/demo/scripts/DemoScene.cs" root0="SKIP_HIGHLIGHTING" />
@@ -113,7 +102,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/CatVariableStorage.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/Dialogue/ThoughtBubble.cs" />
         <option value="$PROJECT_DIR$/Temp/GeneratedFromSurface-Custom-BlurShader.shader" />
         <option value="$PROJECT_DIR$/Assets/Materials/Blur.shader" />
@@ -160,10 +148,11 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/CharacterController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerInput.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/Player.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/MovementController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/CharacterController2D.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/OneWayPlatform.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveManager.cs" />
       </list>
     </option>
   </component>
@@ -225,7 +214,7 @@
       <workItem from="1568156883666" duration="9591000" />
       <workItem from="1568446973347" duration="44196000" />
       <workItem from="1568928722018" duration="52279000" />
-      <workItem from="1569447311906" duration="110520000" />
+      <workItem from="1569447311906" duration="111945000" />
     </task>
     <servers />
   </component>
