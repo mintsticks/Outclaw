@@ -20,6 +20,11 @@ namespace Outclaw.Heist{
     [SerializeField] [Range(0, 1)] private float startPosition;
     [SerializeField] private bool movingLeft;
 
+    [Header("Turning")]
+    [SerializeField] [Range(0, 360)] private float lookAngle = 30;
+    [SerializeField] private float headTurnTime = .1f;
+    [SerializeField] private float lookPause = .1f;
+
     private int targetIdx;
 
     public LineRenderer Path { get => path; }
@@ -37,7 +42,7 @@ namespace Outclaw.Heist{
         return;
       }
 
-      int targetIdx = SnapToStart();
+      targetIdx = SnapToStart();
       if(!movingLeft){
         ++targetIdx;
       }
@@ -79,7 +84,10 @@ namespace Outclaw.Heist{
 
     }
 
-    private void NextPoint(){
+    // returns true if the direction has changed
+    private bool NextPoint(){
+      bool initial = movingLeft;
+
       // move point, turn around if at end
       if(movingLeft){
         --targetIdx;
@@ -94,19 +102,37 @@ namespace Outclaw.Heist{
           --targetIdx;
           movingLeft = true;
         }
-
       }
+
+      return initial ^ movingLeft;
     }
 
     private IEnumerator Patrol(){
       while(true){
         if((transform.position - path.GetPosition(targetIdx)).magnitude < arrivalTolerance){
-          NextPoint();
+          if(NextPoint()){
+            yield return LookAround();
+          }
         }
         movement.MoveTowards(path.GetPosition(targetIdx), Time.deltaTime);
         movement.UpdateVisionCone(movingLeft ? Vector3.left : Vector3.right);
         yield return new WaitForSeconds(0);
       }
+    }
+
+    private IEnumerator LookAround(){
+      // inverted because it was toggle before this call
+      Vector3 centerDir = !movingLeft ? Vector3.left : Vector3.right;
+      Quaternion centerRot = Quaternion.LookRotation(Vector3.forward, centerDir);
+      Quaternion left = centerRot * Quaternion.AngleAxis(lookAngle, Vector3.forward);
+      Quaternion right = centerRot * Quaternion.AngleAxis(-lookAngle, Vector3.forward);
+
+      yield return movement.TurnHead(left, headTurnTime);
+      yield return new WaitForSeconds(lookPause);
+      yield return movement.TurnHead(right, 2 * headTurnTime);
+      yield return new WaitForSeconds(lookPause);
+      yield return movement.TurnHead(centerRot, headTurnTime);
+      yield break;
     }
 
     private void TogglePathVisibility(bool shown){

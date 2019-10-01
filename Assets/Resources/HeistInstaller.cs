@@ -9,7 +9,7 @@ namespace Outclaw.Heist {
 
     [SerializeField]
     private PlayerController controller;
-    
+
     [SerializeField] 
     private GameObject pauseMenuManagerPrefab;
     /// <summary>
@@ -27,6 +27,10 @@ namespace Outclaw.Heist {
         .AsSingle()
         .NonLazy();
       Container.Bind<IPlayer>()
+        .FromInstance(controller)
+        .AsSingle()
+        .NonLazy();
+      Container.Bind<IHideablePlayer>()
         .FromInstance(controller)
         .AsSingle()
         .NonLazy();

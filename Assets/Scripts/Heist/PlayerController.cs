@@ -3,9 +3,9 @@ using UnityEngine;
 using Zenject;
 
 namespace Outclaw.Heist {
-  public class PlayerController : MonoBehaviour, IPlayer {
+  public class PlayerController : MonoBehaviour, IPlayer, IHideablePlayer {
     [SerializeField]
-    private HeistMovementController movementController;
+    private MovementController movementController;
     
     [SerializeField]
     private InteractionController interactionController;
@@ -22,12 +22,20 @@ namespace Outclaw.Heist {
     [Inject]
     private ISoundManager soundManager;
     
+    // hiding player
+    [SerializeField]
+    private GameObject sprite;
+    private bool hidden;
+
     public Transform PlayerTransform {
       get { return transform; }
     }
 
     void FixedUpdate() {
-      movementController.UpdateMovement();
+      if(!hidden){
+        movementController.UpdateHorizontal();
+        movementController.UpdateVertical();
+      }
       interactionController.UpdateInteraction();
     }
     
@@ -51,6 +59,27 @@ namespace Outclaw.Heist {
       
       abilityCooldownManager.UseAbility(AbilityType.SENSE);
       soundManager.PlaySFX(senseSfx);
+    }
+
+    private void Hide(){
+      sprite.SetActive(false);
+    }
+
+    private void Unhide(){
+      sprite.SetActive(true);
+    }
+
+    public bool Hidden{
+      get => hidden;
+      set {
+        hidden = value;
+        if(hidden){
+          Hide();
+        }
+        else{
+          Unhide();
+        }
+      }
     }
   }
 }

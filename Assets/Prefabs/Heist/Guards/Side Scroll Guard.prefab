@@ -37,6 +37,21 @@ MonoBehaviour:
   arrivalTolerance: 0.1
   startPosition: 0.114
   movingLeft: 0
+  lookAngle: 30
+  headTurnTime: 0.5
+  lookPause: 1
+--- !u!114 &2621867706938698654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613757592767905437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3fa4e3cfaedea4d831fc179cfb9762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2789981768891533572
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,9 +104,23 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 1847
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
   onDetect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2621867706938698654}
+        m_MethodName: SwitchToScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Outclaw.Heist.VisionCone+OnDetect, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   filter: {fileID: 4007598558736983128}
@@ -408,16 +437,6 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 1.5508468
       objectReference: {fileID: 0}
-    - target: {fileID: 5004973054940129296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1506042843
-      objectReference: {fileID: 0}
-    - target: {fileID: 5004973054940129296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 215591200003001310, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
       propertyPath: m_SpriteSortPoint
@@ -434,6 +453,16 @@ PrefabInstance:
       value: 1506042843
       objectReference: {fileID: 0}
     - target: {fileID: 215591200003001310, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5004973054940129296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1506042843
+      objectReference: {fileID: 0}
+    - target: {fileID: 5004973054940129296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
       propertyPath: m_SortingLayer
       value: 1
