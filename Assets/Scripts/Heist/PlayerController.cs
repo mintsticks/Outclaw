@@ -34,8 +34,7 @@ namespace Outclaw.Heist {
 
     void FixedUpdate() {
       if(!hidden){
-        //movementController.UpdateHorizontal();
-        //movementController.UpdateVertical();
+        movementController.UpdateMovement();
       }
       interactionController.UpdateInteraction();
     }

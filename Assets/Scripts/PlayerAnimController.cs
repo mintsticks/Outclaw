@@ -10,4 +10,8 @@ public class PlayerAnimController : MonoBehaviour
   public void SetHorizontalVelocity(float val){
   	anim.SetFloat("moveSpeed", val);
   }
+
+  public void SetVerticalVelocity(float val){
+    anim.SetFloat("jumpSpeed", val);
+  }
 }
