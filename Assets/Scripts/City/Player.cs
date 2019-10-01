@@ -4,6 +4,7 @@ using Zenject;
 namespace Outclaw.City {
   public interface IPlayer {
     Transform PlayerTransform { get; }
+    Vector3 PlayerVelocity { get; }
   }
   
   public class Player : MonoBehaviour, IPlayer {
@@ -21,12 +22,13 @@ namespace Outclaw.City {
     
     public Transform PlayerTransform => transform;
 
+    public Vector3 PlayerVelocity => movementController.Velocity;
+
     void FixedUpdate() {
+      movementController.UpdateMovement();
       if (dialogueManager.IsDialogueRunning) {
         return;
       }
-      movementController.UpdateHorizontal();
-      movementController.UpdateVertical();
       interactionController.UpdateInteraction();
     }
 

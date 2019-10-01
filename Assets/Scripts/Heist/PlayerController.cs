@@ -22,9 +22,8 @@ namespace Outclaw.Heist {
     [Inject]
     private ISoundManager soundManager;
     
-    public Transform PlayerTransform {
-      get { return transform; }
-    }
+    public Transform PlayerTransform => transform;
+    public Vector3 PlayerVelocity { get; }
 
     void FixedUpdate() {
       movementController.UpdateMovement();

@@ -1,78 +1,74 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Text;
+using Outclaw.City;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Outclaw {
   public class IntroDialogueUI : MonoBehaviour {
+    [SerializeField]
+    private float textSpeed = 0.025f;
 
-    [SerializeField] private float textSpeed = 0.025f;
+    [SerializeField]
+    private Text introText;
 
-    [SerializeField] private Text introText;
+    [SerializeField]
+    private string[] lines;
 
-    [SerializeField] private string[] lines;
+    [Inject]
+    private IPlayerInput playerInput;
 
-    [Inject] private IPlayerInput playerInput;
-
-    public void Start()
-    {
+    [Inject]
+    private ISceneTransitionManager sceneTransitionManager;
+    
+    public void Start() {
       StartCoroutine(PrintLines(lines));
     }
 
-    public void Update()
-    {
-      
-    }
-
     private IEnumerator PrintLines(string[] lines) {
-      foreach (string line in lines)
-      {
+      foreach (var line in lines) {
         yield return StartCoroutine(PrintLine(line));
       }
 
-      SceneManager.LoadScene("Home");
+      sceneTransitionManager.TransitionToScene("Home");
     }
+
     private IEnumerator PrintLine(string line) {
+      line = line.Replace(".n", ".\n");
       StringBuilder stringBuilder = new StringBuilder();
       introText.text = stringBuilder.ToString();
       yield return new WaitForSeconds(textSpeed);
       float time = 0.0f;
-      foreach (char c in line)
-      {
-        while (time < textSpeed)
-        {
-          time += Time.deltaTime;
-
-          if (playerInput.IsInteractDown())
-          {
-            introText.text = line;
-            break;
-          }
-          
-          yield return null;
-        } 
-        
-        time = 0.0f;
-
-        if (!playerInput.IsInteractDown())
-        {
+      var charSpeed = textSpeed;
+      foreach (char c in line) {
+        if (!playerInput.IsInteractDown()) {
           stringBuilder.Append(c);
           introText.text = stringBuilder.ToString();
           yield return null;
-        }
-        else
-        {
+        } else {
           introText.text = line;
           yield return null;
           break;
         }
-        
+        if (c == '.') {
+          charSpeed = 1;
+        } else {
+          charSpeed = textSpeed;
+        }
+        while (time < charSpeed) {
+          time += Time.deltaTime;
+          if (playerInput.IsInteractDown()) {
+            introText.text = line;
+            break;
+          }
+
+          yield return null;
+        }
+
+        time = 0.0f;
       }
-    
+
       yield return NextLine();
     }
 
@@ -81,7 +77,5 @@ namespace Outclaw {
         yield return null;
       }
     }
-    
   }
-
 }

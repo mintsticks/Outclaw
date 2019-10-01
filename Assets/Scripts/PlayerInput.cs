@@ -14,6 +14,7 @@ namespace Outclaw {
     bool IsDown();
     bool IsDownPress();
     bool IsJump();
+    bool IsJumpDown();
     bool IsInteract();
     bool IsInteractDown();
     bool IsAbility();
@@ -57,6 +58,10 @@ namespace Outclaw {
     
     public bool IsJump() {
       return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+    }
+
+    public bool IsJumpDown() {
+      return Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
     }
 
     public bool IsInteract() {

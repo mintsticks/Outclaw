@@ -15,6 +15,8 @@ public class HeistMovementController : MonoBehaviour {
   [Inject]
   private IPlayerInput playerInput;
 
+  public Rigidbody2D Rigidbody => rb;
+  
   public void UpdateMovement() {
     var hDir = GetHorizontalMovement();
     var vDir = GetVerticalMovement();

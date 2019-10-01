@@ -480,11 +480,13 @@
           <e p="CityInstaller.cs" t="Include" />
           <e p="GameInstaller.cs" t="Include" />
           <e p="HeistInstaller.cs" t="Include" />
+          <e p="IntroInstaller.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
           <e p="BackgroundMusic.cs" t="Include" />
           <e p="City" t="Include">
             <e p="CameraBehavior.cs" t="Include" />
+            <e p="CharacterController2D.cs" t="Include" />
             <e p="Dialogue" t="Include">
               <e p="CatDialogueUI.cs" t="Include" />
               <e p="CatVariableStorage.cs" t="Include" />
@@ -503,6 +505,7 @@
             <e p="InteractableObject.cs" t="Include" />
             <e p="LocationManager.cs" t="Include" />
             <e p="MovementController.cs" t="Include" />
+            <e p="OneWayPlatform.cs" t="Include" />
             <e p="PauseMenuManager.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
@@ -542,6 +545,7 @@
           </e>
           <e p="Interactable.cs" t="Include" />
           <e p="InteractionController.cs" t="Include" />
+          <e p="IntroDialogueUI.cs" t="Include" />
           <e p="PlayerAnimController.cs" t="Include" />
           <e p="PlayerData.cs" t="Include" />
           <e p="PlayerInput.cs" t="Include" />

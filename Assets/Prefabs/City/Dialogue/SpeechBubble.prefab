@@ -306,8 +306,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.4, y: 57.4}
-  m_SizeDelta: {x: 168.4, y: 125}
+  m_AnchoredPosition: {x: -41.5, y: 64.44}
+  m_SizeDelta: {x: 243, y: 145.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8149581137428835470
 CanvasRenderer:
@@ -381,8 +381,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 99.55, y: 54.1}
+  m_AnchoredPosition: {x: 3.38, y: -0.31}
+  m_SizeDelta: {x: 126.78, y: 62.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1415231922277071678
 CanvasRenderer:
@@ -416,16 +416,17 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 27651e1249ccd0847837e7dba54c955b, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 40
+    m_MaxSize: 18
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: this font is free!
+  m_Text: Honestly though? Bottom text all the way. I wonder how small the text should
+    be.
 --- !u!1 &8641793541296546377
 GameObject:
   m_ObjectHideFlags: 0
