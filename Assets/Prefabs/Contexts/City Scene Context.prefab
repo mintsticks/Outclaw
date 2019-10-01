@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1592506306157068995}
   - component: {fileID: 1592506306157068994}
   - component: {fileID: 6987993041539253374}
+  - component: {fileID: 756594638325271138}
   m_Layer: 0
   m_Name: City Scene Context
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 756594638325271138}
   - {fileID: 6987993041539253374}
   _installerPrefabs: []
   _autoRun: 1
@@ -80,6 +82,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInstance: {fileID: 0}
+  pauseMenuManagerPrefab: {fileID: 145902270607762337, guid: ec39ecbdb98109f40aa955e9e70fe259,
+    type: 3}
+  promptSettings:
+    promptPrefabs: []
+--- !u!114 &756594638325271138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592506306157069021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7102e8e101d263748b2ef3c93cd002ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   dialogueManagerPrefab: {fileID: 7652190617852912222, guid: 93a8915f2eb31e847ae63cf7bcb31492,
     type: 3}
   speechBubblePrefab: {fileID: 8641793541296546377, guid: a2a408fdeb8b985419734eaec4299fa6,
@@ -90,7 +108,3 @@ MonoBehaviour:
     type: 3}
   dialogueIconManagerPrefab: {fileID: 7676714812861992969, guid: f4ddd1c6361da5d45a0339a70d8be8a4,
     type: 3}
-  pauseMenuManagerPrefab: {fileID: 145902270607762337, guid: ec39ecbdb98109f40aa955e9e70fe259,
-    type: 3}
-  promptSettings:
-    promptPrefabs: []

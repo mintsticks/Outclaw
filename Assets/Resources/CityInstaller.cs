@@ -1,25 +1,12 @@
-﻿using UnityEngine;
+﻿#pragma warning disable 649
+
+using UnityEngine;
 using Zenject;
 
 namespace Outclaw.City {
   public class CityInstaller : MonoInstaller {
     [SerializeField]
     private Player playerInstance;
-
-    [SerializeField]
-    private GameObject dialogueManagerPrefab;
-
-    [SerializeField]
-    private GameObject speechBubblePrefab;
-
-    [SerializeField]
-    private GameObject thoughtBubblePrefab;
-
-    [SerializeField]
-    private GameObject optionIndicatorPrefab;
-
-    [SerializeField]
-    private GameObject dialogueIconManagerPrefab;
 
     [SerializeField] 
     private GameObject pauseMenuManagerPrefab;
@@ -43,15 +30,6 @@ namespace Outclaw.City {
         .FromInstance(playerInstance)
         .AsSingle()
         .NonLazy();
-      Container.Bind<IDialogueManager>()
-        .To<DialogueManager>()
-        .FromComponentInNewPrefab(dialogueManagerPrefab)
-        .AsSingle()
-        .NonLazy();
-      Container.Bind<IDialogueIconManager>()
-        .To<DialogueIconManager>()
-        .FromComponentInNewPrefab(dialogueIconManagerPrefab)
-        .AsSingle();
       Container.Bind<IPauseMenuManager>()
         .To<PauseMenuManager>()
         .FromComponentInNewPrefab(pauseMenuManagerPrefab)
@@ -59,17 +37,6 @@ namespace Outclaw.City {
     }
     
     private void BindFactories() {
-      Container.BindFactory<SpeechBubble.Data, 
-          SpeechBubble, 
-          SpeechBubble.Factory>()
-        .FromComponentInNewPrefab(speechBubblePrefab);
-      Container.BindFactory<ThoughtBubble.Data, 
-          ThoughtBubble, 
-          ThoughtBubble.Factory>()
-        .FromComponentInNewPrefab(thoughtBubblePrefab);
-      Container.BindFactory<OptionIndicator, 
-          OptionIndicator.Factory>()
-        .FromComponentInNewPrefab(optionIndicatorPrefab);
       Container.BindFactory<PromptType,
           IDismissablePrompt, 
           DismissablePromptFactory>()
