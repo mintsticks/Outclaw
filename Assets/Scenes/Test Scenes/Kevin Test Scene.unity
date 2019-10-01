@@ -1506,6 +1506,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Side Scroll Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 4509646582438225700, guid: 08348905f0a87854c817ea11fc0434cb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1dd0d5b13833da4f99780b1303ecd92, type: 2}
+    - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
+        type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1880981972}
+    - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
+        type: 3}
+      propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Region Blur
+      objectReference: {fileID: 0}
     - target: {fileID: 2789981769282687885, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1631,21 +1646,6 @@ PrefabInstance:
       propertyPath: startPosition
       value: 0.43
       objectReference: {fileID: 0}
-    - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
-        type: 3}
-      propertyPath: rend
-      value: 
-      objectReference: {fileID: 1880981972}
-    - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
-        type: 3}
-      propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Region Blur
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509646582438225700, guid: 08348905f0a87854c817ea11fc0434cb,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e1dd0d5b13833da4f99780b1303ecd92, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08348905f0a87854c817ea11fc0434cb, type: 3}
 --- !u!1001 &8992900198933589068
