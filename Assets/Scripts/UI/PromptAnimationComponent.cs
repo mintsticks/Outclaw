@@ -17,7 +17,7 @@ namespace Outclaw.City {
     private float animationTime;
 
     [SerializeField]
-    private float fadeInTime = .25f;
+    private float fadeInTime = .5f;
 
     public void SetText(string text) {
       promptText.text = text;
@@ -33,6 +33,14 @@ namespace Outclaw.City {
           canvas.alpha = animation.Evaluate(i / animationTime);
           yield return null;
         }
+      }
+    }
+
+    public IEnumerator FadeOut() {
+      var startAlpha = canvas.alpha;
+      for (var i = fadeInTime; i >= 0; i -= Time.deltaTime) {
+        canvas.alpha = startAlpha * i / fadeInTime;
+        yield return null;
       }
     }
   }

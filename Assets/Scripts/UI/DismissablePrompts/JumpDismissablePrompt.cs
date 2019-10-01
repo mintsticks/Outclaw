@@ -29,9 +29,10 @@ namespace Outclaw.City {
       return jumped;
     }
 
-    public void DismissPrompt() {
+    public IEnumerator DismissPrompt() {
       //TODO: add some effect when completed
       StopCoroutine(animationCoroutine);
+      yield return promptAnimationComponent.FadeOut();
       Destroy(gameObject);
     }
     

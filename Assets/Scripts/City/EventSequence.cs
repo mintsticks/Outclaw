@@ -70,7 +70,7 @@ namespace Outclaw {
       while (!promptObj.IsDismissable()) {
         yield return null;
       }
-      promptObj.DismissPrompt();
+      StartCoroutine(promptObj.DismissPrompt());
     }
 
     private IEnumerator HandleDialogue(TextAsset[] dialogue) {

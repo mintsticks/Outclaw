@@ -25,9 +25,10 @@ namespace Outclaw.City {
       return dialogueManager.IsDialogueRunning && playerInput.IsInteract();
     }
 
-    public void DismissPrompt() {
+    public IEnumerator DismissPrompt() {
       //TODO: add some effect when completed
       StopCoroutine(animationCoroutine);
+      yield return promptAnimationComponent.FadeOut();
       Destroy(gameObject);
     }
 
