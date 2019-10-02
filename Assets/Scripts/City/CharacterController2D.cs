@@ -72,7 +72,8 @@ namespace Outclaw {
     private float verticalDistanceBetweenRays;
     private float horizontalDistanceBetweenRays;
     private bool isGoingUpSlope;
-
+    private bool isJumping;
+    
     public Vector3 Velocity => velocity;
     public bool isGrounded => collisionState.below;
 
@@ -97,38 +98,39 @@ namespace Outclaw {
     /// stop when run into.
     /// </summary>
     /// <param name="deltaMovement">Delta movement.</param>
-    public void move(Vector3 deltaMovement) {
+    public void move(Vector3 deltaMovement, ref bool isJumping) {
       collisionState.wasGroundedLastFrame = collisionState.below;
       collisionState.below = false;
       isGoingUpSlope = false;
-
+      this.isJumping = isJumping;
       UpdateRaycastOrigins();
 
 
       // first, we check for a slope below us before moving
       // only check slopes if we are going down and grounded
-      if (deltaMovement.y < 0f && collisionState.wasGroundedLastFrame)
+      if (deltaMovement.y < kSkinWidthFloatFudgeFactor && collisionState.wasGroundedLastFrame)
         handleVerticalSlope(ref deltaMovement);
 
       // now we check movement in the horizontal dir
-      if (deltaMovement.x != 0f)
+      if (Math.Abs(deltaMovement.x) > kSkinWidthFloatFudgeFactor)
         moveHorizontally(ref deltaMovement);
 
       // next, check movement in the vertical dir
-      if (deltaMovement.y != 0f)
+      if (Math.Abs(deltaMovement.y) > kSkinWidthFloatFudgeFactor)
         moveVertically(ref deltaMovement);
-
+      
       // move then update our state
       deltaMovement.z = 0;
       transform.Translate(deltaMovement, Space.World);
-
+      isJumping = false;
       // only calculate velocity if we have a non-zero deltaTime
       if (Time.deltaTime > 0f)
         velocity = deltaMovement / Time.deltaTime;
 
       // if we are going up a slope we artificially set a y velocity so we need to zero it out here
-      if (isGoingUpSlope)
+      if (isGoingUpSlope) {
         velocity.y = 0;
+      }
     }
 
     public void RecalculateDistanceBetweenRays() {
@@ -229,7 +231,7 @@ namespace Outclaw {
       if (angle < slopeLimit) {
         // we only need to adjust the deltaMovement if we are not jumping
         // TODO: this uses a magic number which isn't ideal! The alternative is to have the user pass in if there is a jump this frame
-        if (deltaMovement.y < jumpingThreshold) {
+        if (!isJumping) {
           // apply the slopeModifier to slow our movement up the slope
           var slopeModifier = slopeSpeedMultiplier.Evaluate(angle);
           deltaMovement.x *= slopeModifier;

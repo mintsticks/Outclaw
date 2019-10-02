@@ -25,10 +25,11 @@ namespace Outclaw.City {
     public Vector3 PlayerVelocity => movementController.Velocity;
 
     void FixedUpdate() {
-      movementController.UpdateMovement();
+      movementController.UpdatePhysics();
     }
 
     void Update() {
+      movementController.UpdateMovement();
       if (dialogueManager.IsDialogueRunning) {
         return;
       }
