@@ -26,6 +26,9 @@ namespace Outclaw.City {
     [Inject]
     private ISceneTransitionManager sceneTransitionManager;
     
+    [Inject]
+    private IGameStateManager gameStateManager;
+    
     public void Awake() {
       enterIndicator.Initialize(player.PlayerTransform);
     }
@@ -50,6 +53,9 @@ namespace Outclaw.City {
       if(enterClip != null){
         soundManager.PlaySFX(enterClip);
       }
+      
+
+      gameStateManager.CurrentGameState = GameState.CITY;
       sceneTransitionManager.TransitionToScene(locationName);
     }
   }

@@ -1,4 +1,6 @@
-﻿using Outclaw.City;
+﻿using System.Collections;
+
+using Outclaw.City;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -11,8 +13,14 @@ namespace Outclaw.Heist {
     [SerializeField]
     private string exitScene = "Main";
 
+    [SerializeField]
+    private AudioClip victorySound;
+
     [Inject]
     private IObjectiveManager objectiveManager;
+
+    [Inject]
+    private ISoundManager soundManager;
     
     private bool isComplete;
 
@@ -33,7 +41,19 @@ namespace Outclaw.Heist {
       if (!objectiveManager.ObjectivesComplete()) {
         return;
       }
+      if(victorySound == null){
+        SceneManager.LoadScene(exitScene);
+      }
+      else{
+        StartCoroutine(StartExit());
+      }
+    }
+
+    private IEnumerator StartExit(){
+      soundManager.PlaySFX(victorySound);
+      yield return new WaitForSeconds(victorySound.length);
       SceneManager.LoadScene(exitScene);
+      yield break;
     }
   }
 }

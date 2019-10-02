@@ -31,12 +31,7 @@ namespace Outclaw.City {
       isSwitching = true;
       StartCoroutine(TransitionRoutine(scene));
     }
-
-    void Update() {
-      if (loadingOp != null) {
-        Debug.Log(loadingOp.progress);
-      }
-    }
+    
     private IEnumerator TransitionRoutine(string scene) {
       yield return FadeIn();
       
