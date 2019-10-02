@@ -78,7 +78,7 @@ namespace Outclaw.City {
         return;
       }
 
-      velocity.y = playerInput.IsJumpDown() ? Mathf.Sqrt(2f * jumpHeight * -gravity) : 0;
+      velocity.y = playerInput.IsJump() ? Mathf.Sqrt(2f * jumpHeight * -gravity) : 0;
     }
 
     private void UpdateAnimationState(Vector3 move) {
