@@ -918,7 +918,7 @@ PrefabInstance:
     - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level 0 Park
+      value: Park
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08348905f0a87854c817ea11fc0434cb, type: 3}
@@ -1141,7 +1141,7 @@ PrefabInstance:
     - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level 0 Park
+      value: Park
       objectReference: {fileID: 0}
     - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
@@ -5827,6 +5827,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vents
       objectReference: {fileID: 0}
+    - target: {fileID: 540825544340483887, guid: e00cd4aca455b1a4cba0537030e7f49d,
+        type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 2034504641}
+    - target: {fileID: 540825544340483887, guid: e00cd4aca455b1a4cba0537030e7f49d,
+        type: 3}
+      propertyPath: ventIndicator
+      value: 
+      objectReference: {fileID: 316087405}
     - target: {fileID: 3554640959624558192, guid: e00cd4aca455b1a4cba0537030e7f49d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5912,16 +5922,6 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 540825544340483887, guid: e00cd4aca455b1a4cba0537030e7f49d,
-        type: 3}
-      propertyPath: destination
-      value: 
-      objectReference: {fileID: 2034504641}
-    - target: {fileID: 540825544340483887, guid: e00cd4aca455b1a4cba0537030e7f49d,
-        type: 3}
-      propertyPath: ventIndicator
-      value: 
-      objectReference: {fileID: 316087405}
     - target: {fileID: 558506439237263675, guid: e00cd4aca455b1a4cba0537030e7f49d,
         type: 3}
       propertyPath: m_Radius
