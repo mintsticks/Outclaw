@@ -36,13 +36,14 @@ namespace City {
 
     public bool GameStateObjectivesComplete() {
       var currentState = gameStateManager.CurrentGameState;
-      if (!completedObjectives.ContainsKey(currentState)) {
-        return false;
-      }
-      
+
       var gameStateObjectives = objectivesForGameStates.FirstOrDefault(gso => gso.state == currentState);
       if (gameStateObjectives == null) {
         return true;
+      }
+
+      if (!completedObjectives.ContainsKey(currentState)) {
+        return false;
       }
 
       return gameStateObjectives.objectives.All(neededObjective => completedObjectives[currentState].Contains(neededObjective));
