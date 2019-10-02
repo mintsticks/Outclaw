@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2621867706938698654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613757592767905437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3fa4e3cfaedea4d831fc179cfb9762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2789981769824438525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,18 +52,6 @@ MonoBehaviour:
   lookAngle: 30
   headTurnTime: 0.5
   lookPause: 1
---- !u!114 &2621867706938698654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2613757592767905437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e3fa4e3cfaedea4d831fc179cfb9762, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2789981768891533572
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   numSamples: 20
   hitLayers:
     serializedVersion: 2
-    m_Bits: 1847
+    m_Bits: 67383
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -121,8 +121,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Outclaw.Heist.VisionCone+OnDetect, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   filter: {fileID: 4007598558736983128}
   rend: {fileID: 4509646582438225700}
 --- !u!33 &4007598558736983128

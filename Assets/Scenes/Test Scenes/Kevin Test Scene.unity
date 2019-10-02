@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 445664930}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 481707679}
   - component: {fileID: 481707678}
   - component: {fileID: 481707677}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: New Sprite (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 593017017}
   - component: {fileID: 593017016}
   - component: {fileID: 593017015}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 641251262}
   - component: {fileID: 641251264}
   - component: {fileID: 641251263}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: New Sprite (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 658437568}
   - component: {fileID: 658437567}
   - component: {fileID: 658437566}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: New Sprite (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 956808692}
   - component: {fileID: 956808691}
   - component: {fileID: 956808690}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: New Sprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +861,7 @@ GameObject:
   - component: {fileID: 974846494}
   - component: {fileID: 974846493}
   - component: {fileID: 974846492}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: New Sprite (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,6 +1194,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.2750001
       objectReference: {fileID: 0}
+    - target: {fileID: 4033122463638087268, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: platformMask.m_Bits
+      value: 65536
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 781c4c76b1cbba544922f33235329f2e, type: 3}
 --- !u!1 &1633582577
@@ -1207,7 +1212,7 @@ GameObject:
   - component: {fileID: 1633582580}
   - component: {fileID: 1633582579}
   - component: {fileID: 1633582578}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: New Sprite (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,7 +1403,7 @@ GameObject:
   - component: {fileID: 1972842218}
   - component: {fileID: 1972842217}
   - component: {fileID: 1972842216}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: New Sprite (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
