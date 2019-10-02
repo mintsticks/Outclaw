@@ -16,11 +16,17 @@ namespace Outclaw.Heist {
     [SerializeField]
     private Indicator ventIndicator;
     
+    [SerializeField]
+    private AudioClip ventSound;
+
 //    [Inject]
 //    private IAbilityCooldownManager abilityCooldownManager;
 
     [Inject]
     private IPlayer player;
+
+    [Inject]
+    private ISoundManager soundManager;
 
     public void Awake() {
       ventIndicator.Initialize(player.PlayerTransform);
@@ -47,6 +53,7 @@ namespace Outclaw.Heist {
       player.PlayerTransform.position = destination.transform.position + ventOffset;
       
       //TODO(dwong): add sound
+      soundManager.PlaySFX(ventSound);
     }
   }
 }

@@ -366,8 +366,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 3c8c6f14991bae3448b965cbf5c3ca5d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -441,8 +439,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8f66ae8f07eb5fb49b995ac7e8cbdd3a, type: 3}
     m_FontSize: 25
@@ -534,3 +530,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62d3b612d4ca8484c8f2322b025eb11c, type: 3}
+--- !u!1 &8116667928064481385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8116667929166650614, guid: 62d3b612d4ca8484c8f2322b025eb11c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8116667928064481384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8116667928064481386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116667928064481385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22908880eb14d64a3811d586029a597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 0}
+  ambientSound: {fileID: 0}

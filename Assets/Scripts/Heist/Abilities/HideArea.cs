@@ -8,10 +8,12 @@ namespace Outclaw.Heist{
   public class HideArea : MonoBehaviour, Interactable
   {
     [SerializeField] private City.Indicator hideIndicator;
+    [SerializeField] private AudioClip hideSound;
     private bool isHiding = false;
 
-    [Inject] IHideablePlayer hidePlayer;
-    [Inject] City.IPlayer player;
+    [Inject] private IHideablePlayer hidePlayer;
+    [Inject] private City.IPlayer player;
+    [Inject] private ISoundManager soundManager;
 
     public void Awake() {
       hideIndicator.Initialize(transform);
@@ -29,6 +31,7 @@ namespace Outclaw.Heist{
     public void Interact(){
       player.PlayerTransform.position = transform.position;
       hidePlayer.Hidden = !hidePlayer.Hidden;
+      soundManager.PlaySFX(hideSound);
     }
   }
 }
