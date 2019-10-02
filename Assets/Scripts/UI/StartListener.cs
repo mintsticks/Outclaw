@@ -5,17 +5,25 @@ using UnityEngine;
 using Zenject;
 
 public class StartListener : MonoBehaviour {
+
+  [SerializeField]
+  private AudioClip startSound;
+
   [Inject]
   private IPlayerInput playerInput;
 
   [Inject]
   private ISceneTransitionManager sceneTransitionManager;
   
+  [Inject]
+  private ISoundManager soundManager;
+
   void Update() {
     if (!playerInput.IsInteractDown()) {
       return;
     }
 
+    soundManager.PlaySFX(startSound);
     LoadIntro();
   }
 
