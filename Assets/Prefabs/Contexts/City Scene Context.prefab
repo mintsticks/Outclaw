@@ -84,8 +84,19 @@ MonoBehaviour:
   playerInstance: {fileID: 0}
   pauseMenuManagerPrefab: {fileID: 145902270607762337, guid: ec39ecbdb98109f40aa955e9e70fe259,
     type: 3}
+  objectiveManagerPrefab: {fileID: 1918869736985087394, guid: cf84450335244ca4eac2bac604bc75c7,
+    type: 3}
   promptSettings:
-    promptPrefabs: []
+    promptPrefabs:
+    - promptType: 1
+      prefab: {fileID: 7532689861681819102, guid: 39d65b80c62ff2d448bd98e1fd2aa181,
+        type: 3}
+    - promptType: 2
+      prefab: {fileID: 1910718599010050522, guid: 6d9f411b1b47e154ca4bbbd7daded44e,
+        type: 3}
+    - promptType: 3
+      prefab: {fileID: 650114432654141598, guid: f7f67620a2e034241b984e46632e1be5,
+        type: 3}
 --- !u!114 &756594638325271138
 MonoBehaviour:
   m_ObjectHideFlags: 0

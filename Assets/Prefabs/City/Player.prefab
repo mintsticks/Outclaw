@@ -96,7 +96,7 @@ MonoBehaviour:
   skinWidth: 0.04
   platformMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 65536
   triggerMask:
     serializedVersion: 2
     m_Bits: 34816
@@ -266,7 +266,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1192876, y: 1.229719}
+  m_Size: {x: 0.8444691, y: 0.9429287}
   m_EdgeRadius: 0
 --- !u!1001 &5626652528225658676
 PrefabInstance:
@@ -283,12 +283,12 @@ PrefabInstance:
     - target: {fileID: 8835262764751125084, guid: 4a7b5a50a58622f489620f18620faf60,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8835262764751125084, guid: 4a7b5a50a58622f489620f18620faf60,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.476
       objectReference: {fileID: 0}
     - target: {fileID: 8835262764751125084, guid: 4a7b5a50a58622f489620f18620faf60,
         type: 3}
@@ -338,7 +338,12 @@ PrefabInstance:
     - target: {fileID: 8835262764751125084, guid: 4a7b5a50a58622f489620f18620faf60,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835262764751125084, guid: 4a7b5a50a58622f489620f18620faf60,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a7b5a50a58622f489620f18620faf60, type: 3}

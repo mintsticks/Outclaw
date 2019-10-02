@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using City;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -18,12 +19,21 @@ namespace Outclaw.City {
 
     [Inject]
     private ISoundManager soundManager;
+
+    [Inject]
+    private IObjectiveManager objectiveManager;
+    
+    [Inject]
+    private ISceneTransitionManager sceneTransitionManager;
     
     public void Awake() {
       enterIndicator.Initialize(player.PlayerTransform);
     }
     
     public void InRange() {
+      if (!objectiveManager.GameStateObjectivesComplete()) {
+        return;
+      }
       enterIndicator.CreateIndicator();
       StartCoroutine(enterIndicator.FadeIn());
     }
@@ -33,10 +43,14 @@ namespace Outclaw.City {
     }
 
     public void Interact() {
+      if (!objectiveManager.GameStateObjectivesComplete()) {
+        return;
+      }
+      
       if(enterClip != null){
         soundManager.PlaySFX(enterClip);
       }
-      SceneManager.LoadScene(locationName);
+      sceneTransitionManager.TransitionToScene(locationName);
     }
   }
 }
