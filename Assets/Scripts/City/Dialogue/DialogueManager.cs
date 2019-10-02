@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Yarn;
 using Yarn.Unity;
+using Zenject;
 
 namespace Outclaw.City {
   public interface IDialogueManager {
@@ -20,7 +23,7 @@ namespace Outclaw.City {
 
     [SerializeField]
     private VariableStorageBehaviour storageBehaviour;
-    
+
     public void SetDialogue(TextAsset[] text) {
       runner.SourceText = text;
     }

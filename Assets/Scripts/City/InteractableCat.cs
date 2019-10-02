@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 using Zenject;
 
 namespace Outclaw.City {
@@ -19,6 +20,9 @@ namespace Outclaw.City {
 
     [Inject]
     private IDialogueManager dialogueManager;
+    
+    [Inject]
+    private ISceneTransitionManager sceneTransitionManager;
     
     private Transform parent;
     private bool created;
@@ -48,6 +52,13 @@ namespace Outclaw.City {
     private void CompleteInteraction() {
       relationshipManager.RankUpCat(type);
       InRange();
+    }
+    
+    
+    [YarnCommand("toScene")]
+    public void ToScene(string dest) {
+      Debug.Log(dest);
+      sceneTransitionManager.TransitionToScene(dest);
     }
   }
 }
