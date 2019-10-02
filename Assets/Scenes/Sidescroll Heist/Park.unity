@@ -678,7 +678,7 @@ PrefabInstance:
     - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level 0 Park
+      value: Park
       objectReference: {fileID: 0}
     - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
@@ -4842,7 +4842,7 @@ MonoBehaviour:
     waitTime: 0
     promptType: 3
     promptText: Press E by the indicator to exit.
-  eventGameSequence: 1
+  eventGameSequence: 2
 --- !u!61 &1281928871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5099,7 +5099,7 @@ MonoBehaviour:
     waitTime: 0
     promptType: 3
     promptText: Press E in the blue area to go in and out of hiding.
-  eventGameSequence: 1
+  eventGameSequence: 2
 --- !u!61 &1422011772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5525,7 +5525,7 @@ PrefabInstance:
     - target: {fileID: 2305749755026720540, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level 0 Park
+      value: Park
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08348905f0a87854c817ea11fc0434cb, type: 3}
@@ -5690,7 +5690,7 @@ MonoBehaviour:
     waitTime: 0
     promptType: 3
     promptText: Press E by the green dot to climb.
-  eventGameSequence: 1
+  eventGameSequence: 2
 --- !u!61 &2062651414
 BoxCollider2D:
   m_ObjectHideFlags: 0
