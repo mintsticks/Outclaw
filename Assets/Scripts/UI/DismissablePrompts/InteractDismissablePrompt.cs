@@ -12,7 +12,7 @@ namespace Outclaw.City {
 
     [Inject]
     private IPlayerInput playerInput;
-    
+
     private IEnumerator animationCoroutine;
 
     private void Awake() {
@@ -22,7 +22,8 @@ namespace Outclaw.City {
 
     public bool IsDismissable() {
       //TODO(dwong): check if player is in range of an interactable with dialogue instead.
-      return dialogueManager.IsDialogueRunning && playerInput.IsInteract();
+      //return dialogueManager.IsDialogueRunning && playerInput.IsInteract();
+      return playerInput.IsInteract();
     }
 
     public IEnumerator DismissPrompt() {
