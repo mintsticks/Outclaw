@@ -26,6 +26,9 @@ namespace Outclaw.City {
 
     void FixedUpdate() {
       movementController.UpdateMovement();
+    }
+
+    void Update() {
       if (dialogueManager.IsDialogueRunning) {
         return;
       }
