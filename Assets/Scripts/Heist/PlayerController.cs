@@ -30,13 +30,17 @@ namespace Outclaw.Heist {
     [SerializeField]
     private GameObject sprite;
     private bool hidden;
-    
 
     void FixedUpdate() {
-      if(!hidden){
-        movementController.UpdateMovement();
-      }
+      movementController.UpdatePhysics();
+    }
+
+    void Update() {
       interactionController.UpdateInteraction();
+      if (hidden) {
+        return;
+      }
+      movementController.UpdateMovement();
     }
     
     private void OnTriggerEnter2D(Collider2D other) {
@@ -45,20 +49,6 @@ namespace Outclaw.Heist {
     
     private void OnTriggerExit2D(Collider2D other) {
       interactionController.HandleExit(other);
-    }
-
-    // Update is called once per frame
-    void Update() {
-      if (!playerInput.IsSense()) {
-        return;
-      }
-
-      if (!abilityCooldownManager.CanUseAbility(AbilityType.SENSE)) {
-        return;
-      }
-      
-      abilityCooldownManager.UseAbility(AbilityType.SENSE);
-      soundManager.PlaySFX(senseSfx);
     }
 
     private void Hide(){

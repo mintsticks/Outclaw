@@ -777,6 +777,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &639975405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 639975407}
+  - component: {fileID: 639975406}
+  m_Layer: 0
+  m_Name: DebugTool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &639975406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639975405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbf0ac72f8bf544bb65fab3cf279838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugGameState: 0
+--- !u!4 &639975407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639975405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.555956, y: -6.228274, z: -211.58984}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &648344163
 GameObject:
   m_ObjectHideFlags: 0
@@ -5001,21 +5045,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4729456738708133730, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729456738708133730, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -16.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 1429182042726893476, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7336105400421786616, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
       propertyPath: _monoInstallers.Array.size
@@ -5026,15 +5055,30 @@ PrefabInstance:
       propertyPath: _monoInstallers.Array.data[2]
       value: 
       objectReference: {fileID: 1367541927}
-    - target: {fileID: 5761028481475047872, guid: 781c4c76b1cbba544922f33235329f2e,
+    - target: {fileID: 4729456738708133730, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_LocalPosition.y
+      value: -3.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729456738708133730, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.68
       objectReference: {fileID: 0}
     - target: {fileID: 8274474056453485313, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
       propertyPath: eventSequenceLayer.m_Bits
       value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429182042726893476, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761028481475047872, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 635330793841077554, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
