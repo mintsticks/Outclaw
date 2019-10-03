@@ -41,6 +41,9 @@ namespace Outclaw {
 
     [Inject] 
     private IPauseMenuManager pauseMenuManager;
+
+    [Inject]
+    private IPlayer player;
     
     private OptionChooser SetSelectedOption;
     private Transform bubbleParent;
@@ -60,14 +63,21 @@ namespace Outclaw {
     }
 
     public override IEnumerator RunLine(Line line) {
+      var lineText = line.text;
+      var parent = bubbleParent;
+      if (HasMultipleText(lineText)) {
+        lineText = ParseMultipleText(lineText);
+        parent = player.PlayerTransform;
+      }
+      
       var bubble = speechBubbleFactory.Create(new SpeechBubble.Data() {
         BubbleText = "", 
-        BubbleParent = bubbleParent,
+        BubbleParent = parent,
         Type = dialogueType
       });
       bubble.transform.SetParent(transform);
       
-      var text = ReplaceVariables(line.text);
+      var text = ReplaceVariables(lineText);
       if (textSpeed > 0.0f) {
         var stringBuilder = new StringBuilder();
         foreach (var c in text) {
@@ -126,6 +136,14 @@ namespace Outclaw {
     
     private List<string> ParseOptions(Options optionsCollection) {
       return optionsCollection.options.Select(ReplaceVariables).ToList();
+    }
+
+    private bool HasMultipleText(string text) {
+      return text.ToCharArray()[0] == '>';
+    }
+
+    private string ParseMultipleText(string text) {
+      return text.Substring(1);
     }
 
     private void SetOption(int selectedOption) {
