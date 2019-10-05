@@ -19,10 +19,10 @@ namespace Outclaw.City {
     [Inject]
     private DismissablePromptFactory dismissablePromptFactory;
 
-    private HashSet<GameState> completedPrompts;
+    private HashSet<GameStateType> completedPrompts;
 
     private void Awake() {
-      completedPrompts = new HashSet<GameState>();
+      completedPrompts = new HashSet<GameStateType>();
     }
 
     private void Update() {
@@ -49,7 +49,7 @@ namespace Outclaw.City {
       promptObj.DismissPrompt();
     }
     
-    private List<PromptType> GetPromptsForState(GameState state) {
+    private List<PromptType> GetPromptsForState(GameStateType state) {
       var statePrompts = gameStatePrompts.FirstOrDefault(gsp => gsp.gameState == state);
       return statePrompts?.prompts;
     }
@@ -57,7 +57,7 @@ namespace Outclaw.City {
 
   [Serializable]
   public class GameStatePrompts {
-    public GameState gameState;
+    public GameStateType gameState;
     public List<PromptType> prompts;
   }
 }

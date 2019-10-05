@@ -12,7 +12,7 @@ namespace Outclaw {
     private List<EventInfo> events;
 
     [SerializeField]
-    private GameState eventGameSequence;
+    private GameStateType eventGameSequence;
     
     [Inject]
     private DismissablePromptFactory dismissablePromptFactory;

@@ -1,27 +1,31 @@
-﻿using Zenject;
+﻿using Outclaw.City;
+using Zenject;
 
 namespace Outclaw {
   public interface IGameStateManager {
-    GameState CurrentGameState { get; set; }
+    GameStateType CurrentGameState { get; }
+    void SetGameState(GameStateType state, bool persist = false);
   }
   
   public class GameStateManager : IInitializable, IGameStateManager {
-    private GameState currentGameState;
+    private GameStateType currentGameStateType;
 
-    public GameState CurrentGameState {
-      get { return currentGameState; }
-      set { currentGameState = value; }
+    [Inject]
+    private ILocationManager locationManager;
+    
+    public GameStateType CurrentGameState => currentGameStateType;
+
+    public void SetGameState(GameStateType state, bool persist = false) {
+      currentGameStateType = state;
+      if (persist) {
+        return;
+      }
+      locationManager.ResetObjectProgress();
     }
 
     public void Initialize() {
       //TODO(dwong): load from save state.
-      currentGameState = GameState.TUTORIAL;
+      currentGameStateType = GameStateType.TUTORIAL;
     }
-  }
-
-  public enum GameState {
-    NONE,
-    TUTORIAL,
-    CITY,
   }
 }

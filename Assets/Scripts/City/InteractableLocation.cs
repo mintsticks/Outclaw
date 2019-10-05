@@ -1,13 +1,24 @@
-﻿using City;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Outclaw.City {
+  [Serializable]
+  public class LocationDialogueForState {
+    public GameStateType gameState;
+    public bool isBlocking;
+    public SerializedDialogue locationDialogue;
+  }
+
   public class InteractableLocation : MonoBehaviour, Interactable {
     [SerializeField]
     private Indicator enterIndicator;
 
+    [SerializeField]
+    private List<LocationDialogueForState> locationDialoguesForState;
+    
     [SerializeField]
     private string locationName;
 
@@ -18,11 +29,11 @@ namespace Outclaw.City {
     private IPlayer player;
 
     [Inject]
+    private IDialogueManager dialogueManager;
+    
+    [Inject]
     private ISoundManager soundManager;
 
-    [Inject]
-    private IObjectiveManager objectiveManager;
-    
     [Inject]
     private ISceneTransitionManager sceneTransitionManager;
     
@@ -34,9 +45,6 @@ namespace Outclaw.City {
     }
     
     public void InRange() {
-      if (!objectiveManager.GameStateObjectivesComplete()) {
-        return;
-      }
       enterIndicator.CreateIndicator();
       StartCoroutine(enterIndicator.FadeIn());
     }
@@ -46,17 +54,40 @@ namespace Outclaw.City {
     }
 
     public void Interact() {
-      if (!objectiveManager.GameStateObjectivesComplete()) {
+      var locationDialogueForState = GetDialogueForState(gameStateManager.CurrentGameState);
+      if (locationDialogueForState != null) {
+        HandleDialogue(locationDialogueForState);
         return;
       }
-      
+      EnterLocation();
+    }
+
+    private void HandleDialogue(LocationDialogueForState locationDialogueForState) {
+      StartCoroutine(enterIndicator.FadeOut());
+      dialogueManager.SetDialogueType(DialogueType.THOUGHT);
+      dialogueManager.SetDialogue(locationDialogueForState.locationDialogue.dialogue);
+      dialogueManager.SetBubbleParent(player.PlayerTransform);
+      dialogueManager.StartDialogue(() => CompleteDialogue(!locationDialogueForState.isBlocking));
+    }
+    
+    private void CompleteDialogue(bool enter) {
+      if (!enter) {
+        InRange();
+        return;
+      }
+      EnterLocation();
+    }
+    
+    private void EnterLocation() {
       if(enterClip != null){
         soundManager.PlaySFX(enterClip);
       }
       
-
-      gameStateManager.CurrentGameState = GameState.CITY;
       sceneTransitionManager.TransitionToScene(locationName);
+    }
+
+    private LocationDialogueForState GetDialogueForState(GameStateType state) {
+      return locationDialoguesForState.FirstOrDefault(dialogue => dialogue.gameState == state);
     }
   }
 }

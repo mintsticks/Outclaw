@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using City;
 using UnityEngine;
 using Zenject;
@@ -16,15 +17,15 @@ namespace Outclaw.City {
   }
 
   [Serializable]
-  public class ObjectInfo {
-    [Tooltip("Object dialogues are different depending on game progression. " +
-             "The dialogue is supplied in order that they are found in this list.")]
-    public List<ObjectDialogue> dialoguesByProgress;
+  public class ObjectDialogues {
+    [Tooltip("Object dialogues are different depending on game state.")]
+    public List<ObjectDialogueForState> dialoguesForStates;
   }
   
   [Serializable]
-  public class ObjectDialogue {
-    [Tooltip("All the dialogues for an object, for a certain point in the game.")]
+  public class ObjectDialogueForState {
+    public GameStateType gameState;
+    [Tooltip("All the dialogues for an object, for a certain gamestate.")]
     public List<SerializedDialogue> objectDialogues;
   }
   
@@ -33,7 +34,7 @@ namespace Outclaw.City {
     private Indicator observeIndicator;
 
     [SerializeField]
-    private ObjectInfo objectInfo;
+    private ObjectDialogues objectInfo;
     
     [SerializeField]
     private LocationType locationType;
@@ -49,6 +50,9 @@ namespace Outclaw.City {
 
     [Inject]
     private IObjectiveManager objectiveManager;
+
+    [Inject]
+    private IGameStateManager gameStateManager;
     
     [Inject]
     private IPlayer player;
@@ -86,18 +90,15 @@ namespace Outclaw.City {
     }
 
     private TextAsset[] GetObjectDialogue() {
-      //TODO: add a key to the list elements for game states
-      var locProgress = locationManager.GetProgressForLocation(locationType);
-      var objProgress = locationManager.GetProgressForLocationObject(locationType, objectType);
-      
-      var dialoguesByProgress = objectInfo.dialoguesByProgress;
-      if (locProgress >= objectInfo.dialoguesByProgress.Count) {
-        Debug.Log("No dialogues for location progress");
+      var gameState = gameStateManager.CurrentGameState;
+      var dialoguesForState = GetDialogueForState(gameState);
+      if (dialoguesForState == null) {
+        Debug.Log("No dialogues for object in current game state: " + gameState);
         return null;
       }
 
-      //TODO: add conditions to objects. for example, you cant trigger the 2nd dialogue for the trapdoor until youve picked up the key
-      var objectDialogues = dialoguesByProgress[locProgress].objectDialogues;
+      var objProgress = locationManager.GetProgressForLocationObject(locationType, objectType);
+      var objectDialogues = dialoguesForState.objectDialogues;
       if (objProgress >= objectDialogues.Count) {
         Debug.Log("No dialogues for object progress");
         return null;
@@ -105,11 +106,14 @@ namespace Outclaw.City {
 
       return objectDialogues[objProgress].dialogue;
     }
+
+    private ObjectDialogueForState GetDialogueForState(GameStateType state) {
+      return objectInfo.dialoguesForStates.FirstOrDefault(dfs => dfs.gameState == state);
+    }
     
     private void CompleteInteraction() {
       locationManager.IncreaseProgressForLocationObject(locationType, objectType);
-      //TODO: only complete objective if key dialogue is seen.
-      objectiveManager.CompleteObjective(objectType);
+      objectiveManager.CompleteObjectObjective(objectType);
       InRange();
     }
   }

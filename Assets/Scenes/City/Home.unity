@@ -225,6 +225,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enterIndicator: {fileID: 164212815}
+  locationDialoguesForState:
+  - gameState: 1
+    isBlocking: 1
+    locationDialogue:
+      dialogue:
+      - {fileID: 4900000, guid: 0e260683154195a4380866babfab26f1, type: 3}
   locationName: Main
   enterClip: {fileID: 8300000, guid: 35cadffa6668fea4092735578f9f1c70, type: 3}
 --- !u!61 &164212817
@@ -569,8 +575,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   observeIndicator: {fileID: 284740115}
   objectInfo:
-    dialoguesByProgress:
-    - objectDialogues:
+    dialoguesForStates:
+    - gameState: 2
+      objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 364d1c85f095cad4b8199f1c1ff3d35e, type: 3}
   locationType: 2
@@ -754,8 +761,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   observeIndicator: {fileID: 379560025}
   objectInfo:
-    dialoguesByProgress:
-    - objectDialogues:
+    dialoguesForStates:
+    - gameState: 1
+      objectDialogues:
+      - dialogue:
+        - {fileID: 4900000, guid: 8a6764da83ab4d94d8ad42f06187baaf, type: 3}
+      - dialogue:
+        - {fileID: 4900000, guid: d12ae8f107e719b4e9195f87d1f87f31, type: 3}
+    - gameState: 2
+      objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 8a6764da83ab4d94d8ad42f06187baaf, type: 3}
       - dialogue:
@@ -1044,8 +1058,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   observeIndicator: {fileID: 511270373}
   objectInfo:
-    dialoguesByProgress:
-    - objectDialogues:
+    dialoguesForStates:
+    - gameState: 1
+      objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 58cbb92f5e911ff40ac4e5a2df961629, type: 3}
   locationType: 2
@@ -2783,8 +2798,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   observeIndicator: {fileID: 1666310723}
   objectInfo:
-    dialoguesByProgress:
-    - objectDialogues:
+    dialoguesForStates:
+    - gameState: 1
+      objectDialogues:
+      - dialogue:
+        - {fileID: 4900000, guid: a7c5428aa0d76a246b42bb73003c8d11, type: 3}
+    - gameState: 2
+      objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: a7c5428aa0d76a246b42bb73003c8d11, type: 3}
   locationType: 2

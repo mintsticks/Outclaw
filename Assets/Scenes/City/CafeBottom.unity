@@ -849,6 +849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enterIndicator: {fileID: 1219238859}
+  locationDialoguesForState: []
   locationName: CafeTop
   enterClip: {fileID: 0}
 --- !u!61 &1219238861
@@ -939,6 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enterIndicator: {fileID: 1466183497}
+  locationDialoguesForState: []
   locationName: Main
   enterClip: {fileID: 8300000, guid: 35cadffa6668fea4092735578f9f1c70, type: 3}
 --- !u!61 &1466183499
@@ -1060,9 +1062,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2689329210336527570, guid: d9170f523b7444901af92891c8591433,
         type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689329210336527570, guid: d9170f523b7444901af92891c8591433,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689329210336527570, guid: d9170f523b7444901af92891c8591433,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[0].dialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689329210336527570, guid: d9170f523b7444901af92891c8591433,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[1].dialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689329210336527570, guid: d9170f523b7444901af92891c8591433,
+        type: 3}
       propertyPath: type
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2689329210336527570, guid: d9170f523b7444901af92891c8591433,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].gameState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689329210336527570, guid: d9170f523b7444901af92891c8591433,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[0].dialogue.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: 2ac97462e38e543c285345df7beb233d, type: 3}
+    - target: {fileID: 2689329210336527570, guid: d9170f523b7444901af92891c8591433,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[1].dialogue.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: fa6c5c0f2328d492cb98aefede253018, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9170f523b7444901af92891c8591433, type: 3}
 --- !u!1 &1755368144
@@ -1281,11 +1318,90 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1572336508017664789, guid: a8d0f2e88011f46b8bbbe803f3aba51a,
         type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572336508017664789, guid: a8d0f2e88011f46b8bbbe803f3aba51a,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572336508017664789, guid: a8d0f2e88011f46b8bbbe803f3aba51a,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[0].dialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572336508017664789, guid: a8d0f2e88011f46b8bbbe803f3aba51a,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[1].dialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572336508017664789, guid: a8d0f2e88011f46b8bbbe803f3aba51a,
+        type: 3}
       propertyPath: type
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1572336508017664789, guid: a8d0f2e88011f46b8bbbe803f3aba51a,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].gameState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1572336508017664789, guid: a8d0f2e88011f46b8bbbe803f3aba51a,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[0].dialogue.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: 584f3a48a9f7749e3be878e884f98867, type: 3}
+    - target: {fileID: 1572336508017664789, guid: a8d0f2e88011f46b8bbbe803f3aba51a,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[1].dialogue.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: a23834de401a4471cbcd8f34516c7b99, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8d0f2e88011f46b8bbbe803f3aba51a, type: 3}
+--- !u!1 &2066913427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066913429}
+  - component: {fileID: 2066913428}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2066913428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066913427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbf0ac72f8bf544bb65fab3cf279838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugGameState: 0
+--- !u!4 &2066913429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066913427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.87, y: 6.7299995, z: -8.368164}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2100955697
 GameObject:
   m_ObjectHideFlags: 0
