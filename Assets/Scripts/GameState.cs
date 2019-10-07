@@ -16,6 +16,14 @@ namespace Outclaw {
     FOUND_HANA,
     FOUND_AKI
   }
+
+  public enum Location {
+    HOUSE,
+    CITY,
+    CAFE1,
+    CAFE2,
+    PARK
+  }
   
   [Serializable]
   public class GameStateObjectives {
@@ -26,6 +34,7 @@ namespace Outclaw {
   
   [Serializable]
   public class Objective {
+    public Location location;
     public ObjectiveType objectiveType;
     public List<CatType> conversations;
     public List<ObjectType> objects;

@@ -48,7 +48,8 @@ MonoBehaviour:
     childStates:
     - nextState: 2
       objectives:
-      - objectiveType: 2
+      - location: 0
+        objectiveType: 2
         conversations: 
         objects: 06000000
       persistObjectiveState: 1
@@ -56,7 +57,8 @@ MonoBehaviour:
     childStates:
     - nextState: 3
       objectives:
-      - objectiveType: 1
+      - location: 3
+        objectiveType: 1
         conversations: 02000000
         objects: 
       persistObjectiveState: 0
