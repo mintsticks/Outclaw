@@ -84,26 +84,25 @@ namespace Outclaw {
           Physics2D.IgnoreLayerCollision(gameObject.layer, i);
       }
     }
-    
-    public void Move(Vector3 _deltaMovement, ref bool isJumping) {
-      deltaMovement = _deltaMovement;
+
+    private void ResetStates() {
       collisionState.wasGroundedLastFrame = collisionState.below;
       collisionState.below = false;
       isGoingUpSlope = false;
+    }
+    
+    public void Move(Vector3 _deltaMovement, ref bool isJumping) {
+      deltaMovement = _deltaMovement;
       this.isJumping = isJumping;
+      ResetStates();
       UpdateRaycastOrigins();
 
       if (deltaMovement.y < 0 && collisionState.wasGroundedLastFrame) {
         CheckVerticalSlope();
       }
       
-      if (Math.Abs(deltaMovement.x) > .0001) {
-        UpdateHorizontal();
-      }
-
-      if (Math.Abs(deltaMovement.y) > .0001) {
-        UpdateVertical();
-      }
+      UpdateHorizontal();
+      UpdateVertical();
 
       deltaMovement.z = 0;
       transform.Translate(deltaMovement, Space.World);
