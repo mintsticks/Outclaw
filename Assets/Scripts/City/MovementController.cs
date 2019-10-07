@@ -42,14 +42,13 @@ namespace Outclaw.City {
     private bool isJumping;
 
     public void UpdateMovement() {
-      Debug.Log(controller.isGrounded);
       UpdateHorizontal();
       UpdateVertical();
       UpdateAnimationState(velocity);
     }
 
     public void UpdatePhysics() {
-      controller.move(velocity * Time.deltaTime, ref isJumping);
+      controller.Move(velocity * Time.deltaTime, ref isJumping);
       velocity = controller.Velocity;
     }
     
@@ -84,7 +83,6 @@ namespace Outclaw.City {
 
       if (playerInput.IsJumpDown()) {
         isJumping = true;
-        Debug.Log("I jump");
       }
       
       velocity.y = isJumping ? Mathf.Sqrt(2f * jumpHeight * -gravity) : 0;
