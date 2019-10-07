@@ -37,15 +37,18 @@ namespace Outclaw.City {
       bubbleText.text = data.BubbleText;
       parent = data.BubbleParent;
       main = Camera.main;
-      transform.position = main.WorldToScreenPoint(parent.position + offset);
       HandleType(data.Type);
     }
 
     private void Update() {
-      transform.position = main.WorldToScreenPoint(parent.position + offset);
+      UpdatePosition();
     }
 
     public Transform BubbleTransform => transform;
+    
+    public void UpdatePosition() {
+      transform.position = main.WorldToScreenPoint(parent.position + offset);
+    }
     
     public void SetText(string text) {
       bubbleText.text = text;

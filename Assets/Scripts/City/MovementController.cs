@@ -40,6 +40,7 @@ namespace Outclaw.City {
     public Vector3 Velocity => velocity;
     
     private bool isJumping;
+    private bool isDescending;
 
     public void UpdateMovement() {
       UpdateHorizontal();
@@ -48,7 +49,7 @@ namespace Outclaw.City {
     }
 
     public void UpdatePhysics() {
-      controller.Move(velocity * Time.deltaTime, ref isJumping);
+      controller.Move(velocity * Time.fixedDeltaTime, ref isJumping, ref isDescending);
       velocity = controller.Velocity;
     }
     
@@ -72,6 +73,7 @@ namespace Outclaw.City {
     }
 
     private void UpdateVertical() {
+      CheckDescend();
       CheckJump();
       velocity.y += gravity * Time.deltaTime;
     }
@@ -85,7 +87,18 @@ namespace Outclaw.City {
         isJumping = true;
       }
       
-      velocity.y = isJumping ? Mathf.Sqrt(2f * jumpHeight * -gravity) : 0;
+      velocity.y = isJumping ? Mathf.Sqrt(2f * jumpHeight * -gravity) : velocity.y;
+    }
+
+    private void CheckDescend() {
+      if (!controller.isGrounded || dialogueManager.IsDialogueRunning) {
+        return;
+      }
+      if (playerInput.IsDownPress()) {
+        isDescending = true;
+      }
+
+      velocity.y = isDescending ? -Mathf.Sqrt( -gravity) : velocity.y;
     }
 
     private void UpdateAnimationState(Vector3 move) {
