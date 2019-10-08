@@ -22,16 +22,20 @@ namespace Outclaw.Heist {
     [Inject]
     private ISoundManager soundManager;
     
+    // hiding player
+    [Header("Hiding Player")]
+    [SerializeField]
+    private SpriteBundle sprites;
+    private bool hidden;
 
     public Transform PlayerTransform => transform;
     public Vector3 PlayerVelocity { get; }
 
-    // hiding player
-    [SerializeField]
-    private GameObject sprite;
-    private bool hidden;
 
     void FixedUpdate() {
+      if(hidden){
+        return;
+      }
       movementController.UpdatePhysics();
     }
 
@@ -52,11 +56,11 @@ namespace Outclaw.Heist {
     }
 
     private void Hide(){
-      sprite.SetActive(false);
+      sprites.enabled = false;
     }
 
     private void Unhide(){
-      sprite.SetActive(true);
+      sprites.enabled = true;
     }
 
     public bool Hidden{
