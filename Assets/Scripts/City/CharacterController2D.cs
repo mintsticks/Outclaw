@@ -81,7 +81,10 @@ namespace Outclaw {
       deltaMovement = _deltaMovement;
       isJumping = _isJumping;
       isDescending = _isDescending;
-      
+      if (isJumping) {
+        Debug.Log("Move is jumping");
+        Debug.Log("start delta y" + _deltaMovement.y);
+      }
       ResetStates();
       UpdateRaycastOrigins();
 
@@ -91,7 +94,10 @@ namespace Outclaw {
       
       UpdateHorizontal();
       UpdateVertical();
-
+ 
+      if (isJumping) {
+        Debug.Log("end delta y" + _deltaMovement.y);
+      }
       deltaMovement.z = 0;
       transform.Translate(deltaMovement, Space.World);
       _isJumping = false;
@@ -194,7 +200,7 @@ namespace Outclaw {
     }
 
     private void UpdateVertical() {
-      var isGoingUp = deltaMovement.y > 0;
+      var isGoingUp = deltaMovement.y > 0.00001;
       var rayDistance = Mathf.Abs(deltaMovement.y) + skinWidth;
       var rayDirection = isGoingUp ? Vector2.up : -Vector2.up;
       var initialRayOrigin = isGoingUp ? raycastOrigins.topLeft : raycastOrigins.bottomLeft;
@@ -212,6 +218,7 @@ namespace Outclaw {
         if (!raycastHit) {
           continue;
         }
+        
         if (overlaps.Contains(raycastHit.collider)) {
           continue;
         }

@@ -11,10 +11,16 @@ namespace Outclaw.City {
 
     [Inject]
     private IPauseMenuManager pauseMenuManager;
+
+    [Inject]
+    private IGameStateManager gameStateManager;
     
     public void Select() {
       pauseMenuManager.Unpause();
       sceneTransitionManager.TransitionToScene("Start");
+
+      // TODO: replace with actual restart
+      gameStateManager.SetGameState(GameStateType.TUTORIAL, true);
     }
 
     public void Hover() {

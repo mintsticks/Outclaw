@@ -86,7 +86,7 @@ namespace Outclaw {
         yield return null;
       }
       bubble.RemoveTail();
-      StartCoroutine(FadeBubble(bubble));
+      bubble.StartCoroutine(FadeBubble(bubble)); // make bubble own coroutine so it's never stopped
       yield return new WaitForEndOfFrame();
     }
 

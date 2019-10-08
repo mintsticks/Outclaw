@@ -1,4 +1,5 @@
-﻿using Outclaw.City;
+﻿using City;
+using Outclaw.City;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,9 @@ namespace Outclaw {
 
     [SerializeField]
     private LayerMask eventSequenceLayer;
+
+    [SerializeField]
+    private LayerMask oneWayTriggerLayer;
     
     [Inject]
     private IPlayerInput playerInput;
@@ -36,6 +40,11 @@ namespace Outclaw {
       if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) { 
         var eventSequence = other.GetComponentInParent<EventSequence>();
         StartCoroutine(eventSequence.ExecuteSequence());
+      }
+      
+      if ((1 << other.gameObject.layer & oneWayTriggerLayer) != 0) { 
+        var oneWayPlatform = other.GetComponentInParent<OneWayPlatform>();
+        oneWayPlatform.IntersectTrigger();
       }
     }
 
