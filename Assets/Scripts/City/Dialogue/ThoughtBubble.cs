@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using ModestTree;
@@ -10,6 +11,8 @@ namespace Outclaw.City {
   public interface Bubble {
     void SetOpacity(float opacity);
     Transform BubbleTransform { get; }
+    // to let bubbles own coroutines
+    Coroutine StartCoroutine(IEnumerator routine);
   }
   
   public class ThoughtBubble : MonoBehaviour, Bubble {
