@@ -12,18 +12,11 @@ namespace Outclaw {
   }
 
   public class PauseMenuManager : Menu, IPauseMenuManager {
-    [SerializeField]
-    private float pauseTime;
-
-    [SerializeField]
-    private float blurAmount;
-
-    [SerializeField]
-    private float animationFreq = .02f;
     
-    [SerializeField]
-    private CanvasGroup contents;
-    
+    [Header("Blur Effect")]
+    [SerializeField] 
+    protected float blurAmount;
+
     [SerializeField]
     private Image background;
 
@@ -49,9 +42,15 @@ namespace Outclaw {
     [Inject]
     private IPauseGame pause;
 
+    private bool previouslyPaused;
+    
+    private List<IMenuItem> items;
+
     public bool Active { get => active; }
 
-    private bool previouslyPaused;
+    protected override IMenuItem this[int i] { get => items[i]; }
+
+    protected override int ItemCount() => items.Count;
 
     void Awake() {
       //Initialize list of pause items. Unity can't serialize interfaces, unfortunately.
@@ -90,20 +89,6 @@ namespace Outclaw {
       StartCoroutine(FadeInContent());
       StartCoroutine(AnimateBlurIn());
       active = true;
-    }
-
-    private IEnumerator FadeInContent() {
-      for (var i = 0f; i < pauseTime; i += animationFreq) {
-        contents.alpha = i / pauseTime;
-        yield return new WaitForSecondsRealtime(animationFreq);
-      }
-    }
-    
-    private IEnumerator FadeOutContent() {
-      for (var i = pauseTime; i >= 0; i -= animationFreq) {
-        contents.alpha = i / pauseTime;
-        yield return new WaitForSecondsRealtime(animationFreq);
-      }
     }
     
     private IEnumerator AnimateBlurIn() {

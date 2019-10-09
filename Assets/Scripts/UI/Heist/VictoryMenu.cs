@@ -5,7 +5,7 @@ using Zenject;
 using Outclaw.UI;
 
 namespace Outclaw.Heist{
-  public class CapturedMenu : Menu, ICapturedMenu
+  public class VictoryMenu : Menu
   {
     [SerializeField] private EventMenuItem[] eventItems;
 

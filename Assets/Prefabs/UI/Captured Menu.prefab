@@ -250,10 +250,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7615f700a4780e1479f3062d52362bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseTime: 0.1
+  animationFreq: 0.02
+  contents: {fileID: 3228648567855803533}
   eventItems:
   - {fileID: 6714518495593116948}
   - {fileID: 6047068199830941086}
-  contents: {fileID: 3228648567855803533}
 --- !u!114 &5789725320074524148
 MonoBehaviour:
   m_ObjectHideFlags: 0

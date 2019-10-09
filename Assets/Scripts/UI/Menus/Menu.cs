@@ -6,13 +6,20 @@ using Zenject;
 namespace Outclaw.UI{
   public abstract class Menu : MonoBehaviour
   {
-    protected List<IMenuItem> items;
+    [Header("Fading Content")]
+    [SerializeField] protected float pauseTime;
+    [SerializeField] protected float animationFreq = .02f;
+    [SerializeField] protected CanvasGroup contents;
+
     protected int currentIndex;
 
     protected bool active = false;
 
     [Inject]
     protected IPlayerInput playerInput;
+
+    protected abstract IMenuItem this[int i]{ get; }
+    protected abstract int ItemCount();
 
     protected virtual void CheckSelectionState() {
       CheckDownSelection();
@@ -25,7 +32,7 @@ namespace Outclaw.UI{
         return;
       }
       
-      items[currentIndex].Select();
+      this[currentIndex].Select();
     }
     
     protected virtual void CheckDownSelection() {
@@ -33,8 +40,8 @@ namespace Outclaw.UI{
         return;
       }
       
-      if (currentIndex >= items.Count - 1) {
-        HoverIndex(items.Count - 1, 0);
+      if (currentIndex >= ItemCount() - 1) {
+        HoverIndex(ItemCount() - 1, 0);
         currentIndex = 0;
         return;
       }
@@ -49,8 +56,8 @@ namespace Outclaw.UI{
       }
       
       if (currentIndex <= 0) {
-        HoverIndex(0, items.Count - 1);
-        currentIndex = items.Count - 1;
+        HoverIndex(0, ItemCount() - 1);
+        currentIndex = ItemCount() - 1;
         return;
       }
       
@@ -59,8 +66,22 @@ namespace Outclaw.UI{
     }
 
     protected virtual void HoverIndex(int oldIndex, int newIndex) {
-      items[oldIndex].Unhover();
-      items[newIndex].Hover();
+      this[oldIndex].Unhover();
+      this[newIndex].Hover();
+    }
+
+    protected IEnumerator FadeInContent() {
+      for (var i = 0f; i < pauseTime; i += animationFreq) {
+        contents.alpha = i / pauseTime;
+        yield return new WaitForSecondsRealtime(animationFreq);
+      }
+    }
+    
+    protected IEnumerator FadeOutContent() {
+      for (var i = pauseTime; i >= 0; i -= animationFreq) {
+        contents.alpha = i / pauseTime;
+        yield return new WaitForSecondsRealtime(animationFreq);
+      }
     }
   }
 }

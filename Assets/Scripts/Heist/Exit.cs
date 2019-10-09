@@ -16,6 +16,9 @@ namespace Outclaw.Heist {
     [SerializeField]
     private AudioClip victorySound;
 
+    [SerializeField]
+    private VictoryMenu menu;
+
     [Inject]
     private IObjectiveManager objectiveManager;
 
@@ -51,6 +54,7 @@ namespace Outclaw.Heist {
 
     private IEnumerator StartExit(){
       soundManager.PlaySFX(victorySound);
+      menu.Show();
       yield return new WaitForSeconds(victorySound.length);
       SceneManager.LoadScene(exitScene);
       yield break;
