@@ -11,7 +11,8 @@ namespace Outclaw.Heist{
     [SerializeField] private LayerMask blurLayer;
     [SerializeField] private VisionCone visionCone;
     [SerializeField] private float speed = 1;
-    private Vector3 prevPosition;
+
+    public Quaternion VisionRotation { get => visionCone.transform.rotation; }
 
     public void UpdateVisionCone(Vector3 facingDir){
       visionCone.gameObject.transform.rotation = Quaternion.LookRotation(
@@ -37,6 +38,10 @@ namespace Outclaw.Heist{
         yield return null;
       }
       yield break;
+    }
+
+    public void ToggleVision(bool on){
+      visionCone.gameObject.SetActive(on);
     }
 
     void OnTriggerEnter2D(Collider2D other){

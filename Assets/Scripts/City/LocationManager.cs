@@ -55,7 +55,9 @@ namespace Outclaw.City {
     
     private void ResetLocationObjectProgress(LocationType type) {
       var locationObjects = locationObjectProgress[type];
-      foreach (var obj in locationObjects.Keys) {
+      // make a copy of keys so foreach can still go while modifying
+      var keys = new List<ObjectType>(locationObjects.Keys);
+      foreach (var obj in keys) {
         locationObjects[obj] = 0;
       }
     }

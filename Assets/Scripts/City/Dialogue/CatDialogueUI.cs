@@ -40,7 +40,7 @@ namespace Outclaw {
     private IPlayerInput playerInput;
 
     [Inject] 
-    private IPauseMenuManager pauseMenuManager;
+    private IPauseGame pause;
 
     [Inject]
     private IPlayer player;
@@ -129,7 +129,7 @@ namespace Outclaw {
     }
     
     private bool IsValidDialogueProgression() {
-      return playerInput.IsInteractDown() && !pauseMenuManager.IsPaused;
+      return playerInput.IsInteractDown() && !pause.IsPaused;
     }
     
     public override IEnumerator RunOptions(Options optionsCollection, OptionChooser optionChooser) {

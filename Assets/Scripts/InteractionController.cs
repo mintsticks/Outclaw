@@ -18,12 +18,12 @@ namespace Outclaw {
     private IPlayerInput playerInput;
 
     [Inject] 
-    private IPauseMenuManager pauseMenuManager;
+    private IPauseGame pause;
 
     private Interactable currentInteractable;
     
     public void UpdateInteraction() {
-      if (pauseMenuManager.IsPaused) {
+      if (pause.IsPaused) {
         return;
       }
       if (playerInput.IsInteractDown()) {

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Outclaw.City {
+namespace Outclaw {
   public interface ISceneTransitionManager {
     void TransitionToScene(string scene);
     bool IsSwitching { get; }
@@ -45,7 +45,7 @@ namespace Outclaw.City {
 
     private IEnumerator DelayTransition() {
       loadingOp.allowSceneActivation = false;
-      yield return new WaitForSeconds(waitTime);
+      yield return new WaitForSecondsRealtime(waitTime);
       loadingOp.allowSceneActivation = true;
     }
     

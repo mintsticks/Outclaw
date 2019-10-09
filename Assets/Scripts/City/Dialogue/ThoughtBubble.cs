@@ -59,7 +59,7 @@ namespace Outclaw.City {
     private IDialogueIconManager dialogueIconManager;
     
     [Inject] 
-    private IPauseMenuManager pauseMenuManager;
+    private IPauseGame pause;
 
     private List<string> options;
     private List<OptionIndicator> indicators;
@@ -91,7 +91,7 @@ namespace Outclaw.City {
     
     private void Update() {
       UpdatePosition();
-      if (pauseMenuManager.IsPaused) {
+      if (pause.IsPaused) {
         return;
       }
       

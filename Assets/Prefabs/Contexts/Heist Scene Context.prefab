@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 7336105400421786616}
   - component: {fileID: 7336105400421786618}
   - component: {fileID: 3628848344319474143}
+  - component: {fileID: 5298404681966314918}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -96,6 +97,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 7336105400421786618}
   - {fileID: 3628848344319474143}
+  - {fileID: 5298404681966314918}
   _installerPrefabs: []
   _autoRun: 1
   _parentNewObjectsUnderSceneContext: 0
@@ -116,7 +118,7 @@ MonoBehaviour:
   abilityManagerPrefab: {fileID: 5447647215815304152, guid: a5bdee44fdfa7f44ab032f541d5ad6e8,
     type: 3}
   controller: {fileID: 8274474055835981981}
-  pauseMenuManagerPrefab: {fileID: 145902270607762337, guid: ec39ecbdb98109f40aa955e9e70fe259,
+  capturedMenuPrefab: {fileID: 2892921191195802069, guid: a2c89d0288903a74c9d6a33e7dbd1c36,
     type: 3}
 --- !u!114 &3628848344319474143
 MonoBehaviour:
@@ -139,6 +141,20 @@ MonoBehaviour:
   optionIndicatorPrefab: {fileID: 1078197831242203693, guid: e2c7011dbf7e68048a550b6d0b913c7e,
     type: 3}
   dialogueIconManagerPrefab: {fileID: 7676714812861992969, guid: f4ddd1c6361da5d45a0339a70d8be8a4,
+    type: 3}
+--- !u!114 &5298404681966314918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336105400421786617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126ae12a489ad2f41a6bda71fc1713de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuManagerPrefab: {fileID: 145902270607762337, guid: ec39ecbdb98109f40aa955e9e70fe259,
     type: 3}
 --- !u!1001 &62897113987973798
 PrefabInstance:

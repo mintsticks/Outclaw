@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Outclaw.UI;
 
-namespace Outclaw.City {
+namespace Outclaw {
   public interface IPauseMenuManager {
-    bool IsPaused { get; }
+    bool Active { get; }
     void Unpause();
   }
 
-  public class PauseMenuManager : MonoBehaviour, IPauseMenuManager {
+  public class PauseMenuManager : Menu, IPauseMenuManager {
     [SerializeField]
     private float pauseTime;
 
@@ -41,91 +42,38 @@ namespace Outclaw.City {
     
     [SerializeField]
     private PauseExitItem pauseExitItem;
-    
-    [Inject]
-    private IPlayerInput playerInput;
 
     [Inject]
     private ISceneTransitionManager sceneTransitionManager;
     
-    private List<IPauseItem> pauseItems;
-    private int currentIndex;
-    private bool isPaused;
-    public bool IsPaused => isPaused;
+    [Inject]
+    private IPauseGame pause;
+
+    public bool Active { get => active; }
 
     void Awake() {
       //Initialize list of pause items. Unity can't serialize interfaces, unfortunately.
-      pauseItems = new List<IPauseItem> { pauseResumeItem, pauseSaveItem, pauseLoadItem, pauseOptionItem, pauseExitItem};
+      items = new List<IMenuItem> { pauseResumeItem, pauseSaveItem, pauseLoadItem, pauseOptionItem, pauseExitItem};
       currentIndex = 0;
-      pauseItems[0].Hover();
-      isPaused = false;
+      items[0].Hover();
       contents.alpha = 0;
     }
     
     void Update() {
-      CheckPauseState();
-      if (!isPaused) {
+      CheckActiveState();
+      if (!active) {
         return;
       }
 
       CheckSelectionState();
     }
 
-    private void CheckSelectionState() {
-      CheckDownSelection();
-      CheckUpSelection();
-      CheckItemSelect();
-    }
-
-    private void CheckItemSelect() {
-      if (!playerInput.IsInteractDown()) {
-        return;
-      }
-      
-      pauseItems[currentIndex].Select();
-    }
-    
-    private void CheckDownSelection() {
-      if (!playerInput.IsDownPress()) {
-        return;
-      }
-      
-      if (currentIndex >= pauseItems.Count - 1) {
-        HoverIndex(pauseItems.Count - 1, 0);
-        currentIndex = 0;
-        return;
-      }
-      
-      HoverIndex(currentIndex, currentIndex + 1);
-      currentIndex++;
-    }
-    
-    private void CheckUpSelection() {
-      if (!playerInput.IsUpPress()) {
-        return;
-      }
-      
-      if (currentIndex <= 0) {
-        HoverIndex(0, pauseItems.Count - 1);
-        currentIndex = pauseItems.Count - 1;
-        return;
-      }
-      
-      HoverIndex(currentIndex, currentIndex - 1);
-      currentIndex--;
-    }
-
-    private void HoverIndex(int oldIndex, int newIndex) {
-      pauseItems[oldIndex].Unhover();
-      pauseItems[newIndex].Hover();
-    }
-    
-    private void CheckPauseState() {
+    private void CheckActiveState() {
       if (!playerInput.IsPauseDown() || sceneTransitionManager.IsSwitching) {
         return;
       }
 
-      if (isPaused) {
+      if (pause.IsPaused) {
         Unpause();
         return;
       } 
@@ -133,10 +81,10 @@ namespace Outclaw.City {
     }
 
     private void Pause() {
-      isPaused = true;
+      pause.Pause();
       StartCoroutine(FadeInContent());
       StartCoroutine(AnimateBlurIn());
-      Time.timeScale = 0.0f;
+      active = true;
     }
 
     private IEnumerator FadeInContent() {
@@ -169,9 +117,9 @@ namespace Outclaw.City {
       for (var i = 0f; i < pauseTime; i += animationFreq) {
         background.material.SetFloat("_Radius", blurAmount - i * blurAmount / pauseTime);
         yield return new WaitForSecondsRealtime(animationFreq);
-      }
-      Time.timeScale = 1.0f;
-      isPaused = false;
+      } 
+      pause.Unpause();
+      active = false;
     }
   }
 }

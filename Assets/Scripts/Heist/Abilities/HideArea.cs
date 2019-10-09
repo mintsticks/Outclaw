@@ -9,7 +9,6 @@ namespace Outclaw.Heist{
   {
     [SerializeField] private City.Indicator hideIndicator;
     [SerializeField] private AudioClip hideSound;
-    private bool isHiding = false;
 
     [Inject] private IHideablePlayer hidePlayer;
     [Inject] private City.IPlayer player;

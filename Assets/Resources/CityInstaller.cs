@@ -9,9 +9,6 @@ namespace Outclaw.City {
     [SerializeField]
     private Player playerInstance;
 
-    [SerializeField] 
-    private GameObject pauseMenuManagerPrefab;
-
     [SerializeField]
     private GameObject objectiveManagerPrefab;
     
@@ -34,10 +31,6 @@ namespace Outclaw.City {
         .FromInstance(playerInstance)
         .AsSingle()
         .NonLazy();
-      Container.Bind<IPauseMenuManager>()
-        .To<PauseMenuManager>()
-        .FromComponentInNewPrefab(pauseMenuManagerPrefab)
-        .AsSingle();
       Container.Bind<IObjectiveManager>()
         .To<ObjectiveManager>()
         .FromComponentInNewPrefab(objectiveManagerPrefab)
