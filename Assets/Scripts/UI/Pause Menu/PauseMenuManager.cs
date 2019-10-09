@@ -51,6 +51,8 @@ namespace Outclaw {
 
     public bool Active { get => active; }
 
+    private bool previouslyPaused;
+
     void Awake() {
       //Initialize list of pause items. Unity can't serialize interfaces, unfortunately.
       items = new List<IMenuItem> { pauseResumeItem, pauseSaveItem, pauseLoadItem, pauseOptionItem, pauseExitItem};
@@ -73,7 +75,7 @@ namespace Outclaw {
         return;
       }
 
-      if (pause.IsPaused) {
+      if (active) {
         Unpause();
         return;
       } 
@@ -81,7 +83,10 @@ namespace Outclaw {
     }
 
     private void Pause() {
-      pause.Pause();
+      previouslyPaused = pause.IsPaused;
+      if(!previouslyPaused){
+        pause.Pause();
+      }
       StartCoroutine(FadeInContent());
       StartCoroutine(AnimateBlurIn());
       active = true;
@@ -117,8 +122,10 @@ namespace Outclaw {
       for (var i = 0f; i < pauseTime; i += animationFreq) {
         background.material.SetFloat("_Radius", blurAmount - i * blurAmount / pauseTime);
         yield return new WaitForSecondsRealtime(animationFreq);
-      } 
-      pause.Unpause();
+      }
+      if(!previouslyPaused){
+        pause.Unpause();
+      }
       active = false;
     }
   }

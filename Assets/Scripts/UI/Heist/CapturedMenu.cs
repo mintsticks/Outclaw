@@ -15,6 +15,7 @@ namespace Outclaw.Heist{
 
     void Awake(){
       items = new List<IMenuItem>(eventItems);
+      items[0].Hover();
       Hide();
     }
 
@@ -22,6 +23,10 @@ namespace Outclaw.Heist{
       if (active && !pauseMenu.Active) {
         CheckSelectionState();
       }
+    }
+
+    void OnDestroy(){
+      Hide();
     }
 
     public void Show(){

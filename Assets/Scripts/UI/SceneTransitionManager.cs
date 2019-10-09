@@ -50,14 +50,14 @@ namespace Outclaw {
     }
     
     private IEnumerator FadeIn() {
-      for (var i = 0f; i <= fadeTime; i += Time.deltaTime) {
+      for (var i = 0f; i <= fadeTime; i += Time.unscaledDeltaTime) {
         content.alpha = i / fadeTime;
         yield return null;
       }
     }
 
     private IEnumerator FadeOut() {
-      for (var i = fadeTime; i >= 0; i -= Time.deltaTime) {
+      for (var i = fadeTime; i >= 0; i -= Time.unscaledDeltaTime) {
         content.alpha = i / fadeTime;
         yield return null;
       }
