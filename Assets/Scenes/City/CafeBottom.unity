@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 159776131}
   - component: {fileID: 159776133}
   - component: {fileID: 159776132}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: Platform (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -621,9 +621,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d3085a8b47471ca09f34f4ac5a6783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 1052715627}
+  onColliderSet: []
+  offColliderSet: []
+  trigger: {fileID: 0}
   onDirection: {x: -1, y: -1}
-  maxOnAngle: 30
 --- !u!1001 &1143858119
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 133449079}
   - component: {fileID: 133449080}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: LeftTopFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25.49679, y: 0.58291054}
+  m_Size: {x: 20.11, y: 0.58291054}
   m_EdgeRadius: 0
 --- !u!1 &164212814
 GameObject:
@@ -640,7 +640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 378625579}
   - component: {fileID: 378625580}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: RightTopFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &455631706
 Transform:
   m_ObjectHideFlags: 0
@@ -897,7 +897,7 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: 0.41841984, y: -0.47889042}
-  - {x: 1.4973478, y: 0.57218695}
+  - {x: 1.99, y: 1.05}
 --- !u!114 &455631708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,9 +910,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d3085a8b47471ca09f34f4ac5a6783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 455631707}
+  onColliderSet: []
+  offColliderSet: []
+  trigger: {fileID: 0}
   onDirection: {x: -1, y: -1}
-  maxOnAngle: 30
 --- !u!1 &467297560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,6 +1532,63 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9649458, y: 0.14885986}
   m_EdgeRadius: 0
+--- !u!1 &962691567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 962691568}
+  - component: {fileID: 962691569}
+  m_Layer: 16
+  m_Name: Ceiling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &962691568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962691567}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.2, y: 12.96, z: 0}
+  m_LocalScale: {x: 0.06878, y: 1.304903, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1050078543}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &962691569
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962691567}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 38.399998, y: 21.599998}
+    newSize: {x: 38.399998, y: 21.599998}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 900, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1002161790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,9 +1741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d3085a8b47471ca09f34f4ac5a6783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 1019343590}
+  onColliderSet: []
+  offColliderSet: []
+  trigger: {fileID: 0}
   onDirection: {x: 1, y: 0}
-  maxOnAngle: 30
 --- !u!68 &1019343590
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -1702,7 +1761,7 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.9717121, y: 0.4600911}
+  - {x: -2.9, y: 0.4600911}
   - {x: 1.652195, y: 0.46044302}
 --- !u!1 &1050078542
 GameObject:
@@ -1762,6 +1821,7 @@ Transform:
   - {fileID: 934728765}
   - {fileID: 1069370507}
   - {fileID: 255818614}
+  - {fileID: 962691568}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1946,7 +2006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1171788805}
   - component: {fileID: 1171788806}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: EntranceHighGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2048,7 +2108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 13.612467, y: 0.1899091}
+  m_Size: {x: 14, y: 0.1899091}
   m_EdgeRadius: 0
 --- !u!1 &1371766557
 GameObject:
@@ -2174,7 +2234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453693105}
   - component: {fileID: 1453693106}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: BottomFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
