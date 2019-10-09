@@ -34,12 +34,18 @@ namespace Outclaw.City {
 
     [Inject]
     private IObjectiveManager objectiveManager;
+
+    [Inject] 
+    private IObjectiveTransformManager objectiveTransformManager;
     
     private Transform parent;
     private bool created;
+
+    public CatType CatType => type;
     
     public void Awake() {
       talkIndicator.Initialize(player.PlayerTransform);
+      objectiveTransformManager.Cats.Add(this);
     }
 
     public void InRange() {

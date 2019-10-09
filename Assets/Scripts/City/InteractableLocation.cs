@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using City;
 using UnityEngine;
 using Zenject;
 
@@ -20,8 +21,11 @@ namespace Outclaw.City {
     private List<LocationDialogueForState> locationDialoguesForState;
     
     [SerializeField]
-    private string locationName;
+    private string destinationName;
 
+    [SerializeField] 
+    private string locationName;
+    
     [SerializeField]
     private AudioClip enterClip;
 
@@ -39,9 +43,16 @@ namespace Outclaw.City {
     
     [Inject]
     private IGameStateManager gameStateManager;
-    
+
+    [Inject]
+    private IObjectiveTransformManager objectiveTransformManager;
+
+    public string DestinationName => destinationName;
+    public string LocationName => locationName;
+
     public void Awake() {
       enterIndicator.Initialize(player.PlayerTransform);
+      objectiveTransformManager.Locations.Add(this);
     }
     
     public void InRange() {
@@ -83,7 +94,7 @@ namespace Outclaw.City {
         soundManager.PlaySFX(enterClip);
       }
       
-      sceneTransitionManager.TransitionToScene(locationName);
+      sceneTransitionManager.TransitionToScene(destinationName);
     }
 
     private LocationDialogueForState GetDialogueForState(GameStateType state) {

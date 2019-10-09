@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using City;
 using Outclaw.City;
 
 namespace Outclaw {  
@@ -17,14 +18,6 @@ namespace Outclaw {
     FOUND_AKI
   }
 
-  public enum Location {
-    HOUSE,
-    CITY,
-    CAFE1,
-    CAFE2,
-    PARK
-  }
-  
   [Serializable]
   public class GameStateObjectives {
     public GameStateType nextState;
@@ -34,7 +27,7 @@ namespace Outclaw {
   
   [Serializable]
   public class Objective {
-    public Location location;
+    public LocationType location;
     public ObjectiveType objectiveType;
     public List<CatType> conversations;
     public List<ObjectType> objects;
@@ -50,5 +43,14 @@ namespace Outclaw {
     NONE,
     CONVERSATION,
     FIND_OBJECTS,
+  }
+  
+  public enum LocationType {
+    NONE,
+    HOME,
+    MAIN,
+    CAFEBOTTOM,
+    CAFETOP,
+    PARK
   }
 }

@@ -14,10 +14,13 @@ namespace Outclaw.City {
 
     [SerializeField]
     private GameObject objectiveManagerPrefab;
-    
+
+    [SerializeField]
+    private GameObject objectiveTransformManagerPrefab;
+
     [SerializeField]
     private PromptSettings promptSettings;
-    
+
     /// <summary>
     /// For all classes common to city scenes.
     /// Bind the interfaces to the concrete classes.
@@ -41,6 +44,11 @@ namespace Outclaw.City {
       Container.Bind<IObjectiveManager>()
         .To<ObjectiveManager>()
         .FromComponentInNewPrefab(objectiveManagerPrefab)
+        .AsSingle()
+        .NonLazy();
+      Container.Bind<IObjectiveTransformManager>()
+        .To<ObjectiveTransformManager>()
+        .FromComponentInNewPrefab(objectiveTransformManagerPrefab)
         .AsSingle()
         .NonLazy();
     }

@@ -1,4 +1,7 @@
-﻿using Outclaw.City;
+﻿using City;
+using Outclaw.City;
+using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace Outclaw {
@@ -14,7 +17,7 @@ namespace Outclaw {
     private ILocationManager locationManager;
     
     public GameStateType CurrentGameState => currentGameStateType;
-
+    
     public void SetGameState(GameStateType state, bool persist = false) {
       currentGameStateType = state;
       if (persist) {

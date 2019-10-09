@@ -52,6 +52,9 @@ namespace Outclaw.City {
     private IObjectiveManager objectiveManager;
 
     [Inject]
+    private IObjectiveTransformManager objectiveTransformManager;
+
+    [Inject]
     private IGameStateManager gameStateManager;
     
     [Inject]
@@ -59,9 +62,12 @@ namespace Outclaw.City {
     
     private Transform parent;
     private bool created;
-    
+
+    public ObjectType ObjectType => objectType;
+
     public void Awake() {
       observeIndicator.Initialize(transform);
+      objectiveTransformManager.Objects.Add(this);
     }
 
     public void InRange() {
