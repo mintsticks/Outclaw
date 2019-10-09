@@ -512,7 +512,6 @@
             <e p="PauseMenuManager.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
-          <e p="DebugTool.cs" t="Include" />
           <e p="DismissablePrompt.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="CameraBehaviorEditor.cs" t="Include" />
@@ -558,9 +557,8 @@
           <e p="PlayerAnimController.cs" t="Include" />
           <e p="PlayerData.cs" t="Include" />
           <e p="PlayerInput.cs" t="Include" />
-          <e p="RandomUtility.cs" t="Include" />
-          <e p="SceneSwitcher.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
+          <e p="SpriteBundle.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="DismissablePrompts" t="Include">
               <e p="InteractDismissablePrompt.cs" t="Include" />
@@ -578,6 +576,12 @@
             <e p="PromptManager.cs" t="Include" />
             <e p="SceneTransitionManager.cs" t="Include" />
             <e p="StartListener.cs" t="Include" />
+          </e>
+          <e p="Utility" t="Include">
+            <e p="DebugTool.cs" t="Include" />
+            <e p="ManagedCoroutine.cs" t="Include" />
+            <e p="RandomUtility.cs" t="Include" />
+            <e p="SceneSwitcher.cs" t="Include" />
           </e>
         </e>
       </e>

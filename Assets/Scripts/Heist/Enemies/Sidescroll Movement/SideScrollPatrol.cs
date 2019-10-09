@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Outclaw.ManagedRoutine;
 
 namespace Outclaw.Heist{
   public class SideScrollPatrol : MonoBehaviour
@@ -24,15 +25,17 @@ namespace Outclaw.Heist{
     [SerializeField] [Range(0, 360)] private float lookAngle = 30;
     [SerializeField] private float headTurnTime = .1f;
     [SerializeField] private float lookPause = .1f;
+    [SerializeField] private float changeDirPause = .3333f;
 
-    private int targetIdx;
+    private int targetIdx = 0;
+    private ManagedCoroutine patrolRoutine = null;
 
     public LineRenderer Path { get => path; }
     public LayerMask GroundLayer { get => groundLayer; }
 
     public void Start(){
       InitPatrol();
-      StartCoroutine(Patrol());
+      StartPatrol();
       TogglePathVisibility(false);
     }
 
@@ -46,6 +49,16 @@ namespace Outclaw.Heist{
       if(path.positionCount > 1 && !movingLeft){
         ++targetIdx;
       }
+
+      patrolRoutine = new ManagedCoroutine(this, Patrol);
+    }
+
+    public void StartPatrol(){
+      patrolRoutine.StartCoroutine();
+    }
+
+    public void StopPatrol(){
+      patrolRoutine.StopCoroutine();
     }
 
     // returns the index to the left of the starting position
@@ -132,11 +145,15 @@ namespace Outclaw.Heist{
       Quaternion left = centerRot * Quaternion.AngleAxis(lookAngle, Vector3.forward);
       Quaternion right = centerRot * Quaternion.AngleAxis(-lookAngle, Vector3.forward);
 
-      yield return movement.TurnHead(left, headTurnTime);
+      yield return movement.TurnHead(movingLeft ? left : right, headTurnTime);
       yield return new WaitForSeconds(lookPause);
-      yield return movement.TurnHead(right, 2 * headTurnTime);
+      yield return movement.TurnHead(movingLeft ? right : left, 2 * headTurnTime);
       yield return new WaitForSeconds(lookPause);
       yield return movement.TurnHead(centerRot, headTurnTime);
+
+      movement.ToggleVision(false);
+      yield return new WaitForSeconds(changeDirPause);
+      movement.ToggleVision(true);
       yield break;
     }
 

@@ -1,29 +1,9 @@
-﻿#define DEBUG_CC2D_RAYS
-using System;
+﻿using System;
 using System.Linq;
 using UnityEngine;
 
 namespace Outclaw {
   public class CharacterController2D : MonoBehaviour {
-    struct CharacterRaycastOrigins {
-      public Vector3 topLeft;
-      public Vector3 bottomRight;
-      public Vector3 bottomLeft;
-    }
-
-    class CharacterCollisionState2D {
-      public bool below;
-      public bool wasGroundedLastFrame;
-    }
-    
-    [System.Diagnostics.Conditional("DEBUG_CC2D_RAYS")]
-    static void DrawRay(Vector3 start, Vector3 dir, Color color) {
-      Debug.DrawRay(start, dir, color);
-    }
-
-    const float kSkinWidthFloatFudgeFactor = 0.001f;
-    private readonly float slopeLimitTangent = Mathf.Tan(75f * Mathf.Deg2Rad);
-    
     [SerializeField]
     [Range(0.001f, 0.3f)]
     private float skinWidth = 0.02f;
@@ -60,13 +40,19 @@ namespace Outclaw {
     private BoxCollider2D boxCollider;
 
     private CharacterCollisionState2D collisionState;
-    private Vector3 velocity;
     private CharacterRaycastOrigins raycastOrigins;
     private float verticalDistanceBetweenRays;
     private float horizontalDistanceBetweenRays;
+    
     private bool isGoingUpSlope;
     private bool isJumping;
+    private bool isDescending;
+    
     private Vector3 deltaMovement;
+    private Vector3 velocity;
+    
+    private const float kSkinWidthFloatFudgeFactor = 0.001f;
+    private readonly float slopeLimitTangent = Mathf.Tan(75f * Mathf.Deg2Rad);
     
     public Vector3 Velocity => velocity;
     public bool isGrounded => collisionState.below;
@@ -91,9 +77,14 @@ namespace Outclaw {
       isGoingUpSlope = false;
     }
     
-    public void Move(Vector3 _deltaMovement, ref bool isJumping) {
+    public void Move(Vector3 _deltaMovement, ref bool _isJumping, ref bool _isDescending) {
       deltaMovement = _deltaMovement;
-      this.isJumping = isJumping;
+      isJumping = _isJumping;
+      isDescending = _isDescending;
+      if (isJumping) {
+        Debug.Log("Move is jumping");
+        Debug.Log("start delta y" + _deltaMovement.y);
+      }
       ResetStates();
       UpdateRaycastOrigins();
 
@@ -103,15 +94,16 @@ namespace Outclaw {
       
       UpdateHorizontal();
       UpdateVertical();
-
+ 
+      if (isJumping) {
+        Debug.Log("end delta y" + _deltaMovement.y);
+      }
       deltaMovement.z = 0;
       transform.Translate(deltaMovement, Space.World);
-      isJumping = false;
-
-      if (Time.deltaTime > 0f) {
-        velocity = deltaMovement / Time.deltaTime;
-      }
-
+      _isJumping = false;
+      _isDescending = false;
+      
+      velocity = deltaMovement / Time.fixedDeltaTime;
       if (isGoingUpSlope) {
         velocity.y = 0;
       }
@@ -208,7 +200,7 @@ namespace Outclaw {
     }
 
     private void UpdateVertical() {
-      var isGoingUp = deltaMovement.y > 0;
+      var isGoingUp = deltaMovement.y > 0.00001;
       var rayDistance = Mathf.Abs(deltaMovement.y) + skinWidth;
       var rayDirection = isGoingUp ? Vector2.up : -Vector2.up;
       var initialRayOrigin = isGoingUp ? raycastOrigins.topLeft : raycastOrigins.bottomLeft;
@@ -219,13 +211,14 @@ namespace Outclaw {
     
     private void CheckVerticalRays(Vector2 rayDirection, Vector3 initialRayOrigin, float rayDistance, bool isGoingUp) {
       var overlaps = Physics2D.OverlapAreaAll(raycastOrigins.topLeft, raycastOrigins.bottomRight, oneWayPlatformMask);
-      var mask = isGoingUp ? platformMask & ~oneWayPlatformMask : (int)platformMask;
+      var mask = isGoingUp || isDescending ? platformMask & ~oneWayPlatformMask : (int)platformMask;
       for (var i = 0; i < totalVerticalRays; i++) {
         var ray = new Vector2(initialRayOrigin.x + i * horizontalDistanceBetweenRays, initialRayOrigin.y);
         var raycastHit = Physics2D.Raycast(ray, rayDirection, rayDistance, mask);
         if (!raycastHit) {
           continue;
         }
+        
         if (overlaps.Contains(raycastHit.collider)) {
           continue;
         }
@@ -240,12 +233,6 @@ namespace Outclaw {
           break;
         }
       }
-    }
-
-    private void OnDrawGizmos() {
-      var bounds = raycastOrigins.bottomRight - raycastOrigins.topLeft;
-      Gizmos.color = Color.yellow;
-      Gizmos.DrawCube(transform.position, bounds);
     }
     
     private void CheckVerticalSlope() {
@@ -287,6 +274,17 @@ namespace Outclaw {
       raycastOrigins.topLeft = new Vector2(modifiedBounds.min.x, modifiedBounds.max.y);
       raycastOrigins.bottomRight = new Vector2(modifiedBounds.max.x, modifiedBounds.min.y);
       raycastOrigins.bottomLeft = modifiedBounds.min;
+    }
+    
+    struct CharacterRaycastOrigins {
+      public Vector3 topLeft;
+      public Vector3 bottomRight;
+      public Vector3 bottomLeft;
+    }
+
+    class CharacterCollisionState2D {
+      public bool below;
+      public bool wasGroundedLastFrame;
     }
   }
 }

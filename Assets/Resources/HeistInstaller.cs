@@ -10,8 +10,9 @@ namespace Outclaw.Heist {
     [SerializeField]
     private PlayerController controller;
 
-    [SerializeField] 
-    private GameObject pauseMenuManagerPrefab;
+    [SerializeField]
+    private GameObject capturedMenuPrefab;
+
     /// <summary>
     /// For all classes common to heist scenes.
     /// Bind the interfaces to the concrete classes.
@@ -20,6 +21,11 @@ namespace Outclaw.Heist {
       Container.Bind<IAbilityCooldownManager>()
         .To<AbilityCooldownManager>()
         .FromComponentInNewPrefab(abilityManagerPrefab)
+        .AsSingle()
+        .NonLazy();
+      Container.Bind<ICapturedMenu>()
+        .To<CapturedMenu>()
+        .FromComponentInNewPrefab(capturedMenuPrefab)
         .AsSingle()
         .NonLazy();
       Container.Bind<IObjectiveManager>()
@@ -34,10 +40,6 @@ namespace Outclaw.Heist {
         .FromInstance(controller)
         .AsSingle()
         .NonLazy();
-      Container.Bind<IPauseMenuManager>()
-        .To<PauseMenuManager>()
-        .FromComponentInNewPrefab(pauseMenuManagerPrefab)
-        .AsSingle();
     }
   }
 }

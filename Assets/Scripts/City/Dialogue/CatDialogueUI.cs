@@ -40,7 +40,7 @@ namespace Outclaw {
     private IPlayerInput playerInput;
 
     [Inject] 
-    private IPauseMenuManager pauseMenuManager;
+    private IPauseGame pause;
 
     [Inject]
     private IPlayer player;
@@ -49,7 +49,8 @@ namespace Outclaw {
     private Transform bubbleParent;
     private Action onDialogueComplete;
     private DialogueType dialogueType;
-    
+    private HashSet<Bubble> bubbles = new HashSet<Bubble>();
+    private bool skip = false;
     public Action OnDialogueComplete {
       set => onDialogueComplete = value;
     }
@@ -61,7 +62,7 @@ namespace Outclaw {
     public DialogueType DialogueType {
       set => dialogueType = value;
     }
-
+    
     public override IEnumerator RunLine(Line line) {
       var lineText = line.text;
       var parent = bubbleParent;
@@ -75,30 +76,60 @@ namespace Outclaw {
         BubbleParent = parent,
         Type = dialogueType
       });
-      bubble.transform.SetParent(transform);
-      
+      bubble.transform.SetParent(transform, false);
+      bubble.UpdatePosition();
+      bubbles.Add(bubble);
       var text = ReplaceVariables(lineText);
-      if (textSpeed > 0.0f) {
-        var stringBuilder = new StringBuilder();
-        foreach (var c in text) {
-          stringBuilder.Append(c);
-          bubble.SetText(stringBuilder.ToString());
-          yield return new WaitForSeconds(textSpeed);
-        }
-      } else {
-        bubble.SetText(text);
-      }
+      yield return ShowText(bubble, text);
 
       while (!IsValidDialogueProgression()) {
         yield return null;
       }
       bubble.RemoveTail();
-      StartCoroutine(FadeBubble(bubble));
+      bubble.StartCoroutine(FadeBubble(bubble)); // make bubble own coroutine so it's never stopped
       yield return new WaitForEndOfFrame();
     }
 
+    private IEnumerator ShowText(SpeechBubble bubble, string text) {
+      if (textSpeed <= 0.0f) {
+        bubble.SetText(text);
+        yield return new WaitForEndOfFrame();
+        yield break;
+      } 
+      
+      var stringBuilder = new StringBuilder();
+      skip = false;
+      var detectSkip = DetectSkip();
+      StartCoroutine(detectSkip);
+      foreach (var c in text) {
+        if (skip) {
+          bubble.SetText(text);
+          skip = false;
+          yield return new WaitForEndOfFrame();
+          yield break;
+        }
+
+        stringBuilder.Append(c);
+        bubble.SetText(stringBuilder.ToString());
+        yield return new WaitForSeconds(textSpeed);
+      }  
+      StopCoroutine(detectSkip);
+    }
+
+    private IEnumerator DetectSkip() {
+      while (true) {
+        if (!playerInput.IsInteractDown()) {
+          yield return null;
+          continue;
+        } 
+
+        skip = true;
+        yield break;
+      }  
+    }
+    
     private bool IsValidDialogueProgression() {
-      return playerInput.IsInteractDown() && !pauseMenuManager.IsPaused;
+      return playerInput.IsInteractDown() && !pause.IsPaused;
     }
     
     public override IEnumerator RunOptions(Options optionsCollection, OptionChooser optionChooser) {
@@ -107,22 +138,30 @@ namespace Outclaw {
         Options = ParseOptions(optionsCollection),
         OnSelect = SetOption
       });
-      bubble.transform.SetParent(transform);
-
+      bubble.transform.SetParent(transform, false);
+      bubble.UpdatePosition();
+      bubbles.Add(bubble);
+      
       while (SetSelectedOption != null) {
         yield return null;
       }
 
       bubble.ToBubble();
       StartCoroutine(FadeBubble(bubble));
+      yield return new WaitForEndOfFrame();
     }
 
     private IEnumerator FadeBubble(Bubble bubble) {
-      for (var t = 0f; t <= bubbleFadeTime; t += Time.deltaTime) {  
+      for (var t = 0f; t <= bubbleFadeTime; t += Time.deltaTime) {
+        if (bubble == null) {
+          yield break;
+        }
         bubble.SetOpacity(1 - bubbleFade.Evaluate(t / bubbleFadeTime));
         bubble.BubbleTransform.Translate(new Vector2(0, Time.deltaTime * 10.0f));
         yield return null;
       }
+
+      bubbles.Remove(bubble);
       Destroy(bubble.BubbleTransform.gameObject);
     }
 
@@ -147,7 +186,6 @@ namespace Outclaw {
     }
 
     private void SetOption(int selectedOption) {
-      // TODO    : hotfix, probably do something else
       if(SetSelectedOption == null){
         return;
       }
@@ -161,6 +199,10 @@ namespace Outclaw {
     }
     
     public override IEnumerator DialogueStarted() {
+      foreach (var bubble in bubbles) {
+        Destroy(bubble.BubbleTransform.gameObject);
+      }
+      bubbles.Clear();
       yield break;
     }
     

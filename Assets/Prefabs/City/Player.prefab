@@ -49,6 +49,9 @@ MonoBehaviour:
   eventSequenceLayer:
     serializedVersion: 2
     m_Bits: 32768
+  oneWayTriggerLayer:
+    serializedVersion: 2
+    m_Bits: 131072
 --- !u!1 &4720145574631599661
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,13 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9b0a41d1c54693ad9846c442db1c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinWidth: 0.04
+  skinWidth: 0.1
   platformMask:
     serializedVersion: 2
     m_Bits: 65536
   triggerMask:
     serializedVersion: 2
-    m_Bits: 34816
+    m_Bits: 165888
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 1024

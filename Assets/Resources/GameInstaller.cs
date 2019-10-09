@@ -10,6 +10,9 @@ namespace Outclaw {
     [SerializeField]
     private GameObject sceneTransitionManagerPrefab;
 
+    [SerializeField]
+    private PauseGame pause;
+
     /// <summary>
     /// For all classes that are common to all scenes.
     /// Bind the interfaces to the concrete classes.
@@ -20,6 +23,9 @@ namespace Outclaw {
         .AsSingle();
       Container.Bind<IPlayerInput>()
         .To<PlayerInput>()
+        .AsSingle();
+      Container.Bind<IPauseGame>()
+        .FromInstance(pause)
         .AsSingle();
       
       InstallManagers();

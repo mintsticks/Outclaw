@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using ModestTree;
@@ -10,6 +11,7 @@ namespace Outclaw.City {
   public interface Bubble {
     void SetOpacity(float opacity);
     Transform BubbleTransform { get; }
+    void UpdatePosition();
   }
   
   public class ThoughtBubble : MonoBehaviour, Bubble {
@@ -57,13 +59,14 @@ namespace Outclaw.City {
     private IDialogueIconManager dialogueIconManager;
     
     [Inject] 
-    private IPauseMenuManager pauseMenuManager;
+    private IPauseGame pause;
 
     private List<string> options;
     private List<OptionIndicator> indicators;
     private int currentIndex;
     private Action<int> onSelect;
-
+    private Camera main;
+    
     [Inject]
     public void Initialize(Data data) {
       options = data.Options;
@@ -77,13 +80,18 @@ namespace Outclaw.City {
       }
       
       SetOption(currentIndex);
-      SetPosition();
+      main = Camera.main;
     }
 
     public Transform BubbleTransform => transform;
 
+    public void UpdatePosition() {
+      transform.position = main.WorldToScreenPoint(player.PlayerTransform.position + offset);
+    }
+    
     private void Update() {
-      if (pauseMenuManager.IsPaused) {
+      UpdatePosition();
+      if (pause.IsPaused) {
         return;
       }
       
@@ -100,13 +108,7 @@ namespace Outclaw.City {
       }
     }
 
-    private void SetPosition() {
-      var mainCam = Camera.main;
-      if (mainCam == null) {
-        return;
-      }
-      transform.position = mainCam.WorldToScreenPoint(player.PlayerTransform.position + offset);
-    }
+
 
     private void SelectLeft() {
       if (currentIndex <= 0) {

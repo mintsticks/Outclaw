@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Outclaw.City {
+namespace Outclaw {
   public interface ISceneTransitionManager {
     void TransitionToScene(string scene);
     bool IsSwitching { get; }
@@ -45,19 +45,19 @@ namespace Outclaw.City {
 
     private IEnumerator DelayTransition() {
       loadingOp.allowSceneActivation = false;
-      yield return new WaitForSeconds(waitTime);
+      yield return new WaitForSecondsRealtime(waitTime);
       loadingOp.allowSceneActivation = true;
     }
     
     private IEnumerator FadeIn() {
-      for (var i = 0f; i <= fadeTime; i += Time.deltaTime) {
+      for (var i = 0f; i <= fadeTime; i += Time.unscaledDeltaTime) {
         content.alpha = i / fadeTime;
         yield return null;
       }
     }
 
     private IEnumerator FadeOut() {
-      for (var i = fadeTime; i >= 0; i -= Time.deltaTime) {
+      for (var i = fadeTime; i >= 0; i -= Time.unscaledDeltaTime) {
         content.alpha = i / fadeTime;
         yield return null;
       }

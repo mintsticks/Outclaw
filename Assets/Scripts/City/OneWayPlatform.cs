@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Outclaw;
 using Outclaw.City;
 using UnityEngine;
@@ -7,33 +8,32 @@ using Zenject;
 namespace City {
   public class OneWayPlatform : MonoBehaviour {
     [SerializeField]
-    private Collider2D collider;
+    private List<Collider2D> onColliderSet;
+
+    [SerializeField]
+    private List<Collider2D> offColliderSet;
+    
+    [SerializeField]
+    private Collider2D trigger;
 
     [SerializeField]
     private Vector2 onDirection;
 
-    [SerializeField]
-    private float maxOnAngle;
-    
-    [Inject]
-    private IPlayerInput playerInput;
-
     [Inject]
     private IPlayer player;
 
-    private void Update() {
-      if (Math.Abs(player.PlayerVelocity.magnitude) < 0.001f) {
-        collider.enabled = true;
-        return;
-      }
-      
-      var angle = Vector2.Angle(player.PlayerVelocity, onDirection);
-      if (angle < maxOnAngle) {
-        collider.enabled = true;
-        return;
-      }
+    public void IntersectTrigger() {
+      var playerDir = player.PlayerTransform.position - trigger.transform.position;
+      var inOnDirection = Vector2.Angle(playerDir, onDirection) < 90;
+      Debug.Log(Vector2.Angle(playerDir, onDirection));
+      UpdateCollidersInSet(onColliderSet, inOnDirection);
+      UpdateCollidersInSet(offColliderSet, !inOnDirection);
+    }
 
-      collider.enabled = false;
+    private void UpdateCollidersInSet(List<Collider2D> colliders, bool enable) {
+      foreach (var col in colliders) {
+        col.enabled = enable;
+      }
     }
   }
 }

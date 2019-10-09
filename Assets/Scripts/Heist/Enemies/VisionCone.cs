@@ -12,6 +12,7 @@ namespace Outclaw.Heist{
     [System.Serializable]
     public class OnDetect : UnityEvent<GameObject>{}
 
+    [Header("Detection")]
     [SerializeField] [Range(0, 360)] private float coneAngle = 90;
     [SerializeField] private float visionDistance = 1;
     [SerializeField] private int numSamples = 10;
@@ -28,9 +29,9 @@ namespace Outclaw.Heist{
     void Update()
     {
       GameObject player = TestCone();
-        if(player != null){
-          onDetect.Invoke(player);
-        }
+      if(player != null){
+        onDetect.Invoke(player);
+      }
     }
 
     // returns if the player was found
