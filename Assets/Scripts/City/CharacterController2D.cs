@@ -47,11 +47,12 @@ namespace Outclaw {
     private bool isGoingUpSlope;
     private bool isJumping;
     private bool isDescending;
+    private Collider2D descendingColliderToIgnore;
     
     private Vector3 deltaMovement;
     private Vector3 velocity;
     
-    private const float kSkinWidthFloatFudgeFactor = 0.001f;
+    private const float skinInset = 0.04f;
     private readonly float slopeLimitTangent = Mathf.Tan(75f * Mathf.Deg2Rad);
     
     public Vector3 Velocity => velocity;
@@ -81,7 +82,7 @@ namespace Outclaw {
       deltaMovement = _deltaMovement;
       isJumping = _isJumping;
       isDescending = _isDescending;
-      if (isJumping) {
+      if (isDescending) {
         Debug.Log("Move is jumping");
         Debug.Log("start delta y" + _deltaMovement.y);
       }
@@ -95,8 +96,8 @@ namespace Outclaw {
       UpdateHorizontal();
       UpdateVertical();
  
-      if (isJumping) {
-        Debug.Log("end delta y" + _deltaMovement.y);
+      if (isDescending) {
+        deltaMovement.y = Math.Max(deltaMovement.y, -.1f);
       }
       deltaMovement.z = 0;
       transform.Translate(deltaMovement, Space.World);
@@ -139,6 +140,7 @@ namespace Outclaw {
       if (collisionState.wasGroundedLastFrame) {
         return true;
       }
+      
       var flushDistance = Mathf.Sign(deltaMovement.x) * (raycastHit.distance - skinWidth);
       transform.Translate(new Vector2(flushDistance, 0));
       return true;
@@ -152,17 +154,19 @@ namespace Outclaw {
           continue;
         }
 
-        var distance = Math.Abs(deltaMovement.x);
+        deltaMovement.x = raycastHit.point.x - ray.x;
+        rayDistance = Mathf.Abs(deltaMovement.x);
         
-        deltaMovement.x = raycastHit.point.x - ray.x + (isGoingRight ? -skinWidth : skinWidth);
-        if (distance < skinWidth + kSkinWidthFloatFudgeFactor) {
-          break;
+        if (isGoingRight) {
+          deltaMovement.x -= skinWidth;
+        } else {
+          deltaMovement.x += skinWidth;
         }
       }
     }
 
     private bool HandleHorizontalSlope(float angle) {
-      if(Mathf.RoundToInt(angle) == 90) {
+      if(Mathf.RoundToInt(angle) == 90 || isDescending) {
         return false;
       }
       
@@ -176,9 +180,9 @@ namespace Outclaw {
       }
       
       
-      deltaMovement.x *= slopeSpeedMultiplier.Evaluate(angle);
+      deltaMovement.x *= slopeSpeedMultiplier.Evaluate(angle); 
       deltaMovement.y = Mathf.Abs(Mathf.Tan(angle * Mathf.Deg2Rad) * deltaMovement.x);
-      
+
       CheckModifiedHorizontalLocation();
       isGoingUpSlope = true;
       collisionState.below = true;
@@ -208,29 +212,52 @@ namespace Outclaw {
       
       CheckVerticalRays(rayDirection, initialRayOrigin, rayDistance, isGoingUp);
     }
-    
+
+    private void CheckDescend(Vector2 ray, Vector2 rayDirection, float rayDistance) {
+      if (!isDescending) {
+        return;
+      }
+      var oneWayPlatformRaycast = Physics2D.Raycast(ray, rayDirection, rayDistance, oneWayPlatformMask);
+      if (oneWayPlatformRaycast) {
+        descendingColliderToIgnore = oneWayPlatformRaycast.collider;
+      }
+    }
+
     private void CheckVerticalRays(Vector2 rayDirection, Vector3 initialRayOrigin, float rayDistance, bool isGoingUp) {
-      var overlaps = Physics2D.OverlapAreaAll(raycastOrigins.topLeft, raycastOrigins.bottomRight, oneWayPlatformMask);
-      var mask = isGoingUp || isDescending ? platformMask & ~oneWayPlatformMask : (int)platformMask;
+      var modifiedTopLeft =
+        raycastOrigins.topLeft + new Vector3(skinInset + deltaMovement.x, -skinInset, 0);
+      var modifiedBottomRight =
+        raycastOrigins.bottomRight + new Vector3(-skinInset + deltaMovement.x, skinInset, 0);
+      
+      var overlaps = Physics2D.OverlapAreaAll(modifiedTopLeft, modifiedBottomRight, oneWayPlatformMask);
+      var mask = isGoingUp ? platformMask & ~oneWayPlatformMask : (int)platformMask;
       for (var i = 0; i < totalVerticalRays; i++) {
         var ray = new Vector2(initialRayOrigin.x + i * horizontalDistanceBetweenRays, initialRayOrigin.y);
         var raycastHit = Physics2D.Raycast(ray, rayDirection, rayDistance, mask);
         if (!raycastHit) {
           continue;
         }
-        
-        if (overlaps.Contains(raycastHit.collider)) {
+
+        CheckDescend(ray, rayDirection, rayDistance);
+        if (!isGoingUp && 
+            (overlaps.Contains(raycastHit.collider) || 
+             raycastHit.collider == descendingColliderToIgnore)) {
           continue;
         }
         
-        var distance = Mathf.Abs(deltaMovement.y);
-        deltaMovement.y = raycastHit.point.y - ray.y + (isGoingUp ? -skinWidth : skinWidth);
-        if(!isGoingUp) {
+        deltaMovement.y = raycastHit.point.y - ray.y;
+        rayDistance = Mathf.Abs(deltaMovement.y);
+        
+        if (isGoingUp) {
+          deltaMovement.y -= skinWidth;
+        } else {
+          deltaMovement.y += skinWidth;
           collisionState.below = true;
+          descendingColliderToIgnore = null;
         }
 
-        if (distance < skinWidth + kSkinWidthFloatFudgeFactor) {
-          break;
+        if (!isGoingUp && deltaMovement.y > 0.00001f) {
+          isGoingUpSlope = true;
         }
       }
     }
@@ -251,6 +278,11 @@ namespace Outclaw {
       }
       var isMovingDownSlope = raycastHit.normal.x * deltaMovement.x > 0;
       if (!isMovingDownSlope) {
+        return;
+      }
+
+      if (isDescending) {
+        deltaMovement.y *= 2f;
         return;
       }
       

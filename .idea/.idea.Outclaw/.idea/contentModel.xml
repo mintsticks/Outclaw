@@ -485,7 +485,10 @@
           <e p="PromptInstaller.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
-          <e p="BackgroundMusic.cs" t="Include" />
+          <e p="Audio" t="Include">
+            <e p="BackgroundMusic.cs" t="Include" />
+            <e p="SoundManager.cs" t="Include" />
+          </e>
           <e p="City" t="Include">
             <e p="CameraBehavior.cs" t="Include" />
             <e p="CharacterController2D.cs" t="Include" />
@@ -508,8 +511,8 @@
             <e p="LocationManager.cs" t="Include" />
             <e p="MovementController.cs" t="Include" />
             <e p="ObjectiveManager.cs" t="Include" />
+            <e p="ObjectiveTransformManager.cs" t="Include" />
             <e p="OneWayPlatform.cs" t="Include" />
-            <e p="PauseMenuManager.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
           <e p="DismissablePrompt.cs" t="Include" />
@@ -527,6 +530,8 @@
               <e p="IHideablePlayer.cs" t="Include" />
             </e>
             <e p="Enemies" t="Include">
+              <e p="Capture.cs" t="Include" />
+              <e p="GuardAim.cs" t="Include" />
               <e p="GuardInstaller.cs" t="Include" />
               <e p="Movement" t="Include">
                 <e p="ChaseMovement.cs" t="Include" />
@@ -554,24 +559,37 @@
           <e p="Interactable.cs" t="Include" />
           <e p="InteractionController.cs" t="Include" />
           <e p="IntroDialogueUI.cs" t="Include" />
+          <e p="ObjectivePointer.cs" t="Include" />
+          <e p="PauseGame.cs" t="Include" />
           <e p="PlayerAnimController.cs" t="Include" />
           <e p="PlayerData.cs" t="Include" />
           <e p="PlayerInput.cs" t="Include" />
-          <e p="SoundManager.cs" t="Include" />
-          <e p="SpriteBundle.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="DismissablePrompts" t="Include">
               <e p="InteractDismissablePrompt.cs" t="Include" />
               <e p="JumpDismissablePrompt.cs" t="Include" />
               <e p="MoveDismissablePrompt.cs" t="Include" />
             </e>
-            <e p="PauseExitItem.cs" t="Include" />
-            <e p="PauseItem.cs" t="Include" />
-            <e p="PauseItemText.cs" t="Include" />
-            <e p="PauseLoadItem.cs" t="Include" />
-            <e p="PauseOptionItem.cs" t="Include" />
-            <e p="PauseResumeItem.cs" t="Include" />
-            <e p="PauseSaveItem.cs" t="Include" />
+            <e p="Heist" t="Include">
+              <e p="CapturedMenu.cs" t="Include" />
+              <e p="ICapturedMenu.cs" t="Include" />
+              <e p="VictoryMenu.cs" t="Include" />
+            </e>
+            <e p="Menus" t="Include">
+              <e p="EventMenuItem.cs" t="Include" />
+              <e p="Menu.cs" t="Include" />
+              <e p="MenuItem.cs" t="Include" />
+              <e p="MenuItemText.cs" t="Include" />
+            </e>
+            <e p="Pause Menu" t="Include">
+              <e p="PauseExitItem.cs" t="Include" />
+              <e p="PauseInstaller.cs" t="Include" />
+              <e p="PauseLoadItem.cs" t="Include" />
+              <e p="PauseMenuManager.cs" t="Include" />
+              <e p="PauseOptionItem.cs" t="Include" />
+              <e p="PauseResumeItem.cs" t="Include" />
+              <e p="PauseSaveItem.cs" t="Include" />
+            </e>
             <e p="PromptAnimationComponent.cs" t="Include" />
             <e p="PromptManager.cs" t="Include" />
             <e p="SceneTransitionManager.cs" t="Include" />
@@ -582,6 +600,7 @@
             <e p="ManagedCoroutine.cs" t="Include" />
             <e p="RandomUtility.cs" t="Include" />
             <e p="SceneSwitcher.cs" t="Include" />
+            <e p="SpriteBundle.cs" t="Include" />
           </e>
         </e>
       </e>

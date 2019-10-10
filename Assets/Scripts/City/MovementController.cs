@@ -97,8 +97,6 @@ namespace Outclaw.City {
       if (playerInput.IsDownPress()) {
         isDescending = true;
       }
-
-      velocity.y = isDescending ? -Mathf.Sqrt( -gravity) : velocity.y;
     }
 
     private void UpdateAnimationState(Vector3 move) {

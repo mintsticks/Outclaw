@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Outclaw;
-using Outclaw.City;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace City {
   public class OneWayPlatform : MonoBehaviour {
@@ -12,22 +8,18 @@ namespace City {
 
     [SerializeField]
     private List<Collider2D> offColliderSet;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private string layerWhenActivated;
     
-    [SerializeField]
-    private Collider2D trigger;
-
-    [SerializeField]
-    private Vector2 onDirection;
-
-    [Inject]
-    private IPlayer player;
-
     public void IntersectTrigger() {
-      var playerDir = player.PlayerTransform.position - trigger.transform.position;
-      var inOnDirection = Vector2.Angle(playerDir, onDirection) < 90;
-      Debug.Log(Vector2.Angle(playerDir, onDirection));
-      UpdateCollidersInSet(onColliderSet, inOnDirection);
-      UpdateCollidersInSet(offColliderSet, !inOnDirection);
+      UpdateCollidersInSet(onColliderSet, true);
+      UpdateCollidersInSet(offColliderSet, false);
+      //TODO: find a better way to serialize the sorting layer instead of using strings
+      spriteRenderer.sortingLayerName = layerWhenActivated;
     }
 
     private void UpdateCollidersInSet(List<Collider2D> colliders, bool enable) {
