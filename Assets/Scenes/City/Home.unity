@@ -611,6 +611,7 @@ Transform:
   - {fileID: 866099012}
   - {fileID: 1943779706}
   - {fileID: 263339716}
+  - {fileID: 1955800586}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1764,7 +1765,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.3907526, y: -0.13686787}
+  m_Offset: {x: 1.1477318, y: -0.13686787}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1775,7 +1776,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12.678068, y: 0.21431997}
+  m_Size: {x: 12.192026, y: 0.21431997}
   m_EdgeRadius: 0
 --- !u!114 &866099011
 MonoBehaviour:
@@ -2430,8 +2431,8 @@ Transform:
   m_Father: {fileID: 1050078543}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 44.409}
---- !u!68 &1264458468
-EdgeCollider2D:
+--- !u!61 &1264458468
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2443,11 +2444,19 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.07828522, y: 0.23177275}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 13.308472, y: 0.5364545}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -6.6319075, y: 0.49680126}
-  - {x: 6.731643, y: 0.50041234}
 --- !u!1 &1371766557
 GameObject:
   m_ObjectHideFlags: 0
@@ -3570,6 +3579,83 @@ MonoBehaviour:
   - {fileID: 455631707}
   spriteRenderer: {fileID: 1520630817}
   layerWhenActivated: BackgroundElement
+--- !u!1 &1955800585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1955800586}
+  - component: {fileID: 1955800588}
+  - component: {fileID: 1955800587}
+  m_Layer: 17
+  m_Name: OneWayTriggerBottom (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1955800586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955800585}
+  m_LocalRotation: {x: -0, y: -0, z: 0.37744805, w: 0.92603076}
+  m_LocalPosition: {x: 5.682, y: 2.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 259792736}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 44.351}
+--- !u!61 &1955800587
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955800585}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.1000569, y: -0.27824464}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.731062, y: 0.05551666}
+  m_EdgeRadius: 0
+--- !u!114 &1955800588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955800585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d3085a8b47471ca09f34f4ac5a6783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onColliderSet:
+  - {fileID: 455631707}
+  offColliderSet:
+  - {fileID: 949724689}
+  - {fileID: 1576073000}
+  spriteRenderer: {fileID: 1520630817}
+  layerWhenActivated: Foreground
 --- !u!1 &2084206784
 GameObject:
   m_ObjectHideFlags: 0

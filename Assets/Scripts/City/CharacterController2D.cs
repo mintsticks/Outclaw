@@ -52,7 +52,7 @@ namespace Outclaw {
     private Vector3 deltaMovement;
     private Vector3 velocity;
     
-    private const float skinInset = 0.04f;
+    private const float skinInset = 0.02f;
     private readonly float slopeLimitTangent = Mathf.Tan(75f * Mathf.Deg2Rad);
     
     public Vector3 Velocity => velocity;
@@ -225,9 +225,9 @@ namespace Outclaw {
 
     private void CheckVerticalRays(Vector2 rayDirection, Vector3 initialRayOrigin, float rayDistance, bool isGoingUp) {
       var modifiedTopLeft =
-        raycastOrigins.topLeft + new Vector3(skinInset + deltaMovement.x, -skinInset, 0);
+        raycastOrigins.topLeft + new Vector3(skinInset, -skinInset, 0);
       var modifiedBottomRight =
-        raycastOrigins.bottomRight + new Vector3(-skinInset + deltaMovement.x, skinInset, 0);
+        raycastOrigins.bottomRight + new Vector3(-skinInset, skinInset, 0);
       
       var overlaps = Physics2D.OverlapAreaAll(modifiedTopLeft, modifiedBottomRight, oneWayPlatformMask);
       var mask = isGoingUp ? platformMask & ~oneWayPlatformMask : (int)platformMask;
