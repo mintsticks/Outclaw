@@ -309,7 +309,7 @@ MonoBehaviour:
       dialogue:
       - {fileID: 4900000, guid: 0e260683154195a4380866babfab26f1, type: 3}
   destinationName: Main
-  locationName: Home
+  entranceType: 2
   enterClip: {fileID: 8300000, guid: 35cadffa6668fea4092735578f9f1c70, type: 3}
 --- !u!61 &164212817
 BoxCollider2D:
@@ -2900,26 +2900,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6668054844795081121, guid: 9b849348fa7d05a46978ab61e717d52d,
-        type: 3}
-      propertyPath: m_SleepingMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2993507601364056143, guid: 9b849348fa7d05a46978ab61e717d52d,
-        type: 3}
-      propertyPath: oneWayTriggerLayer.m_Bits
-      value: 131072
-      objectReference: {fileID: 0}
-    - target: {fileID: 431946581875949236, guid: 9b849348fa7d05a46978ab61e717d52d,
-        type: 3}
-      propertyPath: skinWidth
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 431946581875949236, guid: 9b849348fa7d05a46978ab61e717d52d,
-        type: 3}
-      propertyPath: triggerMask.m_Bits
-      value: 165888
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b849348fa7d05a46978ab61e717d52d, type: 3}

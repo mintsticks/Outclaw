@@ -6,6 +6,12 @@ using UnityEngine;
 using Zenject;
 
 namespace Outclaw.City {
+  public enum EntranceType {
+    CAFE_EXIT,
+    CAFE_ENTRANCE,
+    HOME_EXIT,
+  }
+  
   [Serializable]
   public class LocationDialogueForState {
     public GameStateType gameState;
@@ -23,8 +29,8 @@ namespace Outclaw.City {
     [SerializeField]
     private string destinationName;
 
-    [SerializeField] 
-    private string locationName;
+    [SerializeField]
+    private EntranceType entranceType;
     
     [SerializeField]
     private AudioClip enterClip;
@@ -45,10 +51,12 @@ namespace Outclaw.City {
     private IGameStateManager gameStateManager;
 
     [Inject]
+    private IObjectiveManager objectiveManager;
+    
+    [Inject]
     private IObjectiveTransformManager objectiveTransformManager;
-
-    public string DestinationName => destinationName;
-    public string LocationName => locationName;
+    
+    public EntranceType Type => entranceType;
 
     public void Awake() {
       enterIndicator.Initialize(player.PlayerTransform);
@@ -94,6 +102,7 @@ namespace Outclaw.City {
         soundManager.PlaySFX(enterClip);
       }
       
+      objectiveManager.CompleteEntranceObjective(entranceType);
       sceneTransitionManager.TransitionToScene(destinationName);
     }
 

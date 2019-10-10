@@ -27,10 +27,10 @@ namespace Outclaw {
   
   [Serializable]
   public class Objective {
-    public LocationType location;
     public ObjectiveType objectiveType;
     public List<CatType> conversations;
     public List<ObjectType> objects;
+    public List<EntranceType> entrances;
   }
 
   [Serializable]
@@ -43,6 +43,7 @@ namespace Outclaw {
     NONE,
     CONVERSATION,
     FIND_OBJECTS,
+    USE_ENTRANCE
   }
   
   public enum LocationType {

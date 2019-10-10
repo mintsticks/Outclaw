@@ -82,10 +82,7 @@ namespace Outclaw {
       deltaMovement = _deltaMovement;
       isJumping = _isJumping;
       isDescending = _isDescending;
-      if (isDescending) {
-        Debug.Log("Move is jumping");
-        Debug.Log("start delta y" + _deltaMovement.y);
-      }
+
       ResetStates();
       UpdateRaycastOrigins();
 

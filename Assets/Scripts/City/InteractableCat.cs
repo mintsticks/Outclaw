@@ -108,7 +108,7 @@ namespace Outclaw.City {
     private void CompleteGameStateDialogue(GameStateType state) {
       relationshipManager.RankUpCatInGameState(type, state);
       if (!HasDialogueForCurrentState()) {
-        //Completed dialogues for state
+        //TODO(dwong): add non required game state dialogue
         objectiveManager.CompleteConversationObjective(type);
       }
       InRange();

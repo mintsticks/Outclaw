@@ -15,7 +15,7 @@ namespace Outclaw {
 
     [Inject]
     private ILocationManager locationManager;
-    
+
     public GameStateType CurrentGameState => currentGameStateType;
     
     public void SetGameState(GameStateType state, bool persist = false) {

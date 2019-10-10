@@ -10,9 +10,6 @@ namespace Outclaw.City {
     private Player playerInstance;
 
     [SerializeField]
-    private GameObject objectiveManagerPrefab;
-
-    [SerializeField]
     private GameObject objectiveTransformManagerPrefab;
 
     [SerializeField]
@@ -32,11 +29,6 @@ namespace Outclaw.City {
       Container.Bind<IPlayer>()
         .To<Player>()
         .FromInstance(playerInstance)
-        .AsSingle()
-        .NonLazy();
-      Container.Bind<IObjectiveManager>()
-        .To<ObjectiveManager>()
-        .FromComponentInNewPrefab(objectiveManagerPrefab)
         .AsSingle()
         .NonLazy();
       Container.Bind<IObjectiveTransformManager>()

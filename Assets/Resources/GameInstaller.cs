@@ -1,3 +1,4 @@
+using City;
 using Outclaw.City;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,9 @@ namespace Outclaw {
     [SerializeField]
     private GameObject sceneTransitionManagerPrefab;
 
+    [SerializeField]
+    private GameObject objectiveManagerPrefab;
+    
     [SerializeField]
     private PauseGame pause;
 
@@ -41,6 +45,11 @@ namespace Outclaw {
         .To<SceneTransitionManager>()
         .FromComponentInNewPrefab(sceneTransitionManagerPrefab)
         .AsSingle();
+      Container.Bind<IObjectiveManager>()
+        .To<ObjectiveManager>()
+        .FromComponentInNewPrefab(objectiveManagerPrefab)
+        .AsSingle()
+        .NonLazy();
       Container.BindInterfacesAndSelfTo<RelationshipManager>()
         .AsSingle();
       Container.BindInterfacesAndSelfTo<LocationManager>()

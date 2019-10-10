@@ -10,23 +10,23 @@ namespace City {
   public interface IObjectiveManager {
     void CompleteObjectObjective(ObjectType type);
     void CompleteConversationObjective(CatType type);
+    void CompleteEntranceObjective(EntranceType type);
     Objective CurrentObjective { get; set; }
     void UpdateGameState();
+    void UpdateCurrentObjective();
   }
   
   public class ObjectiveManager : MonoBehaviour, IObjectiveManager {
     [SerializeField]
     private List<GameState> objectiveInfos;
-      
-    private Objective currentObjective;
-    
+
     [Inject]
     private IGameStateManager gameStateManager;
-    
-    private Dictionary<GameStateType, ObjectiveProgress> completedObjectives;
 
-    public Objective CurrentObjective
-    {
+    private Dictionary<GameStateType, ObjectiveProgress> completedObjectives;
+    private Objective currentObjective;
+    
+    public Objective CurrentObjective {
       get => currentObjective;
       set => currentObjective = value;
     }
@@ -35,24 +35,26 @@ namespace City {
       completedObjectives = new Dictionary<GameStateType, ObjectiveProgress>();
     }
 
-    //TODO(ali): Figure out how to do this stuff after GSM.Init but not in Update
-    private void Update() {
-      MaybeAddState(gameStateManager.CurrentGameState);
-      UpdateCurrentObjective();
-    }
-
     public void CompleteObjectObjective(ObjectType type) {
       var currentState = gameStateManager.CurrentGameState;
       MaybeAddState(currentState);
-      completedObjectives[currentState].objects.Add(type);
-      UpdateCurrentObjective();
-      UpdateGameState();
+      CompleteObjective(type, completedObjectives[currentState].objects);
     }
 
     public void CompleteConversationObjective(CatType type) {
       var currentState = gameStateManager.CurrentGameState;
       MaybeAddState(currentState);
-      completedObjectives[currentState].conversations.Add(type);
+      CompleteObjective(type, completedObjectives[currentState].conversations);
+    }
+
+    public void CompleteEntranceObjective(EntranceType type) {
+      var currentState = gameStateManager.CurrentGameState;
+      MaybeAddState(currentState);
+      CompleteObjective(type, completedObjectives[currentState].entrances);
+    }
+
+    private void CompleteObjective<T>(T type, ICollection<T> toAddTo) {
+      toAddTo.Add(type);
       UpdateCurrentObjective();
       UpdateGameState();
     }
@@ -86,16 +88,23 @@ namespace City {
       var progressForState = completedObjectives[gameStateManager.CurrentGameState];
       switch (objective.objectiveType) {
         case ObjectiveType.CONVERSATION:
-          return objective.conversations.All(conv => progressForState.conversations.Contains(conv));
+          return ObjectiveTypeComplete(objective.conversations, progressForState.conversations);
         case ObjectiveType.FIND_OBJECTS:
-          return objective.objects.All(obj => progressForState.objects.Contains(obj));
+          return ObjectiveTypeComplete(objective.objects, progressForState.objects);
+        case ObjectiveType.USE_ENTRANCE:
+          return ObjectiveTypeComplete(objective.entrances, progressForState.entrances);
         default:
           return false;
       }
     }
+
+    private bool ObjectiveTypeComplete<T>(List<T> reqs, List<T> progress) {
+      return reqs.All(progress.Contains);
+    }
     
     public void UpdateCurrentObjective() {
       var currentState = gameStateManager.CurrentGameState;
+      MaybeAddState(currentState);
       var info = objectiveInfos.FirstOrDefault(i => i.currentState == currentState);
       var currentChild = info?.childStates.FirstOrDefault(child => !IsObjectivesComplete(child.objectives));
       currentObjective = currentChild?.objectives.FirstOrDefault(objective => !ObjectiveComplete(objective));
@@ -106,10 +115,12 @@ namespace City {
   public class ObjectiveProgress {
     public List<CatType> conversations;
     public List<ObjectType> objects;
+    public List<EntranceType> entrances;
 
     public ObjectiveProgress() {
       conversations = new List<CatType>();
       objects = new List<ObjectType>();
+      entrances = new List<EntranceType>();
     }
   }
 }

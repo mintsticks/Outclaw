@@ -11,43 +11,41 @@ using Zenject;
 namespace Outclaw {
 
   public class ObjectivePointer : MonoBehaviour {
-
-    [Inject] private IPlayerInput playerInput;
+    [Inject] 
+    private IPlayerInput playerInput;
     
-    [Inject] private IGameStateManager gameStateManager;
+    [Inject] 
+    private IGameStateManager gameStateManager;
 
-    [Inject] private IObjectiveManager objectiveManager;
+    [Inject] 
+    private IObjectiveManager objectiveManager;
 
-    [Inject] private IObjectiveTransformManager objectiveTransformManager;
+    [Inject] 
+    private IObjectiveTransformManager objectiveTransformManager;
     
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
-    private void Awake() {
-      spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-      spriteRenderer.enabled = false;
-    }
-
-    private void Update()
-    {
+    private void Update() {
       EnablePointer();
     }
 
-    private void UpdatePointer()
-    {
+    private void UpdatePointer() {
       var currentObjective = objectiveManager.CurrentObjective;
+      var objectivePosition = GetObjectivePosition(currentObjective);
+      if (objectivePosition == null) {
+        return;
+      }
       
-      //get interactable position
-      Vector3 objectivePosition = GetObjectivePosition(currentObjective);
-      //get things for math
       var parentTransform = transform.parent;
-      var objectiveVector = objectivePosition - parentTransform.position;
-      //rotation
+      var objectiveVector = (Vector3) objectivePosition - parentTransform.position;
       parentTransform.rotation = Quaternion.LookRotation(Vector3.forward, objectiveVector);
+      spriteRenderer.enabled = true;
     }
 
     private void EnablePointer() {
       if (playerInput.IsSense()) {
-        spriteRenderer.enabled = true;
+        objectiveManager.UpdateCurrentObjective();
         UpdatePointer();
         return;
       }
@@ -55,36 +53,14 @@ namespace Outclaw {
       spriteRenderer.enabled = false;
     }
 
-    public LocationType GetCurrentLocationType() {
-      switch (SceneManager.GetActiveScene().name) {
-        case "Home":
-          return LocationType.HOME;
-        case "HomeTest":
-          return LocationType.HOME;
-        case "Main":
-          return LocationType.MAIN;
-        case "CafeBottom":
-          return LocationType.CAFEBOTTOM;
-        case "CafeTop":
-          return LocationType.CAFETOP;
-        case "Park":
-          return LocationType.PARK;
-        default:
-          return LocationType.NONE;
-      }
-    }
-
-    public Vector3 GetObjectivePosition(Objective currentObjective) {
-      //compare location to scene
-      if (currentObjective.location != GetCurrentLocationType()) {
-        return objectiveTransformManager.GetTransformOfLocation(GetCurrentLocationType()).position;
-      }
-
+    private Vector3? GetObjectivePosition(Objective currentObjective) {
       switch (currentObjective.objectiveType) {
         case ObjectiveType.FIND_OBJECTS:
-          return objectiveTransformManager.GetTransformOfObject(currentObjective.objects[0]).position;
+          return objectiveTransformManager.GetTransformOfObject(currentObjective.objects[0])?.position;
         case ObjectiveType.CONVERSATION:
-          return objectiveTransformManager.GetTransformOfCat(currentObjective.conversations[0]).position;
+          return objectiveTransformManager.GetTransformOfCat(currentObjective.conversations[0])?.position;
+        case ObjectiveType.USE_ENTRANCE:
+          return objectiveTransformManager.GetTransformOfEntrance(currentObjective.entrances[0])?.position;
         default:
           return transform.position;
       }
