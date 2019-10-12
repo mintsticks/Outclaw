@@ -13,6 +13,9 @@ namespace Outclaw.City {
     private GameObject objectiveTransformManagerPrefab;
 
     [SerializeField]
+    private GameObject senseManagerPrefab;
+    
+    [SerializeField]
     private PromptSettings promptSettings;
 
     /// <summary>
@@ -34,6 +37,11 @@ namespace Outclaw.City {
       Container.Bind<IObjectiveTransformManager>()
         .To<ObjectiveTransformManager>()
         .FromComponentInNewPrefab(objectiveTransformManagerPrefab)
+        .AsSingle()
+        .NonLazy();
+      Container.Bind<ISenseManager>()
+        .To<SenseManager>()
+        .FromComponentInNewPrefab(senseManagerPrefab)
         .AsSingle()
         .NonLazy();
     }

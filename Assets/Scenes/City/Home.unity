@@ -576,6 +576,12 @@ PrefabInstance:
       propertyPath: playerInstance
       value: 
       objectReference: {fileID: 1494309441}
+    - target: {fileID: 6987993041539253374, guid: 1286c96fdffbf5346b0e24c8efba10a5,
+        type: 3}
+      propertyPath: senseManagerPrefab
+      value: 
+      objectReference: {fileID: 6698711239504880299, guid: b09a1b14efa12964c9b11aeb913a73b8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1286c96fdffbf5346b0e24c8efba10a5, type: 3}
 --- !u!1 &259792735
@@ -1436,6 +1442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 629424006}
   - component: {fileID: 629424007}
+  - component: {fileID: 629424008}
   m_Layer: 0
   m_Name: Floors
   m_TagString: Untagged
@@ -1474,7 +1481,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 417971408e4ba8b4b980d6e063bfd6df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1506,6 +1513,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &629424008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629424005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b680c7c3c74426b2747365db176c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 629424007}
 --- !u!1 &675413704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,6 +2670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1520630816}
   - component: {fileID: 1520630817}
+  - component: {fileID: 1520630818}
   m_Layer: 0
   m_Name: Stairs
   m_TagString: Untagged
@@ -2688,7 +2709,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 417971408e4ba8b4b980d6e063bfd6df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2720,6 +2741,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1520630818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520630815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b680c7c3c74426b2747365db176c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1520630817}
 --- !u!1 &1521908723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2900,6 +2934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194704494914805396, guid: 9b849348fa7d05a46978ab61e717d52d,
+        type: 3}
+      propertyPath: senseManager
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b849348fa7d05a46978ab61e717d52d, type: 3}
@@ -3355,6 +3394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1892362645}
   - component: {fileID: 1892362644}
+  - component: {fileID: 1892362646}
   m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
@@ -3379,7 +3419,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 417971408e4ba8b4b980d6e063bfd6df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3425,6 +3465,19 @@ Transform:
   m_Father: {fileID: 303323796}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1892362646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892362643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b680c7c3c74426b2747365db176c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1892362644}
 --- !u!1 &1907167417
 GameObject:
   m_ObjectHideFlags: 0

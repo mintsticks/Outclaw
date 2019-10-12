@@ -9,8 +9,10 @@ using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Outclaw {
-
   public class ObjectivePointer : MonoBehaviour {
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    
     [Inject] 
     private IPlayerInput playerInput;
     
@@ -22,12 +24,22 @@ namespace Outclaw {
 
     [Inject] 
     private IObjectiveTransformManager objectiveTransformManager;
-    
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
 
+    [Inject]
+    private ISenseManager senseManager;
+
+    private bool isSensing;
+    private IEnumerator currentSenseAnimation;
+    
     private void Update() {
-      EnablePointer();
+      UpdateSenseState();
+      if (isSensing) {
+        objectiveManager.UpdateCurrentObjective();
+        UpdatePointer();
+        return;
+      }
+
+      spriteRenderer.enabled = false;
     }
 
     private void UpdatePointer() {
@@ -43,14 +55,41 @@ namespace Outclaw {
       spriteRenderer.enabled = true;
     }
 
-    private void EnablePointer() {
-      if (playerInput.IsSense()) {
-        objectiveManager.UpdateCurrentObjective();
-        UpdatePointer();
+    private void UpdateSenseState() {
+      UpdateSenseDown();
+      UpdateSenseUp();
+    }
+
+    private void UpdateSenseDown() {
+      if (!playerInput.IsSenseDown()) {
         return;
       }
+      
+      isSensing = true;
+      StopCurrentAnimation();
+      StartNewAnimation(senseManager.GreySprites());
+    }
 
-      spriteRenderer.enabled = false;
+    private void UpdateSenseUp() {
+      if (!playerInput.IsSenseUp()) {
+        return;
+      }
+      
+      isSensing = false;
+      StopCurrentAnimation();
+      StartNewAnimation(senseManager.UngreySprites());
+    }
+
+    private void StopCurrentAnimation() {
+      if (currentSenseAnimation == null) {
+        return;
+      }
+      StopCoroutine(currentSenseAnimation);
+    }
+
+    private void StartNewAnimation(IEnumerator animation) {
+      currentSenseAnimation = animation;
+      StartCoroutine(currentSenseAnimation);
     }
 
     private Vector3? GetObjectivePosition(Objective currentObjective) {

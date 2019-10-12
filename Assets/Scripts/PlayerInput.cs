@@ -19,7 +19,8 @@ namespace Outclaw {
     bool IsInteractDown();
     bool IsAbility();
     bool IsSense();
-
+    bool IsSenseDown();
+    bool IsSenseUp();
     bool IsPauseDown();
   }
 
@@ -78,6 +79,14 @@ namespace Outclaw {
 
     public bool IsSense() {
       return Input.GetKey(KeyCode.F);
+    }
+    
+    public bool IsSenseDown() {
+      return Input.GetKeyDown(KeyCode.F);
+    }
+    
+    public bool IsSenseUp() {
+      return Input.GetKeyUp(KeyCode.F);
     }
 
     public bool IsPauseDown() {
