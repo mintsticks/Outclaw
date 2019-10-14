@@ -930,6 +930,8 @@ MonoBehaviour:
   destinationName: CafeBottom
   entranceType: 1
   enterClip: {fileID: 8300000, guid: 35cadffa6668fea4092735578f9f1c70, type: 3}
+  spriteRenderer: {fileID: 0}
+  particleSystem: {fileID: 0}
 --- !u!61 &834882092
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1430,6 +1432,11 @@ PrefabInstance:
       propertyPath: catDialogues.dialoguesForStates.Array.data[1].catDialogue.Array.data[0].dialogue.Array.data[0]
       value: 
       objectReference: {fileID: 4900000, guid: 9ad29fd42606f431c9004b261f4ca95f, type: 3}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1571954745}
     - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
         type: 3}
       propertyPath: m_Offset.x
@@ -1529,6 +1536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1510802206}
   - component: {fileID: 1510802205}
+  - component: {fileID: 1510802207}
   m_Layer: 0
   m_Name: Layout1_WhiteBackgrounds
   m_TagString: Untagged
@@ -1553,7 +1561,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 417971408e4ba8b4b980d6e063bfd6df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1599,6 +1607,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1510802207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510802204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b680c7c3c74426b2747365db176c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1510802205}
+--- !u!212 &1571954745 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5628549467109088891, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+    type: 3}
+  m_PrefabInstance: {fileID: 1470276421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1636600347
 GameObject:
   m_ObjectHideFlags: 0

@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 0}
-  ambientSound: {fileID: 0}
+  ambientSound: {fileID: 8300000, guid: cb0ce982ca0798b458108b11873ca8ab, type: 3}
 --- !u!114 &6987993041539253374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,9 +84,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInstance: {fileID: 0}
-  objectiveManagerPrefab: {fileID: 1918869736985087394, guid: cf84450335244ca4eac2bac604bc75c7,
-    type: 3}
   objectiveTransformManagerPrefab: {fileID: 1551093554144406942, guid: 853f0934fc56c994c936f97a979beadd,
+    type: 3}
+  senseManagerPrefab: {fileID: 6698711239504880299, guid: b09a1b14efa12964c9b11aeb913a73b8,
     type: 3}
   promptSettings:
     promptPrefabs:
