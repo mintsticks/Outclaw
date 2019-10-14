@@ -8,7 +8,7 @@ namespace Outclaw.Heist {
     private MovementController movementController;
     
     [SerializeField]
-    private InteractionController interactionController;
+    private HeistInteractionController interactionController;
 
     [SerializeField]
     private AudioClip senseSfx;
