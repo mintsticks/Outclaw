@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using City;
-using ModestTree;
+using Outclaw.City;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Outclaw {
@@ -13,12 +9,13 @@ namespace Outclaw {
     [SerializeField]
     private SpriteRenderer spriteRenderer;
     
-    [Inject] 
-    private IPlayerInput playerInput;
-    
-    [Inject] 
-    private IGameStateManager gameStateManager;
+    [SerializeField]
+    private AnimationCurve distanceOpacityCurve =
+      new AnimationCurve(new Keyframe(0, 1f), new Keyframe(10, 0f));
 
+    [SerializeField]
+    private float fadeTime;
+    
     [Inject] 
     private IObjectiveManager objectiveManager;
 
@@ -28,14 +25,16 @@ namespace Outclaw {
     [Inject]
     private ISenseManager senseManager;
 
-    private bool isSensing;
-    private IEnumerator currentSenseAnimation;
+    [Inject]
+    private IPlayer player;
+
+    private IEnumerator pointerAnimation;
     
     private void Update() {
-      UpdateSenseState();
-      if (isSensing) {
+      if (senseManager.IsSensing) {
         objectiveManager.UpdateCurrentObjective();
         UpdatePointer();
+        spriteRenderer.enabled = true;
         return;
       }
 
@@ -43,53 +42,36 @@ namespace Outclaw {
     }
 
     private void UpdatePointer() {
+      var oldColor = spriteRenderer.color;
+      spriteRenderer.color = new Color(oldColor.r, oldColor.g, oldColor.b, GetOpacity());
+    }
+
+    private float GetOpacity() {
       var currentObjective = objectiveManager.CurrentObjective;
       var objectivePosition = GetObjectivePosition(currentObjective);
       if (objectivePosition == null) {
-        return;
+        return 0f;
       }
-      
-      var parentTransform = transform.parent;
-      var objectiveVector = (Vector3) objectivePosition - parentTransform.position;
-      parentTransform.rotation = Quaternion.LookRotation(Vector3.forward, objectiveVector);
-      spriteRenderer.enabled = true;
-    }
 
-    private void UpdateSenseState() {
-      UpdateSenseDown();
-      UpdateSenseUp();
+      var objectiveVector = (Vector3) objectivePosition - player.PlayerTransform.position;
+      return distanceOpacityCurve.Evaluate(objectiveVector.magnitude);
     }
-
-    private void UpdateSenseDown() {
-      if (!playerInput.IsSenseDown()) {
-        return;
+    
+    private IEnumerator FadeInPointer() {
+      for (var i = 0f; i <= fadeTime; i += Time.deltaTime) {
+        var spriteColor = spriteRenderer.color;
+        spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b,i / fadeTime * GetOpacity());
+        yield return null;
       }
-      
-      isSensing = true;
-      StopCurrentAnimation();
-      StartNewAnimation(senseManager.GreySprites());
     }
-
-    private void UpdateSenseUp() {
-      if (!playerInput.IsSenseUp()) {
-        return;
+    
+    private IEnumerator FadeOutPointer() {
+      var startOpacity = spriteRenderer.color.a;
+      for (var i = 0f; i <= fadeTime; i += Time.deltaTime) {
+        var spriteColor = spriteRenderer.color;
+        spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b,(1 - i / fadeTime) * startOpacity);
+        yield return null;
       }
-      
-      isSensing = false;
-      StopCurrentAnimation();
-      StartNewAnimation(senseManager.UngreySprites());
-    }
-
-    private void StopCurrentAnimation() {
-      if (currentSenseAnimation == null) {
-        return;
-      }
-      StopCoroutine(currentSenseAnimation);
-    }
-
-    private void StartNewAnimation(IEnumerator animation) {
-      currentSenseAnimation = animation;
-      StartCoroutine(currentSenseAnimation);
     }
 
     private Vector3? GetObjectivePosition(Objective currentObjective) {

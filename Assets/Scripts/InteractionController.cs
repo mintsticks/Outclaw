@@ -20,7 +20,7 @@ namespace Outclaw {
     [Inject] 
     private IPauseGame pause;
 
-    private Interactable currentInteractable;
+    private CityInteractable currentInteractable;
     
     public void UpdateInteraction() {
       if (pause.IsPaused) {
@@ -33,7 +33,7 @@ namespace Outclaw {
 
     public void HandleEnter(Collider2D other) {
       if ((1 << other.gameObject.layer & interactableLayer) != 0) {
-        currentInteractable = other.GetComponentInParent<Interactable>();
+        currentInteractable = other.GetComponentInParent<CityInteractable>();
         currentInteractable.InRange();
       }
 
@@ -53,7 +53,7 @@ namespace Outclaw {
         return;
       }
       
-      other.GetComponentInParent<Interactable>().ExitRange();
+      other.GetComponentInParent<CityInteractable>().ExitRange();
       currentInteractable = null;
     }
   }

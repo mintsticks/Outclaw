@@ -29,7 +29,7 @@ namespace Outclaw.City {
     public List<SerializedDialogue> objectDialogues;
   }
   
-  public class InteractableObject : MonoBehaviour, Interactable {
+  public class InteractableObject : MonoBehaviour, CityInteractable {
     [SerializeField]
     private Indicator observeIndicator;
 
@@ -41,6 +41,12 @@ namespace Outclaw.City {
     
     [SerializeField]
     private ObjectType objectType;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private ParticleSystem particleSystem;
     
     [Inject]
     private ILocationManager locationManager;
@@ -60,6 +66,9 @@ namespace Outclaw.City {
     [Inject]
     private IPlayer player;
     
+    [Inject]
+    private ISenseManager senseManager;
+    
     private Transform parent;
     private bool created;
 
@@ -68,10 +77,11 @@ namespace Outclaw.City {
     public void Awake() {
       observeIndicator.Initialize(transform);
       objectiveTransformManager.Objects.Add(this);
+      senseManager.RegisterCityInteractable(this);
     }
 
     public void InRange() {
-      if (GetObjectDialogue() == null) {
+      if (!HasInteraction()) {
         return;
       }
       observeIndicator.CreateIndicator();
@@ -83,16 +93,40 @@ namespace Outclaw.City {
     }
 
     public void Interact() {
-      var dialogue = GetObjectDialogue();
-      if (dialogue == null) {
+      if (!HasInteraction()) {
         return;
       }
       
+      var dialogue = GetObjectDialogue();
       StartCoroutine(observeIndicator.FadeOut());
       dialogueManager.SetDialogueType(DialogueType.THOUGHT);
       dialogueManager.SetDialogue(dialogue);
       dialogueManager.SetBubbleParent(player.PlayerTransform);
       dialogueManager.StartDialogue(CompleteInteraction);
+    }
+
+    public bool HasInteraction() {
+      return GetObjectDialogue() != null;
+    }
+
+    public void EnableEffect() {
+      if (particleSystem == null) {
+        return;
+      }
+      particleSystem.gameObject.SetActive(true);
+      particleSystem.Play();
+    }
+
+    public void DisableEffect() {
+      if (particleSystem == null) {
+        return;
+      }
+      particleSystem.Stop();
+      particleSystem.gameObject.SetActive(false);
+    }
+
+    public SpriteRenderer GetSpriteRenderer() {
+      return spriteRenderer;
     }
 
     private TextAsset[] GetObjectDialogue() {

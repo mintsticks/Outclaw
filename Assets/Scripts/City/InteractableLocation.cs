@@ -19,7 +19,7 @@ namespace Outclaw.City {
     public SerializedDialogue locationDialogue;
   }
 
-  public class InteractableLocation : MonoBehaviour, Interactable {
+  public class InteractableLocation : MonoBehaviour, CityInteractable {
     [SerializeField]
     private Indicator enterIndicator;
 
@@ -35,6 +35,12 @@ namespace Outclaw.City {
     [SerializeField]
     private AudioClip enterClip;
 
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private ParticleSystem particleSystem;
+    
     [Inject]
     private IPlayer player;
 
@@ -55,12 +61,16 @@ namespace Outclaw.City {
     
     [Inject]
     private IObjectiveTransformManager objectiveTransformManager;
+
+    [Inject]
+    private ISenseManager senseManager;
     
     public EntranceType Type => entranceType;
 
     public void Awake() {
       enterIndicator.Initialize(player.PlayerTransform);
       objectiveTransformManager.Locations.Add(this);
+      senseManager.RegisterCityInteractable(this);
     }
     
     public void InRange() {
@@ -81,6 +91,30 @@ namespace Outclaw.City {
       EnterLocation();
     }
 
+    public bool HasInteraction() {
+      return true;
+    }
+
+    public void EnableEffect() {
+      if (particleSystem == null) {
+        return;
+      }
+      particleSystem.gameObject.SetActive(true);
+      particleSystem.Play();
+    }
+
+    public void DisableEffect() {
+      if (particleSystem == null) {
+        return;
+      }
+      particleSystem.Stop();
+      particleSystem.gameObject.SetActive(false);
+    }
+
+    public SpriteRenderer GetSpriteRenderer() {
+      return spriteRenderer;
+    }
+    
     private void HandleDialogue(LocationDialogueForState locationDialogueForState) {
       StartCoroutine(enterIndicator.FadeOut());
       dialogueManager.SetDialogueType(DialogueType.THOUGHT);

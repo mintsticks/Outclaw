@@ -7,13 +7,19 @@ using City;
 using Zenject;
 
 namespace Outclaw.City {
-  public class InteractableCat : MonoBehaviour, Interactable {
+  public class InteractableCat : MonoBehaviour, CityInteractable {
     [SerializeField]
     private CatDialogues catDialogues;
     
     [SerializeField]
     private Indicator talkIndicator;
 
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private ParticleSystem particleSystem;
+    
     [SerializeField]
     private CatType type;
     
@@ -38,6 +44,9 @@ namespace Outclaw.City {
     [Inject] 
     private IObjectiveTransformManager objectiveTransformManager;
     
+    [Inject]
+    private ISenseManager senseManager;
+    
     private Transform parent;
     private bool created;
 
@@ -46,10 +55,11 @@ namespace Outclaw.City {
     public void Awake() {
       talkIndicator.Initialize(player.PlayerTransform);
       objectiveTransformManager.Cats.Add(this);
+      senseManager.RegisterCityInteractable(this);
     }
 
     public void InRange() {
-      if (!HasDialogue()) {
+      if (!HasInteraction()) {
         return;
       }
       talkIndicator.CreateIndicator();
@@ -70,9 +80,29 @@ namespace Outclaw.City {
         StartRelationshipDialogue();
       }
     }
-    
-    private bool HasDialogue() {
+
+    public bool HasInteraction() {
       return HasDialogueForCurrentRank() || HasDialogueForCurrentState();
+    }
+
+    public void EnableEffect() {
+      if (particleSystem == null) {
+        return;
+      }
+      particleSystem.gameObject.SetActive(true);
+      particleSystem.Play();
+    }
+
+    public void DisableEffect() {
+      if (particleSystem == null) {
+        return;
+      }
+      particleSystem.Stop();
+      particleSystem.gameObject.SetActive(false);
+    }
+
+    public SpriteRenderer GetSpriteRenderer() {
+      return spriteRenderer;
     }
 
     private bool HasDialogueForCurrentRank() {
