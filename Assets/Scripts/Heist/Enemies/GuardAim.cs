@@ -81,7 +81,6 @@ namespace Outclaw.Heist{
 
       laserLine.enabled = false;
       onAimEnd.Invoke();
-      aimRoutine.Clear();
       yield break;
     }
 

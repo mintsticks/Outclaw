@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6453947431393914414}
   - component: {fileID: -5290417041143948941}
   - component: {fileID: 6268998490353090892}
+  - component: {fileID: 4216675681046690403}
   m_Layer: 2
   m_Name: Vent
   m_TagString: Untagged
@@ -63,5 +64,21 @@ MonoBehaviour:
   ventAbilityType: 2
   ventOffset: {x: 0, y: 0, z: 0}
   destination: {fileID: 0}
-  ventIndicator: {fileID: 0}
+  ventIndicator: {fileID: 4216675681046690403}
   ventSound: {fileID: 8300000, guid: 0e1e1597db32af44e9eab8837a13af98, type: 3}
+--- !u!114 &4216675681046690403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8372688149215242776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6e7808c3c617145b2c2ba283a156ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicatorPrefab: {fileID: 6275377669986958408, guid: 725f79a265c5a3443a6a0e42eb5decda,
+    type: 3}
+  fadeTime: 0
+  offset: {x: 0, y: 0, z: 0}

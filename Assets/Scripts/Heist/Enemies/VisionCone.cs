@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
+using Outclaw.ManagedRoutine;
 
 namespace Outclaw.Heist{
   public class VisionCone : MonoBehaviour
@@ -25,12 +26,31 @@ namespace Outclaw.Heist{
     [SerializeField] private MeshRenderer rend;
     [Inject] private IHideablePlayer player;
 
-    // Update is called once per frame
-    void Update()
-    {
-      GameObject player = TestCone();
-      if(player != null){
-        onDetect.Invoke(player);
+    private ManagedCoroutine coneRoutine;
+
+    void Awake(){
+      coneRoutine = new ManagedCoroutine(this, RunCone);
+    }
+
+    void Start(){
+      coneRoutine.StartCoroutine();
+    }
+
+    void OnEnable(){
+      coneRoutine.StartCoroutine();
+    }
+
+    void OnDisable(){
+      coneRoutine.StopCoroutine();
+    }
+
+    private IEnumerator RunCone(){
+      while(true){
+        GameObject player = TestCone();
+        if(player != null){
+          onDetect.Invoke(player);
+        }
+        yield return new WaitForSeconds(0);
       }
     }
 

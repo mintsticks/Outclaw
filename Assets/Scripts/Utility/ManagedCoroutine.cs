@@ -20,8 +20,10 @@ namespace Outclaw.ManagedRoutine {
       }
     }
 
-    public void Clear(){
+    protected IEnumerator NullOnComplete(IEnumerator enumerator){
+      yield return enumerator;
       routine = null;
+      yield break;
     }
   }
 
@@ -37,7 +39,7 @@ namespace Outclaw.ManagedRoutine {
 
     public void StartCoroutine(){
       if(routine == null){
-        routine = script.StartCoroutine(function());
+        routine = script.StartCoroutine(NullOnComplete(function()));
       }
     }
   }
@@ -54,7 +56,7 @@ namespace Outclaw.ManagedRoutine {
 
     public void StartCoroutine(T arg){
       if(routine == null){
-        routine = script.StartCoroutine(function(arg));
+        routine = script.StartCoroutine(NullOnComplete(function(arg)));
       }
     }
   }
@@ -71,7 +73,7 @@ namespace Outclaw.ManagedRoutine {
 
     public void StartCoroutine(T1 arg1, T2 arg2){
       if(routine == null){
-        routine = script.StartCoroutine(function(arg1, arg2));
+        routine = script.StartCoroutine(NullOnComplete(function(arg1, arg2)));
       }
     }
   }
@@ -88,7 +90,7 @@ namespace Outclaw.ManagedRoutine {
 
     public void StartCoroutine(T1 arg1, T2 arg2, T3 arg3){
       if(routine == null){
-        routine = script.StartCoroutine(function(arg1, arg2, arg3));
+        routine = script.StartCoroutine(NullOnComplete(function(arg1, arg2, arg3)));
       }
     }
   }
