@@ -2,14 +2,54 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Heist/HeistInteractionController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Heist/HeistInteractionController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CameraExt.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/LineHelperExt.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Boop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Boop.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Bubble.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Bubble.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/BubbleTail.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/BubbleTail.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Carat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Carat.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/EnterIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/EnterIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Floors.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Floors.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Heart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Heart.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/HomeBack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/HomeBack.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/ObserveIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/ObserveIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/PauseArc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/PauseArc.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sense.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sense.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sign.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sign.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/SpeakCatIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/SpeakCatIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Stairs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Stairs.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/WhiteBubble.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/WhiteBubble.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/arrow.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/outclaw_interactables.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/outclaw_interactables.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/PauseBack.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/PauseBack.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/City/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/City/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Home.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Home.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/Park.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/Park.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/InteractableObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/InteractableObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveTransformManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveTransformManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/SenseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/SenseManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectivePointer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectivePointer.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +76,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Resources/CityInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/SenseAbility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/Enemies/GuardInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraExt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/Vent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Player/PlayerInputHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Installers/PlayerInstaller.cs" root0="FORCE_HIGHLIGHTING" />
@@ -55,6 +96,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/CharacterController2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractionController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/GroundHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LineHelperExt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/PromptAnimationComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/OneWayPlatform.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Util/ReflectionInfoTypeInfoConverter.cs" root0="FORCE_HIGHLIGHTING" />
@@ -96,6 +138,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectivePointer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/City/Indicator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PauseGame.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/Park.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Player/PlayerInputState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Player/PlayerMoveHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/City/CafeBottom.unity" root0="FORCE_HIGHLIGHTING" />
@@ -106,8 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Resources/ExploreInstaller.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/City/StateManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoveDismissablePrompt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/JumpDismissablePrompt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/InteractDismissablePrompt.cs" />
@@ -136,7 +177,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/City/MovementController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/OneWayPlatform.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameState.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveTransformManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameStateManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" />
@@ -149,14 +189,17 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/CityInteractable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/InteractionController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/City/CharacterController2D.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Heist/HeistInteractionController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CameraExt.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LineHelperExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableObject.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/City/CharacterController2D.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveTransformManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/SenseManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectivePointer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Heist/HeistInteractionController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" />
       </list>
     </option>
   </component>
@@ -168,7 +211,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="do_not_show_solution_notification" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="SolutionBuilderGeneralOptionsPageId" />
+    <property name="settings.editor.selected.configurable" value="CodeLensConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -222,7 +265,8 @@
       <workItem from="1570037024729" duration="67863000" />
       <workItem from="1570477378345" duration="840000" />
       <workItem from="1570484257667" duration="49559000" />
-      <workItem from="1570997604718" duration="14741000" />
+      <workItem from="1570997604718" duration="16713000" />
+      <workItem from="1571109128723" duration="15747000" />
     </task>
     <servers />
   </component>

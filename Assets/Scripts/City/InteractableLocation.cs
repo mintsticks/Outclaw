@@ -39,6 +39,9 @@ namespace Outclaw.City {
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
+    private Transform locationPosition;
+    
+    [SerializeField]
     private ParticleSystem particleSystem;
     
     [Inject]
@@ -66,7 +69,8 @@ namespace Outclaw.City {
     private ISenseManager senseManager;
     
     public EntranceType Type => entranceType;
-
+    public Transform LocationPosition => locationPosition != null ? locationPosition : transform;
+    
     public void Awake() {
       enterIndicator.Initialize(player.PlayerTransform);
       objectiveTransformManager.Locations.Add(this);

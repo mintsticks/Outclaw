@@ -7,6 +7,8 @@ using Zenject;
 namespace City {
   public interface ISenseManager {
     bool IsSensing { get; }
+    bool IsSenseDown { get; }
+    bool IsSenseUp { get; }
     void RegisterSpriteToGrey(SpriteRenderer spriteRenderer);
     void RegisterCityInteractable(CityInteractable cityInteractable);
   }
@@ -28,7 +30,12 @@ namespace City {
     private HashSet<CityInteractable> currentInteractablesToGrey;
     private IEnumerator currentSenseAnimation;
     private bool isSensing;
+    private bool isSenseDown;
+    private bool isSenseUp;
+    
     public bool IsSensing => isSensing;
+    public bool IsSenseDown => isSenseDown;
+    public bool IsSenseUp => isSenseUp;
     
     private void Update() {
       UpdateSenseState();
@@ -41,19 +48,23 @@ namespace City {
 
     private void UpdateSenseDown() {
       if (!playerInput.IsSenseDown()) {
+        isSenseDown = false;
         return;
       }
       
       isSensing = true;
+      isSenseDown = true;
       StopCurrentAnimation();
       StartNewAnimation(ActivateSense());
     }
 
     private void UpdateSenseUp() {
       if (!playerInput.IsSenseUp()) {
+        isSenseUp = false;
         return;
       }
-      
+
+      isSenseUp = true;
       isSensing = false;
       StopCurrentAnimation();
       StartNewAnimation(DeactivateSense());
@@ -79,14 +90,14 @@ namespace City {
       interactables.Add(cityInteractable);
     }
 
-    public IEnumerator ActivateSense() {
+    private IEnumerator ActivateSense() {
       UpdateInteractablesOnActivate();
       var startEffectAmount = spritesToGrey[0].material.GetFloat(effectName);
       var changeEffectAmount = 1 - startEffectAmount;
       yield return UpdateElementEffects(startEffectAmount, changeEffectAmount);
     }
 
-    public IEnumerator DeactivateSense() {
+    private IEnumerator DeactivateSense() {
       foreach (var interactable in interactables) {
         interactable.DisableEffect();
       }

@@ -14,7 +14,6 @@ namespace City {
     List<InteractableObject> Objects { get; }
     List<InteractableCat> Cats { get; }
     List<InteractableLocation> Locations { get; }
-    //Use different location type thing?
   }
   
   public class ObjectiveTransformManager : MonoBehaviour, IObjectiveTransformManager {
@@ -33,15 +32,15 @@ namespace City {
     }
     
     public Transform GetTransformOfObject(ObjectType type) {
-      return objects.FirstOrDefault(i => i.ObjectType == type)?.transform;
+      return objects.FirstOrDefault(i => i.ObjectType == type)?.ObjectPosition;
     }
 
     public Transform GetTransformOfCat(CatType type) {
-      return cats.FirstOrDefault(i => i.CatType == type)?.transform;
+      return cats.FirstOrDefault(i => i.CatType == type)?.CatPosition;
     }
     
     public Transform GetTransformOfEntrance(EntranceType type) {
-      return locations.FirstOrDefault(i => i.Type == type)?.transform;
+      return locations.FirstOrDefault(i => i.Type == type)?.LocationPosition;
     }
   }
 }

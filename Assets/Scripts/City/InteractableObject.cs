@@ -46,6 +46,9 @@ namespace Outclaw.City {
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
+    private Transform objectPosition;
+    
+    [SerializeField]
     private ParticleSystem particleSystem;
     
     [Inject]
@@ -79,6 +82,8 @@ namespace Outclaw.City {
       objectiveTransformManager.Objects.Add(this);
       senseManager.RegisterCityInteractable(this);
     }
+
+    public Transform ObjectPosition => objectPosition != null ? objectPosition : transform;
 
     public void InRange() {
       if (!HasInteraction()) {

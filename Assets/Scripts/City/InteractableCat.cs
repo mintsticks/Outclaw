@@ -18,6 +18,9 @@ namespace Outclaw.City {
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
+    private Transform catPosition;
+    
+    [SerializeField]
     private ParticleSystem particleSystem;
     
     [SerializeField]
@@ -51,6 +54,7 @@ namespace Outclaw.City {
     private bool created;
 
     public CatType CatType => type;
+    public Transform CatPosition => catPosition != null ? catPosition : transform;
     
     public void Awake() {
       talkIndicator.Initialize(player.PlayerTransform);

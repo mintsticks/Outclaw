@@ -4343,6 +4343,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223067251435009948, guid: d8d768e02244f384bab93691735c8b74,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.4999237
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8d768e02244f384bab93691735c8b74, type: 3}
 --- !u!1001 &702246801
@@ -4666,6 +4671,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &870686545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8274474056453485319, guid: 781c4c76b1cbba544922f33235329f2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1367541925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &870686547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870686545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bacb3127b544bbb42ae736c72ccd62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 6144
+  eventSequenceLayer:
+    serializedVersion: 2
+    m_Bits: 32768
+  oneWayTriggerLayer:
+    serializedVersion: 2
+    m_Bits: 131072
+--- !u!114 &870686548 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 424397032227657245, guid: 781c4c76b1cbba544922f33235329f2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1367541925}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870686545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bacb3127b544bbb42ae736c72ccd62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &912711007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4879,7 +4923,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1199271645
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d90aefe8957df2a44be5ac2a3fd45054, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5132,7 +5176,13 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8c4ec5df2f1434243956270ac2470404, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 8274474055835981981, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: interactionController
+      value: 
+      objectReference: {fileID: 870686548}
+    m_RemovedComponents:
+    - {fileID: 8274474056453485313, guid: 781c4c76b1cbba544922f33235329f2e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 781c4c76b1cbba544922f33235329f2e, type: 3}
 --- !u!1 &1367541926 stripped
 GameObject:
