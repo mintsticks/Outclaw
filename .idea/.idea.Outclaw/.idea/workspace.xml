@@ -2,23 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Home.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Home.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/HomeTest.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/HomeTest.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/CatDialogue/AkioFoundHana1.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/CatDialogue/AkioFoundHana1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/IObjectiveManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/IObjectiveManager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Cafe.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Cafe.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Heist.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Heist/Heist.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Heist/Heist.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Heist/Heist.unity.orig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Heist/Heist.unity.orig.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Heist/Jail.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Heist/Jail.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Heist/Tutorial.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Heist/Tutorial.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectivePointer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectivePointer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SceneTransitionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SceneTransitionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameState.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +102,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/Park.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Player/PlayerInputState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Player/PlayerMoveHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scenes/City/CafeBottom.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerAnimController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/HeistUIManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Player/PlayerGui.cs" root0="FORCE_HIGHLIGHTING" />
@@ -145,7 +135,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/City/Dialogue/CatDialogueUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/MovementController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/OneWayPlatform.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameState.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameStateManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" />
@@ -164,12 +153,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LineHelperExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableObject.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/ObjectiveTransformManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/SenseManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/SceneTransitionManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectivePointer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameState.cs" />
       </list>
     </option>
   </component>
@@ -236,7 +226,7 @@
       <workItem from="1570477378345" duration="840000" />
       <workItem from="1570484257667" duration="49559000" />
       <workItem from="1570997604718" duration="16713000" />
-      <workItem from="1571109128723" duration="17886000" />
+      <workItem from="1571109128723" duration="22081000" />
     </task>
     <servers />
   </component>

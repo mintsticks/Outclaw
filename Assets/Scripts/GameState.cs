@@ -11,12 +11,13 @@ namespace Outclaw {
   }
 
   public enum GameStateType {
-    NONE,
-    TUTORIAL,
-    FOUND_KEY,
-    FIRST_TIME_CITY,
-    FOUND_HANA,
-    FOUND_AKI
+    NONE = 0,
+    TUTORIAL = 1,
+    FOUND_KEY = 2,
+    FIRST_TIME_CITY = 3,
+    FOUND_HANA = 4,
+    FOUND_AKI = 5,
+    FOUND_COLLAR = 6
   }
 
   [Serializable]

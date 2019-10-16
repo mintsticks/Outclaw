@@ -88,3 +88,12 @@ MonoBehaviour:
         objects: 
         entrances: 00000000
       persistObjectiveState: 0
+  - currentState: 5
+    childStates:
+    - nextState: 6
+      objectives:
+      - objectiveType: 3
+        conversations: 01000000
+        objects: 
+        entrances: 04000000
+      persistObjectiveState: 0
