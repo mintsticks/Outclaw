@@ -101,7 +101,8 @@ namespace Outclaw.City {
 
     private void UpdateAnimationState(Vector3 move) {
       ac.SetHorizontalVelocity(Mathf.Abs(move.x));
-      ac.SetVerticalVelocity(move.y);
+      ac.SetVerticalVelocity(controller.isGrounded ? 0 : move.y);
+      ac.SetIsLanding(controller.IsNearGround(Mathf.Abs(gravity)));
     }
   }
 }
