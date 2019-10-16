@@ -13,6 +13,7 @@ namespace Outclaw {
   public enum GameStateType {
     NONE,
     TUTORIAL,
+    FOUND_KEY,
     FIRST_TIME_CITY,
     FOUND_HANA,
     FOUND_AKI

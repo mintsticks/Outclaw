@@ -66,11 +66,18 @@ namespace Outclaw {
       CheckSenseUp();
     }
 
+    private bool HasObjectiveInScene() {
+      objectiveManager.UpdateCurrentObjective();
+      Debug.Log((objectiveManager.CurrentObjective));
+      return GetObjectivePosition(objectiveManager.CurrentObjective) != null;
+    }
+    
     private void CheckSenseDown() {
-      if (!senseManager.IsSenseDown) {
+      if (!senseManager.IsSenseDown || !HasObjectiveInScene()) {
         return;
       }
-      objectiveManager.UpdateCurrentObjective();
+      
+      
       StopCurrentAnimation();
       StartNewAnimation(FadeIn());
     }
@@ -84,7 +91,7 @@ namespace Outclaw {
     }
 
     private void CheckSenseUp() {
-      if (!senseManager.IsSenseUp) {
+      if (!senseManager.IsSenseUp || !HasObjectiveInScene()) {
         return;
       }
 

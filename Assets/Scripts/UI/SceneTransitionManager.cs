@@ -36,24 +36,20 @@ namespace Outclaw {
       yield return FadeIn();
       
       loadingOp = SceneManager.LoadSceneAsync(scene);
-      //StartCoroutine(DelayTransition());
       yield return loadingOp;
       
       yield return FadeOut();
       isSwitching = false;
     }
-
-    private IEnumerator DelayTransition() {
-      loadingOp.allowSceneActivation = false;
-      yield return new WaitForSecondsRealtime(waitTime);
-      loadingOp.allowSceneActivation = true;
-    }
+    
     
     private IEnumerator FadeIn() {
       for (var i = 0f; i <= fadeTime; i += Time.unscaledDeltaTime) {
         content.alpha = i / fadeTime;
         yield return null;
       }
+
+      content.alpha = 1f;
     }
 
     private IEnumerator FadeOut() {
@@ -61,6 +57,8 @@ namespace Outclaw {
         content.alpha = i / fadeTime;
         yield return null;
       }
+
+      content.alpha = 0f;
     }
   }
 }

@@ -61,14 +61,6 @@ MonoBehaviour:
         conversations: 
         objects: 
         entrances: 02000000
-      - objectiveType: 3
-        conversations: 
-        objects: 
-        entrances: 01000000
-      - objectiveType: 1
-        conversations: 02000000
-        objects: 
-        entrances: 
       persistObjectiveState: 0
   - currentState: 3
     childStates:
@@ -77,9 +69,22 @@ MonoBehaviour:
       - objectiveType: 3
         conversations: 
         objects: 
+        entrances: 01000000
+      - objectiveType: 1
+        conversations: 02000000
+        objects: 
+        entrances: 
+      - objectiveType: 3
+        conversations: 
+        objects: 
         entrances: 00000000
+      persistObjectiveState: 0
+  - currentState: 4
+    childStates:
+    - nextState: 5
+      objectives:
       - objectiveType: 1
         conversations: 01000000
         objects: 
-        entrances: 
+        entrances: 00000000
       persistObjectiveState: 0
