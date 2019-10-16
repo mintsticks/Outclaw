@@ -25,32 +25,14 @@ namespace Outclaw.Heist{
     [SerializeField] private MeshFilter filter;
     [SerializeField] private MeshRenderer rend;
     [Inject] private IHideablePlayer player;
+    [Inject] private IPauseGame pause;
 
-    private ManagedCoroutine coneRoutine;
-
-    void Awake(){
-      coneRoutine = new ManagedCoroutine(this, RunCone);
-    }
-
-    void Start(){
-      coneRoutine.StartCoroutine();
-    }
-
-    void OnEnable(){
-      coneRoutine.StartCoroutine();
-    }
-
-    void OnDisable(){
-      coneRoutine.StopCoroutine();
-    }
-
-    private IEnumerator RunCone(){
-      while(true){
+    void Update(){
+      if(!pause.IsPaused){
         GameObject player = TestCone();
         if(player != null){
           onDetect.Invoke(player);
         }
-        yield return new WaitForSeconds(0);
       }
     }
 

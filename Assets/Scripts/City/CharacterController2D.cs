@@ -39,6 +39,10 @@ namespace Outclaw {
     [SerializeField]
     private BoxCollider2D boxCollider;
 
+    [SerializeField]
+    [Tooltip("Time before hitting ground to play landing")]
+    private float landingTime = .1f;
+
     private CharacterCollisionState2D collisionState;
     private CharacterRaycastOrigins raycastOrigins;
     private float verticalDistanceBetweenRays;
@@ -57,6 +61,21 @@ namespace Outclaw {
     
     public Vector3 Velocity => velocity;
     public bool isGrounded => collisionState.below;
+
+    public bool IsNearGround(float gravity){
+      float dist = (landingTime * Mathf.Abs(velocity.y)) + (.5f * gravity * landingTime * landingTime);
+
+      Vector3 origin = raycastOrigins.bottomLeft;
+      for (var i = 0; i < totalVerticalRays; i++) {
+        Vector3 ray = new Vector2(origin.x + i * horizontalDistanceBetweenRays, origin.y);
+        RaycastHit2D hit = Physics2D.Raycast(ray,
+          Vector3.down, dist, platformMask | oneWayPlatformMask);
+
+        if(hit.collider != null)
+          return true;
+      }
+      return false;
+    }
     
     private void Awake() {
       SetUpMasks();

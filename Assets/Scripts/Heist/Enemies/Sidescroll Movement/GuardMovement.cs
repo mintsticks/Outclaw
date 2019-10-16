@@ -10,12 +10,13 @@ namespace Outclaw.Heist{
 
     [SerializeField] private LayerMask blurLayer;
     [SerializeField] private VisionCone visionCone;
+    [SerializeField] private Transform visionConeTransform;
     [SerializeField] private float speed = 1;
 
-    public Quaternion VisionRotation { get => visionCone.transform.rotation; }
+    public Quaternion VisionRotation { get => visionConeTransform.rotation; }
 
     public void UpdateVisionCone(Vector3 facingDir){
-      visionCone.gameObject.transform.rotation = Quaternion.LookRotation(
+      visionConeTransform.rotation = Quaternion.LookRotation(
         Vector3.forward, facingDir);
     }
 
@@ -29,11 +30,11 @@ namespace Outclaw.Heist{
     }
 
     public IEnumerator TurnHead(Quaternion destination, float duration){
-      Quaternion start = visionCone.transform.rotation;
+      Quaternion start = visionConeTransform.rotation;
       float totalTime = 0;
       while(totalTime < duration){
         totalTime += Time.deltaTime;
-        visionCone.transform.rotation = Quaternion.Lerp(start, destination, 
+        visionConeTransform.rotation = Quaternion.Lerp(start, destination, 
           totalTime / duration);
         yield return null;
       }

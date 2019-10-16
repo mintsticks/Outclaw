@@ -124,6 +124,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   visionCone: {fileID: 2305749755026720540}
+  visionConeTransform: {fileID: 2789981768891533573}
   speed: 5.5
 --- !u!114 &2789981769824438526
 MonoBehaviour:
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c09ec187721cec4aafc7ea7b71d5299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLaserTurnSpeed: 30
+  maxLaserTurnSpeed: 60
   maxShootDist: 10
   hitLayers:
     serializedVersion: 2
@@ -859,6 +860,12 @@ PrefabInstance:
 --- !u!1 &2789981768891533572 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5947694956745935790, guid: 6d2a6f83577c0e048a2a685caa01a3ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 8372882947935683242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2789981768891533573 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5947694956745935791, guid: 6d2a6f83577c0e048a2a685caa01a3ac,
     type: 3}
   m_PrefabInstance: {fileID: 8372882947935683242}
   m_PrefabAsset: {fileID: 0}

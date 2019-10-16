@@ -14,4 +14,8 @@ public class PlayerAnimController : MonoBehaviour
   public void SetVerticalVelocity(float val){
     anim.SetFloat("jumpSpeed", val);
   }
+
+  public void SetIsLanding(bool val){
+    anim.SetBool("isLanding", val);
+  }
 }
