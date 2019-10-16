@@ -84,7 +84,7 @@ namespace Yarn.Unity {
     }
 
     public TextAsset[] SourceText {
-      get => sourceText;
+      get { return sourceText; }
       set {
         sourceText = value;
         variableStorage.ResetToDefaults();
