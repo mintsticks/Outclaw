@@ -111,7 +111,11 @@ namespace Outclaw {
       
       UpdateHorizontal();
       UpdateVertical();
- 
+
+      if (Math.Abs(deltaMovement.y) < .00001f) {
+        collisionState.below = true;
+      }
+      
       if (isDescending) {
         deltaMovement.y = Math.Max(deltaMovement.y, -.1f);
       }
@@ -249,6 +253,7 @@ namespace Outclaw {
       var mask = isGoingUp ? platformMask & ~oneWayPlatformMask : (int)platformMask;
       for (var i = 0; i < totalVerticalRays; i++) {
         var ray = new Vector2(initialRayOrigin.x + i * horizontalDistanceBetweenRays, initialRayOrigin.y);
+        Debug.DrawRay(ray, rayDirection, Color.blue);
         var raycastHit = Physics2D.Raycast(ray, rayDirection, rayDistance, mask);
         if (!raycastHit) {
           continue;
@@ -263,7 +268,6 @@ namespace Outclaw {
         
         deltaMovement.y = raycastHit.point.y - ray.y;
         rayDistance = Mathf.Abs(deltaMovement.y);
-        
         if (isGoingUp) {
           deltaMovement.y -= skinWidth;
         } else {
