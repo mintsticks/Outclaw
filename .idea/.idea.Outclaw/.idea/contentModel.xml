@@ -15,6 +15,7 @@
         <e p="Materials" t="Include">
           <e p="Blur.shader" t="Include" />
           <e p="Grayscale.shader" t="Include" />
+          <e p="MyDiffuse.shader" t="Include" />
         </e>
         <e p="Plugins" t="Include">
           <e p="YarnSpinner" t="Include">
@@ -541,6 +542,7 @@
               <e p="CameraMovement.cs" t="Include" />
               <e p="Capture.cs" t="Include" />
               <e p="GuardAim.cs" t="Include" />
+              <e p="GuardAnimationController.cs" t="Include" />
               <e p="GuardInstaller.cs" t="Include" />
               <e p="Movement" t="Include">
                 <e p="ChaseMovement.cs" t="Include" />
@@ -619,6 +621,9 @@
       <e p="Outclaw.sln" t="IncludeFlat" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Zenject-Editor.csproj" t="IncludeRecursive" />
+      <e p="Zenject-TestFramework.csproj" t="IncludeRecursive" />
+      <e p="Zenject.csproj" t="IncludeRecursive" />
     </e>
   </component>
 </project>
