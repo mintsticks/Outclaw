@@ -12,6 +12,12 @@ namespace Outclaw.Heist{
     [SerializeField] private VisionCone visionCone;
     [SerializeField] private Transform visionConeTransform;
     [SerializeField] private float speed = 1;
+    [SerializeField] [Range(0, 1)] 
+    [Tooltip("As a fraction of the speed")]
+    private float minSpeedToTurn = .1f;
+
+    [Header("Component Links")]
+    [SerializeField] private GuardAnimationController anim;
 
     public Quaternion VisionRotation { get => visionConeTransform.rotation; }
 
@@ -22,7 +28,10 @@ namespace Outclaw.Heist{
 
     public void MoveTowards(Vector3 position, float dt){
       Vector3 moveDir = Vector3.Normalize(position - transform.position);
-      transform.position += moveDir * speed * dt;
+      Vector3 velocity = moveDir * speed;
+      transform.position += velocity * dt;
+      anim.SetXSpeed((Mathf.Abs(velocity.x) < speed * minSpeedToTurn) ?
+        0 : velocity.x);
     }
 
     private bool ContainsLayer(LayerMask layers, int test){
