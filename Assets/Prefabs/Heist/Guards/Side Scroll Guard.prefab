@@ -602,12 +602,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5004973054940129296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1506042843
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5004973054940129296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
-      propertyPath: m_SortingLayer
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 215591200003001309, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
@@ -640,8 +640,7 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5004973054940129296, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d, type: 3}
 --- !u!1 &2613757592767905437 stripped
 GameObject:
@@ -853,6 +852,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 508366511322838279, guid: 6d2a6f83577c0e048a2a685caa01a3ac,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d2a6f83577c0e048a2a685caa01a3ac, type: 3}
