@@ -8,7 +8,7 @@ namespace Outclaw.Heist{
     [SerializeField] private Animator anim;
     private float xScale;
 
-    void Start(){
+    void Awake(){
       xScale = transform.localScale.x;
     }
 

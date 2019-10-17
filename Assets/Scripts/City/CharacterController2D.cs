@@ -69,9 +69,11 @@ namespace Outclaw {
       for (var i = 0; i < totalVerticalRays; i++) {
         Vector3 ray = new Vector2(origin.x + i * horizontalDistanceBetweenRays, origin.y);
         RaycastHit2D hit = Physics2D.Raycast(ray,
-          Vector3.down, dist, platformMask | oneWayPlatformMask);
+          Vector3.down, dist, platformMask | (isDescending ? 0 : (int)oneWayPlatformMask));
 
-        if(hit.collider != null)
+        Debug.DrawRay(ray, Vector3.down * dist, Color.black);
+
+        if(hit.collider != null && (hit.distance > skinWidth || Mathf.Approximately(hit.distance, skinWidth)))
           return true;
       }
       return false;
