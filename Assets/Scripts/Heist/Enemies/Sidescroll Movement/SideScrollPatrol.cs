@@ -20,6 +20,8 @@ namespace Outclaw.Heist{
     [Tooltip("Fraction of the total distance to start at.")]
     [SerializeField] [Range(0, 1)] private float startPosition;
     [SerializeField] private bool movingLeft;
+    [Tooltip("Angle below forward to rotate vision.")]
+    [SerializeField] [Range(0, 360)] private float visionAngle = 30;
 
     [Header("Turning")]
     [SerializeField] [Range(0, 360)] private float lookAngle = 30;
@@ -31,6 +33,10 @@ namespace Outclaw.Heist{
     private ManagedCoroutine patrolRoutine = null;
 
     public LineRenderer Path { get => path; }
+
+    public GuardMovement MovementComponent {
+      get => movement; 
+    }
     public LayerMask GroundLayer { get => groundLayer; }
 
     public void Start(){
@@ -45,10 +51,15 @@ namespace Outclaw.Heist{
         return;
       }
 
+      // set to correct target point
       targetIdx = SnapToStart();
       if(path.positionCount > 1 && !movingLeft){
         ++targetIdx;
       }
+
+      // set default vision
+      ComputeVisionDirection(out Vector3 leftDir, out Vector3 rightDir);
+      movement.UpdateVisionCone(movingLeft ? leftDir : rightDir);
 
       patrolRoutine = new ManagedCoroutine(this, Patrol);
     }
@@ -66,7 +77,7 @@ namespace Outclaw.Heist{
 
       // nothing to compute
       if(path.positionCount == 1){
-        transform.position = path.GetPosition(0);
+        movement.transform.position = path.GetPosition(0);
         return 0;
       }
 
@@ -91,7 +102,7 @@ namespace Outclaw.Heist{
 
       // move to the starting position
       float distFromLeft = startDist - distanceBetween[leftIdx];
-      transform.position = (Vector3.Normalize(path.GetPosition(leftIdx + 1) 
+      movement.transform.position = (Vector3.Normalize(path.GetPosition(leftIdx + 1) 
         - path.GetPosition(leftIdx)) * distFromLeft) + path.GetPosition(leftIdx);
       return leftIdx;
 
@@ -109,14 +120,14 @@ namespace Outclaw.Heist{
       if(movingLeft){
         --targetIdx;
         if(targetIdx < 0){
-          ++targetIdx;
+          targetIdx += 2;
           movingLeft = false;
         }
       }
       else{
         ++targetIdx;
         if(targetIdx >= path.positionCount){
-          --targetIdx;
+          targetIdx -= 2;
           movingLeft = true;
         }
       }
@@ -125,35 +136,41 @@ namespace Outclaw.Heist{
     }
 
     private IEnumerator Patrol(){
-      movement.UpdateVisionCone(movingLeft ? Vector3.left : Vector3.right);
+      ComputeVisionDirection(out Vector3 leftDir, out Vector3 rightDir);
+      movement.UpdateVisionCone(movingLeft ? leftDir : rightDir);
       while(true){
-        if((transform.position - path.GetPosition(targetIdx)).magnitude < arrivalTolerance){
+        if((movement.transform.position - path.GetPosition(targetIdx)).magnitude < arrivalTolerance){
           if(NextPoint()){
-            yield return LookAround();
+            yield return LookAround(leftDir, rightDir);
           }
         }
         movement.MoveTowards(path.GetPosition(targetIdx), Time.deltaTime);
-        movement.UpdateVisionCone(movingLeft ? Vector3.left : Vector3.right);
+        movement.UpdateVisionCone(movingLeft ? leftDir : rightDir);
         yield return new WaitForSeconds(0);
       }
     }
 
-    private IEnumerator LookAround(){
-      // inverted because it was toggle before this call
-      Vector3 centerDir = !movingLeft ? Vector3.left : Vector3.right;
-      Quaternion centerRot = Quaternion.LookRotation(Vector3.forward, centerDir);
-      Quaternion left = centerRot * Quaternion.AngleAxis(lookAngle, Vector3.forward);
-      Quaternion right = centerRot * Quaternion.AngleAxis(-lookAngle, Vector3.forward);
+    private void ComputeVisionDirection(out Vector3 leftDir, 
+        out Vector3 rightDir){
 
-      yield return movement.TurnHead(movingLeft ? left : right, headTurnTime);
-      yield return new WaitForSeconds(lookPause);
-      yield return movement.TurnHead(movingLeft ? right : left, 2 * headTurnTime);
-      yield return new WaitForSeconds(lookPause);
-      yield return movement.TurnHead(centerRot, headTurnTime);
+      leftDir = Quaternion.AngleAxis(visionAngle, Vector3.forward) 
+        * Vector3.left;
+      rightDir = Quaternion.AngleAxis(-visionAngle, Vector3.forward)
+        * Vector3.right;
+    }
 
-      movement.ToggleVision(false);
-      yield return new WaitForSeconds(changeDirPause);
-      movement.ToggleVision(true);
+    private IEnumerator LookAround(Vector3 leftDir, Vector3 rightDir){
+      movement.MoveTowards(transform.position, 0);
+
+      // inverted because it was toggled before this call
+      Vector3 endDir = movingLeft ? leftDir : rightDir;
+      Quaternion bottomRot = Quaternion.AngleAxis(180f, Vector3.forward);
+      Quaternion endRot =  Quaternion.LookRotation(Vector3.forward, endDir);
+
+      yield return movement.TurnHead(bottomRot, headTurnTime);
+      movement.TurnBody();
+      yield return movement.TurnHead(endRot, headTurnTime);
+
       yield break;
     }
 

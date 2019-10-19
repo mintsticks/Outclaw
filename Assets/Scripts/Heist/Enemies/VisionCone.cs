@@ -49,10 +49,11 @@ namespace Outclaw.Heist{
 
       Quaternion rotInverse = Quaternion.Inverse(transform.rotation);
 
+      int numDivisons = numSamples - 1;
       for(int i = 0; i < numSamples; ++i){
 
         // cast ray into world
-        Vector3 currVec = Quaternion.AngleAxis(coneAngle * i / numSamples, Vector3.forward) 
+        Vector3 currVec = Quaternion.AngleAxis(coneAngle * i / numDivisons, Vector3.forward) 
           * coneStart;
         currVec.Normalize();
         RaycastHit2D hit = Physics2D.Raycast(transform.position,

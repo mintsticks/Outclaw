@@ -55,9 +55,6 @@ namespace Outclaw.City {
     
     private void UpdateHorizontal() {
       var moveDir = MoveDirection();
-      if (!controller.isGrounded) {
-        Debug.Log("im off");
-      }
       var dampingFactor = controller.isGrounded ? groundDamping : inAirDamping;
       velocity.x = Mathf.Lerp(velocity.x, moveDir * runSpeed, Time.deltaTime * dampingFactor);
 
