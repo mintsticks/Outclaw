@@ -509,12 +509,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8847053
       objectReference: {fileID: 0}
-    - target: {fileID: 8992900199418301059, guid: 658c5aae1235c61468d16c83df32ab8f,
-        type: 3}
-      propertyPath: indicatorPrefab
-      value: 
-      objectReference: {fileID: 7003108285577518768, guid: 627a21526128742448f3332845d2963e,
-        type: 3}
     - target: {fileID: 8937808972235528586, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -535,6 +529,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8992900199418301059, guid: 658c5aae1235c61468d16c83df32ab8f,
+        type: 3}
+      propertyPath: indicatorPrefab
+      value: 
+      objectReference: {fileID: 7003108285577518768, guid: 627a21526128742448f3332845d2963e,
+        type: 3}
     - target: {fileID: 8544032890619029624, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
       propertyPath: m_Enabled
@@ -789,11 +789,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5290488612717389672, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
-        type: 3}
-      propertyPath: orthographic size
-      value: 7.061985
-      objectReference: {fileID: 0}
     - target: {fileID: 5290488612717389674, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
       propertyPath: minBound.x
@@ -813,6 +808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxBound.x
       value: 60.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290488612717389672, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
+        type: 3}
+      propertyPath: orthographic size
+      value: 7.061985
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6, type: 3}
@@ -1594,12 +1594,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8847053
       objectReference: {fileID: 0}
-    - target: {fileID: 8992900199418301059, guid: 658c5aae1235c61468d16c83df32ab8f,
-        type: 3}
-      propertyPath: indicatorPrefab
-      value: 
-      objectReference: {fileID: 7003108285577518768, guid: 627a21526128742448f3332845d2963e,
-        type: 3}
     - target: {fileID: 8937808972235528586, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1620,6 +1614,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8992900199418301059, guid: 658c5aae1235c61468d16c83df32ab8f,
+        type: 3}
+      propertyPath: indicatorPrefab
+      value: 
+      objectReference: {fileID: 7003108285577518768, guid: 627a21526128742448f3332845d2963e,
+        type: 3}
     - target: {fileID: 8544032890619029624, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
       propertyPath: m_Enabled
@@ -5956,21 +5956,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4729456738708133730, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729456738708133730, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -16.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 1429182042726893476, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7336105400421786616, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
       propertyPath: _monoInstallers.Array.size
@@ -5986,15 +5971,40 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 154034093}
-    - target: {fileID: 8274474055835981981, guid: 781c4c76b1cbba544922f33235329f2e,
+    - target: {fileID: 4729456738708133730, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
-      propertyPath: interactionController
-      value: 
+      propertyPath: m_LocalPosition.y
+      value: -3.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729456738708133730, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429182042726893476, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5761028481475047872, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 635330793841077554, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8c4ec5df2f1434243956270ac2470404, type: 2}
+    - target: {fileID: 8274474056453485313, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: eventSequenceLayer.m_Bits
+      value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274474055835981981, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: interactionController
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1317552656570035717, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
@@ -6015,16 +6025,6 @@ PrefabInstance:
         type: 3}
       propertyPath: spriteFilterColor.a
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 635330793841077554, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 8c4ec5df2f1434243956270ac2470404, type: 2}
-    - target: {fileID: 8274474056453485313, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: eventSequenceLayer.m_Bits
-      value: 32768
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8274474056453485313, guid: 781c4c76b1cbba544922f33235329f2e, type: 3}
@@ -6587,31 +6587,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1339706259067907235, guid: 3877c275ea0ab1c45b496551593ee9ed,
-        type: 3}
-      propertyPath: spriteFilterColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339706259067907235, guid: 3877c275ea0ab1c45b496551593ee9ed,
-        type: 3}
-      propertyPath: spriteFilterColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339706259067907235, guid: 3877c275ea0ab1c45b496551593ee9ed,
-        type: 3}
-      propertyPath: spriteFilterColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339706259067907235, guid: 3877c275ea0ab1c45b496551593ee9ed,
-        type: 3}
-      propertyPath: spriteFilterColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3974412466295497922, guid: 3877c275ea0ab1c45b496551593ee9ed,
-        type: 3}
-      propertyPath: platformMask.m_Bits
-      value: 65536
-      objectReference: {fileID: 0}
     - target: {fileID: 4718949214910944708, guid: 3877c275ea0ab1c45b496551593ee9ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6676,6 +6651,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339706259067907235, guid: 3877c275ea0ab1c45b496551593ee9ed,
+        type: 3}
+      propertyPath: spriteFilterColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339706259067907235, guid: 3877c275ea0ab1c45b496551593ee9ed,
+        type: 3}
+      propertyPath: spriteFilterColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339706259067907235, guid: 3877c275ea0ab1c45b496551593ee9ed,
+        type: 3}
+      propertyPath: spriteFilterColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339706259067907235, guid: 3877c275ea0ab1c45b496551593ee9ed,
+        type: 3}
+      propertyPath: spriteFilterColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3974412466295497922, guid: 3877c275ea0ab1c45b496551593ee9ed,
+        type: 3}
+      propertyPath: platformMask.m_Bits
+      value: 65536
       objectReference: {fileID: 0}
     - target: {fileID: 5512662873890442373, guid: 3877c275ea0ab1c45b496551593ee9ed,
         type: 3}
@@ -7384,11 +7384,6 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 2.52
       objectReference: {fileID: 0}
-    - target: {fileID: 5352892256291830982, guid: d8d768e02244f384bab93691735c8b74,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8482538411915798829, guid: d8d768e02244f384bab93691735c8b74,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -7398,6 +7393,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.4999237
+      objectReference: {fileID: 0}
+    - target: {fileID: 5352892256291830982, guid: d8d768e02244f384bab93691735c8b74,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8d768e02244f384bab93691735c8b74, type: 3}
@@ -7899,12 +7899,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0949322
       objectReference: {fileID: 0}
-    - target: {fileID: 8992900199418301059, guid: 658c5aae1235c61468d16c83df32ab8f,
-        type: 3}
-      propertyPath: indicatorPrefab
-      value: 
-      objectReference: {fileID: 7003108285577518768, guid: 627a21526128742448f3332845d2963e,
-        type: 3}
     - target: {fileID: 8937808972235528586, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -7925,6 +7919,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8992900199418301059, guid: 658c5aae1235c61468d16c83df32ab8f,
+        type: 3}
+      propertyPath: indicatorPrefab
+      value: 
+      objectReference: {fileID: 7003108285577518768, guid: 627a21526128742448f3332845d2963e,
+        type: 3}
     - target: {fileID: 8544032890619029624, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
       propertyPath: m_Enabled
