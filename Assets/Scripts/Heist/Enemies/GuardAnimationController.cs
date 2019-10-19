@@ -13,6 +13,7 @@ namespace Outclaw.Heist{
     }
 
     public void SetXSpeed(float speed){
+      anim.SetFloat("moveSpeed", Mathf.Abs(speed));
       if(speed == 0){
         return;
       }
@@ -24,6 +25,10 @@ namespace Outclaw.Heist{
     public void Turn(){
       transform.localScale = new Vector3(-transform.localScale.x,
         transform.localScale.y, transform.localScale.z);
+    }
+
+    public void SetFlashlight(bool on){
+      anim.SetBool("hasFlashlight", on);
     }
   }
 }
