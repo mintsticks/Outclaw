@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/MyDiffuse.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/MyDiffuse.shader.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Heist/park/tree2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Heist/park/tree2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Contexts/Heist Scene Context.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Contexts/Heist Scene Context.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/Park.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/Park.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/UI/HideIcon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/UI/HideIcon.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Guard.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Guard.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Side Scroll Guard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Side Scroll Guard.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/City/MovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City/MovementController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Heist/Abilities/HideArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Heist/Abilities/HideArea.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/SpriteBundle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/SpriteBundle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/SideScrollPatrolEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/SideScrollPatrolEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Heist/Enemies/Sidescroll Movement/SideScrollPatrol.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Heist/Enemies/Sidescroll Movement/SideScrollPatrol.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +30,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/Objective.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Menu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/Enemies/VisionCone.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Internal/Assert.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Swarm/Assets/Scripts/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
@@ -64,6 +63,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Util/ReflectionInfoTypeInfoConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/ObjectiveManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Materials/MyDiffuse.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/Enemies/Sidescroll Movement/GuardMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/Enemies/Capture.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/Enemies/Sidescroll Movement/SideScrollPatrol.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/SideScrollPatrolEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Heist/Abilities/HideArea.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DismissablePrompt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -116,9 +119,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/JumpDismissablePrompt.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/MoveDismissablePrompt.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/PromptAnimationComponent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DismissablePrompt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/IntroDialogueUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Heist/HeistMovementController.cs" />
@@ -167,6 +167,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Heist/Abilities/HideArea.cs" />
         <option value="$PROJECT_DIR$/Assets/Materials/MyDiffuse.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/MovementController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Editor/SideScrollPatrolEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Heist/Enemies/Sidescroll Movement/SideScrollPatrol.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Heist/Enemies/VisionCone.cs" />
       </list>
     </option>
   </component>
@@ -234,7 +237,7 @@
       <workItem from="1570484257667" duration="49559000" />
       <workItem from="1570997604718" duration="16713000" />
       <workItem from="1571109128723" duration="25753000" />
-      <workItem from="1571262006748" duration="4815000" />
+      <workItem from="1571262006748" duration="8700000" />
     </task>
     <servers />
   </component>

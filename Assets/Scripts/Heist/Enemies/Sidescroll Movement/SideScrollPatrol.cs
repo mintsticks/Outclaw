@@ -31,6 +31,10 @@ namespace Outclaw.Heist{
     private ManagedCoroutine patrolRoutine = null;
 
     public LineRenderer Path { get => path; }
+
+    public GuardMovement MovementComponent {
+      get => movement; 
+    }
     public LayerMask GroundLayer { get => groundLayer; }
 
     public void Start(){
@@ -127,7 +131,7 @@ namespace Outclaw.Heist{
     private IEnumerator Patrol(){
       movement.UpdateVisionCone(movingLeft ? Vector3.left : Vector3.right);
       while(true){
-        if((transform.position - path.GetPosition(targetIdx)).magnitude < arrivalTolerance){
+        if((movement.transform.position - path.GetPosition(targetIdx)).magnitude < arrivalTolerance){
           if(NextPoint()){
             yield return LookAround();
           }
