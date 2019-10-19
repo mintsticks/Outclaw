@@ -23,9 +23,9 @@ namespace Outclaw.Heist{
 
       transform.rotation = start;
       while(true){
-        yield return movement.TurnHead(end, turnTime);
+        yield return movement.TurnVision(end, turnTime);
         yield return new WaitForSeconds(pauseTime);
-        yield return movement.TurnHead(start, turnTime);
+        yield return movement.TurnVision(start, turnTime);
         yield return new WaitForSeconds(pauseTime);
       }
     }
