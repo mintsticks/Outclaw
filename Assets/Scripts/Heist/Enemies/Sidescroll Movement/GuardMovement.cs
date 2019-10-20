@@ -53,7 +53,11 @@ namespace Outclaw.Heist{
       return ((1 << test) & layers.value) != 0;
     }
 
-    public IEnumerator TurnHead(Quaternion destination, float duration){
+    // destination: end rotation
+    // duraiton: how long to reach the destination rotation
+    // turningUp: whether the flashlight animation needs to go up or down
+    public IEnumerator TurnVision(Quaternion destination, float duration, 
+        bool turningUp = false){
       if(visionCone == null || visionConeTransform == null){
         yield break;
       }
@@ -64,6 +68,11 @@ namespace Outclaw.Heist{
         totalTime += Time.deltaTime;
         visionConeTransform.rotation = Quaternion.Lerp(start, destination, 
           totalTime / duration);
+
+        float progress = totalTime / duration;
+        anim?.SetFlashlightAngle(turningUp ? 1 - progress : progress);
+
+
         yield return null;
       }
       yield break;

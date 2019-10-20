@@ -30,5 +30,10 @@ namespace Outclaw.Heist{
     public void SetFlashlight(bool on){
       anim.SetBool("hasFlashlight", on);
     }
+
+    // pass in a float from [0, 1], where 0 is facing forward, 1 is facing the ground
+    public void SetFlashlightAngle(float angle){
+      anim.SetFloat("flashlightAngle", angle);
+    }
   }
 }
