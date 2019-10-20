@@ -29,8 +29,14 @@ namespace Outclaw.Heist{
 
     public void Interact(){
       player.PlayerTransform.position = transform.position;
-      hidePlayer.Hidden = !hidePlayer.Hidden;
       soundManager.PlaySFX(hideSound);
+      if (!hidePlayer.Hidden) {
+        StartCoroutine(hideIndicator.FadeOut());
+        hidePlayer.Hidden = true;
+        return;
+      }
+      StartCoroutine(hideIndicator.FadeIn());
+      hidePlayer.Hidden = false;
     }
   }
 }

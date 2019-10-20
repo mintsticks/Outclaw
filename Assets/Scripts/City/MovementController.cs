@@ -61,10 +61,13 @@ namespace Outclaw.City {
       if (moveDir == 0) {
         return;
       }
-      
-      rb.transform.right = new Vector2(moveDir, 0);
+
+      var scale = rb.transform.localScale;
+      if ((moveDir < 0 && scale.x > 0) || (moveDir > 0 && scale.x < 0)) {
+        rb.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+      }
     }
-    
+
     private int MoveDirection() {
       if (dialogueManager.IsDialogueRunning) {
         return 0;
@@ -102,7 +105,7 @@ namespace Outclaw.City {
     private void UpdateAnimationState(Vector3 move) {
       ac.SetHorizontalVelocity(Mathf.Abs(move.x));
       ac.SetVerticalVelocity(controller.isGrounded ? 0 : move.y);
-      ac.SetIsLanding(controller.IsNearGround(Mathf.Abs(gravity)));
+      ac.SetIsLanding(move.y <= 0 && controller.IsNearGround(Mathf.Abs(gravity)));
     }
   }
 }

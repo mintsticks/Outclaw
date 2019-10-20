@@ -39,7 +39,7 @@ namespace Outclaw.Heist{
     private void SnapToGround(){
       SideScrollPatrol patrol = (SideScrollPatrol)target;
       LineRenderer path = patrol.Path;
-      Collider2D col = patrol.gameObject.GetComponent<Collider2D>();
+      Collider2D col = patrol.MovementComponent.gameObject.GetComponent<Collider2D>();
 
       float halfHeight = col.bounds.extents.y;
 

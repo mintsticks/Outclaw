@@ -10,6 +10,8 @@ namespace Outclaw.City {
     CAFE_EXIT,
     CAFE_ENTRANCE,
     HOME_EXIT,
+    HOME_ENTRANCE,
+    PARK_ENTRANCE
   }
   
   [Serializable]
