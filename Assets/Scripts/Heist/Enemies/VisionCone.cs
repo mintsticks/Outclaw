@@ -28,11 +28,12 @@ namespace Outclaw.Heist{
     [Inject] private IPauseGame pause;
 
     void Update(){
-      if(!pause.IsPaused){
-        GameObject player = TestCone();
-        if(player != null){
-          onDetect.Invoke(player);
-        }
+      if(pause.IsPaused){
+        return;
+      }
+      GameObject player = TestCone();
+      if(player != null){
+        onDetect.Invoke(player);
       }
     }
 

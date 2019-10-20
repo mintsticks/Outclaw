@@ -53,29 +53,38 @@ namespace Outclaw.Heist{
       return ((1 << test) & layers.value) != 0;
     }
 
-    // destination: end rotation
-    // duraiton: how long to reach the destination rotation
-    // turningUp: whether the flashlight animation needs to go up or down
+    /*
+     * destination: end rotation
+     * duraiton: how long to reach the destination rotation
+     * defaultAngle:
+     * turningUp: whether the flashlight animation needs to go up or down
+     */
     public IEnumerator TurnVision(Quaternion destination, float duration, 
-        bool turningUp = false){
+        float defaultAngle = 0, bool turningUp = false){
       if(visionCone == null || visionConeTransform == null){
         yield break;
       }
 
       Quaternion start = visionConeTransform.rotation;
       float totalTime = 0;
+      float angleRange = 90f - defaultAngle;
       while(totalTime < duration){
         totalTime += Time.deltaTime;
         visionConeTransform.rotation = Quaternion.Lerp(start, destination, 
           totalTime / duration);
 
         float progress = totalTime / duration;
-        anim?.SetFlashlightAngle(turningUp ? 1 - progress : progress);
-
+        anim?.SetFlashlightAngle(defaultAngle +
+          angleRange * (turningUp ? 1 - progress : progress));
 
         yield return null;
       }
       yield break;
+    }
+
+    // pass in angle below horizontal to put arm at (up to 90 degree below)
+    public void SetArmAngle(float angle){
+      anim?.SetFlashlightAngle(Mathf.Clamp(angle, 0, 90));
     }
 
     public void ToggleVision(bool on){

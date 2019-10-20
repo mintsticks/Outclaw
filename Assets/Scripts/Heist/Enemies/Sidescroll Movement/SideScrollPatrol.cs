@@ -60,6 +60,7 @@ namespace Outclaw.Heist{
       // set default vision
       ComputeVisionDirection(out Vector3 leftDir, out Vector3 rightDir);
       movement.UpdateVisionCone(movingLeft ? leftDir : rightDir);
+      movement.SetArmAngle(visionAngle);
 
       patrolRoutine = new ManagedCoroutine(this, Patrol);
     }
@@ -167,9 +168,9 @@ namespace Outclaw.Heist{
       Quaternion bottomRot = Quaternion.AngleAxis(180f, Vector3.forward);
       Quaternion endRot =  Quaternion.LookRotation(Vector3.forward, endDir);
 
-      yield return movement.TurnVision(bottomRot, headTurnTime, false);
+      yield return movement.TurnVision(bottomRot, headTurnTime, visionAngle, false);
       movement.TurnBody();
-      yield return movement.TurnVision(endRot, headTurnTime, true);
+      yield return movement.TurnVision(endRot, headTurnTime, visionAngle, true);
 
       yield break;
     }
