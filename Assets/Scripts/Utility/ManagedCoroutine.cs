@@ -25,6 +25,11 @@ namespace Outclaw.ManagedRoutine {
       routine = null;
       yield break;
     }
+
+    public bool IsRunning
+    {
+      get { return routine != null; }
+    }
   }
 
   public class ManagedCoroutine : ManagedCoroutineBase{
