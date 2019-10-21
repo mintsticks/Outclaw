@@ -1,83 +1,85 @@
-﻿using Outclaw.City;
+﻿using System;
+using Managers;
+using Outclaw.City;
 using UnityEngine;
 using Zenject;
 
 namespace Outclaw.Heist {
   public class PlayerController : MonoBehaviour, IPlayer, IHideablePlayer {
-    [SerializeField]
-    private MovementController movementController;
+    [SerializeField] private HeistMovementController movementController;
+    [SerializeField] private HeistInteractionController interactionController;
+    [SerializeField] private AudioClip senseSfx;
+    [SerializeField] private SpriteController spriteController;
     
-    [SerializeField]
-    private HeistInteractionController interactionController;
-
-    [SerializeField]
-    private AudioClip senseSfx;
-    
-    [Inject]
-    private IAbilityCooldownManager abilityCooldownManager;
-    
-    [Inject]
-    private IPlayerInput playerInput;
-
-    [Inject]
-    private ISoundManager soundManager;
+    [Inject] private IAbilityCooldownManager abilityCooldownManager;
+    [Inject] private IPlayerInput playerInput;
+    [Inject] private ISoundManager soundManager;
+    [Inject] private IPauseGame pauseGame;
     
     private bool inputDisabled;
 
     // hiding player
-    [Header("Hiding Player")]
-    [SerializeField]
+    [Header("Hiding Player")] [SerializeField]
     private SpriteBundle sprites;
+
     private bool hidden;
 
     public Transform PlayerTransform => transform;
     public Vector3 PlayerVelocity { get; }
+
     public bool InputDisabled {
-      get => inputDisabled;
+      get => inputDisabled || pauseGame.IsPaused;
       set => inputDisabled = value;
     }
 
     void FixedUpdate() {
-      if(hidden){
+      if (hidden) {
         return;
       }
+
       movementController.UpdatePhysics();
     }
 
     void Update() {
       interactionController.UpdateInteraction();
+      spriteController.UpdateColor();
       if (hidden) {
         return;
       }
+
       movementController.UpdateMovement();
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other) {
       interactionController.HandleEnter(other);
     }
-    
+
+    private void OnTriggerStay2D(Collider2D other) {
+      interactionController.HandleStay(other);
+    }
+
     private void OnTriggerExit2D(Collider2D other) {
       interactionController.HandleExit(other);
     }
 
-    private void Hide(){
+    private void Hide() {
       sprites.enabled = false;
     }
 
-    private void Unhide(){
+    private void Unhide() {
       sprites.enabled = true;
     }
 
-    public bool Hidden{
+    public bool Hidden {
       get => hidden;
       set {
         hidden = value;
-        if(hidden){
+        if (hidden) {
           Hide();
+          return;
         }
-        else{
-          Unhide();
-        }
+
+        Unhide();
       }
     }
   }

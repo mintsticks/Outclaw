@@ -1,12 +1,10 @@
 ﻿using Managers;
+using Outclaw.City;
 using UnityEngine;
 using Zenject;
 
-namespace Outclaw.City {
-  /// <summary>
-  /// Updates the players position and appearance in the city.
-  /// </summary>
-  public class MovementController : MonoBehaviour {
+namespace Outclaw.Heist {
+  public class HeistMovementController : MonoBehaviour {
     [SerializeField]
     private CharacterController2D controller;
     
@@ -25,6 +23,9 @@ namespace Outclaw.City {
     [SerializeField]
     private float runSpeed;
 
+    [SerializeField] 
+    private float sneakSpeed;
+    
     [SerializeField]
     private float groundDamping;
     
@@ -60,7 +61,8 @@ namespace Outclaw.City {
     private void UpdateHorizontal() {
       var moveDir = MoveDirection();
       var dampingFactor = controller.isGrounded ? groundDamping : inAirDamping;
-      velocity.x = Mathf.Lerp(velocity.x, moveDir * runSpeed, Time.deltaTime * dampingFactor);
+      var speed = sneakManager.IsSneaking ? sneakSpeed : runSpeed;
+      velocity.x = Mathf.Lerp(velocity.x, moveDir * speed, Time.deltaTime * dampingFactor);
 
       if (moveDir == 0) {
         return;

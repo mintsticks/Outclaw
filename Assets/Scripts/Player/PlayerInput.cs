@@ -22,6 +22,8 @@ namespace Outclaw {
     bool IsSenseDown();
     bool IsSenseUp();
     bool IsPauseDown();
+    bool IsSneakDown();
+    bool IsSneakUp();
   }
 
   public class PlayerInput : IPlayerInput{
@@ -91,6 +93,14 @@ namespace Outclaw {
 
     public bool IsPauseDown() {
       return Input.GetKeyDown(KeyCode.Escape);
+    }
+
+    public bool IsSneakDown() {
+      return Input.GetKeyDown(KeyCode.R);
+    }
+
+    public bool IsSneakUp() {
+      return Input.GetKeyUp(KeyCode.R);
     }
   }
 }
