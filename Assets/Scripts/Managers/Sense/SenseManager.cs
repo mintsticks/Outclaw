@@ -24,6 +24,7 @@ namespace City {
     private IPlayerInput playerInput;
     
     private float animationFreq = .02f;
+    private AnimationWrapper animationWrapper;
     
     private List<SpriteRenderer> spritesToGrey = new List<SpriteRenderer>();
     private List<CityInteractable> interactables = new List<CityInteractable>();
@@ -54,8 +55,7 @@ namespace City {
       
       isSensing = true;
       isSenseDown = true;
-      StopCurrentAnimation();
-      StartNewAnimation(ActivateSense());
+      animationWrapper.StartNewAnimation(ActivateSense());
     }
 
     private void UpdateSenseUp() {
@@ -66,22 +66,9 @@ namespace City {
 
       isSenseUp = true;
       isSensing = false;
-      StopCurrentAnimation();
-      StartNewAnimation(DeactivateSense());
-    }
-    
-    private void StopCurrentAnimation() {
-      if (currentSenseAnimation == null) {
-        return;
-      }
-      StopCoroutine(currentSenseAnimation);
+      animationWrapper.StartNewAnimation(DeactivateSense());
     }
 
-    private void StartNewAnimation(IEnumerator animation) {
-      currentSenseAnimation = animation;
-      StartCoroutine(currentSenseAnimation);
-    }
-    
     public void RegisterSpriteToGrey(SpriteRenderer spriteRenderer) {
       spritesToGrey.Add(spriteRenderer);
     }
