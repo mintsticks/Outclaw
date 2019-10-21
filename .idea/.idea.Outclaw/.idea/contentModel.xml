@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\dj-wo\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\dj-wo\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Outclaw.1451730669.00" t="ExcludeRecursive" />
-    <e p="D:\Documents\My Games\Outclaw" t="IncludeRecursive">
+    <e p="C:\Users\danja\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\danja\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Outclaw.593255264.00" t="ExcludeRecursive" />
+    <e p="C:\Users\danja\Documents\Dev\Outclaw" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="JsonDotNet" t="Include">
-          <e p="link.xml" t="Include" />
-        </e>
         <e p="Materials" t="Include">
           <e p="Blur.shader" t="Include" />
           <e p="Grayscale.shader" t="Include" />
           <e p="MyDiffuse.shader" t="Include" />
         </e>
         <e p="Plugins" t="Include">
+          <e p="JsonDotNet" t="Include">
+            <e p="link.xml" t="Include" />
+          </e>
           <e p="YarnSpinner" t="Include">
             <e p="Code" t="Include">
               <e p="DialogueRunner.cs" t="Include" />
@@ -494,43 +494,14 @@
             <e p="BackgroundMusic.cs" t="Include" />
             <e p="SoundManager.cs" t="Include" />
           </e>
-          <e p="CameraExt.cs" t="Include" />
-          <e p="City" t="Include">
+          <e p="Camera" t="Include">
             <e p="CameraBehavior.cs" t="Include" />
-            <e p="CharacterController2D.cs" t="Include" />
-            <e p="CityInteractable.cs" t="Include" />
-            <e p="Dialogue" t="Include">
-              <e p="CatDialogueUI.cs" t="Include" />
-              <e p="CatVariableStorage.cs" t="Include" />
-              <e p="DialogueIconManager.cs" t="Include" />
-              <e p="DialogueManager.cs" t="Include" />
-              <e p="OptionIndicator.cs" t="Include" />
-              <e p="RelationshipManager.cs" t="Include" />
-              <e p="SpeechBubble.cs" t="Include" />
-              <e p="ThoughtBubble.cs" t="Include" />
-            </e>
-            <e p="EventSequence.cs" t="Include" />
-            <e p="GreyOnSenseElement.cs" t="Include" />
-            <e p="GroundHelper.cs" t="Include" />
-            <e p="Indicator.cs" t="Include" />
-            <e p="InteractableCat.cs" t="Include" />
-            <e p="InteractableLocation.cs" t="Include" />
-            <e p="InteractableObject.cs" t="Include" />
-            <e p="LocationManager.cs" t="Include" />
-            <e p="MovementController.cs" t="Include" />
-            <e p="ObjectiveManager.cs" t="Include" />
-            <e p="ObjectiveTransformManager.cs" t="Include" />
-            <e p="OneWayPlatform.cs" t="Include" />
-            <e p="Player.cs" t="Include" />
-            <e p="SenseManager.cs" t="Include" />
           </e>
-          <e p="DismissablePrompt.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="CameraBehaviorEditor.cs" t="Include" />
             <e p="SideScrollPatrolEditor.cs" t="Include" />
           </e>
-          <e p="GameState.cs" t="Include" />
-          <e p="GameStateManager.cs" t="Include" />
+          <e p="EventSequence.cs" t="Include" />
           <e p="Heist" t="Include">
             <e p="Abilities" t="Include">
               <e p="AbilityCooldownManager.cs" t="Include" />
@@ -568,48 +539,98 @@
             <e p="SenseAbility.cs" t="Include" />
             <e p="Vent.cs" t="Include" />
           </e>
-          <e p="Interactable.cs" t="Include" />
-          <e p="InteractionController.cs" t="Include" />
-          <e p="IntroDialogueUI.cs" t="Include" />
-          <e p="LineHelperExt.cs" t="Include" />
-          <e p="ObjectivePointer.cs" t="Include" />
-          <e p="PauseGame.cs" t="Include" />
-          <e p="PlayerAnimController.cs" t="Include" />
-          <e p="PlayerData.cs" t="Include" />
-          <e p="PlayerInput.cs" t="Include" />
+          <e p="Interactable" t="Include">
+            <e p="City" t="Include">
+              <e p="CityInteractable.cs" t="Include" />
+              <e p="InteractableCat.cs" t="Include" />
+              <e p="InteractableLocation.cs" t="Include" />
+              <e p="InteractableObject.cs" t="Include" />
+            </e>
+            <e p="Heist" t="Include">
+              <e p="Interactable.cs" t="Include" />
+            </e>
+            <e p="Indicator.cs" t="Include" />
+          </e>
+          <e p="Managers" t="Include">
+            <e p="Dialogue" t="Include">
+              <e p="CatVariableStorage.cs" t="Include" />
+              <e p="DialogueManager.cs" t="Include" />
+              <e p="RelationshipManager.cs" t="Include" />
+            </e>
+            <e p="GameState.cs" t="Include" />
+            <e p="GameStateManager.cs" t="Include" />
+            <e p="LocationManager.cs" t="Include" />
+            <e p="Objective" t="Include">
+              <e p="ObjectiveManager.cs" t="Include" />
+              <e p="ObjectiveTransformManager.cs" t="Include" />
+            </e>
+            <e p="PauseGame.cs" t="Include" />
+            <e p="Sense" t="Include">
+              <e p="GreyOnSenseElement.cs" t="Include" />
+              <e p="SenseManager.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Physics" t="Include">
+            <e p="OneWayPlatform.cs" t="Include" />
+          </e>
+          <e p="Player" t="Include">
+            <e p="CharacterController2D.cs" t="Include" />
+            <e p="City" t="Include">
+              <e p="Player.cs" t="Include" />
+            </e>
+            <e p="InteractionController.cs" t="Include" />
+            <e p="MovementController.cs" t="Include" />
+            <e p="PlayerAnimController.cs" t="Include" />
+            <e p="PlayerData.cs" t="Include" />
+            <e p="PlayerInput.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
+            <e p="Dialogue" t="Include">
+              <e p="Bubbles" t="Include">
+                <e p="SpeechBubble.cs" t="Include" />
+                <e p="ThoughtBubble.cs" t="Include" />
+              </e>
+              <e p="CatDialogueUI.cs" t="Include" />
+              <e p="DialogueIconManager.cs" t="Include" />
+              <e p="OptionIndicator.cs" t="Include" />
+            </e>
             <e p="DismissablePrompts" t="Include">
+              <e p="DismissablePrompt.cs" t="Include" />
               <e p="InteractDismissablePrompt.cs" t="Include" />
               <e p="JumpDismissablePrompt.cs" t="Include" />
               <e p="MoveDismissablePrompt.cs" t="Include" />
+              <e p="PromptAnimationComponent.cs" t="Include" />
+              <e p="PromptManager.cs" t="Include" />
             </e>
-            <e p="Heist" t="Include">
-              <e p="CapturedMenu.cs" t="Include" />
-              <e p="ICapturedMenu.cs" t="Include" />
-              <e p="VictoryMenu.cs" t="Include" />
-            </e>
+            <e p="IntroDialogueUI.cs" t="Include" />
             <e p="Menus" t="Include">
               <e p="EventMenuItem.cs" t="Include" />
+              <e p="Heist Menu" t="Include">
+                <e p="CapturedMenu.cs" t="Include" />
+                <e p="ICapturedMenu.cs" t="Include" />
+                <e p="VictoryMenu.cs" t="Include" />
+              </e>
               <e p="Menu.cs" t="Include" />
               <e p="MenuItem.cs" t="Include" />
               <e p="MenuItemText.cs" t="Include" />
+              <e p="Pause Menu" t="Include">
+                <e p="PauseExitItem.cs" t="Include" />
+                <e p="PauseInstaller.cs" t="Include" />
+                <e p="PauseLoadItem.cs" t="Include" />
+                <e p="PauseMenuManager.cs" t="Include" />
+                <e p="PauseOptionItem.cs" t="Include" />
+                <e p="PauseResumeItem.cs" t="Include" />
+                <e p="PauseSaveItem.cs" t="Include" />
+              </e>
             </e>
-            <e p="Pause Menu" t="Include">
-              <e p="PauseExitItem.cs" t="Include" />
-              <e p="PauseInstaller.cs" t="Include" />
-              <e p="PauseLoadItem.cs" t="Include" />
-              <e p="PauseMenuManager.cs" t="Include" />
-              <e p="PauseOptionItem.cs" t="Include" />
-              <e p="PauseResumeItem.cs" t="Include" />
-              <e p="PauseSaveItem.cs" t="Include" />
-            </e>
-            <e p="PromptAnimationComponent.cs" t="Include" />
-            <e p="PromptManager.cs" t="Include" />
+            <e p="ObjectivePointer.cs" t="Include" />
             <e p="SceneTransitionManager.cs" t="Include" />
             <e p="StartListener.cs" t="Include" />
           </e>
           <e p="Utility" t="Include">
+            <e p="CameraExt.cs" t="Include" />
             <e p="DebugTool.cs" t="Include" />
+            <e p="LineHelperExt.cs" t="Include" />
             <e p="ManagedCoroutine.cs" t="Include" />
             <e p="RandomUtility.cs" t="Include" />
             <e p="SceneSwitcher.cs" t="Include" />
