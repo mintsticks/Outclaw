@@ -18,14 +18,15 @@ namespace Outclaw {
     private IPlayerInput playerInput;
 
     [Inject] 
-    private IPauseGame pause;
+    private IPlayer player;
 
     private CityInteractable currentInteractable;
     
     public void UpdateInteraction() {
-      if (pause.IsPaused) {
+      if (player.InputDisabled) {
         return;
       }
+      
       if (playerInput.IsInteractDown()) {
         currentInteractable?.Interact();
       }

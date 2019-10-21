@@ -129,6 +129,7 @@ namespace Outclaw {
     }
     
     private bool IsValidDialogueProgression() {
+      Debug.Log(pause.IsPaused);
       return playerInput.IsInteractDown() && !pause.IsPaused;
     }
     

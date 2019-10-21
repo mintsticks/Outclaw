@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c28610d83a10e94db4a92aef3216565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteFilterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8217840923495593696
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +83,7 @@ MonoBehaviour:
     m_Bits: 1
   triggerMask:
     serializedVersion: 2
-    m_Bits: 34816
+    m_Bits: 690176
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -285,6 +286,9 @@ MonoBehaviour:
   oneWayTriggerLayer:
     serializedVersion: 2
     m_Bits: 131072
+  guardAttentionLayer:
+    serializedVersion: 2
+    m_Bits: 524288
 --- !u!1001 &3844470053501172797
 PrefabInstance:
   m_ObjectHideFlags: 0
