@@ -47,22 +47,22 @@ namespace Outclaw {
 
     public bool IsUp() {
 //      return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
-      return Input.GetAxis("Vertical") > 0;
+      return Input.GetAxis("Vertical") > 0.5f;
     }
 
     public bool IsUpPress() {
 //      return Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
-      return Input.GetAxis("Vertical") > 0;
+      return Input.GetAxis("Vertical") > 0.5f;
     }
     
     public bool IsDown() {
 //      return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
-      return Input.GetAxis("Vertical") < 0;
+      return Input.GetAxis("Vertical") < -0.5f;
     }
 
     public bool IsDownPress() {
 //      return Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
-      return Input.GetAxis("Vertical") < 0;
+      return Input.GetAxis("Vertical") < -0.5f;
     }
     
     public bool IsJump() {
