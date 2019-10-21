@@ -167,7 +167,7 @@ namespace Outclaw.Heist{
       Vector3 endDir = movingLeft ? leftDir : rightDir;
       Quaternion bottomRot = Quaternion.AngleAxis(180f, Vector3.forward);
       Quaternion endRot =  Quaternion.LookRotation(Vector3.forward, endDir);
-
+      yield return new WaitForSeconds(lookPause);
       yield return movement.TurnVision(bottomRot, headTurnTime, visionAngle, false);
       movement.TurnBody();
       yield return movement.TurnVision(endRot, headTurnTime, visionAngle, true);

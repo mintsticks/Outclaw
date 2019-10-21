@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Outclaw.City;
 using UnityEngine;
+using Zenject;
 
 namespace Outclaw{
   public interface IPauseGame{
@@ -9,9 +11,8 @@ namespace Outclaw{
     void Unpause();
   }
 
-  public class PauseGame : MonoBehaviour, IPauseGame
-  {
-    bool isPaused = false;
+  public class PauseGame : MonoBehaviour, IPauseGame {
+    private bool isPaused;
 
     public bool IsPaused { get => isPaused; }
 

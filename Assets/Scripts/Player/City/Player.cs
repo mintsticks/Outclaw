@@ -5,6 +5,7 @@ namespace Outclaw.City {
   public interface IPlayer {
     Transform PlayerTransform { get; }
     Vector3 PlayerVelocity { get; }
+    bool InputDisabled { get; set; }
   }
   
   public class Player : MonoBehaviour, IPlayer {
@@ -17,12 +18,19 @@ namespace Outclaw.City {
     [Inject]
     private IPlayerData playerData;
 
-    [Inject]
-    private IDialogueManager dialogueManager;
+    [Inject] 
+    private IPauseGame pauseGame;
+    
+    private bool inputDisabled;
     
     public Transform PlayerTransform => transform;
 
     public Vector3 PlayerVelocity => movementController.Velocity;
+
+    public bool InputDisabled {
+      get => inputDisabled || pauseGame.IsPaused;
+      set => inputDisabled = value;
+    }
 
     void FixedUpdate() {
       movementController.UpdatePhysics();
@@ -30,9 +38,6 @@ namespace Outclaw.City {
 
     void Update() {
       movementController.UpdateMovement();
-      if (dialogueManager.IsDialogueRunning) {
-        return;
-      }
       interactionController.UpdateInteraction();
     }
 

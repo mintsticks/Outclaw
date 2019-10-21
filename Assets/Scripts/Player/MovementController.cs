@@ -33,8 +33,8 @@ namespace Outclaw.City {
     [Inject]
     private IPlayerInput playerInput;
 
-    [Inject]
-    private IDialogueManager dialogueManager;
+    [Inject] 
+    private IPlayer player;
     
     private Vector3 velocity;  
     public Vector3 Velocity => velocity;
@@ -69,7 +69,7 @@ namespace Outclaw.City {
     }
 
     private int MoveDirection() {
-      if (dialogueManager.IsDialogueRunning) {
+      if (player.InputDisabled) {
         return 0;
       }
       return playerInput.IsLeft() ? -1 : playerInput.IsRight() ? 1 : 0;
@@ -82,7 +82,7 @@ namespace Outclaw.City {
     }
 
     private void CheckJump() {
-      if (!controller.isGrounded || dialogueManager.IsDialogueRunning) {
+      if (!controller.isGrounded || player.InputDisabled) {
         return;
       }
 
@@ -94,7 +94,7 @@ namespace Outclaw.City {
     }
 
     private void CheckDescend() {
-      if (!controller.isGrounded || dialogueManager.IsDialogueRunning) {
+      if (!controller.isGrounded || player.InputDisabled) {
         return;
       }
       if (playerInput.IsDownPress()) {

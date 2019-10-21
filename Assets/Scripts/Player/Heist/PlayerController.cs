@@ -22,6 +22,8 @@ namespace Outclaw.Heist {
     [Inject]
     private ISoundManager soundManager;
     
+    private bool inputDisabled;
+
     // hiding player
     [Header("Hiding Player")]
     [SerializeField]
@@ -30,7 +32,10 @@ namespace Outclaw.Heist {
 
     public Transform PlayerTransform => transform;
     public Vector3 PlayerVelocity { get; }
-
+    public bool InputDisabled {
+      get => inputDisabled;
+      set => inputDisabled = value;
+    }
 
     void FixedUpdate() {
       if(hidden){

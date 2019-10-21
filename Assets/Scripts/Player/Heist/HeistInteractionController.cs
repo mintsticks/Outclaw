@@ -1,4 +1,5 @@
 ﻿using City;
+using Outclaw.City;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +13,9 @@ namespace Outclaw.Heist {
 
     [SerializeField]
     private LayerMask oneWayTriggerLayer;
+
+    [SerializeField] 
+    private LayerMask guardAttentionLayer;
     
     [Inject]
     private IPlayerInput playerInput;
@@ -19,12 +23,16 @@ namespace Outclaw.Heist {
     [Inject] 
     private IPauseGame pause;
 
+    [Inject] 
+    private IPlayer player;
+    
     private Interactable currentInteractable;
     
     public void UpdateInteraction() {
-      if (pause.IsPaused) {
+      if (player.InputDisabled) {
         return;
       }
+      
       if (playerInput.IsInteractDown()) {
         currentInteractable?.Interact();
       }
@@ -44,6 +52,11 @@ namespace Outclaw.Heist {
       if ((1 << other.gameObject.layer & oneWayTriggerLayer) != 0) { 
         var oneWayPlatform = other.GetComponentInParent<OneWayPlatform>();
         oneWayPlatform.IntersectTrigger();
+      }
+      Debug.Log(LayerMask.LayerToName(other.gameObject.layer));
+      if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
+        var attentionZone = other.GetComponentInChildren<AttentionZone>();
+        attentionZone.EnterAttention();
       }
     }
 

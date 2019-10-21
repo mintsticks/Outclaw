@@ -24,6 +24,9 @@ namespace Outclaw.City {
     [SerializeField]
     private VariableStorageBehaviour storageBehaviour;
 
+    [Inject] 
+    private IPlayer player;
+    
     public void SetDialogue(TextAsset[] text) {
       runner.SourceText = text;
     }
@@ -33,10 +36,15 @@ namespace Outclaw.City {
     }
 
     public void StartDialogue(Action onComplete = null) {
-      uiBehaviour.OnDialogueComplete = onComplete;
+      uiBehaviour.OnDialogueComplete = onComplete + EnableInput;
+      player.InputDisabled = true;
       runner.StartDialogue();
     }
 
+    private void EnableInput() {
+      player.InputDisabled = false;
+    }
+    
     public bool IsDialogueRunning => runner.isDialogueRunning;
     
     public void SetBubbleParent(Transform parent) {
