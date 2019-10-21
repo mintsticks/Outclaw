@@ -37,9 +37,6 @@ namespace Outclaw.City {
     [Inject] 
     private IPlayer player;
 
-    [Inject] 
-    private ISneakManager sneakManager;
-    
     private Vector3 velocity;  
     public Vector3 Velocity => velocity;
     
