@@ -4,7 +4,7 @@ using Outclaw;
 using UnityEngine;
 using Zenject;
 
-namespace City {
+namespace Outclaw.City {
   public interface ISenseManager {
     bool IsSensing { get; }
     bool IsSenseDown { get; }
@@ -54,15 +54,19 @@ namespace City {
       animationWrapper.StartNewAnimation(ActivateSense());
     }
 
+    private bool CancelSense() {
+      return playerInput.IsLeft() || playerInput.IsRight() || playerInput.IsJump() || playerInput.IsDownPress() ||
+             playerInput.IsInteractDown() || playerInput.IsSneakDown();
+    }
+    
     private void UpdateSenseUp() {
-      if (!playerInput.IsSenseUp()) {
-        isSenseUp = false;
+      if (isSensing && (playerInput.IsSenseUp() || CancelSense())) {
+        isSenseUp = true;
+        isSensing = false;
+        animationWrapper.StartNewAnimation(DeactivateSense());
         return;
       }
-
-      isSenseUp = true;
-      isSensing = false;
-      animationWrapper.StartNewAnimation(DeactivateSense());
+      isSenseUp = false;
     }
 
     public void RegisterSpriteToGrey(SpriteRenderer spriteRenderer) {

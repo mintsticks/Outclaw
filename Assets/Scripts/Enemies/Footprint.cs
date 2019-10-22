@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Outclaw.Heist {
@@ -13,8 +14,13 @@ namespace Outclaw.Heist {
 
     [SerializeField] private Color minColor;
     [SerializeField] private Color maxColor;
-    [SerializeField] private SpriteRenderer sprite;
+
+    [Inject] private IHeistSenseManager senseManager;
     
+    public SpriteRenderer sprite;
+    public bool IsFading;
+    
+    private Color currentColor;
     private Transform footprintSource;
     private float pathDistance;
     
@@ -24,11 +30,23 @@ namespace Outclaw.Heist {
       pathDistance = data.PathDistance;
       transform.position = data.Position;
     }
+
+    public void Awake() {
+      senseManager.RegisterFootprint(this);
+      gameObject.SetActive(false);
+    }
+
+    public Color CurrentColor() {
+      return currentColor;
+    }
     
     private void Update() {
       var dist = transform.position - footprintSource.position;
       var relDist = Mathf.Clamp(dist.magnitude / pathDistance, 0, 1);
-      sprite.color = Color.Lerp(minColor, maxColor, 1 - relDist);
+      currentColor = Color.Lerp(minColor, maxColor, 1 - relDist);
+      if (!IsFading) {
+        sprite.color = currentColor;
+      }
     }
   }
 }

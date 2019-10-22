@@ -1,3 +1,4 @@
+using City;
 using Managers;
 using Outclaw.City;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Outclaw.Heist {
     private GameObject capturedMenuPrefab;
 
     [SerializeField] private GameObject footprintPrefab;
+    [SerializeField] private GameObject heistSenseManager;
     
     /// <summary>
     /// For all classes common to heist scenes.
@@ -46,7 +48,11 @@ namespace Outclaw.Heist {
       Container.BindInterfacesAndSelfTo<SneakManager>()
         .AsSingle()
         .NonLazy();
-      
+      Container.Bind<IHeistSenseManager>()
+        .To<HeistSenseManager>()
+        .FromComponentInNewPrefab(heistSenseManager)
+        .AsSingle()
+        .NonLazy();
       BindFactories();
     }
     

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Outclaw.Heist {
@@ -10,14 +8,11 @@ namespace Outclaw.Heist {
     [SerializeField] private float footprintsPerSegment;
     [Inject] private Footprint.Factory footprintFactory;
     
-    private List<Footprint> footprints;
-
     private void Awake() {
       if (path.positionCount <= 1) {
         return;
       }
-      footprints = new List<Footprint>();
-      
+
       var start = path.GetPosition(0);
       var end = path.GetPosition(path.positionCount - 1);
       var pathDistance = (start - end).magnitude;
@@ -36,7 +31,6 @@ namespace Outclaw.Heist {
           PathDistance = pathDistance
         });
         footprint.transform.parent = transform;
-        footprints.Add(footprint);
       }
     }
 
@@ -47,7 +41,6 @@ namespace Outclaw.Heist {
         PathDistance = pathDistance
       });
       footprint.transform.parent = transform;
-      footprints.Add(footprint);
     }
   }
 }

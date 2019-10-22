@@ -582,9 +582,15 @@
             <e p="PauseGame.cs" t="Include" />
             <e p="Sense" t="Include">
               <e p="AnimationWrapper.cs" t="Include" />
-              <e p="GreyOnSenseElement.cs" t="Include" />
-              <e p="HeistSenseManager.cs" t="Include" />
-              <e p="SenseManager.cs" t="Include" />
+              <e p="City" t="Include">
+                <e p="GreyOnSenseElement.cs" t="Include" />
+                <e p="SenseManager.cs" t="Include" />
+              </e>
+              <e p="Heist" t="Include">
+                <e p="DarkenOnSenseElement.cs" t="Include" />
+                <e p="HeistSenseManager.cs" t="Include" />
+                <e p="ShowOnSenseElement.cs" t="Include" />
+              </e>
             </e>
             <e p="SneakManager.cs" t="Include" />
           </e>
