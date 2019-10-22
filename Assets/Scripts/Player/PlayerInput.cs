@@ -113,11 +113,13 @@ namespace Outclaw {
     }
 
     public bool IsSneakDown() {
-      return Input.GetKeyDown(KeyCode.R);
+//      return Input.GetKeyDown(KeyCode.R);
+      return Input.GetButtonDown("Sneak");
     }
 
     public bool IsSneakUp() {
-      return Input.GetKeyUp(KeyCode.R);
+//      return Input.GetKeyUp(KeyCode.R);
+      return Input.GetButtonUp("Sneak");
     }
   }
 }
