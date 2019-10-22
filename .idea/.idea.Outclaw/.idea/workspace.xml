@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/LineOfSight.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/LineOfSight.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerLitManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerLitManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePoint.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePoint.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/SneakManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/SneakManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/HeistSenseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/HeistSenseManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,6 +88,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Materials/MyDiffuse.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Materials/Grayscale.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Camera/CameraBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Main/DiContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectSettings/TagManager.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/DismissablePrompt.cs" root0="FORCE_HIGHLIGHTING" />
@@ -104,13 +100,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Resources/CityInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Heist Menu/CapturedMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/DebugTool.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Heist Menu/ICapturedMenu.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/ObjectivePointer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableLocation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/InteractableCat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameState.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/City/CharacterController2D.cs" />
@@ -151,15 +146,17 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/City/SenseManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/DarkenOnSenseElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/FootprintManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/HeistSenseManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/ShowOnSenseElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Footprint.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/SneakManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerLitManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/LineOfSight.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Camera/CameraBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/HeistSenseManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePoint.cs" />
       </list>
     </option>
   </component>

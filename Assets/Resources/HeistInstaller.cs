@@ -48,6 +48,9 @@ namespace Outclaw.Heist {
       Container.BindInterfacesAndSelfTo<SneakManager>()
         .AsSingle()
         .NonLazy();
+      Container.BindInterfacesAndSelfTo<VantagePointManager>()
+        .AsSingle()
+        .NonLazy();
       Container.BindInterfacesAndSelfTo<PlayerLitManager>()
         .AsSingle()
         .NonLazy();

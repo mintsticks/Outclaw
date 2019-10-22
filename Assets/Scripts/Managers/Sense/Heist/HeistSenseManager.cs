@@ -15,6 +15,7 @@ namespace Outclaw.Heist {
     [SerializeField] private float senseDelay;
     [SerializeField] private AnimationWrapper animationWrapper;
     [Inject] private IPlayerInput playerInput;
+    [Inject] private IVantagePointManager vantagePointManager;
     
     private float animationFreq = .02f;
     private List<DarkenOnSenseElement> elementsToDarken = new List<DarkenOnSenseElement>();
@@ -68,6 +69,7 @@ namespace Outclaw.Heist {
     
     
     private IEnumerator ActivateSense() {
+      vantagePointManager.ToCurrentVantageView();
       UpdateElementsToShow(true);
       UpdateFadeFootprints(true);
       yield return UpdateElementEffects(animationProgress, 1 - animationProgress);
@@ -75,6 +77,7 @@ namespace Outclaw.Heist {
     }
     
     private IEnumerator DeactivateSense() {
+      vantagePointManager.ToCachedVantageView();
       UpdateFadeFootprints(true);
       yield return UpdateElementEffects(animationProgress, -animationProgress);
       UpdateFadeFootprints(false);

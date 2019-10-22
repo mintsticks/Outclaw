@@ -124,7 +124,7 @@ MonoBehaviour:
     m_Bits: 65536
   triggerMask:
     serializedVersion: 2
-    m_Bits: 1738752
+    m_Bits: 8030208
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -354,9 +354,15 @@ MonoBehaviour:
   guardAttentionLayer:
     serializedVersion: 2
     m_Bits: 524288
+  lineOfSightLayer:
+    serializedVersion: 2
+    m_Bits: 2097152
   lightLayer:
     serializedVersion: 2
     m_Bits: 1048576
+  vantageLayer:
+    serializedVersion: 2
+    m_Bits: 4194304
 --- !u!1001 &3844470053501172797
 PrefabInstance:
   m_ObjectHideFlags: 0

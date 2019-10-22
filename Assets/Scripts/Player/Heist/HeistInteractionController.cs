@@ -12,11 +12,13 @@ namespace Outclaw.Heist {
     [SerializeField] private LayerMask guardAttentionLayer;
     [SerializeField] private LayerMask lineOfSightLayer;
     [SerializeField] private LayerMask lightLayer;
+    [SerializeField] private LayerMask vantageLayer;
     
     [Inject] private IPlayerInput playerInput;
     [Inject] private IPlayer player;
     [Inject] private IPlayerLitManager playerLitManager;
-
+    [Inject] private IVantagePointManager vantagePointManager;
+    
     private Interactable currentInteractable;
     private AttentionZone currentZone;
     private LineOfSight currentLineOfSight;
@@ -57,6 +59,11 @@ namespace Outclaw.Heist {
         currentLineOfSight.EnterAttention();
       }
       
+      if ((1 << other.gameObject.layer & vantageLayer) != 0) {
+        var vantage = other.GetComponentInChildren<VantagePoint>();
+        vantagePointManager.RegisterCurrentVantage(vantage);
+      }
+      
       if ((1 << other.gameObject.layer & lightLayer) != 0) {
         playerLitManager.IsLit = true;
       }
@@ -85,6 +92,10 @@ namespace Outclaw.Heist {
         currentInteractable = null;
       }
 
+      if ((1 << other.gameObject.layer & vantageLayer) != 0) {
+        vantagePointManager.ResetVantage();
+      }
+      
       if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
         currentZone = null;
       }
