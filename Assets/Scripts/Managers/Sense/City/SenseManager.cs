@@ -4,7 +4,7 @@ using Outclaw;
 using UnityEngine;
 using Zenject;
 
-namespace City {
+namespace Outclaw.City {
   public interface ISenseManager {
     bool IsSensing { get; }
     bool IsSenseDown { get; }
@@ -14,17 +14,14 @@ namespace City {
   }
   
   public class SenseManager : MonoBehaviour, ISenseManager {
-    [SerializeField]
-    private float senseDelay;
-
-    [SerializeField]
-    private string effectName = "_EffectAmount";
+    [SerializeField] private float senseDelay;
+    [SerializeField] private string effectName = "_EffectAmount";
+    [SerializeField] private AnimationWrapper animationWrapper;
     
-    [Inject] 
-    private IPlayerInput playerInput;
+    [Inject] private IPlayerInput playerInput;
     
     private float animationFreq = .02f;
-    
+
     private List<SpriteRenderer> spritesToGrey = new List<SpriteRenderer>();
     private List<CityInteractable> interactables = new List<CityInteractable>();
     private HashSet<CityInteractable> currentInteractablesToGrey;
@@ -54,34 +51,24 @@ namespace City {
       
       isSensing = true;
       isSenseDown = true;
-      StopCurrentAnimation();
-      StartNewAnimation(ActivateSense());
+      animationWrapper.StartNewAnimation(ActivateSense());
     }
 
+    private bool CancelSense() {
+      return playerInput.IsLeft() || playerInput.IsRight() || playerInput.IsJump() || playerInput.IsDownPress() ||
+             playerInput.IsInteractDown() || playerInput.IsSneakDown();
+    }
+    
     private void UpdateSenseUp() {
-      if (!playerInput.IsSenseUp()) {
-        isSenseUp = false;
+      if (isSensing && (playerInput.IsSenseUp() || CancelSense())) {
+        isSenseUp = true;
+        isSensing = false;
+        animationWrapper.StartNewAnimation(DeactivateSense());
         return;
       }
-
-      isSenseUp = true;
-      isSensing = false;
-      StopCurrentAnimation();
-      StartNewAnimation(DeactivateSense());
-    }
-    
-    private void StopCurrentAnimation() {
-      if (currentSenseAnimation == null) {
-        return;
-      }
-      StopCoroutine(currentSenseAnimation);
+      isSenseUp = false;
     }
 
-    private void StartNewAnimation(IEnumerator animation) {
-      currentSenseAnimation = animation;
-      StartCoroutine(currentSenseAnimation);
-    }
-    
     public void RegisterSpriteToGrey(SpriteRenderer spriteRenderer) {
       spritesToGrey.Add(spriteRenderer);
     }

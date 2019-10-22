@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6698711239504880299
+--- !u!1 &8571267287930807587
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6698711239504880297}
-  - component: {fileID: 6698711239504880298}
-  - component: {fileID: 2586626161850864573}
+  - component: {fileID: 3117731936299857813}
+  - component: {fileID: 1442806101738744991}
+  - component: {fileID: 6732432356792620073}
   m_Layer: 0
-  m_Name: SenseManager
+  m_Name: HeistSenseManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6698711239504880297
+--- !u!4 &3117731936299857813
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6698711239504880299}
+  m_GameObject: {fileID: 8571267287930807587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2461545, y: -3.4231715, z: -91.82397}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6698711239504880298
+--- !u!114 &1442806101738744991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6698711239504880299}
+  m_GameObject: {fileID: 8571267287930807587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 522a5565304549f48ea99e47e9d85dfa, type: 3}
+  m_Script: {fileID: 11500000, guid: 673cc6f47fb34aefa81de46bb28b9279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  senseDelay: 0.25
-  effectName: _EffectAmount
-  animationWrapper: {fileID: 2586626161850864573}
---- !u!114 &2586626161850864573
+  senseDelay: 0.4
+  animationWrapper: {fileID: 6732432356792620073}
+--- !u!114 &6732432356792620073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6698711239504880299}
+  m_GameObject: {fileID: 8571267287930807587}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af510e3d4cde41b09346bad64cd363b8, type: 3}

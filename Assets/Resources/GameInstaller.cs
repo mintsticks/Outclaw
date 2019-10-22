@@ -26,7 +26,7 @@ namespace Outclaw {
         .To<PlayerData>()
         .AsSingle();
       Container.Bind<IPlayerInput>()
-        .To<PlayerInput>()
+        .To<KeyboardInput>()
         .AsSingle();
       Container.Bind<IPauseGame>()
         .FromInstance(pause)

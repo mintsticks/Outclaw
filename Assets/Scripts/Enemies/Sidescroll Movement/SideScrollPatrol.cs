@@ -161,7 +161,7 @@ namespace Outclaw.Heist{
     }
 
     private IEnumerator LookAround(Vector3 leftDir, Vector3 rightDir){
-      movement.MoveTowards(transform.position, 0);
+      movement.MoveTowards(movement.transform.position, 0);
 
       // inverted because it was toggled before this call
       Vector3 endDir = movingLeft ? leftDir : rightDir;

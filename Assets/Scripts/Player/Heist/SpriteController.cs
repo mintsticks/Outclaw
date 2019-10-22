@@ -10,11 +10,12 @@ namespace Outclaw.Heist {
     [SerializeField] private Color regularColor;
     [SerializeField] private Color sneakColor;
     [SerializeField] private float transitionTime;
+    [SerializeField] private AnimationWrapper animationWrapper;
+    
     [Inject] private IPlayer player;
     [Inject] private ISneakManager sneakManager;
-
-    private IEnumerator currentAnimation;
-
+    
+    
     private void Awake() {
       sprites.SetColor(regularColor);
     }
@@ -25,26 +26,13 @@ namespace Outclaw.Heist {
       }
 
       if (sneakManager.IsSneakingDown) {
-        StopCurrentAnimation();
-        StartAnimation(TransitionColor(sneakColor));
+        animationWrapper.StartNewAnimation(TransitionColor(sneakColor));
         return;
       }
 
       if (sneakManager.IsSneakingUp) {
-        StopCurrentAnimation();
-        StartAnimation(TransitionColor(regularColor));
+        animationWrapper.StartNewAnimation(TransitionColor(regularColor));
       }
-    }
-
-    private void StopCurrentAnimation() {
-      if (currentAnimation != null) {
-        StopCoroutine(currentAnimation);
-      }
-    }
-
-    private void StartAnimation(IEnumerator anim) {
-      currentAnimation = anim;
-      StartCoroutine(anim);
     }
 
     private IEnumerator TransitionColor(Color to) {
