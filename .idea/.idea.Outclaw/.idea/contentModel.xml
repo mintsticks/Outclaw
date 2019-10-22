@@ -9,15 +9,47 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Dialogue" t="Include">
+          <e p="AkiPark.yarn.txt" t="Include" />
+          <e p="CatDialogue" t="Include">
+            <e p="Akio2.yarn.txt" t="Include" />
+            <e p="AkioFirstTimeCity1.yarn.txt" t="Include" />
+            <e p="AkioFirstTimeCity2.yarn.txt" t="Include" />
+            <e p="AkioFoundCollar.yarn.txt" t="Include" />
+            <e p="AkioFoundHana1.yarn.txt" t="Include" />
+            <e p="GuardDialogue.yarn.txt" t="Include" />
+            <e p="Hana.yarn.txt" t="Include" />
+            <e p="Hana2.yarn.txt" t="Include" />
+            <e p="NPC1.yarn.txt" t="Include" />
+            <e p="NPC12.yarn.txt" t="Include" />
+            <e p="NPC2.yarn.txt" t="Include" />
+            <e p="NPC22.yarn.txt" t="Include" />
+            <e p="oldNPC2.yarn.txt" t="Include" />
+          </e>
+          <e p="CityPrompt.yarn.txt" t="Include" />
+          <e p="DontLeaveHouse.yarn.txt" t="Include" />
+          <e p="foundCollar.yarn.txt" t="Include" />
+          <e p="Intro.yarn.txt" t="Include" />
+          <e p="ObjectDialogue" t="Include">
+            <e p="Bathroom1.yarn.txt" t="Include" />
+            <e p="Bed1.yarn.txt" t="Include" />
+            <e p="Cabinet1.yarn.txt" t="Include" />
+            <e p="Desk1.yarn.txt" t="Include" />
+            <e p="Desk2.yarn.txt" t="Include" />
+            <e p="Table1.yarn.txt" t="Include" />
+            <e p="Trapdoor1.yarn.txt" t="Include" />
+          </e>
+          <e p="ParkDefault.yarn.txt" t="Include" />
+          <e p="ParkPrompt.yarn.txt" t="Include" />
+          <e p="Test.yarn.txt" t="Include" />
+          <e p="Test2.yarn.txt" t="Include" />
+        </e>
         <e p="Materials" t="Include">
           <e p="Blur.shader" t="Include" />
           <e p="Grayscale.shader" t="Include" />
           <e p="MyDiffuse.shader" t="Include" />
         </e>
         <e p="Plugins" t="Include">
-          <e p="JsonDotNet" t="Include">
-            <e p="link.xml" t="Include" />
-          </e>
           <e p="YarnSpinner" t="Include">
             <e p="Code" t="Include">
               <e p="DialogueRunner.cs" t="Include" />
@@ -505,6 +537,8 @@
             <e p="AttentionZone.cs" t="Include" />
             <e p="CameraMovement.cs" t="Include" />
             <e p="Capture.cs" t="Include" />
+            <e p="Footprint.cs" t="Include" />
+            <e p="FootprintManager.cs" t="Include" />
             <e p="GuardAnimationController.cs" t="Include" />
             <e p="Sidescroll Movement" t="Include">
               <e p="GuardMovement.cs" t="Include" />

@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 7336105400421786618}
   - component: {fileID: 3628848344319474143}
   - component: {fileID: 5298404681966314918}
+  - component: {fileID: 855947968}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -97,6 +98,7 @@ MonoBehaviour:
   - {fileID: 7336105400421786618}
   - {fileID: 3628848344319474143}
   - {fileID: 5298404681966314918}
+  - {fileID: 855947968}
   _installerPrefabs: []
   _autoRun: 1
   _parentNewObjectsUnderSceneContext: 0
@@ -118,6 +120,8 @@ MonoBehaviour:
     type: 3}
   controller: {fileID: 0}
   capturedMenuPrefab: {fileID: 2892921191195802069, guid: a2c89d0288903a74c9d6a33e7dbd1c36,
+    type: 3}
+  footprintPrefab: {fileID: 3941315448148219730, guid: c81dd0dbd6690704998b0fc343717c4f,
     type: 3}
 --- !u!114 &3628848344319474143
 MonoBehaviour:
@@ -155,3 +159,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuManagerPrefab: {fileID: 145902270607762337, guid: ec39ecbdb98109f40aa955e9e70fe259,
     type: 3}
+--- !u!114 &855947968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336105400421786617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6ab3863aba4d738a8f356c07bd1a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptSettings:
+    promptPrefabs:
+    - promptType: 1
+      prefab: {fileID: 7532689861681819102, guid: 39d65b80c62ff2d448bd98e1fd2aa181,
+        type: 3}
+    - promptType: 2
+      prefab: {fileID: 1910718599010050522, guid: 6d9f411b1b47e154ca4bbbd7daded44e,
+        type: 3}
+    - promptType: 3
+      prefab: {fileID: 650114432654141598, guid: f7f67620a2e034241b984e46632e1be5,
+        type: 3}

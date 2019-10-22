@@ -14,6 +14,8 @@ namespace Outclaw.Heist {
     [SerializeField]
     private GameObject capturedMenuPrefab;
 
+    [SerializeField] private GameObject footprintPrefab;
+    
     /// <summary>
     /// For all classes common to heist scenes.
     /// Bind the interfaces to the concrete classes.
@@ -44,6 +46,15 @@ namespace Outclaw.Heist {
       Container.BindInterfacesAndSelfTo<SneakManager>()
         .AsSingle()
         .NonLazy();
+      
+      BindFactories();
+    }
+    
+    private void BindFactories() {
+      Container.BindFactory<Footprint.Data, 
+          Footprint, 
+          Footprint.Factory>()
+        .FromComponentInNewPrefab(footprintPrefab);
     }
   }
 }
