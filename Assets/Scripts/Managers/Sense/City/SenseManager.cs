@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Outclaw;
 using UnityEngine;
+using Utility;
 using Zenject;
 
 namespace Outclaw.City {
@@ -19,8 +20,6 @@ namespace Outclaw.City {
     [SerializeField] private AnimationWrapper animationWrapper;
     
     [Inject] private IPlayerInput playerInput;
-    
-    private float animationFreq = .02f;
 
     private List<SpriteRenderer> spritesToGrey = new List<SpriteRenderer>();
     private List<CityInteractable> interactables = new List<CityInteractable>();
@@ -105,10 +104,10 @@ namespace Outclaw.City {
     }
     
     private IEnumerator UpdateElementEffects(float startEffectAmount, float changeEffectAmount) {
-      for (var i = 0f; i < senseDelay; i += animationFreq) {
+      for (var i = 0f; i < senseDelay; i += GlobalConstants.ANIMATION_FREQ) {
         var effectAmount = startEffectAmount + i / senseDelay * changeEffectAmount;
         UpdateElements(effectAmount);
-        yield return new WaitForSeconds(animationFreq);
+        yield return new WaitForSeconds(GlobalConstants.ANIMATION_FREQ);
       }
     }
 

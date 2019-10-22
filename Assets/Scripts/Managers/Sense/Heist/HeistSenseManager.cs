@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Outclaw;
 using UnityEngine;
+using Utility;
 using Zenject;
 
 namespace Outclaw.Heist {
@@ -17,7 +18,6 @@ namespace Outclaw.Heist {
     [Inject] private IPlayerInput playerInput;
     [Inject] private IVantagePointManager vantagePointManager;
     
-    private float animationFreq = .02f;
     private List<DarkenOnSenseElement> elementsToDarken = new List<DarkenOnSenseElement>();
     private List<ShowOnSenseElement> elementsToShow = new List<ShowOnSenseElement>();
     private List<Footprint> footprints = new List<Footprint>();
@@ -69,7 +69,7 @@ namespace Outclaw.Heist {
     
     
     private IEnumerator ActivateSense() {
-      vantagePointManager.ToCurrentVantageView();
+      vantagePointManager.ToVantageView();
       UpdateElementsToShow(true);
       UpdateFadeFootprints(true);
       yield return UpdateElementEffects(animationProgress, 1 - animationProgress);
@@ -77,7 +77,7 @@ namespace Outclaw.Heist {
     }
     
     private IEnumerator DeactivateSense() {
-      vantagePointManager.ToCachedVantageView();
+      vantagePointManager.ExitVantageView();
       UpdateFadeFootprints(true);
       yield return UpdateElementEffects(animationProgress, -animationProgress);
       UpdateFadeFootprints(false);
@@ -85,10 +85,10 @@ namespace Outclaw.Heist {
     }
     
     private IEnumerator UpdateElementEffects(float startEffectAmount, float changeEffectAmount) {
-      for (var i = 0f; i < senseDelay; i += animationFreq) {
+      for (var i = 0f; i < senseDelay; i += GlobalConstants.ANIMATION_FREQ) {
         animationProgress = startEffectAmount + i / senseDelay * changeEffectAmount;
         UpdateElements();
-        yield return new WaitForSeconds(animationFreq);
+        yield return new WaitForSeconds(GlobalConstants.ANIMATION_FREQ);
       }
     }
 

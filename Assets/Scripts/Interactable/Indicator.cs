@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Utility;
 
 namespace Outclaw {
   public class Indicator : MonoBehaviour {
@@ -10,11 +11,9 @@ namespace Outclaw {
     [SerializeField] private Color minColor = new Color(1, 1, 1, 0);
     [SerializeField] private Color maxColor = new Color(1, 1, 1, 1);
     
-    private float animationFreq = .02f;
     private float animationProgress;
 
     public void FadeIn() {
-      Debug.Log(animationWrapper);
       animationWrapper.StartNewAnimation(FadeInAnim());
     }
     
@@ -33,10 +32,10 @@ namespace Outclaw {
     }
     
     private IEnumerator UpdateIndicator(float startAmount, float changeAmount) {
-      for (var i = 0f; i < fadeTime; i += animationFreq) {
+      for (var i = 0f; i < fadeTime; i += GlobalConstants.ANIMATION_FREQ) {
         animationProgress = startAmount + i / fadeTime * changeAmount;
         UpdateIndicator();
-        yield return new WaitForSeconds(animationFreq);
+        yield return new WaitForSeconds(GlobalConstants.ANIMATION_FREQ);
       }
     }
     

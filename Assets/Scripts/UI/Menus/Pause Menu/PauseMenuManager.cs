@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using Outclaw.UI;
+using Utility;
 
 namespace Outclaw {
   public interface IPauseMenuManager {
@@ -92,9 +93,9 @@ namespace Outclaw {
     }
     
     private IEnumerator AnimateBlurIn() {
-      for (var i = 0f; i < pauseTime; i += animationFreq) {
+      for (var i = 0f; i < pauseTime; i += GlobalConstants.ANIMATION_FREQ) {
         background.material.SetFloat("_Radius", i * blurAmount / pauseTime);
-        yield return new WaitForSecondsRealtime(animationFreq);
+        yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
     }
     
@@ -104,9 +105,9 @@ namespace Outclaw {
     }
     
     private IEnumerator AnimateBlurOut() {
-      for (var i = 0f; i < pauseTime; i += animationFreq) {
+      for (var i = 0f; i < pauseTime; i += GlobalConstants.ANIMATION_FREQ) {
         background.material.SetFloat("_Radius", blurAmount - i * blurAmount / pauseTime);
-        yield return new WaitForSecondsRealtime(animationFreq);
+        yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
       if(!previouslyPaused){
         pause.Unpause();

@@ -61,6 +61,7 @@ namespace Outclaw.Heist {
       
       if ((1 << other.gameObject.layer & vantageLayer) != 0) {
         var vantage = other.GetComponentInChildren<VantagePoint>();
+        vantage.ShowIndicator();
         vantagePointManager.RegisterCurrentVantage(vantage);
       }
       
