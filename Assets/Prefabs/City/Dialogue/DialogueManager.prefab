@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceText:
-  - {fileID: 4900000, guid: 2c414f7a1c06fc0438e9d90076a0a739, type: 3}
+  - {fileID: 4900000, guid: 672fc4a531316284ca476873b13deabe, type: 3}
   stringGroups: []
   shouldOverrideLanguage: 0
   overrideLanguage: 10
@@ -152,11 +152,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2448682164132906313}
     m_Modifications:
-    - target: {fileID: 228145367154521188, guid: 76626b30ec4a42542a4947b61a1c822c,
-        type: 3}
-      propertyPath: m_Name
-      value: DialogueUI
-      objectReference: {fileID: 0}
     - target: {fileID: 6199829630630638222, guid: 76626b30ec4a42542a4947b61a1c822c,
         type: 3}
       propertyPath: variableStorage
@@ -266,6 +261,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 228145367154521188, guid: 76626b30ec4a42542a4947b61a1c822c,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76626b30ec4a42542a4947b61a1c822c, type: 3}
