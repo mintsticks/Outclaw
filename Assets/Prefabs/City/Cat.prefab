@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5628549467109088889}
   - component: {fileID: 5628549467109088890}
   - component: {fileID: 5628549467109088891}
-  - component: {fileID: 5628549467109088868}
   m_Layer: 11
   m_Name: Cat
   m_TagString: Untagged
@@ -29,8 +28,9 @@ Transform:
   m_GameObject: {fileID: 5628549467109088869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.776, y: 6.38, z: -8.368164}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
-  m_Children: []
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_Children:
+  - {fileID: 360107579333356726}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,18 +47,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2948286, y: -0.022813916}
+  m_Offset: {x: 2.5748951, y: -1.1456659}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 4.43, y: 7.76}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0748186, y: 1.8364978}
+  m_Size: {x: 3.18959, y: 4.9112515}
   m_EdgeRadius: 0
 --- !u!114 &5628549467109088890
 MonoBehaviour:
@@ -72,7 +72,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad5cf9e4a94bd442b0590c475c47311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  talkIndicator: {fileID: 5628549467109088868}
+  catDialogues:
+    dialoguesForStates:
+    - gameState: 3
+      catDialogue:
+      - dialogue:
+        - {fileID: 4900000, guid: 144afdc0d29820749a0d370c034017bd, type: 3}
+      - dialogue:
+        - {fileID: 4900000, guid: a2ce66e1a26697f488cd686eae3df536, type: 3}
+    - gameState: 4
+      catDialogue:
+      - dialogue:
+        - {fileID: 4900000, guid: 9a2665f09e87c984e942eaf67db1f652, type: 3}
+    dialoguesForRank: []
+  talkIndicator: {fileID: 1572077227990514498}
+  spriteRenderer: {fileID: 5628549467109088891}
+  catPosition: {fileID: 0}
+  particleSystem: {fileID: 0}
   type: 1
 --- !u!212 &5628549467109088891
 SpriteRenderer:
@@ -112,7 +128,7 @@ SpriteRenderer:
   m_SortingLayerID: 1749279607
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 875d15ccaee184446acdca427bac1ab7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce8ae114155e10146a7a3668c655503f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,19 +139,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5628549467109088868
-MonoBehaviour:
+--- !u!1001 &3304105019163273768
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5628549467109088888}
+    m_Modifications:
+    - target: {fileID: 4634285827335535905, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_Name
+      value: CatIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a038904332997e747b5709ceed877c57, type: 3}
+--- !u!4 &360107579333356726 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
+    type: 3}
+  m_PrefabInstance: {fileID: 3304105019163273768}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5628549467109088869}
+--- !u!114 &1572077227990514498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4038508315806077290, guid: a038904332997e747b5709ceed877c57,
+    type: 3}
+  m_PrefabInstance: {fileID: 3304105019163273768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf6e7808c3c617145b2c2ba283a156ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indicatorPrefab: {fileID: 4898193627876080030, guid: a038904332997e747b5709ceed877c57,
-    type: 3}
-  fadeTime: 0.25
-  offset: {x: 0, y: 1.5, z: 0}

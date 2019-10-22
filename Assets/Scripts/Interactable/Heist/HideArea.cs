@@ -7,35 +7,30 @@ using Zenject;
 namespace Outclaw.Heist{
   public class HideArea : MonoBehaviour, Interactable
   {
-    [SerializeField] private City.Indicator hideIndicator;
+    [SerializeField] private Indicator hideIndicator;
     [SerializeField] private AudioClip hideSound;
 
     [Inject] private IHideablePlayer hidePlayer;
     [Inject] private City.IPlayer player;
     [Inject] private ISoundManager soundManager;
 
-    public void Awake() {
-      hideIndicator.Initialize(transform);
-    }
-
     public void InRange() {
-      hideIndicator.CreateIndicator();
-      StartCoroutine(hideIndicator.FadeIn());
+      hideIndicator.FadeIn();
     }
 
     public void ExitRange() {
-      StartCoroutine(hideIndicator.FadeOut());
+      hideIndicator.FadeOut();
     }
 
-    public void Interact(){
+    public void Interact() {
       player.PlayerTransform.position = transform.position;
       soundManager.PlaySFX(hideSound);
       if (!hidePlayer.Hidden) {
-        StartCoroutine(hideIndicator.FadeOut());
+        hideIndicator.FadeOut();
         hidePlayer.Hidden = true;
         return;
       }
-      StartCoroutine(hideIndicator.FadeIn());
+      hideIndicator.FadeIn();
       hidePlayer.Hidden = false;
     }
   }

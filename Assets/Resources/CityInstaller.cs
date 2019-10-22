@@ -9,6 +9,9 @@ namespace Outclaw.City {
     [SerializeField]
     private Player playerInstance;
 
+    [SerializeField] 
+    private CameraBehavior cameraInstance;
+    
     [SerializeField]
     private GameObject objectiveTransformManagerPrefab;
 
@@ -32,6 +35,11 @@ namespace Outclaw.City {
       Container.Bind<IPlayer>()
         .To<Player>()
         .FromInstance(playerInstance)
+        .AsSingle()
+        .NonLazy();
+      Container.Bind<ICameraBehavior>()
+        .To<CameraBehavior>()
+        .FromInstance(cameraInstance)
         .AsSingle()
         .NonLazy();
       Container.Bind<IObjectiveTransformManager>()

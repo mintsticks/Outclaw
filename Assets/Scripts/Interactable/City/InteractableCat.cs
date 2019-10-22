@@ -57,7 +57,6 @@ namespace Outclaw.City {
     public Transform CatPosition => catPosition != null ? catPosition : transform;
     
     public void Awake() {
-      talkIndicator.Initialize(player.PlayerTransform);
       objectiveTransformManager.Cats.Add(this);
       senseManager.RegisterCityInteractable(this);
     }
@@ -66,16 +65,15 @@ namespace Outclaw.City {
       if (!HasInteraction()) {
         return;
       }
-      talkIndicator.CreateIndicator();
-      StartCoroutine(talkIndicator.FadeIn());
+      talkIndicator.FadeIn();
     }
 
     public void ExitRange() {
-      StartCoroutine(talkIndicator.FadeOut());
+      talkIndicator.FadeOut();
     }
 
     public void Interact() {
-      StartCoroutine(talkIndicator.FadeOut());
+      talkIndicator.FadeOut();
       if (HasDialogueForCurrentState()) {
         StartGameStateDialogue(gameStateManager.CurrentGameState);
         return;

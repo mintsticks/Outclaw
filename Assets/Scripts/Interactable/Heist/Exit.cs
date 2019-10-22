@@ -26,18 +26,12 @@ namespace Outclaw.Heist {
     private ISoundManager soundManager;
     
     private bool isComplete;
-
-    public void Awake() {
-      exitIndicator.Initialize(transform);
-    }
-    
     public void InRange() {
-      exitIndicator.CreateIndicator();
-      StartCoroutine(exitIndicator.FadeIn());
+      exitIndicator.FadeIn();
     }
 
     public void ExitRange() {
-      StartCoroutine(exitIndicator.FadeOut());
+      exitIndicator.FadeOut();
     }
 
     public void Interact() {
@@ -57,7 +51,6 @@ namespace Outclaw.Heist {
       menu.Show();
       yield return new WaitForSeconds(victorySound.length);
       SceneManager.LoadScene(exitScene);
-      yield break;
     }
   }
 }

@@ -19,17 +19,15 @@ namespace Outclaw.Heist {
     private bool isComplete;
 
     public void Awake() {
-      objectiveIndicator.Initialize(transform);
       objectiveManager.AddObjective(this);
     }
     
     public void InRange() {
-      objectiveIndicator.CreateIndicator();
-      StartCoroutine(objectiveIndicator.FadeIn());
+      objectiveIndicator.FadeIn();
     }
 
     public void ExitRange() {
-      StartCoroutine(objectiveIndicator.FadeOut());
+      objectiveIndicator.FadeOut();
     }
 
     public void Interact() {
@@ -38,7 +36,6 @@ namespace Outclaw.Heist {
     
     private void CompleteObjective() {
       isComplete = true;
-      objectiveIndicator.SpriteColor = Color.green;
     }
   }
 }

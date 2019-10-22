@@ -3,20 +3,25 @@ using UnityEngine;
 using Zenject;
 
 namespace Outclaw.City {
-  public class CameraBehavior : MonoBehaviour {
+  public interface ICameraBehavior {
+    bool ShouldFollow { get; set; }
+  }
+  
+  public class CameraBehavior : MonoBehaviour, ICameraBehavior {
     [SerializeField] private float smoothSpeed = .125f;
     [SerializeField] private Vector3 offset;
     [SerializeField] private Vector2 minBound;
     [SerializeField] private Vector2 maxBound;
 
     [Inject] private IPlayer player;
-    [Inject] private IVantagePointManager vantagePointManager;
+
+    public bool ShouldFollow { get; set; }
 
     public Vector2 MinBound => minBound;
     public Vector2 MaxBound => maxBound;
 
     void FixedUpdate() {
-      if (vantagePointManager.InVantage) {
+      if (ShouldFollow) {
         return;
       }
       var desiredPos = player.PlayerTransform.position + offset;

@@ -78,7 +78,6 @@ namespace Outclaw.City {
     public ObjectType ObjectType => objectType;
 
     public void Awake() {
-      observeIndicator.Initialize(transform);
       objectiveTransformManager.Objects.Add(this);
       senseManager.RegisterCityInteractable(this);
     }
@@ -89,12 +88,11 @@ namespace Outclaw.City {
       if (!HasInteraction()) {
         return;
       }
-      observeIndicator.CreateIndicator();
-      StartCoroutine(observeIndicator.FadeIn());
+      observeIndicator.FadeIn();
     }
 
     public void ExitRange() {
-      StartCoroutine(observeIndicator.FadeOut());
+      observeIndicator.FadeOut();
     }
 
     public void Interact() {
@@ -103,7 +101,7 @@ namespace Outclaw.City {
       }
       
       var dialogue = GetObjectDialogue();
-      StartCoroutine(observeIndicator.FadeOut());
+      observeIndicator.FadeOut();
       dialogueManager.SetDialogueType(DialogueType.THOUGHT);
       dialogueManager.SetDialogue(dialogue);
       dialogueManager.SetBubbleParent(player.PlayerTransform);

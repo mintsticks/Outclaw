@@ -1,72 +1,48 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Outclaw.City {
+namespace Outclaw {
   public class Indicator : MonoBehaviour {
-    [SerializeField]
-    private GameObject indicatorPrefab;
+    [SerializeField] private float fadeTime = .25f;
+    [SerializeField] private AnimationWrapper animationWrapper;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
-    [SerializeField]
-    private float fadeTime;
-
-    [SerializeField]
-    private Vector3 offset;
-
-    private GameObject indicator;
-    private SpriteRenderer spriteRenderer;
-    private Transform parent;
-    private Color spriteColor = new Color(1, 1, 1);
+    [SerializeField] private Color minColor = new Color(1, 1, 1, 0);
+    [SerializeField] private Color maxColor = new Color(1, 1, 1, 1);
     
-    public void Initialize(Transform _parent) {
-      parent = _parent;
+    private float animationFreq = .02f;
+    private float animationProgress;
+
+    public void FadeIn() {
+      Debug.Log(animationWrapper);
+      animationWrapper.StartNewAnimation(FadeInAnim());
+    }
+    
+    public void FadeOut() {
+      animationWrapper.StartNewAnimation(FadeOutAnim());
     }
 
-    public Color SpriteColor {
-      set {
-        var oldAlpha = spriteColor.a;
-        spriteColor = value;
-        if (spriteRenderer != null) {
-          spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b,oldAlpha);
-        }
+    public IEnumerator FadeInAnim() {
+      spriteRenderer.enabled = true;
+      yield return UpdateIndicator(animationProgress, 1 - animationProgress);
+    }
+    
+    public IEnumerator FadeOutAnim() {
+      yield return UpdateIndicator(animationProgress,-animationProgress);
+      spriteRenderer.enabled = false;
+    }
+    
+    private IEnumerator UpdateIndicator(float startAmount, float changeAmount) {
+      for (var i = 0f; i < fadeTime; i += animationFreq) {
+        animationProgress = startAmount + i / fadeTime * changeAmount;
+        UpdateIndicator();
+        yield return new WaitForSeconds(animationFreq);
       }
     }
     
-    public IEnumerator FadeIn() {
-      for (var i = 0f; i <= fadeTime; i += Time.deltaTime) {
-        MaybeCreateIndicator();
-        spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b,i / fadeTime);
-        yield return null;
-      }
-    }
-
-    public IEnumerator FadeOut() {
-      for (var i = fadeTime; i >= 0; i -= Time.deltaTime) {
-        if (spriteRenderer == null) {
-          yield break;;
-        }
-        spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b,i / fadeTime);
-        yield return null;
-      }
-
-      Destroy(indicator);
-      spriteRenderer = null;
-    }
-
-    public void DestroyIndicator() {
-      Destroy(indicator);
-    }
-    
-    private void MaybeCreateIndicator() {
-      if (spriteRenderer != null) {
-        return;
-      }
-      CreateIndicator();
-    }
-    
-    public void CreateIndicator() {
-      Destroy(indicator);
-      indicator = Instantiate(indicatorPrefab, parent.transform.position + offset, Quaternion.identity, parent.transform);
-      spriteRenderer = indicator.GetComponent<SpriteRenderer>();
+    private void UpdateIndicator() {
+      var color = Color.Lerp(minColor, maxColor, animationProgress);
+      spriteRenderer.color = color;
     }
   }
 }
