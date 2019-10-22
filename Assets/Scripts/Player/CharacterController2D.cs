@@ -43,6 +43,10 @@ namespace Outclaw {
     [Tooltip("Time before hitting ground to play landing")]
     private float landingTime = .1f;
 
+    [SerializeField]
+    [Tooltip("Epsilon used for floating point tolerance")]
+    private float epsilon = .00001f;
+
     private CharacterCollisionState2D collisionState;
     private CharacterRaycastOrigins raycastOrigins;
     private float verticalDistanceBetweenRays;
@@ -63,17 +67,19 @@ namespace Outclaw {
     public bool isGrounded => collisionState.below;
 
     public bool IsNearGround(float gravity){
-      float dist = (landingTime * Mathf.Abs(velocity.y)) + (.5f * gravity * landingTime * landingTime);
+      float dist = skinWidth + (landingTime * Mathf.Abs(velocity.y)) 
+        + (.5f * gravity * landingTime * landingTime);
 
       Vector3 origin = raycastOrigins.bottomLeft;
       for (var i = 0; i < totalVerticalRays; i++) {
-        Vector3 ray = new Vector2(origin.x + i * horizontalDistanceBetweenRays, origin.y);
-        RaycastHit2D hit = Physics2D.Raycast(ray,
-          Vector3.down, dist, platformMask | (isDescending ? 0 : (int)oneWayPlatformMask));
+        Vector3 rayOrigin = new Vector2(origin.x + i * horizontalDistanceBetweenRays, origin.y);
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector3.down, dist, 
+          platformMask | (isDescending ? 0 : (int)oneWayPlatformMask));
 
-        Debug.DrawRay(ray, Vector3.down * dist, Color.black);
+        Debug.DrawRay(rayOrigin, Vector3.down * dist, Color.black);
 
-        if(hit.collider != null && (hit.distance > skinWidth || Mathf.Approximately(hit.distance, skinWidth)))
+        float diff = hit.distance - skinWidth;
+        if(hit.collider != null && (diff > -epsilon))
           return true;
       }
       return false;
@@ -114,7 +120,7 @@ namespace Outclaw {
       UpdateHorizontal();
       UpdateVertical();
 
-      if (Math.Abs(deltaMovement.y) < .00001f) {
+      if (Math.Abs(deltaMovement.y) <epsilon) {
         collisionState.below = true;
       }
       
@@ -278,7 +284,7 @@ namespace Outclaw {
           descendingColliderToIgnore = null;
         }
 
-        if (!isGoingUp && deltaMovement.y > 0.00001f) {
+        if (!isGoingUp && deltaMovement.y > epsilon) {
           isGoingUpSlope = true;
         }
       }
