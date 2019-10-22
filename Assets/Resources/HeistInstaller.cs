@@ -1,3 +1,4 @@
+using Managers;
 using Outclaw.City;
 using UnityEngine;
 using Zenject;
@@ -38,6 +39,9 @@ namespace Outclaw.Heist {
         .NonLazy();
       Container.Bind<IHideablePlayer>()
         .FromInstance(controller)
+        .AsSingle()
+        .NonLazy();
+      Container.BindInterfacesAndSelfTo<SneakManager>()
         .AsSingle()
         .NonLazy();
     }

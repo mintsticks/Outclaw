@@ -27,6 +27,7 @@ namespace Outclaw.Heist {
     private IPlayer player;
     
     private Interactable currentInteractable;
+    private AttentionZone currentZone;
     
     public void UpdateInteraction() {
       if (player.InputDisabled) {
@@ -53,20 +54,28 @@ namespace Outclaw.Heist {
         var oneWayPlatform = other.GetComponentInParent<OneWayPlatform>();
         oneWayPlatform.IntersectTrigger();
       }
-      Debug.Log(LayerMask.LayerToName(other.gameObject.layer));
+      
       if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
-        var attentionZone = other.GetComponentInChildren<AttentionZone>();
-        attentionZone.EnterAttention();
+        currentZone = other.GetComponentInChildren<AttentionZone>();
+        currentZone.EnterAttention();
       }
     }
 
+    public void HandleStay(Collider2D other) {
+      if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
+        currentZone.EnterAttention();
+      }
+    }
+    
     public void HandleExit(Collider2D other) {
-      if ((1 << other.gameObject.layer & interactableLayer) == 0) {
-        return;
+      if ((1 << other.gameObject.layer & interactableLayer) != 0) {
+        other.GetComponentInParent<Interactable>().ExitRange();
+        currentInteractable = null;
       }
       
-      other.GetComponentInParent<Interactable>().ExitRange();
-      currentInteractable = null;
+      if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
+        currentZone = null;
+      }
     }
   }
 }

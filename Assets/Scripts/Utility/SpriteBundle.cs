@@ -11,19 +11,16 @@ namespace Outclaw{
 
     void Awake(){
       sprites = GetComponentsInChildren<SpriteRenderer>(true);
-      foreach (var sprite in sprites) {
-        sprite.color = spriteFilterColor;
-      }
     }
 
     void OnEnable(){
-      foreach(SpriteRenderer sprite in sprites){
+      foreach(var sprite in sprites){
         sprite.enabled = true;
       }
     }
 
     void OnDisable(){
-      foreach(SpriteRenderer sprite in sprites){
+      foreach(var sprite in sprites){
         sprite.enabled = false;
       }
     }
@@ -33,6 +30,23 @@ namespace Outclaw{
       foreach (var sprite in sprites) {
         sprite.color = spriteFilterColor;
       }
+    }
+    
+    public void SetColor(Color color) {
+      if (sprites == null) {
+        return;
+      }
+      foreach (var sprite in sprites) {
+        sprite.color = color;
+      }
+    }
+
+    public Color GetColor() {
+      if (sprites == null || sprites.Length <= 0) {
+        return Color.white;
+      }
+
+      return sprites[0].color;
     }
   }
 }
