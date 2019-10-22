@@ -27,7 +27,6 @@ namespace Outclaw.Heist {
     
     private void Update() {
       var dist = transform.position - footprintSource.position;
-      Debug.Log(dist.magnitude);
       var relDist = Mathf.Clamp(dist.magnitude / pathDistance, 0, 1);
       sprite.color = Color.Lerp(minColor, maxColor, 1 - relDist);
     }

@@ -13,8 +13,8 @@ namespace City {
   
   public class HeistSenseManager : MonoBehaviour {
     [SerializeField] private float senseDelay;
+    [SerializeField] private AnimationWrapper animationWrapper;
     [Inject] private IPlayerInput playerInput;
-    private AnimationWrapper animation;
     private bool isSensing;
     private bool isSenseDown;
     private bool isSenseUp;
@@ -40,7 +40,7 @@ namespace City {
       
       isSensing = true;
       isSenseDown = true;
-      animation.StartNewAnimation(ActivateSense());
+      animationWrapper.StartNewAnimation(ActivateSense());
     }
 
     private void UpdateSenseUp() {
@@ -51,7 +51,7 @@ namespace City {
 
       isSenseUp = true;
       isSensing = false;
-      animation.StartNewAnimation(DeactivateSense());
+      animationWrapper.StartNewAnimation(DeactivateSense());
     }
     
     

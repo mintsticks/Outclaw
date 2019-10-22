@@ -14,18 +14,14 @@ namespace City {
   }
   
   public class SenseManager : MonoBehaviour, ISenseManager {
-    [SerializeField]
-    private float senseDelay;
-
-    [SerializeField]
-    private string effectName = "_EffectAmount";
+    [SerializeField] private float senseDelay;
+    [SerializeField] private string effectName = "_EffectAmount";
+    [SerializeField] private AnimationWrapper animationWrapper;
     
-    [Inject] 
-    private IPlayerInput playerInput;
+    [Inject] private IPlayerInput playerInput;
     
     private float animationFreq = .02f;
-    private AnimationWrapper animationWrapper;
-    
+
     private List<SpriteRenderer> spritesToGrey = new List<SpriteRenderer>();
     private List<CityInteractable> interactables = new List<CityInteractable>();
     private HashSet<CityInteractable> currentInteractablesToGrey;

@@ -10,10 +10,11 @@ namespace Outclaw.Heist {
     [SerializeField] private Color regularColor;
     [SerializeField] private Color sneakColor;
     [SerializeField] private float transitionTime;
+    [SerializeField] private AnimationWrapper animationWrapper;
+    
     [Inject] private IPlayer player;
     [Inject] private ISneakManager sneakManager;
     
-    private AnimationWrapper animationWrapper;
     
     private void Awake() {
       sprites.SetColor(regularColor);
