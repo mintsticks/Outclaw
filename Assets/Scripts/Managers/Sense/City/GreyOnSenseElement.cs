@@ -16,5 +16,9 @@ namespace Outclaw.City {
     public void UpdateElement(float animationProgress) {
       spriteRenderer.material.SetFloat(effectName, animationProgress);
     }
+
+    public void OnActivate() { }
+
+    public void OnDeactivate() { }
   }
 }

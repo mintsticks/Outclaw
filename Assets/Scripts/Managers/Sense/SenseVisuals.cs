@@ -21,12 +21,20 @@ namespace Outclaw {
     private float animationProgress;
     
     public IEnumerator ActivateSense() {
+      foreach (var senseElement in senseElements) {
+        senseElement.OnActivate();
+      }
+      
       vantagePointManager.ToVantageView();
       UpdateFootprints(true);
       yield return UpdateElementEffects(animationProgress, 1 - animationProgress);
     }
     
     public IEnumerator DeactivateSense() {
+      foreach (var senseElement in senseElements) {
+        senseElement.OnDeactivate();
+      }
+      
       vantagePointManager.ExitVantageView();
       UpdateFootprints(false);
       yield return UpdateElementEffects(animationProgress, -animationProgress);
@@ -71,21 +79,22 @@ namespace Outclaw {
   public class CitySenseVisuals : ISenseVisuals {
     private List<ISenseElement> senseElements = new List<ISenseElement>();
     private List<ObjectiveInteractable> interactables = new List<ObjectiveInteractable>();
-    private HashSet<ObjectiveInteractable> currentInteractablesToGrey;
-    
+
     private float animationProgress;
     
     public IEnumerator ActivateSense() {
-      UpdateInteractablesOnActivate();
+      foreach (var senseElement in senseElements) {
+        senseElement.OnActivate();
+      }
+
       yield return UpdateElementEffects(animationProgress, 1 - animationProgress);
     }
     
     public IEnumerator DeactivateSense() {
-      foreach (var interactable in interactables) {
-        interactable.DisableEffect();
+      foreach (var senseElement in senseElements) {
+        senseElement.OnDeactivate();
       }
       yield return UpdateElementEffects(animationProgress, -animationProgress);
-      currentInteractablesToGrey.Clear();
     }
 
     public void RegisterSenseElement(ISenseElement senseElement) {
@@ -106,17 +115,6 @@ namespace Outclaw {
     private void UpdateElements() {
       foreach (var element in senseElements) {
         element.UpdateElement(animationProgress);
-      }
-    }
-
-    private void UpdateInteractablesOnActivate() {
-      currentInteractablesToGrey = new HashSet<ObjectiveInteractable>();
-      foreach (var interactable in interactables) {
-        if (interactable.HasInteraction()) {
-          interactable.EnableEffect();
-          continue;
-        } 
-        currentInteractablesToGrey.Add(interactable);
       }
     }
   }

@@ -166,8 +166,11 @@ namespace Outclaw.City {
       sceneTransitionManager.TransitionToScene(dest);
     }
 
-    public void UpdateElement(float animationProgress) {
-    }
+    public void UpdateElement(float animationProgress) { }
+
+    public void OnActivate() { }
+
+    public void OnDeactivate() { }
   }
   
   [Serializable]

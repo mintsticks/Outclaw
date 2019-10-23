@@ -4,6 +4,8 @@ using Zenject;
 namespace Outclaw.Heist {
   public interface ISenseElement {
     void UpdateElement(float animationProgress);
+    void OnActivate();
+    void OnDeactivate();
   }
   
   public class ShowOnSenseElement : MonoBehaviour, ISenseElement {
@@ -22,5 +24,8 @@ namespace Outclaw.Heist {
       var color = Color.Lerp(regularColor, showColor, animationProgress);
       spriteRenderer.color = color;
     }
+
+    public void OnActivate() { }
+    public void OnDeactivate() { }
   }
 }

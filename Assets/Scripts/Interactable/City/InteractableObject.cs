@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using City;
+using Outclaw.Heist;
 using UnityEngine;
 using Utility;
 using Zenject;
+using IObjectiveManager = City.IObjectiveManager;
 
 namespace Outclaw.City {
   public class InteractableObject : MonoBehaviour, ObjectiveInteractable {
@@ -15,7 +17,8 @@ namespace Outclaw.City {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform objectPosition;
     [SerializeField] private ParticleSystem particleSystem;
-
+    [SerializeField] private DarkenOnSenseElement darkenOnSenseElement;
+    
     [Inject] private ILocationManager locationManager;
     [Inject] private IDialogueManager dialogueManager;
     [Inject] private IObjectiveManager objectiveManager;
@@ -112,7 +115,21 @@ namespace Outclaw.City {
     }
 
     public void UpdateElement(float animationProgress) {
+      if (HasInteraction()) {
+        return;
+      }
       spriteRenderer.material.SetFloat(GlobalConstants.GREY_EFFECT_NAME, animationProgress);
+    }
+
+    public void OnActivate() {
+      if (!HasInteraction()) {
+        return;
+      }
+      EnableEffect();
+    }
+
+    public void OnDeactivate() {
+      DisableEffect();
     }
   }
   

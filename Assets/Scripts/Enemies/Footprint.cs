@@ -50,5 +50,9 @@ namespace Outclaw.Heist {
       var color = Color.Lerp(origin, currentColor, animationProgress);
       sprite.color = color;
     }
+
+    public void OnActivate() { }
+
+    public void OnDeactivate() { }
   }
 }

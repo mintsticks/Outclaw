@@ -4715,13 +4715,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events:
-  - eventType: 2
+  - eventType: 3
     dialogue:
-    - {fileID: 4900000, guid: 455da3dcc4ac26b4c8059d1c00ebb562, type: 3}
+    - {fileID: 4900000, guid: 44de38fb48acd794f9c26bc026539600, type: 3}
     waitTime: 0
-    promptType: 3
-    promptText: Press E by the indicator to exit.
-  eventGameSequence: 2
+    promptType: 0
+    promptText: 
+  eventGameSequence: 6
 --- !u!61 &682431220
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7315,6 +7315,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1549986229}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 408989009}
+  darkenOnSenseElement: {fileID: 0}
 --- !u!1 &1018969892
 GameObject:
   m_ObjectHideFlags: 0
@@ -9306,6 +9307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1352846972}
   - component: {fileID: 1352846973}
+  - component: {fileID: 1352846974}
   m_Layer: 23
   m_Name: Sprite
   m_TagString: Untagged
@@ -9376,6 +9378,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1352846974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352846971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8159e966efad4435b077c6fc9551c2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1352846973}
+  regularColor: {r: 1, g: 1, b: 1, a: 1}
+  darkenedColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
 --- !u!1 &1374784795
 GameObject:
   m_ObjectHideFlags: 0
@@ -10281,7 +10298,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9142dc00fbf7f364985329f79b156768, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5575382, g: 0.5738439, b: 0.6320754, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12215,6 +12232,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1352846973}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 22958916}
+  darkenOnSenseElement: {fileID: 0}
 --- !u!1 &1845849240
 GameObject:
   m_ObjectHideFlags: 0
@@ -12759,6 +12777,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1989000185}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 520189743}
+  darkenOnSenseElement: {fileID: 0}
 --- !u!1001 &1889471420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12948,12 +12967,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   observeIndicator: {fileID: 1195648763}
   objectInfo:
-    dialoguesForStates: []
+    dialoguesForStates:
+    - gameState: 6
+      objectDialogues:
+      - dialogue:
+        - {fileID: 4900000, guid: eaea28c4783cf034ba73ef891d4f61d4, type: 3}
   locationType: 5
   objectType: 8
   spriteRenderer: {fileID: 1516490750}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 572260487}
+  darkenOnSenseElement: {fileID: 0}
 --- !u!1 &1894958094
 GameObject:
   m_ObjectHideFlags: 0
