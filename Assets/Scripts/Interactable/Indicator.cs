@@ -21,12 +21,12 @@ namespace Outclaw {
       animationWrapper.StartNewAnimation(FadeOutAnim());
     }
 
-    public IEnumerator FadeInAnim() {
+    private IEnumerator FadeInAnim() {
       spriteRenderer.enabled = true;
       yield return UpdateIndicator(animationProgress, 1 - animationProgress);
     }
-    
-    public IEnumerator FadeOutAnim() {
+
+    private IEnumerator FadeOutAnim() {
       yield return UpdateIndicator(animationProgress,-animationProgress);
       spriteRenderer.enabled = false;
     }
@@ -37,6 +37,9 @@ namespace Outclaw {
         UpdateIndicator();
         yield return new WaitForSeconds(GlobalConstants.ANIMATION_FREQ);
       }
+      
+      animationProgress = Mathf.Round(animationProgress);
+      UpdateIndicator();
     }
     
     private void UpdateIndicator() {

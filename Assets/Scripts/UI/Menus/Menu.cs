@@ -98,6 +98,8 @@ namespace Outclaw.UI{
         contents.alpha = i / pauseTime;
         yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
+
+      contents.alpha = 1;
     }
     
     protected IEnumerator FadeOutContent() {
@@ -105,6 +107,8 @@ namespace Outclaw.UI{
         contents.alpha = i / pauseTime;
         yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
+
+      contents.alpha = 0;
     }
 
     protected IEnumerator StallInput() {

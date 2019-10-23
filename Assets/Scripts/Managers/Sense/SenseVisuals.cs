@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Outclaw.City;
 using Outclaw.Heist;
@@ -54,6 +55,9 @@ namespace Outclaw {
         UpdateElements();
         yield return new WaitForSeconds(GlobalConstants.ANIMATION_FREQ);
       }
+
+      animationProgress = Mathf.Round(animationProgress);
+      UpdateElements();
       UpdateFadeFootprints(false);
     }
 
@@ -110,6 +114,8 @@ namespace Outclaw {
         UpdateElements();
         yield return new WaitForSeconds(GlobalConstants.ANIMATION_FREQ);
       }
+      animationProgress = Mathf.Round(animationProgress);
+      UpdateElements();
     }
     
     private void UpdateElements() {
