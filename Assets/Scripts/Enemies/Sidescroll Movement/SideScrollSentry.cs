@@ -26,11 +26,9 @@ namespace Outclaw.Heist{
       }
 
       ComputeVisionDirection(out Vector3 leftDir, out Vector3 rightDir);
-      movement.UpdateVisionCone(isFacingLeft ? leftDir : rightDir);
       movement.SetArmAngle(armAngle);
-      if (!turns) {
-        return;
-      }
+      // both turning and nonturning need to keep updated the cone angle
+      //  because the arm animation will pu ti tat the wrong angle
       StartCoroutine(Sentry(leftDir, rightDir));
     }
 
@@ -39,6 +37,9 @@ namespace Outclaw.Heist{
         for(float time = 0; time < turnPause; time += Time.deltaTime){
           movement.UpdateVisionCone(isFacingLeft ? leftDir : rightDir);
           yield return null;
+        }
+        if (!turns) {
+          yield break;
         }
         yield return LookAround(leftDir, rightDir);
       }
