@@ -21,7 +21,7 @@ namespace Outclaw.City {
     public SerializedDialogue locationDialogue;
   }
 
-  public class InteractableLocation : MonoBehaviour, CityInteractable {
+  public class InteractableLocation : MonoBehaviour, ObjectiveInteractable {
     [SerializeField]
     private Indicator enterIndicator;
 

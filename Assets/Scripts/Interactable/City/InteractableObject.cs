@@ -29,7 +29,7 @@ namespace Outclaw.City {
     public List<SerializedDialogue> objectDialogues;
   }
   
-  public class InteractableObject : MonoBehaviour, CityInteractable {
+  public class InteractableObject : MonoBehaviour, ObjectiveInteractable {
     [SerializeField]
     private Indicator observeIndicator;
 

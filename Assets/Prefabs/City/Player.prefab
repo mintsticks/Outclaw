@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 8390656
   eventSequenceLayer:
     serializedVersion: 2
     m_Bits: 32768
@@ -102,7 +102,7 @@ MonoBehaviour:
     m_Bits: 65536
   triggerMask:
     serializedVersion: 2
-    m_Bits: 165888
+    m_Bits: 8554496
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -154,6 +154,7 @@ MonoBehaviour:
   transform: {fileID: 6668054844795081126}
   boxCollider: {fileID: 7141213316239228673}
   landingTime: 0.15
+  epsilon: 0.00001
 --- !u!114 &4476573189432842573
 MonoBehaviour:
   m_ObjectHideFlags: 0

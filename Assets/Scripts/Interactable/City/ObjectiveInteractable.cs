@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Outclaw.City {
-  public interface CityInteractable {
+  public interface ObjectiveInteractable {
     void InRange();
     void ExitRange();
     void Interact();
