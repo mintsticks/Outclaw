@@ -73,6 +73,10 @@ namespace Outclaw.Heist{
       patrolRoutine.StopCoroutine();
     }
 
+    public void MoveToStart(){
+      SnapToStart();
+    }
+
     // returns the index to the left of the starting position
     private int SnapToStart(){
 

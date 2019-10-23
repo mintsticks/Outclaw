@@ -73,7 +73,7 @@ namespace Outclaw.Heist {
     public void HandleStay(Collider2D other) {
       if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
         currentZone = other.GetComponentInChildren<AttentionZone>();
-        currentZone.EnterAttention();
+        currentZone.StayAttention();
       }
       
       if ((1 << other.gameObject.layer & lineOfSightLayer) != 0) {
@@ -103,6 +103,11 @@ namespace Outclaw.Heist {
       
       if ((1 << other.gameObject.layer & lightLayer) != 0) {
         playerLitManager.IsLit = false;
+      }
+
+      if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
+        currentZone = other.GetComponentInChildren<AttentionZone>();
+        currentZone.ExitAttention();
       }
     }
   }

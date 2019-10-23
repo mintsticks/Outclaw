@@ -48,18 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coneAngle: 90
   visionDistance: 4
-  numSamples: 20
+  numSamples: 12
   hitLayers:
     serializedVersion: 2
     m_Bits: 66359
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
+  activeRadius: 30
   onDetect:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Outclaw.Heist.VisionCone+OnDetect, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Outclaw.Heist.OnDetect, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   filter: {fileID: 4877307179629242098}
   rend: {fileID: 5379284783084414350}
 --- !u!33 &4877307179629242098

@@ -18,9 +18,11 @@ namespace Outclaw.Heist {
     [SerializeField] private int numSamples = 10;
     [SerializeField] private LayerMask hitLayers;
     [SerializeField] private LayerMask playerLayer;
+    [Header("Radius near player to test cone")]
+    [SerializeField] private float activeRadius = 10;
     public OnDetect onDetect = new OnDetect();
 
-    [Header("Component Links")] [SerializeField]
+    [Tooltip("Component Links")] [SerializeField]
     private MeshFilter filter;
 
     [SerializeField] private MeshRenderer rend;
@@ -29,6 +31,9 @@ namespace Outclaw.Heist {
 
     void LateUpdate() {
       if (pause.IsPaused) {
+        return;
+      }
+      if(Vector3.Distance(this.player.PlayerTransform.position, transform.position) > activeRadius){
         return;
       }
 

@@ -53,6 +53,11 @@ MonoBehaviour:
   visionCone: {fileID: 7358662302485806286}
   visionConeTransform: {fileID: 8406074045592660054}
   speed: 0
+  minSpeedToTurn: 0.1
+  bodyBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  anim: {fileID: 0}
 --- !u!114 &996113424941542925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f663e6bcfdb0a1843ae696dbb49c0bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alertSprite: {fileID: 0}
+  fadeTime: 0.25
 --- !u!1001 &996113424399694200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -341,7 +348,7 @@ PrefabInstance:
     - target: {fileID: 7768110679859266998, guid: 6d2a6f83577c0e048a2a685caa01a3ac,
         type: 3}
       propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CapturePlayer
+      value: CapturePlayerImmediate
       objectReference: {fileID: 0}
     - target: {fileID: 7768110679859266998, guid: 6d2a6f83577c0e048a2a685caa01a3ac,
         type: 3}
