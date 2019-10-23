@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/OffsetController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/OffsetController.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Heist/park/bgtrees.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Heist/park/bgtrees.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Flashlight Patrol Guard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Flashlight Patrol Guard.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Guard Components/Guard Sentry Movement.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Guard Components/Guard Sentry Movement.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Guard Components/Guard Visual.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Guard Components/Guard Visual.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Patrol Guard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Patrol Guard.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Sentry Guard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Sentry Guard.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Heist/park/pagoda2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Heist/park/pagoda2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Sidescroll Movement/SideScrollSentry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Sidescroll Movement/SideScrollSentry.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +31,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/SpriteBundle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/ThoughtBubble.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/PauseMenuManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Sidescroll Movement/SideScrollSentry.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Util/ReflectionInfoTypeInfoConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/HeistSenseManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sense/City/GreyOnSenseElement.cs" root0="FORCE_HIGHLIGHTING" />
@@ -62,6 +60,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/StartListener.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Installers/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/CharacterController2D.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Camera/OffsetController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePointManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/MovementController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/City/Home.unity" root0="FORCE_HIGHLIGHTING" />
@@ -120,8 +119,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/CatDialogueUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/PauseGame.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Capture.cs" />
@@ -166,11 +163,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/Indicator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/PauseMenuManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/HeistSenseManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Camera/CameraBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePointManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/City/SenseManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Sidescroll Movement/SideScrollSentry.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Camera/CameraBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Camera/OffsetController.cs" />
       </list>
     </option>
   </component>
@@ -241,7 +240,7 @@
       <workItem from="1571262006748" duration="8700000" />
       <workItem from="1571608980401" duration="616000" />
       <workItem from="1571687813022" duration="2531000" />
-      <workItem from="1571774971374" duration="14282000" />
+      <workItem from="1571774971374" duration="16947000" />
     </task>
     <servers />
   </component>

@@ -28,9 +28,10 @@ namespace Outclaw.Heist{
       ComputeVisionDirection(out Vector3 leftDir, out Vector3 rightDir);
       movement.UpdateVisionCone(isFacingLeft ? leftDir : rightDir);
       movement.SetArmAngle(armAngle);
-      if(turns){
-        StartCoroutine(Sentry(leftDir, rightDir));
+      if (!turns) {
+        return;
       }
+      StartCoroutine(Sentry(leftDir, rightDir));
     }
 
     private IEnumerator Sentry(Vector3 leftDir, Vector3 rightDir){

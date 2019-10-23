@@ -5,6 +5,7 @@ using Zenject;
 namespace Outclaw.City {
   public interface ICameraBehavior {
     bool ShouldFollow { get; set; }
+    Vector3 Offset { get; set; }
     Vector3 GetCurrentCameraPos();
   }
   
@@ -22,6 +23,11 @@ namespace Outclaw.City {
     public bool ShouldFollow {
       get => shouldFollow;
       set => shouldFollow = value;
+    }
+
+    public Vector3 Offset { 
+      get => offset;
+      set => offset = value;
     }
 
     public Vector2 MinBound => minBound;
