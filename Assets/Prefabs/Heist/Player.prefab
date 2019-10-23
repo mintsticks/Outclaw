@@ -124,7 +124,7 @@ MonoBehaviour:
     m_Bits: 65536
   triggerMask:
     serializedVersion: 2
-    m_Bits: 8030208
+    m_Bits: 16418816
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -345,6 +345,9 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 2048
+  objectiveInteractableLayer:
+    serializedVersion: 2
+    m_Bits: 8388608
   eventSequenceLayer:
     serializedVersion: 2
     m_Bits: 32768
