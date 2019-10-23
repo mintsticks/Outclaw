@@ -32,6 +32,7 @@ namespace Outclaw.Heist {
 
       if (playerInput.IsInteractDown()) {
         currentInteractable?.Interact();
+        currentObjectiveInteractable?.Interact();
       }
     }
 

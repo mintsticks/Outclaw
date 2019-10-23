@@ -18,5 +18,9 @@ namespace Outclaw.Heist {
       var color = Color.Lerp(regularColor, darkenedColor, animationProgress);
       spriteRenderer.color = color;
     }
+
+    public void OnActivate() { }
+
+    public void OnDeactivate() { }
   }
 }

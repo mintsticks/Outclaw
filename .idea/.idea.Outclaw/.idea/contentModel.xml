@@ -26,23 +26,31 @@
             <e p="NPC22.yarn.txt" t="Include" />
             <e p="oldNPC2.yarn.txt" t="Include" />
           </e>
-          <e p="CityPrompt.yarn.txt" t="Include" />
           <e p="DontLeaveHouse.yarn.txt" t="Include" />
           <e p="foundCollar.yarn.txt" t="Include" />
-          <e p="Intro.yarn.txt" t="Include" />
-          <e p="NoAnimals.yarn.txt" t="Include" />
           <e p="ObjectDialogue" t="Include">
             <e p="Bathroom1.yarn.txt" t="Include" />
             <e p="Bed1.yarn.txt" t="Include" />
             <e p="Cabinet1.yarn.txt" t="Include" />
             <e p="Desk1.yarn.txt" t="Include" />
             <e p="Desk2.yarn.txt" t="Include" />
+            <e p="GumWrapper" t="Include">
+              <e p="GumWrapper.txt" t="Include" />
+            </e>
+            <e p="NoAnimals" t="Include">
+              <e p="NoAnimals.yarn.txt" t="Include" />
+            </e>
             <e p="Table1.yarn.txt" t="Include" />
             <e p="Trapdoor1.yarn.txt" t="Include" />
           </e>
           <e p="ParkDefault.yarn.txt" t="Include" />
-          <e p="ParkIntro.yarn.txt" t="Include" />
-          <e p="ParkPrompt.yarn.txt" t="Include" />
+          <e p="PromptDialogue" t="Include">
+            <e p="CityPrompt.yarn.txt" t="Include" />
+            <e p="Intro.yarn.txt" t="Include" />
+            <e p="ParkIntro.yarn.txt" t="Include" />
+            <e p="ParkPrompt.yarn.txt" t="Include" />
+            <e p="SneakPrompt.txt" t="Include" />
+          </e>
           <e p="Test.yarn.txt" t="Include" />
           <e p="Test2.yarn.txt" t="Include" />
         </e>
@@ -652,6 +660,7 @@
               <e p="MoveDismissablePrompt.cs" t="Include" />
               <e p="PromptAnimationComponent.cs" t="Include" />
               <e p="PromptManager.cs" t="Include" />
+              <e p="SneakDismissablePrompt.cs" t="Include" />
             </e>
             <e p="IntroDialogueUI.cs" t="Include" />
             <e p="Menus" t="Include">

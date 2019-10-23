@@ -121,5 +121,8 @@ namespace Outclaw.City {
     }
 
     public void UpdateElement(float animationProgress) { }
+    public void OnActivate() { }
+
+    public void OnDeactivate() { }
   }
 }
