@@ -30,6 +30,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7336105400421786619}
+  - {fileID: 2744776278428435893}
+  - {fileID: 2320832314134776591}
+  - {fileID: 3932067552770100956}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62,14 +65,166 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 7336105400421786618}
-  - {fileID: 3628848344319474143}
-  - {fileID: 5298404681966314918}
-  - {fileID: 855947968}
+  - {fileID: 6833813073937711411}
+  - {fileID: 6813819857658213642}
+  - {fileID: 1967607324271250873}
   _installerPrefabs: []
   _autoRun: 1
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
+--- !u!1 &3850486555626135938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2320832314134776591}
+  - component: {fileID: 6813819857658213642}
+  m_Layer: 0
+  m_Name: Pause Installer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2320832314134776591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850486555626135938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 636999322695655643}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6813819857658213642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850486555626135938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126ae12a489ad2f41a6bda71fc1713de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuManagerPrefab: {fileID: 145902270607762337, guid: ec39ecbdb98109f40aa955e9e70fe259,
+    type: 3}
+--- !u!1 &5564931193707623836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3932067552770100956}
+  - component: {fileID: 1967607324271250873}
+  m_Layer: 0
+  m_Name: Prompt Installer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3932067552770100956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564931193707623836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 636999322695655643}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1967607324271250873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564931193707623836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6ab3863aba4d738a8f356c07bd1a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptSettings:
+    promptPrefabs:
+    - promptType: 1
+      prefab: {fileID: 7532689861681819102, guid: 39d65b80c62ff2d448bd98e1fd2aa181,
+        type: 3}
+    - promptType: 2
+      prefab: {fileID: 1910718599010050522, guid: 6d9f411b1b47e154ca4bbbd7daded44e,
+        type: 3}
+    - promptType: 3
+      prefab: {fileID: 650114432654141598, guid: f7f67620a2e034241b984e46632e1be5,
+        type: 3}
+--- !u!1 &7081568475636708665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2744776278428435893}
+  - component: {fileID: 6833813073937711411}
+  m_Layer: 0
+  m_Name: Dialogue Installer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2744776278428435893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081568475636708665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 636999322695655643}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6833813073937711411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081568475636708665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7102e8e101d263748b2ef3c93cd002ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManagerPrefab: {fileID: 7652190617852912222, guid: 93a8915f2eb31e847ae63cf7bcb31492,
+    type: 3}
+  speechBubblePrefab: {fileID: 8641793541296546377, guid: a2a408fdeb8b985419734eaec4299fa6,
+    type: 3}
+  thoughtBubblePrefab: {fileID: 7449775068322359441, guid: 81d10ad83844897428b257f1fd0a6689,
+    type: 3}
+  optionIndicatorPrefab: {fileID: 1078197831242203693, guid: e2c7011dbf7e68048a550b6d0b913c7e,
+    type: 3}
+  dialogueIconManagerPrefab: {fileID: 7676714812861992969, guid: f4ddd1c6361da5d45a0339a70d8be8a4,
+    type: 3}
 --- !u!1 &7336105400421786617
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,11 +235,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7336105400421786619}
   - component: {fileID: 7336105400421786618}
-  - component: {fileID: 3628848344319474143}
-  - component: {fileID: 5298404681966314918}
-  - component: {fileID: 855947968}
   m_Layer: 0
-  m_Name: SceneContext
+  m_Name: Heist Installer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,62 +280,7 @@ MonoBehaviour:
     type: 3}
   vantageManagerPrefab: {fileID: 3776921949009355969, guid: a33ad9e93eae5f84abfd2eb873464cad,
     type: 3}
---- !u!114 &3628848344319474143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7336105400421786617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7102e8e101d263748b2ef3c93cd002ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueManagerPrefab: {fileID: 7652190617852912222, guid: 93a8915f2eb31e847ae63cf7bcb31492,
+  objectiveTransformManagerPrefab: {fileID: 1551093554144406942, guid: 853f0934fc56c994c936f97a979beadd,
     type: 3}
-  speechBubblePrefab: {fileID: 8641793541296546377, guid: a2a408fdeb8b985419734eaec4299fa6,
+  senseManagerPrefab: {fileID: 6698711239504880299, guid: b09a1b14efa12964c9b11aeb913a73b8,
     type: 3}
-  thoughtBubblePrefab: {fileID: 7449775068322359441, guid: 81d10ad83844897428b257f1fd0a6689,
-    type: 3}
-  optionIndicatorPrefab: {fileID: 1078197831242203693, guid: e2c7011dbf7e68048a550b6d0b913c7e,
-    type: 3}
-  dialogueIconManagerPrefab: {fileID: 7676714812861992969, guid: f4ddd1c6361da5d45a0339a70d8be8a4,
-    type: 3}
---- !u!114 &5298404681966314918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7336105400421786617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 126ae12a489ad2f41a6bda71fc1713de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuManagerPrefab: {fileID: 145902270607762337, guid: ec39ecbdb98109f40aa955e9e70fe259,
-    type: 3}
---- !u!114 &855947968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7336105400421786617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a6ab3863aba4d738a8f356c07bd1a99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptSettings:
-    promptPrefabs:
-    - promptType: 1
-      prefab: {fileID: 7532689861681819102, guid: 39d65b80c62ff2d448bd98e1fd2aa181,
-        type: 3}
-    - promptType: 2
-      prefab: {fileID: 1910718599010050522, guid: 6d9f411b1b47e154ca4bbbd7daded44e,
-        type: 3}
-    - promptType: 3
-      prefab: {fileID: 650114432654141598, guid: f7f67620a2e034241b984e46632e1be5,
-        type: 3}

@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 548457743583857863}
   - component: {fileID: 8925972461001800901}
   m_Layer: 12
-  m_Name: Side Scroll Guard
+  m_Name: Patrol Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f663e6bcfdb0a1843ae696dbb49c0bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAwareness: 3
+  maxAwareness: 2
   awarenessIncreaseRate: 1
   awarenessDecreaseRate: 0.5
   alertSprite: {fileID: 8839881536728199228}
