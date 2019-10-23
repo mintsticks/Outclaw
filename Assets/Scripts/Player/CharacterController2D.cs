@@ -94,8 +94,11 @@ namespace Outclaw {
     private void SetUpMasks() {
       platformMask |= oneWayPlatformMask;
       for (var i = 0; i < 32; i++) {
-        if ((triggerMask.value & 1 << i) == 0)
-          Physics2D.IgnoreLayerCollision(gameObject.layer, i);
+        if ((triggerMask.value & 1 << i) != 0) {
+          Physics2D.IgnoreLayerCollision(gameObject.layer, i, false);
+          continue;
+        }
+        Physics2D.IgnoreLayerCollision(gameObject.layer, i, true);
       }
     }
 

@@ -7,30 +7,6 @@ using Utility;
 using Zenject;
 
 namespace Outclaw.City {
-  public enum ObjectType {
-    NONE,
-    BED,
-    SHOWER,
-    DESK,
-    TRAPDOOR,
-    TABLE,
-    CABINET
-  }
-
-  [Serializable]
-  public class ObjectDialogues {
-    [Tooltip("Object dialogues are different depending on game state.")]
-    public List<ObjectDialogueForState> dialoguesForStates;
-  }
-
-  [Serializable]
-  public class ObjectDialogueForState {
-    public GameStateType gameState;
-
-    [Tooltip("All the dialogues for an object, for a certain gamestate.")]
-    public List<SerializedDialogue> objectDialogues;
-  }
-
   public class InteractableObject : MonoBehaviour, ObjectiveInteractable {
     [SerializeField] private Indicator observeIndicator;
     [SerializeField] private ObjectDialogues objectInfo;
@@ -138,5 +114,31 @@ namespace Outclaw.City {
     public void UpdateElement(float animationProgress) {
       spriteRenderer.material.SetFloat(GlobalConstants.GREY_EFFECT_NAME, animationProgress);
     }
+  }
+  
+  public enum ObjectType {
+    NONE = 0,
+    BED = 1,
+    SHOWER = 2,
+    DESK = 3,
+    TRAPDOOR = 4,
+    TABLE = 5,
+    CABINET = 6,
+    COLLAR = 7,
+    NO_ANIMAL_SIGN = 8,
+  }
+  
+  [Serializable]
+  public class ObjectDialogues {
+    [Tooltip("Object dialogues are different depending on game state.")]
+    public List<ObjectDialogueForState> dialoguesForStates;
+  }
+
+  [Serializable]
+  public class ObjectDialogueForState {
+    public GameStateType gameState;
+
+    [Tooltip("All the dialogues for an object, for a certain gamestate.")]
+    public List<SerializedDialogue> objectDialogues;
   }
 }

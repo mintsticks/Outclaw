@@ -17,7 +17,8 @@ namespace Outclaw {
     FIRST_TIME_CITY = 3,
     FOUND_HANA = 4,
     FOUND_AKI = 5,
-    FOUND_COLLAR = 6
+    FIRST_HEIST = 6,
+    FOUND_COLLAR = 7
   }
 
   [Serializable]

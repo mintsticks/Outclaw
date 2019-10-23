@@ -7,11 +7,12 @@ using Zenject;
 
 namespace Outclaw.City {
   public enum EntranceType {
-    CAFE_EXIT,
-    CAFE_ENTRANCE,
-    HOME_EXIT,
-    HOME_ENTRANCE,
-    PARK_ENTRANCE
+    NONE = 0,
+    CAFE_EXIT = 1,
+    CAFE_ENTRANCE = 2,
+    HOME_EXIT = 3,
+    HOME_ENTRANCE = 4,
+    PARK_ENTRANCE = 5
   }
 
   [Serializable]

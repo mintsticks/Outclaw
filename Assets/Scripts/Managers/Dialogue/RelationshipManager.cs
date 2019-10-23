@@ -65,11 +65,11 @@ namespace Outclaw.City {
   }
   
   public enum CatType {
-    NONE,
-    CROOK,
-    BEAUTY,
-    JOKER,
-    SLIM
+    NONE = 0,
+    CROOK = 1,
+    BEAUTY = 2,
+    JOKER = 3,
+    SLIM = 4
   }
 
   // Wrapper class for our conversation list, so it can be serialized.

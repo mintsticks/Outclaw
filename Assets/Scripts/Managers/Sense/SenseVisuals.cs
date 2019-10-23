@@ -22,11 +22,13 @@ namespace Outclaw {
     
     public IEnumerator ActivateSense() {
       vantagePointManager.ToVantageView();
+      UpdateFootprints(true);
       yield return UpdateElementEffects(animationProgress, 1 - animationProgress);
     }
     
     public IEnumerator DeactivateSense() {
       vantagePointManager.ExitVantageView();
+      UpdateFootprints(false);
       yield return UpdateElementEffects(animationProgress, -animationProgress);
     }
 
@@ -50,6 +52,12 @@ namespace Outclaw {
     private void UpdateFadeFootprints(bool isFading) {
       foreach (var element in footprints) {
         element.IsFading = isFading;
+      }
+    }
+    
+    private void UpdateFootprints(bool enabled) {
+      foreach (var element in footprints) {
+        element.gameObject.SetActive(enabled);
       }
     }
 
