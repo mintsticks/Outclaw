@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Outclaw {
   public interface ISceneTransitionManager {
@@ -18,6 +19,9 @@ namespace Outclaw {
 
     [SerializeField]
     private float waitTime;
+
+    [Inject] 
+    private ISpawnManager spawnManager;
     
     private bool isSwitching;
     private AsyncOperation loadingOp;
@@ -28,6 +32,7 @@ namespace Outclaw {
       if (isSwitching) {
         return;
       }
+      spawnManager.PreviousScene = SceneManager.GetActiveScene().name;
       isSwitching = true;
       StartCoroutine(TransitionRoutine(scene));
     }
