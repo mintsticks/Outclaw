@@ -5,14 +5,14 @@ using UnityEngine;
 using Zenject;
 
 namespace UI.DismissablePrompts {
-  public class SneakDismissablePrompt : MonoBehaviour, IDismissablePrompt {
+  public class SenseDismissablePrompt : MonoBehaviour, IDismissablePrompt {
     [SerializeField]
     private PromptAnimationComponent promptAnimationComponent;
     
     [Inject]
     private IPlayerInput playerInput;
 
-    private bool sneaked;
+    private bool sensed;
     private IEnumerator animationCoroutine;
 
     private void Awake() {
@@ -21,13 +21,13 @@ namespace UI.DismissablePrompts {
     }
 
     private void Update() {
-      if (playerInput.IsSneakDown()) {
-        sneaked = true;
+      if (playerInput.IsSenseDown()) {
+        sensed = true;
       }
     }
     
     public bool IsDismissable() {
-      return sneaked;
+      return sensed;
     }
 
     public IEnumerator DismissPrompt() {

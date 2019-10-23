@@ -43,9 +43,11 @@ namespace Outclaw {
   }
   
   public enum PromptType {
-    NONE,
-    MOVE,
-    JUMP,
-    INTERACT
+    NONE = 0,
+    MOVE = 1,
+    JUMP = 2,
+    INTERACT = 3,
+    SNEAK = 4,
+    SENSE = 5,
   }
 }
