@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 
 namespace Outclaw.Heist {
-  public class Footprint : MonoBehaviour {
+  public class Footprint : MonoBehaviour, ISenseElement {
     public class Factory : PlaceholderFactory<Data, Footprint> { }
     
     public class Data {
@@ -14,10 +14,10 @@ namespace Outclaw.Heist {
 
     [SerializeField] private Color minColor;
     [SerializeField] private Color maxColor;
-
-    [Inject] private IHeistSenseManager senseManager;
+    [SerializeField] private SpriteRenderer sprite;
     
-    public SpriteRenderer sprite;
+    [Inject] private ISenseVisuals senseVisuals;
+
     public bool IsFading;
     
     private Color currentColor;
@@ -32,14 +32,10 @@ namespace Outclaw.Heist {
     }
 
     public void Awake() {
-      senseManager.RegisterFootprint(this);
+      senseVisuals.RegisterSenseElement(this);
       gameObject.SetActive(false);
     }
 
-    public Color CurrentColor() {
-      return currentColor;
-    }
-    
     private void Update() {
       var dist = transform.position - footprintSource.position;
       var relDist = Mathf.Clamp(dist.magnitude / pathDistance, 0, 1);
@@ -47,6 +43,12 @@ namespace Outclaw.Heist {
       if (!IsFading) {
         sprite.color = currentColor;
       }
+    }
+
+    public void UpdateElement(float animationProgress) {
+      var origin = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
+      var color = Color.Lerp(origin, currentColor, animationProgress);
+      sprite.color = color;
     }
   }
 }

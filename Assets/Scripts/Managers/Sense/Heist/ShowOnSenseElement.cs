@@ -2,16 +2,25 @@
 using Zenject;
 
 namespace Outclaw.Heist {
-  public class ShowOnSenseElement : MonoBehaviour {
-    [Inject] private IHeistSenseManager senseManager;
+  public interface ISenseElement {
+    void UpdateElement(float animationProgress);
+  }
+  
+  public class ShowOnSenseElement : MonoBehaviour, ISenseElement {
+    [Inject] private ISenseVisuals senseVisuals;
     
-    public SpriteRenderer spriteRenderer;
-    public Color regularColor = new Color(1, 1, 1, 0);
-    public Color showColor = new Color(1, 1, 1, 1);
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Color regularColor = new Color(1, 1, 1, 0);
+    [SerializeField] private Color showColor = new Color(1, 1, 1, 1);
     
     private void Awake() {
-      senseManager.RegisterElementToShow(this);
-      gameObject.SetActive(false);
+      senseVisuals.RegisterSenseElement(this);
+      spriteRenderer.color = regularColor;
+    }
+
+    public void UpdateElement(float animationProgress) {
+      var color = Color.Lerp(regularColor, showColor, animationProgress);
+      spriteRenderer.color = color;
     }
   }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using City;
 using UnityEngine;
+using Utility;
 using Zenject;
 
 namespace Outclaw.City {
@@ -21,57 +22,32 @@ namespace Outclaw.City {
     [Tooltip("Object dialogues are different depending on game state.")]
     public List<ObjectDialogueForState> dialoguesForStates;
   }
-  
+
   [Serializable]
   public class ObjectDialogueForState {
     public GameStateType gameState;
+
     [Tooltip("All the dialogues for an object, for a certain gamestate.")]
     public List<SerializedDialogue> objectDialogues;
   }
-  
+
   public class InteractableObject : MonoBehaviour, ObjectiveInteractable {
-    [SerializeField]
-    private Indicator observeIndicator;
+    [SerializeField] private Indicator observeIndicator;
+    [SerializeField] private ObjectDialogues objectInfo;
+    [SerializeField] private LocationType locationType;
+    [SerializeField] private ObjectType objectType;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Transform objectPosition;
+    [SerializeField] private ParticleSystem particleSystem;
 
-    [SerializeField]
-    private ObjectDialogues objectInfo;
-    
-    [SerializeField]
-    private LocationType locationType;
-    
-    [SerializeField]
-    private ObjectType objectType;
+    [Inject] private ILocationManager locationManager;
+    [Inject] private IDialogueManager dialogueManager;
+    [Inject] private IObjectiveManager objectiveManager;
+    [Inject] private IObjectiveTransformManager objectiveTransformManager;
+    [Inject] private IGameStateManager gameStateManager;
+    [Inject] private IPlayer player;
+    [Inject] private ISenseVisuals senseVisuals;
 
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
-
-    [SerializeField]
-    private Transform objectPosition;
-    
-    [SerializeField]
-    private ParticleSystem particleSystem;
-    
-    [Inject]
-    private ILocationManager locationManager;
-
-    [Inject]
-    private IDialogueManager dialogueManager;
-
-    [Inject]
-    private IObjectiveManager objectiveManager;
-
-    [Inject]
-    private IObjectiveTransformManager objectiveTransformManager;
-
-    [Inject]
-    private IGameStateManager gameStateManager;
-    
-    [Inject]
-    private IPlayer player;
-    
-    [Inject]
-    private ISenseManager senseManager;
-    
     private Transform parent;
     private bool created;
 
@@ -79,7 +55,7 @@ namespace Outclaw.City {
 
     public void Awake() {
       objectiveTransformManager.Objects.Add(this);
-      senseManager.RegisterCityInteractable(this);
+      senseVisuals.RegisterSenseElement(this);
     }
 
     public Transform ObjectPosition => objectPosition != null ? objectPosition : transform;
@@ -88,6 +64,7 @@ namespace Outclaw.City {
       if (!HasInteraction()) {
         return;
       }
+
       observeIndicator.FadeIn();
     }
 
@@ -99,7 +76,7 @@ namespace Outclaw.City {
       if (!HasInteraction()) {
         return;
       }
-      
+
       var dialogue = GetObjectDialogue();
       observeIndicator.FadeOut();
       dialogueManager.SetDialogueType(DialogueType.THOUGHT);
@@ -116,6 +93,7 @@ namespace Outclaw.City {
       if (particleSystem == null) {
         return;
       }
+
       particleSystem.gameObject.SetActive(true);
       particleSystem.Play();
     }
@@ -124,12 +102,9 @@ namespace Outclaw.City {
       if (particleSystem == null) {
         return;
       }
+
       particleSystem.Stop();
       particleSystem.gameObject.SetActive(false);
-    }
-
-    public SpriteRenderer GetSpriteRenderer() {
-      return spriteRenderer;
     }
 
     private TextAsset[] GetObjectDialogue() {
@@ -153,11 +128,15 @@ namespace Outclaw.City {
     private ObjectDialogueForState GetDialogueForState(GameStateType state) {
       return objectInfo.dialoguesForStates.FirstOrDefault(dfs => dfs.gameState == state);
     }
-    
+
     private void CompleteInteraction() {
       locationManager.IncreaseProgressForLocationObject(locationType, objectType);
       objectiveManager.CompleteObjectObjective(objectType);
       InRange();
+    }
+
+    public void UpdateElement(float animationProgress) {
+      spriteRenderer.material.SetFloat(GlobalConstants.GREY_EFFECT_NAME, animationProgress);
     }
   }
 }

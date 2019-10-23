@@ -48,7 +48,7 @@ namespace Outclaw.City {
     private IObjectiveTransformManager objectiveTransformManager;
     
     [Inject]
-    private ISenseManager senseManager;
+    private ISenseVisuals senseVisuals;
     
     private Transform parent;
     private bool created;
@@ -58,7 +58,7 @@ namespace Outclaw.City {
     
     public void Awake() {
       objectiveTransformManager.Cats.Add(this);
-      senseManager.RegisterCityInteractable(this);
+      senseVisuals.RegisterSenseElement(this);
     }
 
     public void InRange() {
@@ -101,10 +101,6 @@ namespace Outclaw.City {
       }
       particleSystem.Stop();
       particleSystem.gameObject.SetActive(false);
-    }
-
-    public SpriteRenderer GetSpriteRenderer() {
-      return spriteRenderer;
     }
 
     private bool HasDialogueForCurrentRank() {
@@ -168,6 +164,9 @@ namespace Outclaw.City {
     [YarnCommand("toScene")]
     public void ToScene(string dest) {
       sceneTransitionManager.TransitionToScene(dest);
+    }
+
+    public void UpdateElement(float animationProgress) {
     }
   }
   

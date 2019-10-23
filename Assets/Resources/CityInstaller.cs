@@ -52,6 +52,10 @@ namespace Outclaw.City {
         .FromComponentInNewPrefab(senseManagerPrefab)
         .AsSingle()
         .NonLazy();
+      Container.Bind<ISenseVisuals>()
+        .To<CitySenseVisuals>()
+        .AsSingle()
+        .NonLazy();
     }
     
     private void BindFactories() {

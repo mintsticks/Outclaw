@@ -2418,12 +2418,12 @@ PrefabInstance:
     - target: {fileID: 5290488612717389675, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -8.6
       objectReference: {fileID: 0}
     - target: {fileID: 5290488612717389675, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 5290488612717389675, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
@@ -2473,17 +2473,17 @@ PrefabInstance:
     - target: {fileID: 5290488612717389672, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
       propertyPath: orthographic size
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5290488612717389674, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
       propertyPath: minBound.x
-      value: -11
+      value: -8.44
       objectReference: {fileID: 0}
     - target: {fileID: 5290488612717389674, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
       propertyPath: minBound.y
-      value: -1
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 5290488612717389674, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
@@ -2493,7 +2493,7 @@ PrefabInstance:
     - target: {fileID: 5290488612717389674, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
       propertyPath: maxBound.x
-      value: 360.55
+      value: 355.8
       objectReference: {fileID: 0}
     - target: {fileID: 5290488612717389674, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
@@ -3410,7 +3410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &511623634
 Transform:
   m_ObjectHideFlags: 0
@@ -3442,7 +3442,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: -15
-      value: 1
+      value: 5
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -3450,8 +3450,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 400
+      value: 5
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -3467,17 +3467,89 @@ MonoBehaviour:
     - serializedVersion: 3
       time: -15
       value: 2
-      inSlope: -0.0625
-      outSlope: -0.0625
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -0.0625
-      outSlope: -0.0625
+      time: 188.7
+      value: 2
+      inSlope: -0
+      outSlope: -0.48192754
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 197
+      value: -2
+      inSlope: -0.48192754
+      outSlope: -0.1
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 207
+      value: -3
+      inSlope: -0.1
+      outSlope: 0.34649062
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 221.4304
+      value: 2
+      inSlope: 0.34649062
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 289
+      value: 2
+      inSlope: -0
+      outSlope: -0.5
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 299
+      value: -3
+      inSlope: -0.5
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 311
+      value: -3
+      inSlope: -0
+      outSlope: 0.3846154
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 324
+      value: 2
+      inSlope: 0.3846154
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 400
+      value: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -10079,12 +10151,12 @@ PrefabInstance:
     - target: {fileID: 4718949214910944708, guid: 3877c275ea0ab1c45b496551593ee9ed,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 201.04
+      value: 291
       objectReference: {fileID: 0}
     - target: {fileID: 4718949214910944708, guid: 3877c275ea0ab1c45b496551593ee9ed,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.77
+      value: 11.9
       objectReference: {fileID: 0}
     - target: {fileID: 4718949214910944708, guid: 3877c275ea0ab1c45b496551593ee9ed,
         type: 3}
@@ -14807,31 +14879,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7336105400421786618, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 154034093}
-    - target: {fileID: 7336105400421786618, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
       propertyPath: cameraBehavior
       value: 
       objectReference: {fileID: 409586890}
     - target: {fileID: 7336105400421786618, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
-      propertyPath: vantageManagerPrefab
+      propertyPath: controller
       value: 
-      objectReference: {fileID: 3776921949009355969, guid: a33ad9e93eae5f84abfd2eb873464cad,
-        type: 3}
-    - target: {fileID: 7336105400421786618, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: objectiveTransformManagerPrefab
-      value: 
-      objectReference: {fileID: 1551093554144406942, guid: 853f0934fc56c994c936f97a979beadd,
-        type: 3}
-    - target: {fileID: 7336105400421786618, guid: 781c4c76b1cbba544922f33235329f2e,
-        type: 3}
-      propertyPath: senseManagerPrefab
-      value: 
-      objectReference: {fileID: 6698711239504880299, guid: b09a1b14efa12964c9b11aeb913a73b8,
-        type: 3}
+      objectReference: {fileID: 154034093}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 781c4c76b1cbba544922f33235329f2e, type: 3}

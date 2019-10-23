@@ -13,7 +13,7 @@ namespace Outclaw.City {
     HOME_ENTRANCE,
     PARK_ENTRANCE
   }
-  
+
   [Serializable]
   public class LocationDialogueForState {
     public GameStateType gameState;
@@ -22,62 +22,32 @@ namespace Outclaw.City {
   }
 
   public class InteractableLocation : MonoBehaviour, ObjectiveInteractable {
-    [SerializeField]
-    private Indicator enterIndicator;
+    [SerializeField] private Indicator enterIndicator;
+    [SerializeField] private List<LocationDialogueForState> locationDialoguesForState;
+    [SerializeField] private string destinationName;
+    [SerializeField] private EntranceType entranceType;
+    [SerializeField] private AudioClip enterClip;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Transform locationPosition;
+    [SerializeField] private ParticleSystem particleSystem;
 
-    [SerializeField]
-    private List<LocationDialogueForState> locationDialoguesForState;
-    
-    [SerializeField]
-    private string destinationName;
+    [Inject] private IPlayer player;
+    [Inject] private IDialogueManager dialogueManager;
+    [Inject] private ISoundManager soundManager;
+    [Inject] private ISceneTransitionManager sceneTransitionManager;
+    [Inject] private IGameStateManager gameStateManager;
+    [Inject] private IObjectiveManager objectiveManager;
+    [Inject] private IObjectiveTransformManager objectiveTransformManager;
+    [Inject] private ISenseVisuals senseVisuals;
 
-    [SerializeField]
-    private EntranceType entranceType;
-    
-    [SerializeField]
-    private AudioClip enterClip;
-
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
-
-    [SerializeField]
-    private Transform locationPosition;
-    
-    [SerializeField]
-    private ParticleSystem particleSystem;
-    
-    [Inject]
-    private IPlayer player;
-
-    [Inject]
-    private IDialogueManager dialogueManager;
-    
-    [Inject]
-    private ISoundManager soundManager;
-
-    [Inject]
-    private ISceneTransitionManager sceneTransitionManager;
-    
-    [Inject]
-    private IGameStateManager gameStateManager;
-
-    [Inject]
-    private IObjectiveManager objectiveManager;
-    
-    [Inject]
-    private IObjectiveTransformManager objectiveTransformManager;
-
-    [Inject]
-    private ISenseManager senseManager;
-    
     public EntranceType Type => entranceType;
     public Transform LocationPosition => locationPosition != null ? locationPosition : transform;
-    
+
     public void Awake() {
       objectiveTransformManager.Locations.Add(this);
-      senseManager.RegisterCityInteractable(this);
+      senseVisuals.RegisterSenseElement(this);
     }
-    
+
     public void InRange() {
       enterIndicator.FadeIn();
     }
@@ -92,6 +62,7 @@ namespace Outclaw.City {
         HandleDialogue(locationDialogueForState);
         return;
       }
+
       EnterLocation();
     }
 
@@ -103,6 +74,7 @@ namespace Outclaw.City {
       if (particleSystem == null) {
         return;
       }
+
       particleSystem.gameObject.SetActive(true);
       particleSystem.Play();
     }
@@ -111,14 +83,11 @@ namespace Outclaw.City {
       if (particleSystem == null) {
         return;
       }
+
       particleSystem.Stop();
       particleSystem.gameObject.SetActive(false);
     }
 
-    public SpriteRenderer GetSpriteRenderer() {
-      return spriteRenderer;
-    }
-    
     private void HandleDialogue(LocationDialogueForState locationDialogueForState) {
       enterIndicator.FadeOut();
       dialogueManager.SetDialogueType(DialogueType.THOUGHT);
@@ -126,20 +95,21 @@ namespace Outclaw.City {
       dialogueManager.SetBubbleParent(player.PlayerTransform);
       dialogueManager.StartDialogue(() => CompleteDialogue(!locationDialogueForState.isBlocking));
     }
-    
+
     private void CompleteDialogue(bool enter) {
       if (!enter) {
         InRange();
         return;
       }
+
       EnterLocation();
     }
-    
+
     private void EnterLocation() {
-      if(enterClip != null){
+      if (enterClip != null) {
         soundManager.PlaySFX(enterClip);
       }
-      
+
       objectiveManager.CompleteEntranceObjective(entranceType);
       sceneTransitionManager.TransitionToScene(destinationName);
     }
@@ -147,5 +117,7 @@ namespace Outclaw.City {
     private LocationDialogueForState GetDialogueForState(GameStateType state) {
       return locationDialoguesForState.FirstOrDefault(dialogue => dialogue.gameState == state);
     }
+
+    public void UpdateElement(float animationProgress) { }
   }
 }
