@@ -15,9 +15,6 @@ namespace Outclaw.Heist{
     [Tooltip("Optional to fill, vision cone functions will do nothing if blank.")]
     [SerializeField] private Transform visionConeTransform;
     [SerializeField] private float speed = 1;
-    [SerializeField] [Range(0, 1)] 
-    [Tooltip("As a fraction of the speed")]
-    private float minSpeedToTurn = .1f;
 
     [SerializeField]
     private Bounds bodyBounds;
