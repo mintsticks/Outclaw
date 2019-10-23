@@ -21,7 +21,7 @@ namespace Outclaw.Heist {
     [Inject] private IVantagePointManager vantagePointManager;
     
     private Interactable currentInteractable;
-    private CityInteractable currentObjectiveInteractable;
+    private ObjectiveInteractable currentObjectiveInteractable;
     private AttentionZone currentZone;
     private LineOfSight currentLineOfSight;
 
@@ -42,7 +42,7 @@ namespace Outclaw.Heist {
       }
       
       if ((1 << other.gameObject.layer & objectiveInteractableLayer) != 0) {
-        currentObjectiveInteractable = other.GetComponentInParent<CityInteractable>();
+        currentObjectiveInteractable = other.GetComponentInParent<ObjectiveInteractable>();
         currentObjectiveInteractable.InRange();
       }
 
@@ -102,7 +102,7 @@ namespace Outclaw.Heist {
       
       if ((1 << other.gameObject.layer & objectiveInteractableLayer) != 0) {
         //Assumes you can only intersect one interactable at a time.
-        other.GetComponentInParent<CityInteractable>().ExitRange();
+        other.GetComponentInParent<ObjectiveInteractable>().ExitRange();
         currentObjectiveInteractable = null;
       }
 

@@ -7,7 +7,7 @@ using City;
 using Zenject;
 
 namespace Outclaw.City {
-  public class InteractableCat : MonoBehaviour, CityInteractable {
+  public class InteractableCat : MonoBehaviour, ObjectiveInteractable {
     [SerializeField]
     private CatDialogues catDialogues;
     

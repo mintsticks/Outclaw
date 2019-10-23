@@ -11,7 +11,7 @@ namespace Outclaw.City {
     bool IsSenseDown { get; }
     bool IsSenseUp { get; }
     void RegisterSpriteToGrey(SpriteRenderer spriteRenderer);
-    void RegisterCityInteractable(CityInteractable cityInteractable);
+    void RegisterCityInteractable(ObjectiveInteractable objectiveInteractable);
   }
   
   public class SenseManager : MonoBehaviour, ISenseManager {
@@ -22,8 +22,8 @@ namespace Outclaw.City {
     [Inject] private IPlayerInput playerInput;
 
     private List<SpriteRenderer> spritesToGrey = new List<SpriteRenderer>();
-    private List<CityInteractable> interactables = new List<CityInteractable>();
-    private HashSet<CityInteractable> currentInteractablesToGrey;
+    private List<ObjectiveInteractable> interactables = new List<ObjectiveInteractable>();
+    private HashSet<ObjectiveInteractable> currentInteractablesToGrey;
     private IEnumerator currentSenseAnimation;
     private bool isSensing;
     private bool isSenseDown;
@@ -72,8 +72,8 @@ namespace Outclaw.City {
       spritesToGrey.Add(spriteRenderer);
     }
 
-    public void RegisterCityInteractable(CityInteractable cityInteractable) {
-      interactables.Add(cityInteractable);
+    public void RegisterCityInteractable(ObjectiveInteractable objectiveInteractable) {
+      interactables.Add(objectiveInteractable);
     }
 
     private IEnumerator ActivateSense() {
@@ -93,7 +93,7 @@ namespace Outclaw.City {
     }
     
     private void UpdateInteractablesOnActivate() {
-      currentInteractablesToGrey = new HashSet<CityInteractable>();
+      currentInteractablesToGrey = new HashSet<ObjectiveInteractable>();
       foreach (var interactable in interactables) {
         if (interactable.HasInteraction()) {
           interactable.EnableEffect();
