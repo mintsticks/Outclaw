@@ -13,7 +13,8 @@ namespace Outclaw.Heist {
     [SerializeField] private GameObject footprintPrefab;
     [SerializeField] private GameObject heistSenseManager;
     [SerializeField] private GameObject vantageManagerPrefab;
-
+    [SerializeField] private GameObject objectiveTransformManagerPrefab;
+    [SerializeField] private GameObject senseManagerPrefab;
     /// <summary>
     /// For all classes common to heist scenes.
     /// Bind the interfaces to the concrete classes.
@@ -57,9 +58,19 @@ namespace Outclaw.Heist {
         .FromComponentInNewPrefab(heistSenseManager)
         .AsSingle()
         .NonLazy();
+      Container.Bind<IObjectiveTransformManager>()
+        .To<ObjectiveTransformManager>()
+        .FromComponentInNewPrefab(objectiveTransformManagerPrefab)
+        .AsSingle()
+        .NonLazy();
       Container.Bind<IVantagePointManager>()
         .To<VantagePointManager>()
         .FromComponentInNewPrefab(vantageManagerPrefab)
+        .AsSingle()
+        .NonLazy();
+      Container.Bind<ISenseManager>()
+        .To<SenseManager>()
+        .FromComponentInNewPrefab(senseManagerPrefab)
         .AsSingle()
         .NonLazy();
       BindFactories();
