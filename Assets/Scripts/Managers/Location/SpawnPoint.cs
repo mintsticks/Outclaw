@@ -4,15 +4,13 @@ using UnityEngine.Events;
 using Zenject;
 
 namespace Outclaw {
-  public class SpawnPoint : Pair<string, GameObject> {
-    public SpawnPoint(string entryScene, GameObject spawnPoint) : base(entryScene, spawnPoint) {}
+  [System.Serializable]
+  public class SpawnPoint {
+    [SerializeField] private string entryScene;
+    [SerializeField] private GameObject spawnPoint;
 
-    public string GetScene() {
-      return a;
-    }
-
-    public Vector3 GetSpawnPosition() {
-      return b.transform.position;
-    }
+    public string EntryScene => entryScene;
+    public GameObject Point => spawnPoint;
+    public Vector3 PointPosition => spawnPoint.transform.position;
   }
 }

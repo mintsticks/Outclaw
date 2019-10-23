@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Outclaw.City {
@@ -20,6 +21,9 @@ namespace Outclaw.City {
 
     [Inject] 
     private IPauseGame pauseGame;
+
+    [Inject] 
+    private ISpawnManager spawnManager;
     
     private bool inputDisabled;
     
@@ -30,6 +34,15 @@ namespace Outclaw.City {
     public bool InputDisabled {
       get => inputDisabled || pauseGame.IsPaused;
       set => inputDisabled = value;
+    }
+
+    private void Start() {
+      Vector3 spawnPoint = spawnManager.GetSpawnPoint();
+      Vector3 falsePosition = new Vector3(-1,-1,-1);
+      if (spawnPoint == falsePosition) {
+        return;
+      }
+      transform.position = spawnPoint;
     }
 
     void FixedUpdate() {
