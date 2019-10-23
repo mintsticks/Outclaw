@@ -17,8 +17,7 @@ namespace Outclaw.City {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform objectPosition;
     [SerializeField] private ParticleSystem particleSystem;
-    [SerializeField] private DarkenOnSenseElement darkenOnSenseElement;
-    
+
     [Inject] private ILocationManager locationManager;
     [Inject] private IDialogueManager dialogueManager;
     [Inject] private IObjectiveManager objectiveManager;
@@ -143,6 +142,10 @@ namespace Outclaw.City {
     CABINET = 6,
     COLLAR = 7,
     NO_ANIMAL_SIGN = 8,
+    GUM_WRAP = 9,
+    AKIO_TOY = 10,
+    RED_FABRIC = 11,
+    ROPE = 12,
   }
   
   [Serializable]

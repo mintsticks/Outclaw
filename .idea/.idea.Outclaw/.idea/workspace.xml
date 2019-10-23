@@ -2,20 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/SneakDismissablePrompt.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/SneakDismissablePrompt.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/NoAnimals.yarn.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/NoAnimals.yarn.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/CityPrompt.yarn.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/CityPrompt.yarn.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Intro.yarn.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Intro.yarn.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ParkIntro.yarn.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ParkIntro.yarn.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ParkPrompt.yarn.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ParkPrompt.yarn.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Footprint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Footprint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableCat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableCat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableLocation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableLocation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/City/GreyOnSenseElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/City/GreyOnSenseElement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/DarkenOnSenseElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/DarkenOnSenseElement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/ShowOnSenseElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/ShowOnSenseElement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseVisuals.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseVisuals.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/StartListener.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/CharacterController2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/MovementController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/SneakDismissablePrompt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerAnimController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -123,6 +125,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Camera/CameraBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Main/DiContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseVisuals.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PromptManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectSettings/TagManager.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/DismissablePrompt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/YarnSpinner/Examples/DemoScripts/MobileOnly.cs" root0="FORCE_HIGHLIGHTING" />
@@ -136,7 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/AttentionZone.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInput.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/KeyboardInput.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" />
@@ -185,8 +187,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Footprint.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableCat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableLocation.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableObject.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseVisuals.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/SneakDismissablePrompt.cs" />
       </list>
     </option>
   </component>
@@ -257,7 +260,7 @@
       <workItem from="1571262006748" duration="8700000" />
       <workItem from="1571608980401" duration="616000" />
       <workItem from="1571687813022" duration="2531000" />
-      <workItem from="1571774971374" duration="28896000" />
+      <workItem from="1571774971374" duration="31319000" />
     </task>
     <servers />
   </component>
