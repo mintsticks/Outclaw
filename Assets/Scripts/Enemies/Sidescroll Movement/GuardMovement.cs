@@ -19,11 +19,15 @@ namespace Outclaw.Heist{
     [Tooltip("As a fraction of the speed")]
     private float minSpeedToTurn = .1f;
 
+    [SerializeField]
+    private Bounds bodyBounds;
+
     [Header("Component Links")]
     [Tooltip("Optional to fill, animation actions will not update if blank.")]
     [SerializeField] private GuardAnimationController anim;
 
     public Quaternion VisionRotation { get => visionConeTransform.rotation; }
+    public Bounds BodyBounds { get => bodyBounds; }
 
     void Start(){
       anim?.SetFlashlight(visionCone != null);

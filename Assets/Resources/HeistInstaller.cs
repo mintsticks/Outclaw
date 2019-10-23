@@ -6,18 +6,14 @@ using Zenject;
 
 namespace Outclaw.Heist {
   public class HeistInstaller : MonoInstaller {
-    [SerializeField]
-    private GameObject abilityManagerPrefab;
-
-    [SerializeField]
-    private PlayerController controller;
-
-    [SerializeField]
-    private GameObject capturedMenuPrefab;
-
+    [SerializeField] private GameObject abilityManagerPrefab;
+    [SerializeField] private CameraBehavior cameraBehavior;
+    [SerializeField] private PlayerController controller;
+    [SerializeField] private GameObject capturedMenuPrefab;
     [SerializeField] private GameObject footprintPrefab;
     [SerializeField] private GameObject heistSenseManager;
-    
+    [SerializeField] private GameObject vantageManagerPrefab;
+
     /// <summary>
     /// For all classes common to heist scenes.
     /// Bind the interfaces to the concrete classes.
@@ -41,6 +37,11 @@ namespace Outclaw.Heist {
         .FromInstance(controller)
         .AsSingle()
         .NonLazy();
+      Container.Bind<ICameraBehavior>()
+        .To<CameraBehavior>()
+        .FromInstance(cameraBehavior)
+        .AsSingle()
+        .NonLazy();
       Container.Bind<IHideablePlayer>()
         .FromInstance(controller)
         .AsSingle()
@@ -48,17 +49,25 @@ namespace Outclaw.Heist {
       Container.BindInterfacesAndSelfTo<SneakManager>()
         .AsSingle()
         .NonLazy();
+      Container.BindInterfacesAndSelfTo<PlayerLitManager>()
+        .AsSingle()
+        .NonLazy();
       Container.Bind<IHeistSenseManager>()
         .To<HeistSenseManager>()
         .FromComponentInNewPrefab(heistSenseManager)
         .AsSingle()
         .NonLazy();
+      Container.Bind<IVantagePointManager>()
+        .To<VantagePointManager>()
+        .FromComponentInNewPrefab(vantageManagerPrefab)
+        .AsSingle()
+        .NonLazy();
       BindFactories();
     }
-    
+
     private void BindFactories() {
-      Container.BindFactory<Footprint.Data, 
-          Footprint, 
+      Container.BindFactory<Footprint.Data,
+          Footprint,
           Footprint.Factory>()
         .FromComponentInNewPrefab(footprintPrefab);
     }

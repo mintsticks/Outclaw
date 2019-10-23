@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 636999322695655643}
   - component: {fileID: 311233622411069240}
+  - component: {fileID: 6246249019535767102}
   m_Layer: 0
   m_Name: Heist Scene Context
   m_TagString: Untagged
@@ -46,6 +47,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 8300000, guid: 4dc8002fceb4ec945855f21440087872, type: 3}
   ambientSound: {fileID: 0}
+--- !u!114 &6246249019535767102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208133736813907206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 7336105400421786618}
+  - {fileID: 3628848344319474143}
+  - {fileID: 5298404681966314918}
+  - {fileID: 855947968}
+  _installerPrefabs: []
+  _autoRun: 1
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
 --- !u!1 &7336105400421786617
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +79,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7336105400421786619}
-  - component: {fileID: 7336105400421786616}
   - component: {fileID: 7336105400421786618}
   - component: {fileID: 3628848344319474143}
   - component: {fileID: 5298404681966314918}
@@ -81,29 +104,6 @@ Transform:
   m_Father: {fileID: 636999322695655643}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7336105400421786616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7336105400421786617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: 7336105400421786618}
-  - {fileID: 3628848344319474143}
-  - {fileID: 5298404681966314918}
-  - {fileID: 855947968}
-  _installerPrefabs: []
-  _autoRun: 1
-  _parentNewObjectsUnderSceneContext: 0
-  _contractNames: []
-  _parentContractNames: []
 --- !u!114 &7336105400421786618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,12 +118,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityManagerPrefab: {fileID: 5447647215815304152, guid: a5bdee44fdfa7f44ab032f541d5ad6e8,
     type: 3}
+  cameraBehavior: {fileID: 0}
   controller: {fileID: 0}
   capturedMenuPrefab: {fileID: 2892921191195802069, guid: a2c89d0288903a74c9d6a33e7dbd1c36,
     type: 3}
   footprintPrefab: {fileID: 3941315448148219730, guid: c81dd0dbd6690704998b0fc343717c4f,
     type: 3}
   heistSenseManager: {fileID: 8571267287930807587, guid: d373319e191d54d4cb57929ba21005f8,
+    type: 3}
+  vantageManagerPrefab: {fileID: 3776921949009355969, guid: a33ad9e93eae5f84abfd2eb873464cad,
     type: 3}
 --- !u!114 &3628848344319474143
 MonoBehaviour:

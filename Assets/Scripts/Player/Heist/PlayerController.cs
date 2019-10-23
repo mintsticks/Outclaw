@@ -15,7 +15,7 @@ namespace Outclaw.Heist {
     [Inject] private IPlayerInput playerInput;
     [Inject] private ISoundManager soundManager;
     [Inject] private IPauseGame pauseGame;
-    
+
     private bool inputDisabled;
 
     // hiding player

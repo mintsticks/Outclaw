@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Outclaw.ManagedRoutine;
 using UnityEngine;
+using Utility;
 using Zenject;
 
 namespace Outclaw.UI{
@@ -10,7 +11,6 @@ namespace Outclaw.UI{
   {
     [Header("Fading Content")]
     [SerializeField] protected float pauseTime;
-    [SerializeField] protected float animationFreq = .02f;
     [SerializeField] protected CanvasGroup contents;
 
     protected int currentIndex;
@@ -94,16 +94,16 @@ namespace Outclaw.UI{
     }
 
     protected IEnumerator FadeInContent() {
-      for (var i = 0f; i < pauseTime; i += animationFreq) {
+      for (var i = 0f; i < pauseTime; i += GlobalConstants.ANIMATION_FREQ) {
         contents.alpha = i / pauseTime;
-        yield return new WaitForSecondsRealtime(animationFreq);
+        yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
     }
     
     protected IEnumerator FadeOutContent() {
-      for (var i = pauseTime; i >= 0; i -= animationFreq) {
+      for (var i = pauseTime; i >= 0; i -= GlobalConstants.ANIMATION_FREQ) {
         contents.alpha = i / pauseTime;
-        yield return new WaitForSecondsRealtime(animationFreq);
+        yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
     }
 

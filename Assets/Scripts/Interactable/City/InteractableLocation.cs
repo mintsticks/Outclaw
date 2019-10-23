@@ -74,18 +74,16 @@ namespace Outclaw.City {
     public Transform LocationPosition => locationPosition != null ? locationPosition : transform;
     
     public void Awake() {
-      enterIndicator.Initialize(player.PlayerTransform);
       objectiveTransformManager.Locations.Add(this);
       senseManager.RegisterCityInteractable(this);
     }
     
     public void InRange() {
-      enterIndicator.CreateIndicator();
-      StartCoroutine(enterIndicator.FadeIn());
+      enterIndicator.FadeIn();
     }
 
     public void ExitRange() {
-      StartCoroutine(enterIndicator.FadeOut());
+      enterIndicator.FadeOut();
     }
 
     public void Interact() {
@@ -122,7 +120,7 @@ namespace Outclaw.City {
     }
     
     private void HandleDialogue(LocationDialogueForState locationDialogueForState) {
-      StartCoroutine(enterIndicator.FadeOut());
+      enterIndicator.FadeOut();
       dialogueManager.SetDialogueType(DialogueType.THOUGHT);
       dialogueManager.SetDialogue(locationDialogueForState.locationDialogue.dialogue);
       dialogueManager.SetBubbleParent(player.PlayerTransform);

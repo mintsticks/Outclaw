@@ -1,5 +1,4 @@
 ﻿using Outclaw;
-using UnityEngine;
 using Zenject;
 
 namespace Managers {

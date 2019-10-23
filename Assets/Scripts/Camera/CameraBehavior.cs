@@ -1,33 +1,50 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using Outclaw.Heist;
+using UnityEngine;
 using Zenject;
 
 namespace Outclaw.City {
-  public class CameraBehavior : MonoBehaviour {
-    [SerializeField]
-    private float smoothSpeed = .125f;
+  public interface ICameraBehavior {
+    bool ShouldFollow { get; set; }
+    Vector3 GetCurrentCameraPos();
+  }
+  
+  public class CameraBehavior : MonoBehaviour, ICameraBehavior {
+    [SerializeField] private float smoothSpeed = .125f;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private Vector2 minBound;
+    [SerializeField] private Vector2 maxBound;
 
-    [SerializeField]
-    private Vector3 offset;
+    [Inject] private IPlayer player;
+    
+    private Vector3 currentPosition;
+    private bool shouldFollow = true;
 
-    [SerializeField]
-    private Vector2 minBound;
+    public bool ShouldFollow {
+      get => shouldFollow;
+      set => shouldFollow = value;
+    }
 
-    [SerializeField]
-    private Vector2 maxBound;
+    public Vector2 MinBound => minBound;
+    public Vector2 MaxBound => maxBound;
 
-    [Inject]
-    private IPlayer player;
-
-    public Vector2 MinBound {get => minBound;}
-    public Vector2 MaxBound {get => maxBound;}
+    public Vector3 GetCurrentCameraPos() {
+      return currentPosition;
+    }
     
     void FixedUpdate() {
+      if (!ShouldFollow) {
+        return;
+      }
       var desiredPos = player.PlayerTransform.position + offset;
       var smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);
       smoothedPos.x = Mathf.Clamp(smoothedPos.x, minBound.x, maxBound.x);
       smoothedPos.y = Mathf.Clamp(smoothedPos.y, minBound.y, maxBound.y);
-      transform.position = smoothedPos;
+      currentPosition = smoothedPos;
+
+      if (!ShouldFollow) {
+        return;
+      }
+      transform.position = currentPosition;
     }
   }
 }

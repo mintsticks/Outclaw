@@ -6,5 +6,6 @@ using UnityEngine;
 namespace Outclaw.Heist{
   public interface IHideablePlayer{
     bool Hidden { get; set; }
+    Transform PlayerTransform { get; }
   } 
 }
