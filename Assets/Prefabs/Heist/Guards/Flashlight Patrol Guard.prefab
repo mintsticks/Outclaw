@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4792744539440716290}
   - component: {fileID: 4521842740887038464}
   m_Layer: 12
-  m_Name: Side Scroll Guard
+  m_Name: Flashlight Patrol Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f663e6bcfdb0a1843ae696dbb49c0bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAwareness: 3
+  maxAwareness: 2
   awarenessIncreaseRate: 1
   awarenessDecreaseRate: 0.5
   alertSprite: {fileID: 4589781301037999865}
@@ -290,7 +290,6 @@ MonoBehaviour:
   visionCone: {fileID: 9061746404522581352}
   visionConeTransform: {fileID: 4937740536915858289}
   speed: 2
-  minSpeedToTurn: 0.1
   bodyBounds:
     m_Center: {x: 0, y: 2.94, z: 0}
     m_Extent: {x: 0.67, y: 2.78, z: 0}
@@ -806,6 +805,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2142635796454399033, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1921598768042569644, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
       propertyPath: m_Layer
@@ -836,6 +840,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 8575933040054065088, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5473412949122803634, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
       propertyPath: m_Layer
@@ -856,17 +865,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 8575933040054065088, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 3970367625549564870, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142635796454399033, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
       propertyPath: m_Layer
       value: 12
