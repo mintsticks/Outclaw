@@ -20,7 +20,7 @@ namespace Outclaw {
     [Inject] 
     private IPlayer player;
 
-    private CityInteractable currentInteractable;
+    private ObjectiveInteractable currentInteractable;
     
     public void UpdateInteraction() {
       if (player.InputDisabled) {
@@ -34,7 +34,7 @@ namespace Outclaw {
 
     public void HandleEnter(Collider2D other) {
       if ((1 << other.gameObject.layer & interactableLayer) != 0) {
-        currentInteractable = other.GetComponentInParent<CityInteractable>();
+        currentInteractable = other.GetComponentInParent<ObjectiveInteractable>();
         currentInteractable.InRange();
       }
 
@@ -54,7 +54,7 @@ namespace Outclaw {
         return;
       }
       
-      other.GetComponentInParent<CityInteractable>().ExitRange();
+      other.GetComponentInParent<ObjectiveInteractable>().ExitRange();
       currentInteractable = null;
     }
   }

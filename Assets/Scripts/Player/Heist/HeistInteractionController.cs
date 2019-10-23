@@ -7,6 +7,7 @@ using Zenject;
 namespace Outclaw.Heist {
   public class HeistInteractionController : MonoBehaviour {
     [SerializeField] private LayerMask interactableLayer;
+    [SerializeField] private LayerMask objectiveInteractableLayer;
     [SerializeField] private LayerMask eventSequenceLayer;
     [SerializeField] private LayerMask oneWayTriggerLayer;
     [SerializeField] private LayerMask guardAttentionLayer;
@@ -20,6 +21,7 @@ namespace Outclaw.Heist {
     [Inject] private IVantagePointManager vantagePointManager;
     
     private Interactable currentInteractable;
+    private ObjectiveInteractable currentObjectiveInteractable;
     private AttentionZone currentZone;
     private LineOfSight currentLineOfSight;
 
@@ -37,6 +39,11 @@ namespace Outclaw.Heist {
       if ((1 << other.gameObject.layer & interactableLayer) != 0) {
         currentInteractable = other.GetComponentInParent<Interactable>();
         currentInteractable.InRange();
+      }
+      
+      if ((1 << other.gameObject.layer & objectiveInteractableLayer) != 0) {
+        currentObjectiveInteractable = other.GetComponentInParent<ObjectiveInteractable>();
+        currentObjectiveInteractable.InRange();
       }
 
       if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) {
@@ -91,6 +98,12 @@ namespace Outclaw.Heist {
         //Assumes you can only intersect one interactable at a time.
         other.GetComponentInParent<Interactable>().ExitRange();
         currentInteractable = null;
+      }
+      
+      if ((1 << other.gameObject.layer & objectiveInteractableLayer) != 0) {
+        //Assumes you can only intersect one interactable at a time.
+        other.GetComponentInParent<ObjectiveInteractable>().ExitRange();
+        currentObjectiveInteractable = null;
       }
 
       if ((1 << other.gameObject.layer & vantageLayer) != 0) {
