@@ -13,7 +13,8 @@ namespace Outclaw.City {
     HOME_EXIT = 3,
     HOME_ENTRANCE = 4,
     PARK_ENTRANCE = 5,
-    POUND_ENTRANCE = 6
+    POUND_ENTRANCE = 6,
+    PARK_EXIT = 7
   }
 
   [Serializable]

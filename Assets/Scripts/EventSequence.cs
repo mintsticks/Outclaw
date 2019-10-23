@@ -63,6 +63,7 @@ namespace Outclaw {
     
     private IEnumerator HandlePrompt(PromptType prompt, string promptText) {
       var promptObj = dismissablePromptFactory.Create(prompt);
+      Debug.Log("i made a prompt");
       if (!promptText.IsEmpty()) {
         promptObj.SetPromptText(promptText);
       }
