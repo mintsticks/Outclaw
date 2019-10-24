@@ -86,7 +86,7 @@ namespace Outclaw.City {
     }
 
     private TextAsset[] GetObjectDialogue() {
-      var gameState = gameStateManager.CurrentGameState;
+      var gameState = gameStateManager.CurrentGameStateData;
       var dialoguesForState = GetDialogueForState(gameState);
       if (dialoguesForState == null) {
         Debug.Log("No dialogues for object in current game state: " + gameState);
@@ -103,8 +103,8 @@ namespace Outclaw.City {
       return objectDialogues[objProgress].dialogue;
     }
 
-    private ObjectDialogueForState GetDialogueForState(GameStateType state) {
-      return objectInfo.dialoguesForStates.FirstOrDefault(dfs => dfs.gameState == state);
+    private ObjectDialogueForState GetDialogueForState(GameStateData state) {
+      return objectInfo.dialoguesForStates.FirstOrDefault(dfs => dfs.gameStateData == state);
     }
 
     private void CompleteInteraction() {
@@ -156,7 +156,7 @@ namespace Outclaw.City {
 
   [Serializable]
   public class ObjectDialogueForState {
-    public GameStateType gameState;
+    public GameStateData gameStateData;
 
     [Tooltip("All the dialogues for an object, for a certain gamestate.")]
     public List<SerializedDialogue> objectDialogues;

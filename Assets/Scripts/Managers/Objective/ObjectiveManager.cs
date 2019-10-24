@@ -23,7 +23,7 @@ namespace City {
     [Inject]
     private IGameStateManager gameStateManager;
 
-    private Dictionary<GameStateType, ObjectiveProgress> completedObjectives;
+    private Dictionary<GameStateData, ObjectiveProgress> completedObjectives;
     private Objective currentObjective;
     
     public Objective CurrentObjective {
@@ -32,23 +32,23 @@ namespace City {
     }
 
     private void Awake() {
-      completedObjectives = new Dictionary<GameStateType, ObjectiveProgress>();
+      completedObjectives = new Dictionary<GameStateData, ObjectiveProgress>();
     }
 
     public void CompleteObjectObjective(ObjectType type) {
-      var currentState = gameStateManager.CurrentGameState;
+      var currentState = gameStateManager.CurrentGameStateData;
       MaybeAddState(currentState);
       CompleteObjective(type, completedObjectives[currentState].objects);
     }
 
     public void CompleteConversationObjective(CatType type) {
-      var currentState = gameStateManager.CurrentGameState;
+      var currentState = gameStateManager.CurrentGameStateData;
       MaybeAddState(currentState);
       CompleteObjective(type, completedObjectives[currentState].conversations);
     }
 
     public void CompleteEntranceObjective(EntranceType type) {
-      var currentState = gameStateManager.CurrentGameState;
+      var currentState = gameStateManager.CurrentGameStateData;
       MaybeAddState(currentState);
       CompleteObjective(type, completedObjectives[currentState].entrances);
     }
@@ -59,7 +59,7 @@ namespace City {
       UpdateGameState();
     }
     
-    private void MaybeAddState(GameStateType gameState) {
+    private void MaybeAddState(GameStateData gameState) {
       if (completedObjectives.ContainsKey(gameState)) {
         return;
       }
@@ -67,15 +67,10 @@ namespace City {
     }
 
     public void UpdateGameState() {
-      var currentState = gameStateManager.CurrentGameState;
-      var info = objectiveInfos.FirstOrDefault(i => i.currentState == currentState);
-
-      if (info == null) {
-        return;
-      }
+      var currentState = gameStateManager.CurrentGameStateData;
       
-      foreach (var child in info.childStates.Where(child => IsObjectivesComplete(child.objectives))) {
-        gameStateManager.SetGameState(child.nextState, child.persistObjectiveState);
+      foreach (var child in currentState.childStates.Where(child => IsObjectivesComplete(child.objectives))) {
+        gameStateManager.SetGameState(child.nextStateData, child.persistObjectiveState);
         break;
       }
     }
@@ -85,7 +80,7 @@ namespace City {
     }
 
     private bool ObjectiveComplete(Objective objective) {
-      var progressForState = completedObjectives[gameStateManager.CurrentGameState];
+      var progressForState = completedObjectives[gameStateManager.CurrentGameStateData];
       switch (objective.objectiveType) {
         case ObjectiveType.CONVERSATION:
           return ObjectiveTypeComplete(objective.conversations, progressForState.conversations);
@@ -103,9 +98,9 @@ namespace City {
     }
     
     public void UpdateCurrentObjective() {
-      var currentState = gameStateManager.CurrentGameState;
+      var currentState = gameStateManager.CurrentGameStateData;
       MaybeAddState(currentState);
-      var info = objectiveInfos.FirstOrDefault(i => i.currentState == currentState);
+      var info = gameStateManager.StateList.FirstOrDefault(i => i == currentState);
       var currentChild = info?.childStates.FirstOrDefault(child => !IsObjectivesComplete(child.objectives));
       currentObjective = currentChild?.objectives.FirstOrDefault(objective => !ObjectiveComplete(objective));
       CurrentObjective = currentObjective;

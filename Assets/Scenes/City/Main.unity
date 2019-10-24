@@ -868,21 +868,23 @@ MonoBehaviour:
   enterIndicator: {fileID: 374563975}
   locationDialoguesForState:
   - gameState: 3
+    gameStateData: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: aeef4ef4386d108448c903dd06cadc25, type: 3}
   - gameState: 4
+    gameStateData: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: aeef4ef4386d108448c903dd06cadc25, type: 3}
   - gameState: 5
+    gameStateData: {fileID: 11400000, guid: 4063f4ecfcf5331409b28af70c0a1898, type: 2}
     isBlocking: 0
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: e7b72c72ad7c41b4db59b4b01dd5e918, type: 3}
-  destinationName: ParkHeist
   destinationLocation: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe,
     type: 2}
   entranceType: 5
@@ -1339,7 +1341,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterIndicator: {fileID: 1900442020}
   locationDialoguesForState: []
-  destinationName: Cafe
   destinationLocation: {fileID: 11400000, guid: 0fa9c2513078e5947857f214a0aa5d28,
     type: 2}
   entranceType: 2
@@ -1592,26 +1593,29 @@ MonoBehaviour:
   enterIndicator: {fileID: 2022962805}
   locationDialoguesForState:
   - gameState: 3
+    gameStateData: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: f142301e5dfca704a806719536de0227, type: 3}
   - gameState: 4
+    gameStateData: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: f142301e5dfca704a806719536de0227, type: 3}
   - gameState: 5
+    gameStateData: {fileID: 11400000, guid: 4063f4ecfcf5331409b28af70c0a1898, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: f142301e5dfca704a806719536de0227, type: 3}
   - gameState: 7
+    gameStateData: {fileID: 11400000, guid: dc2057afafe3a934999aff3b59531e51, type: 2}
     isBlocking: 0
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: 5025d5701909bdb4a802a04979c779ce, type: 3}
-  destinationName: Pound
   destinationLocation: {fileID: 11400000, guid: f6316cfe375a63b46a4270ddc6de6e3c,
     type: 2}
   entranceType: 6
@@ -1861,6 +1865,7 @@ MonoBehaviour:
     promptType: 0
     promptText: 
   eventGameSequence: 3
+  eventGameState: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d, type: 2}
 --- !u!61 &1256800365
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2025,6 +2030,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].gameStateData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d,
+        type: 2}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[1].gameStateData
+      value: 
+      objectReference: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
 --- !u!1 &1498437309
@@ -2295,7 +2312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbf0ac72f8bf544bb65fab3cf279838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugGameState: 0
+  debugGameState: {fileID: 0}
 --- !u!4 &1780449690
 Transform:
   m_ObjectHideFlags: 0
@@ -2838,7 +2855,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterIndicator: {fileID: 834996936}
   locationDialoguesForState: []
-  destinationName: Home
   destinationLocation: {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf,
     type: 2}
   entranceType: 4

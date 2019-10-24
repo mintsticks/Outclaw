@@ -75,7 +75,7 @@ namespace Outclaw.City {
     public void Interact() {
       talkIndicator.FadeOut();
       if (HasDialogueForCurrentState()) {
-        StartGameStateDialogue(gameStateManager.CurrentGameState);
+        StartGameStateDialogue(gameStateManager.CurrentGameStateData);
         return;
       }
       if (HasDialogueForCurrentRank()) {
@@ -110,7 +110,7 @@ namespace Outclaw.City {
     }
 
     private bool HasDialogueForCurrentState() {
-      var currentGameState = gameStateManager.CurrentGameState;
+      var currentGameState = gameStateManager.CurrentGameStateData;
       var dialogueForState = GetDialogueForState(currentGameState);
 
       if (dialogueForState == null) {
@@ -122,7 +122,7 @@ namespace Outclaw.City {
       return rank <= maxRank;
     }
     
-    private void StartGameStateDialogue(GameStateType state) {
+    private void StartGameStateDialogue(GameStateData state) {
       var dialogueForState = GetDialogueForState(state);
       var gameStateRank = relationshipManager.GetRankForCatInGameState(type, state);
       var dialogue = dialogueForState.catDialogue[gameStateRank].dialogue;
@@ -133,7 +133,7 @@ namespace Outclaw.City {
       dialogueManager.StartDialogue(() => CompleteGameStateDialogue(state));
     }
 
-    private void CompleteGameStateDialogue(GameStateType state) {
+    private void CompleteGameStateDialogue(GameStateData state) {
       relationshipManager.RankUpCatInGameState(type, state);
       if (!HasDialogueForCurrentState()) {
         //TODO(dwong): add non required game state dialogue
@@ -157,8 +157,8 @@ namespace Outclaw.City {
       InRange();
     }
     
-    private CatDialogueForState GetDialogueForState(GameStateType state) {
-      return catDialogues.dialoguesForStates.FirstOrDefault(dialogue => dialogue.gameState == state);
+    private CatDialogueForState GetDialogueForState(GameStateData state) {
+      return catDialogues.dialoguesForStates.FirstOrDefault(dialogue => dialogue.gameStateData == state);
     }
 
     [YarnCommand("toScene")]
@@ -175,7 +175,7 @@ namespace Outclaw.City {
   
   [Serializable]
   public class CatDialogueForState {
-    public GameStateType gameState;
+    public GameStateData gameStateData;
     public List<SerializedDialogue> catDialogue;
   }
   

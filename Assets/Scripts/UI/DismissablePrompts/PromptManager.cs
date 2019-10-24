@@ -19,22 +19,22 @@ namespace Outclaw.City {
     [Inject]
     private DismissablePromptFactory dismissablePromptFactory;
 
-    private HashSet<GameStateType> completedPrompts;
+    private HashSet<GameStateData> completedPrompts;
 
     private void Awake() {
-      completedPrompts = new HashSet<GameStateType>();
+      completedPrompts = new HashSet<GameStateData>();
     }
 
     private void Update() {
-      if (completedPrompts.Contains(gameStateManager.CurrentGameState)) {
+      if (completedPrompts.Contains(gameStateManager.CurrentGameStateData)) {
         return;
       }
       StartCoroutine(ShowPromptsForCurrentState());
     }
 
     private IEnumerator ShowPromptsForCurrentState() {
-      completedPrompts.Add(gameStateManager.CurrentGameState);
-      var prompts = GetPromptsForState(gameStateManager.CurrentGameState);
+      completedPrompts.Add(gameStateManager.CurrentGameStateData);
+      var prompts = GetPromptsForState(gameStateManager.CurrentGameStateData);
       foreach (var prompt in prompts) {
         yield return new WaitForSeconds(5);
         yield return HandlePrompt(prompt);
@@ -49,7 +49,7 @@ namespace Outclaw.City {
       promptObj.DismissPrompt();
     }
     
-    private List<PromptType> GetPromptsForState(GameStateType state) {
+    private List<PromptType> GetPromptsForState(GameStateData state) {
       var statePrompts = gameStatePrompts.FirstOrDefault(gsp => gsp.gameState == state);
       return statePrompts?.prompts;
     }
@@ -57,7 +57,7 @@ namespace Outclaw.City {
 
   [Serializable]
   public class GameStatePrompts {
-    public GameStateType gameState;
+    public GameStateData gameState;
     public List<PromptType> prompts;
   }
 }

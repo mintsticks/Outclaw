@@ -21,7 +21,7 @@ namespace Outclaw {
       sceneTransitionManager.TransitionToScene("Start");
 
       // TODO: replace with actual restart
-      gameStateManager.SetGameState(GameStateType.TUTORIAL, true);
+      gameStateManager.SetGameState(gameStateManager.StateList[0], true);
     }
 
     public void Hover() {

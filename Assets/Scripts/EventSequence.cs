@@ -12,7 +12,7 @@ namespace Outclaw {
     private List<EventInfo> events;
 
     [SerializeField]
-    private GameStateType eventGameSequence;
+    private GameStateData eventGameState;
     
     [Inject]
     private DismissablePromptFactory dismissablePromptFactory;
@@ -29,7 +29,7 @@ namespace Outclaw {
     private bool executed;
     
     public IEnumerator ExecuteSequence() {
-      if (executed || gameStateManager.CurrentGameState != eventGameSequence) {
+      if (executed || gameStateManager.CurrentGameStateData != eventGameState) {
         yield break;
       }
 

@@ -6,24 +6,12 @@ using Outclaw.City;
 namespace Outclaw {  
   [Serializable]
   public class GameState {
-    public GameStateType currentState;
     public List<GameStateObjectives> childStates;
-  }
-
-  public enum GameStateType {
-    NONE = 0,
-    TUTORIAL = 1,
-    FOUND_KEY = 2,
-    FIRST_TIME_CITY = 3,
-    FOUND_HANA = 4,
-    FOUND_AKI = 5,
-    FIRST_HEIST = 6,
-    FOUND_COLLAR = 7
   }
 
   [Serializable]
   public class GameStateObjectives {
-    public GameStateType nextState;
+    public GameStateData nextStateData;
     public List<Objective> objectives;
     public bool persistObjectiveState;
   }

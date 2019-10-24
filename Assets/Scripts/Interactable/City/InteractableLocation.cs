@@ -19,7 +19,7 @@ namespace Outclaw.City {
 
   [Serializable]
   public class LocationDialogueForState {
-    public GameStateType gameState;
+    public GameStateData gameStateData;
     public bool isBlocking;
     public SerializedDialogue locationDialogue;
   }
@@ -60,7 +60,7 @@ namespace Outclaw.City {
     }
 
     public void Interact() {
-      var locationDialogueForState = GetDialogueForState(gameStateManager.CurrentGameState);
+      var locationDialogueForState = GetDialogueForState(gameStateManager.CurrentGameStateData);
       if (locationDialogueForState != null) {
         HandleDialogue(locationDialogueForState);
         return;
@@ -117,8 +117,8 @@ namespace Outclaw.City {
       sceneTransitionManager.TransitionToScene(destinationLocation);
     }
 
-    private LocationDialogueForState GetDialogueForState(GameStateType state) {
-      return locationDialoguesForState.FirstOrDefault(dialogue => dialogue.gameState == state);
+    private LocationDialogueForState GetDialogueForState(GameStateData state) {
+      return locationDialoguesForState.FirstOrDefault(dialogue => dialogue.gameStateData == state);
     }
 
     public void UpdateElement(float animationProgress) { }

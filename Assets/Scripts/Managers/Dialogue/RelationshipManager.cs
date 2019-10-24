@@ -7,15 +7,15 @@ using Zenject;
 namespace Outclaw.City {
   public interface IRelationshipManager {
     int GetRankForCat(CatType type);
-    int GetRankForCatInGameState(CatType type, GameStateType state);
+    int GetRankForCatInGameState(CatType type, GameStateData state);
     void RankUpCat(CatType type);
-    void RankUpCatInGameState(CatType type, GameStateType state);
+    void RankUpCatInGameState(CatType type, GameStateData state);
     void LoadRelationshipState();
   }
   
   public class RelationshipManager : IInitializable, IRelationshipManager {
     private Dictionary<CatType, int> catRanks;
-    private Dictionary<CatType, Dictionary<GameStateType, int>> gameStateProgress;
+    private Dictionary<CatType, Dictionary<GameStateData, int>> gameStateProgress;
 
     public void Initialize() {
       LoadRelationshipState();
@@ -26,7 +26,7 @@ namespace Outclaw.City {
       return catRanks[type];
     }
 
-    public int GetRankForCatInGameState(CatType type, GameStateType state) {
+    public int GetRankForCatInGameState(CatType type, GameStateData state) {
       CheckRankForCatInGameState(type, state);
       return gameStateProgress[type][state];
     }
@@ -36,7 +36,7 @@ namespace Outclaw.City {
       catRanks[type]++;
     }
     
-    public void RankUpCatInGameState(CatType type, GameStateType state) {
+    public void RankUpCatInGameState(CatType type, GameStateData state) {
       CheckRankForCatInGameState(type, state);
       gameStateProgress[type][state]++;
     }
@@ -47,9 +47,9 @@ namespace Outclaw.City {
       }
     }
 
-    private void CheckRankForCatInGameState(CatType type, GameStateType state) {
+    private void CheckRankForCatInGameState(CatType type, GameStateData state) {
       if (!gameStateProgress.ContainsKey(type)) {
-        gameStateProgress.Add(type, new Dictionary<GameStateType, int>());
+        gameStateProgress.Add(type, new Dictionary<GameStateData, int>());
       }
       var stateForCat = gameStateProgress[type];
       if (!stateForCat.ContainsKey(state)) {
@@ -59,7 +59,7 @@ namespace Outclaw.City {
 
     public void LoadRelationshipState() {
       catRanks = new Dictionary<CatType, int>();
-      gameStateProgress = new Dictionary<CatType, Dictionary<GameStateType, int>>();
+      gameStateProgress = new Dictionary<CatType, Dictionary<GameStateData, int>>();
       //TODO(dwong): add rank based on saved state.
     }
   }
