@@ -27,7 +27,7 @@ namespace Outclaw.City {
   public class InteractableLocation : MonoBehaviour, ObjectiveInteractable {
     [SerializeField] private Indicator enterIndicator;
     [SerializeField] private List<LocationDialogueForState> locationDialoguesForState;
-    [SerializeField] private string destinationName;
+    [SerializeField] private LocationData destinationLocation;
     [SerializeField] private EntranceType entranceType;
     [SerializeField] private AudioClip enterClip;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -114,7 +114,7 @@ namespace Outclaw.City {
       }
 
       objectiveManager.CompleteEntranceObjective(entranceType);
-      sceneTransitionManager.TransitionToScene(destinationName);
+      sceneTransitionManager.TransitionToScene(destinationLocation);
     }
 
     private LocationDialogueForState GetDialogueForState(GameStateType state) {

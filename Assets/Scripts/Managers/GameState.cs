@@ -48,13 +48,4 @@ namespace Outclaw {
     FIND_OBJECTS,
     USE_ENTRANCE
   }
-  
-  public enum LocationType {
-    NONE,
-    HOME,
-    MAIN,
-    CAFEBOTTOM,
-    CAFETOP,
-    PARK
-  }
 }

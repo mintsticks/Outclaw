@@ -15,9 +15,9 @@ namespace Outclaw {
 
     [SerializeField]
     private string[] lines;
-    
+
     [SerializeField]
-    private string nextScene;
+    private LocationData nextLocation;
 
     [Inject]
     private IPlayerInput playerInput;
@@ -34,7 +34,7 @@ namespace Outclaw {
         yield return StartCoroutine(PrintLine(line));
       }
 
-      sceneTransitionManager.TransitionToScene(nextScene);
+      sceneTransitionManager.TransitionToScene(nextLocation);
     }
 
     private IEnumerator PrintLine(string line) {

@@ -12,7 +12,7 @@ namespace Outclaw.City {
   public class InteractableObject : MonoBehaviour, ObjectiveInteractable {
     [SerializeField] private Indicator observeIndicator;
     [SerializeField] private ObjectDialogues objectInfo;
-    [SerializeField] private LocationType locationType;
+    [SerializeField] private LocationData location;
     [SerializeField] private ObjectType objectType;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform objectPosition;
@@ -93,7 +93,7 @@ namespace Outclaw.City {
         return null;
       }
 
-      var objProgress = locationManager.GetProgressForLocationObject(locationType, objectType);
+      var objProgress = locationManager.GetProgressForLocationObject(location, objectType);
       var objectDialogues = dialoguesForState.objectDialogues;
       if (objProgress >= objectDialogues.Count) {
         Debug.Log("No dialogues for object progress");
@@ -108,7 +108,7 @@ namespace Outclaw.City {
     }
 
     private void CompleteInteraction() {
-      locationManager.IncreaseProgressForLocationObject(locationType, objectType);
+      locationManager.IncreaseProgressForLocationObject(location, objectType);
       objectiveManager.CompleteObjectObjective(objectType);
       InRange();
     }

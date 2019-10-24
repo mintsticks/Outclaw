@@ -7,23 +7,23 @@ using Zenject;
 
 namespace Outclaw.City {
   public interface ILocationManager {
-    int GetProgressForLocationObject(LocationType type, ObjectType obj);
-    void IncreaseProgressForLocationObject(LocationType type, ObjectType obj);
+    int GetProgressForLocationObject(LocationData location, ObjectType obj);
+    void IncreaseProgressForLocationObject(LocationData location, ObjectType obj);
     void ResetObjectProgress();
   }
 
   public class LocationManager : IInitializable, ILocationManager {
-    private Dictionary<LocationType, Dictionary<ObjectType, int>> locationObjectProgress;
-    private LocationType currentLocation;
+    private Dictionary<LocationData, Dictionary<ObjectType, int>> locationObjectProgress;
+    private LocationData currentLocation;
 
     public void Initialize() {
       LoadLocationObjectProgress();
     }
 
-    public void IncreaseProgressForLocationObject(LocationType type, ObjectType obj) {
-      if (!locationObjectProgress.TryGetValue(type, out var locationObjects))
+    public void IncreaseProgressForLocationObject(LocationData location, ObjectType obj) {
+      if (!locationObjectProgress.TryGetValue(location, out var locationObjects))
       {
-        Debug.LogError("Location " + type + " does not exist.");
+        Debug.LogError("Location " + location + " does not exist.");
         return;
       }
 
@@ -35,10 +35,10 @@ namespace Outclaw.City {
       locationObjects[obj]++;
     }
 
-    public int GetProgressForLocationObject(LocationType type, ObjectType obj) {
-      if (!locationObjectProgress.TryGetValue(type, out var locationObjects))
+    public int GetProgressForLocationObject(LocationData location, ObjectType obj) {
+      if (!locationObjectProgress.TryGetValue(location, out var locationObjects))
       {
-        Debug.LogError("Location " + type + " does not exist.");
+        Debug.LogError("Location " + location + " does not exist.");
         return 0;
       }
 
@@ -59,8 +59,8 @@ namespace Outclaw.City {
       }
     }
 
-    private void ResetLocationObjectProgress(LocationType type) {
-      var locationObjects = locationObjectProgress[type];
+    private void ResetLocationObjectProgress(LocationData location) {
+      var locationObjects = locationObjectProgress[location];
 
 
       // make a copy of keys so foreach can still go while modifying
@@ -71,8 +71,8 @@ namespace Outclaw.City {
     }
 
     private void LoadLocationObjectProgress() {
-      var locations = Enum.GetValues(typeof(LocationType)).Cast<LocationType>();
-      locationObjectProgress = new Dictionary<LocationType, Dictionary<ObjectType, int>>();
+      var locations = Resources.LoadAll<LocationData>("Location Data");
+      locationObjectProgress = new Dictionary<LocationData, Dictionary<ObjectType, int>>();
       foreach (var location in locations)
       {
         //TODO(dwong): add based on saved state.

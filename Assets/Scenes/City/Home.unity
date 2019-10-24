@@ -426,7 +426,8 @@ MonoBehaviour:
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: 21a831cbb5be68a4585c3c3fdf411ed8, type: 3}
-  destinationName: Main
+  destinationLocation: {fileID: 11400000, guid: 77cfee38660a1da4db378a400a07b085,
+    type: 2}
   entranceType: 3
   enterClip: {fileID: 8300000, guid: 35cadffa6668fea4092735578f9f1c70, type: 3}
   spriteRenderer: {fileID: 0}
@@ -706,6 +707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - entryScene: Main
+    entryLocation: {fileID: 11400000, guid: 77cfee38660a1da4db378a400a07b085, type: 2}
     spawnPoint: {fileID: 164212814}
 --- !u!4 &239054487
 Transform:
@@ -1141,6 +1143,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 21f0bd0983118814d9f7dd2fc133bef0, type: 3}
   locationType: 1
+  location: {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf, type: 2}
   objectType: 1
   spriteRenderer: {fileID: 656790587}
   objectPosition: {fileID: 0}
@@ -1325,6 +1328,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 6c3ef2c957412474298c63f8f07b2775, type: 3}
   locationType: 2
+  location: {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf, type: 2}
   objectType: 3
   spriteRenderer: {fileID: 1099322505}
   objectPosition: {fileID: 0}
@@ -1585,6 +1589,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 76df4e1529fb26d4bad27aafbcdc6691, type: 3}
   locationType: 1
+  location: {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf, type: 2}
   objectType: 5
   spriteRenderer: {fileID: 77781440}
   objectPosition: {fileID: 0}
@@ -1797,6 +1802,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: a869d1ac72167d440ae8daab60eafb21, type: 3}
   locationType: 2
+  location: {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf, type: 2}
   objectType: 6
   spriteRenderer: {fileID: 866821680}
   objectPosition: {fileID: 923338770}
@@ -2563,6 +2569,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 62d35a270ddcf4a49b956818fa64b68e, type: 3}
   locationType: 1
+  location: {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf, type: 2}
   objectType: 4
   spriteRenderer: {fileID: 1275948599}
   objectPosition: {fileID: 0}
@@ -4938,6 +4945,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 3987fb35179ae174abf05030c1d1fa49, type: 3}
   locationType: 2
+  location: {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf, type: 2}
   objectType: 2
   spriteRenderer: {fileID: 1629020094}
   objectPosition: {fileID: 0}

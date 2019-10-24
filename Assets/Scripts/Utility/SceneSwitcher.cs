@@ -13,6 +13,10 @@ namespace Outclaw{
       transition.TransitionToScene(scene);
     }
 
+    public void SwitchToLocation(LocationData location){
+      transition.TransitionToScene(location);
+    }
+
     public void ReloadCurrent(){
       transition.TransitionToScene(SceneManager.GetActiveScene().name);
     }

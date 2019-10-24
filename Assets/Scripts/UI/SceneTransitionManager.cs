@@ -6,6 +6,7 @@ using Zenject;
 
 namespace Outclaw {
   public interface ISceneTransitionManager {
+    void TransitionToScene(LocationData location);
     void TransitionToScene(string scene);
     bool IsSwitching { get; }
   }
@@ -27,6 +28,10 @@ namespace Outclaw {
     private AsyncOperation loadingOp;
 
     public bool IsSwitching => isSwitching;
+
+    public void TransitionToScene(LocationData location){
+      TransitionToScene(location.SceneName);
+    }
 
     public void TransitionToScene(string scene) {
       if (isSwitching) {

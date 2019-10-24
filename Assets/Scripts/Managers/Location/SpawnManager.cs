@@ -37,7 +37,7 @@ namespace Outclaw {
         return new Vector3(-1, -1, -1);
       }
 
-      var entryPoint = spawnList.FirstOrDefault(point => point.EntryScene.Equals(previousScene));
+      var entryPoint = spawnList.FirstOrDefault(point => point.EntryLocation.SceneName.Equals(previousScene));
       if (entryPoint == null) {
         return new Vector3(-1, -1, -1);
       }
