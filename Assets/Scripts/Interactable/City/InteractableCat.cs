@@ -62,7 +62,6 @@ namespace Outclaw.City {
     public Transform Location { get => transform; }
     
     public void Awake() {
-      objectiveTransformManager.Cats.Add(this);
       objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
     }

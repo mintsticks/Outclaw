@@ -14,9 +14,13 @@ namespace Outclaw.City {
     [SerializeField] private ObjectDialogues objectInfo;
     [SerializeField] private LocationData location;
     [SerializeField] private ObjectType objectType;
+
+    [Header("Effects")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform objectPosition;
     [SerializeField] private ParticleSystem particleSystem;
+
+    [Header("Objective Tracking")]
     [SerializeField] private Task task;
 
     [Inject] private ILocationManager locationManager;
@@ -35,7 +39,6 @@ namespace Outclaw.City {
     public Transform Location { get => transform; }
 
     public void Awake() {
-      objectiveTransformManager.Objects.Add(this);
       objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
     }

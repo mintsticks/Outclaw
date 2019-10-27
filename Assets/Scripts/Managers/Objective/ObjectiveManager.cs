@@ -53,16 +53,4 @@ namespace City {
       }
     }
   }
-
-  public class ObjectiveProgress {
-    public List<CatType> conversations;
-    public List<ObjectType> objects;
-    public List<EntranceType> entrances;
-
-    public ObjectiveProgress() {
-      conversations = new List<CatType>();
-      objects = new List<ObjectType>();
-      entrances = new List<EntranceType>();
-    }
-  }
 }

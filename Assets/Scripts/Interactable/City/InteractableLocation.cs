@@ -6,16 +6,6 @@ using UnityEngine;
 using Zenject;
 
 namespace Outclaw.City {
-  public enum EntranceType {
-    NONE = 0,
-    CAFE_EXIT = 1,
-    CAFE_ENTRANCE = 2,
-    HOME_EXIT = 3,
-    HOME_ENTRANCE = 4,
-    PARK_ENTRANCE = 5,
-    POUND_ENTRANCE = 6,
-    PARK_EXIT = 7
-  }
 
   [Serializable]
   public class LocationDialogueForState {
@@ -28,11 +18,14 @@ namespace Outclaw.City {
     [SerializeField] private Indicator enterIndicator;
     [SerializeField] private List<LocationDialogueForState> locationDialoguesForState;
     [SerializeField] private LocationData destinationLocation;
-    [SerializeField] private EntranceType entranceType;
+
+    [Header("Effects")]
     [SerializeField] private AudioClip enterClip;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform locationPosition;
     [SerializeField] private ParticleSystem particleSystem;
+
+    [Header("Objective Tracking")]
     [SerializeField] private Task task;
 
     [Inject] private IPlayer player;
@@ -44,13 +37,11 @@ namespace Outclaw.City {
     [Inject] private IObjectiveTransformManager objectiveTransformManager;
     [Inject] private ISenseVisuals senseVisuals;
 
-    public EntranceType Type => entranceType;
     public Transform LocationPosition => locationPosition != null ? locationPosition : transform;
     public Task ContainedTask { get => task; }
     public Transform Location { get => transform; }
 
     public void Awake() {
-      objectiveTransformManager.Locations.Add(this);
       objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
     }
