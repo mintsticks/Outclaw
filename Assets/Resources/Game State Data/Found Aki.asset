@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Found Aki
   m_EditorClassIdentifier: 
   childStates:
-  - nextState: 6
-    nextStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
-    objectives:
-    - objectiveType: 3
-      conversations: 
-      objects: 
-      entrances: 05000000
+  - nextStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    tasks:
+    - {fileID: 11400000, guid: 70a857bfefbbf424f9a19cd7c5eda5b3, type: 2}
     persistObjectiveState: 0

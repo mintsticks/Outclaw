@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Tutorial
   m_EditorClassIdentifier: 
   childStates:
-  - nextState: 2
-    nextStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
-    objectives:
-    - objectiveType: 2
-      conversations: 
-      objects: 06000000
-      entrances: 
+  - nextStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
+    tasks:
+    - {fileID: 11400000, guid: 83346012ecbd7d04fb187988128dcfff, type: 2}
     persistObjectiveState: 1
