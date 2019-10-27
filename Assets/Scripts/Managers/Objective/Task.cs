@@ -10,7 +10,7 @@ namespace Outclaw{
     private bool completed;
 
     public void Complete(){
-      completed = true;;
+      completed = true;
     }
 
     public bool IsComplete{
