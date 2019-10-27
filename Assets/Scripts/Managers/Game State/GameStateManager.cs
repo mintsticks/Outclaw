@@ -15,8 +15,13 @@ namespace Outclaw {
 
     private GameStateData currentGameStateData;
 
+    private Task[] allTasks;
+
     [Inject]
     private ILocationManager locationManager;
+
+    [Inject]
+    private IRelationshipManager relationManager;
 
     public GameStateData CurrentGameStateData => currentGameStateData;
 
@@ -33,6 +38,8 @@ namespace Outclaw {
         return;
       }
       locationManager.ResetObjectProgress();
+      relationManager.ResetRelationships();
+      ResetTasks();
     }
 
     public void Initialize() {
@@ -40,6 +47,15 @@ namespace Outclaw {
 
       StateList = Resources.Load<GameStateList>("Game State Data/Game State List");
       currentGameStateData = StateList[0];
+
+      allTasks = Resources.LoadAll<Task>("Tasks");
+      Debug.Log(allTasks.Length);
+    }
+
+    private void ResetTasks(){
+      foreach(Task t in allTasks){
+        t.Reset();
+      }
     }
   }
 }

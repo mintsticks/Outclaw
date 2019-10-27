@@ -7,14 +7,18 @@ namespace Outclaw{
   [CreateAssetMenu(fileName = "New Task", menuName = "Outclaw/Task")]
   public class Task : ScriptableObject
   {
-    private HashSet<GameStateData> completedIn = new HashSet<GameStateData>();
+    private bool completed;
 
-    public void Complete(GameStateData state){
-      completedIn.Add(state);
+    public void Complete(){
+      completed = true;;
     }
 
-    public bool IsComplete(GameStateData state){
-      return completedIn.Contains(state);
+    public bool IsComplete{
+      get { return completed; }
+    }
+
+    public void Reset(){
+      completed = false;
     }
   }
 }

@@ -25,7 +25,11 @@ namespace City {
     public Task CurrentTask { get => currentTask; }
 
     public void CompleteTask(Task task){
-      task.Complete(gameStateManager.CurrentGameStateData);
+      if(task == null){
+        return;
+      }
+
+      task.Complete();
       UpdateCurrentTask();
       UpdateGameState();
     }
@@ -33,11 +37,11 @@ namespace City {
     public void UpdateCurrentTask(){
       var currentState = gameStateManager.CurrentGameStateData;
       var currentChild = currentState.childStates.FirstOrDefault(child => !IsTasksComplete(child.tasks));
-      currentTask = currentChild?.tasks.FirstOrDefault(task => !task.IsComplete(currentState));
+      currentTask = currentChild?.tasks.FirstOrDefault(task => !task.IsComplete);
     }
 
     private bool IsTasksComplete(List<Task> tasks){
-      return tasks.All(task => task.IsComplete(gameStateManager.CurrentGameStateData));
+      return tasks.All(task => task.IsComplete);
     }
 
     public void UpdateGameState() {
