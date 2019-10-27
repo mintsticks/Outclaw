@@ -421,8 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterIndicator: {fileID: 6086508770103586948}
   locationDialoguesForState:
-  - gameState: 1
-    gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
+  - gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
@@ -434,6 +433,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   locationPosition: {fileID: 0}
   particleSystem: {fileID: 0}
+  task: {fileID: 11400000, guid: a886d5cba5786b64cb3bc7d7ff113a11, type: 2}
 --- !u!61 &164212817
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1135,13 +1135,11 @@ MonoBehaviour:
   observeIndicator: {fileID: 708519529}
   objectInfo:
     dialoguesForStates:
-    - gameState: 1
-      gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 21f0bd0983118814d9f7dd2fc133bef0, type: 3}
-    - gameState: 2
-      gameStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
+    - gameStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 21f0bd0983118814d9f7dd2fc133bef0, type: 3}
@@ -1150,6 +1148,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 656790587}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 1127259958}
+  task: {fileID: 11400000, guid: 15a019a2ced2b784aa23b3df09cca47a, type: 2}
 --- !u!4 &284740117
 Transform:
   m_ObjectHideFlags: 0
@@ -1317,15 +1316,13 @@ MonoBehaviour:
   observeIndicator: {fileID: 7669285682797156765}
   objectInfo:
     dialoguesForStates:
-    - gameState: 1
-      gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: c486d151b5ce619458edc606e92ee540, type: 3}
       - dialogue:
         - {fileID: 4900000, guid: 6c3ef2c957412474298c63f8f07b2775, type: 3}
-    - gameState: 2
-      gameStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
+    - gameStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: c486d151b5ce619458edc606e92ee540, type: 3}
@@ -1336,6 +1333,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1099322505}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 680033820}
+  task: {fileID: 11400000, guid: 41b1a4622ad482f4b90659953ef9ab5e, type: 2}
 --- !u!4 &379560027
 Transform:
   m_ObjectHideFlags: 0
@@ -1583,13 +1581,11 @@ MonoBehaviour:
   observeIndicator: {fileID: 252006320}
   objectInfo:
     dialoguesForStates:
-    - gameState: 1
-      gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 76df4e1529fb26d4bad27aafbcdc6691, type: 3}
-    - gameState: 2
-      gameStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
+    - gameStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 76df4e1529fb26d4bad27aafbcdc6691, type: 3}
@@ -1598,6 +1594,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 77781440}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 1469858598}
+  task: {fileID: 11400000, guid: 4220f945deddf6f4e967d3958181971b, type: 2}
 --- !u!1 &455631705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1801,8 +1798,7 @@ MonoBehaviour:
   observeIndicator: {fileID: 1382853688}
   objectInfo:
     dialoguesForStates:
-    - gameState: 1
-      gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: a869d1ac72167d440ae8daab60eafb21, type: 3}
@@ -1811,6 +1807,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 866821680}
   objectPosition: {fileID: 923338770}
   particleSystem: {fileID: 79198616}
+  task: {fileID: 11400000, guid: 83346012ecbd7d04fb187988128dcfff, type: 2}
 --- !u!1 &561404907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,8 +2565,7 @@ MonoBehaviour:
   observeIndicator: {fileID: 2060240060}
   objectInfo:
     dialoguesForStates:
-    - gameState: 1
-      gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 62d35a270ddcf4a49b956818fa64b68e, type: 3}
@@ -2578,6 +2574,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1275948599}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 144481634}
+  task: {fileID: 11400000, guid: 51bc6731c199fae48b17a07f3915ebcb, type: 2}
 --- !u!1 &866099009
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,7 +3161,6 @@ MonoBehaviour:
     waitTime: 0
     promptType: 3
     promptText: 
-  eventGameSequence: 1
   eventGameState: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
 --- !u!61 &1002161792
 BoxCollider2D:
@@ -4941,13 +4937,11 @@ MonoBehaviour:
   observeIndicator: {fileID: 425655439}
   objectInfo:
     dialoguesForStates:
-    - gameState: 1
-      gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 3987fb35179ae174abf05030c1d1fa49, type: 3}
-    - gameState: 2
-      gameStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
+    - gameStateData: {fileID: 11400000, guid: c0969baf485eee3468fde6707a26ed9f, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 3987fb35179ae174abf05030c1d1fa49, type: 3}
@@ -4956,6 +4950,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1629020094}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 467188776}
+  task: {fileID: 11400000, guid: 52238c9c0e631654a97f856d63ace1c2, type: 2}
 --- !u!4 &1666310725
 Transform:
   m_ObjectHideFlags: 0

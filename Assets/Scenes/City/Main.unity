@@ -867,20 +867,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterIndicator: {fileID: 374563975}
   locationDialoguesForState:
-  - gameState: 3
-    gameStateData: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d, type: 2}
+  - gameStateData: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: aeef4ef4386d108448c903dd06cadc25, type: 3}
-  - gameState: 4
-    gameStateData: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d, type: 2}
+  - gameStateData: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: aeef4ef4386d108448c903dd06cadc25, type: 3}
-  - gameState: 5
-    gameStateData: {fileID: 11400000, guid: 4063f4ecfcf5331409b28af70c0a1898, type: 2}
+  - gameStateData: {fileID: 11400000, guid: 4063f4ecfcf5331409b28af70c0a1898, type: 2}
     isBlocking: 0
     locationDialogue:
       dialogue:
@@ -892,6 +889,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   locationPosition: {fileID: 492840758}
   particleSystem: {fileID: 0}
+  task: {fileID: 11400000, guid: 70a857bfefbbf424f9a19cd7c5eda5b3, type: 2}
 --- !u!61 &533150229
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1348,6 +1346,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   locationPosition: {fileID: 1675766284}
   particleSystem: {fileID: 0}
+  task: {fileID: 11400000, guid: 3f530a1a7fecefa42a1ea22d1f9a1c7a, type: 2}
 --- !u!61 &834882092
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1592,26 +1591,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterIndicator: {fileID: 2022962805}
   locationDialoguesForState:
-  - gameState: 3
-    gameStateData: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d, type: 2}
+  - gameStateData: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: f142301e5dfca704a806719536de0227, type: 3}
-  - gameState: 4
-    gameStateData: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d, type: 2}
+  - gameStateData: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: f142301e5dfca704a806719536de0227, type: 3}
-  - gameState: 5
-    gameStateData: {fileID: 11400000, guid: 4063f4ecfcf5331409b28af70c0a1898, type: 2}
+  - gameStateData: {fileID: 11400000, guid: 4063f4ecfcf5331409b28af70c0a1898, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: f142301e5dfca704a806719536de0227, type: 3}
-  - gameState: 7
-    gameStateData: {fileID: 11400000, guid: dc2057afafe3a934999aff3b59531e51, type: 2}
+  - gameStateData: {fileID: 11400000, guid: dc2057afafe3a934999aff3b59531e51, type: 2}
     isBlocking: 0
     locationDialogue:
       dialogue:
@@ -1623,6 +1618,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   locationPosition: {fileID: 490840480}
   particleSystem: {fileID: 0}
+  task: {fileID: 11400000, guid: 3026f389beb924c46aca22d166af7b0c, type: 2}
 --- !u!61 &1053036405
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1864,7 +1860,6 @@ MonoBehaviour:
     waitTime: 0
     promptType: 0
     promptText: 
-  eventGameSequence: 3
   eventGameState: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d, type: 2}
 --- !u!61 &1256800365
 BoxCollider2D:
@@ -2041,6 +2036,12 @@ PrefabInstance:
       propertyPath: catDialogues.dialoguesForStates.Array.data[1].gameStateData
       value: 
       objectReference: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d,
+        type: 2}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: task
+      value: 
+      objectReference: {fileID: 11400000, guid: b9446bf47a3b2c94dabd40ba55b2e586,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
@@ -2806,6 +2807,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6987993041539253374, guid: 1286c96fdffbf5346b0e24c8efba10a5,
+        type: 3}
+      propertyPath: playerInstance
+      value: 
+      objectReference: {fileID: 540108380}
     - target: {fileID: 1592506306157068994, guid: 1286c96fdffbf5346b0e24c8efba10a5,
         type: 3}
       propertyPath: backgroundMusic
@@ -2816,11 +2822,6 @@ PrefabInstance:
       propertyPath: ambientSound
       value: 
       objectReference: {fileID: 8300000, guid: 70a7bc8827620344f9fb8f0d6aa05d39, type: 3}
-    - target: {fileID: 6987993041539253374, guid: 1286c96fdffbf5346b0e24c8efba10a5,
-        type: 3}
-      propertyPath: playerInstance
-      value: 
-      objectReference: {fileID: 540108380}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1286c96fdffbf5346b0e24c8efba10a5, type: 3}
 --- !u!1 &2040902143
@@ -2862,6 +2863,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   locationPosition: {fileID: 1068173554}
   particleSystem: {fileID: 0}
+  task: {fileID: 11400000, guid: f46db26c905d65a41b8a7470aca9660f, type: 2}
 --- !u!61 &2040902146
 BoxCollider2D:
   m_ObjectHideFlags: 0

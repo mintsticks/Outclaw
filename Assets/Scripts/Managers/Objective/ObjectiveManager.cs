@@ -8,12 +8,10 @@ using Zenject;
 
 namespace City {
   public interface IObjectiveManager {
-    void CompleteObjectObjective(ObjectType type);
-    void CompleteConversationObjective(CatType type);
-    void CompleteEntranceObjective(EntranceType type);
-    Objective CurrentObjective { get; set; }
+    Task CurrentTask { get; }
+    void CompleteTask(Task task);
+    void UpdateCurrentTask();
     void UpdateGameState();
-    void UpdateCurrentObjective();
   }
   
   public class ObjectiveManager : MonoBehaviour, IObjectiveManager {
@@ -22,88 +20,33 @@ namespace City {
 
     [Inject]
     private IGameStateManager gameStateManager;
-
-    private Dictionary<GameStateData, ObjectiveProgress> completedObjectives;
-    private Objective currentObjective;
     
-    public Objective CurrentObjective {
-      get => currentObjective;
-      set => currentObjective = value;
-    }
+    private Task currentTask;
+    public Task CurrentTask { get => currentTask; }
 
-    private void Awake() {
-      completedObjectives = new Dictionary<GameStateData, ObjectiveProgress>();
-    }
-
-    public void CompleteObjectObjective(ObjectType type) {
-      var currentState = gameStateManager.CurrentGameStateData;
-      MaybeAddState(currentState);
-      CompleteObjective(type, completedObjectives[currentState].objects);
-    }
-
-    public void CompleteConversationObjective(CatType type) {
-      var currentState = gameStateManager.CurrentGameStateData;
-      MaybeAddState(currentState);
-      CompleteObjective(type, completedObjectives[currentState].conversations);
-    }
-
-    public void CompleteEntranceObjective(EntranceType type) {
-      var currentState = gameStateManager.CurrentGameStateData;
-      MaybeAddState(currentState);
-      CompleteObjective(type, completedObjectives[currentState].entrances);
-    }
-
-    private void CompleteObjective<T>(T type, ICollection<T> toAddTo) {
-      toAddTo.Add(type);
-      UpdateCurrentObjective();
+    public void CompleteTask(Task task){
+      task.Complete(gameStateManager.CurrentGameStateData);
+      UpdateCurrentTask();
       UpdateGameState();
     }
-    
-    private void MaybeAddState(GameStateData gameState) {
-      if (completedObjectives.ContainsKey(gameState)) {
-        return;
-      }
-      completedObjectives.Add(gameState, new ObjectiveProgress());
+
+    public void UpdateCurrentTask(){
+      var currentState = gameStateManager.CurrentGameStateData;
+      var currentChild = currentState.childStates.FirstOrDefault(child => !IsTasksComplete(child.tasks));
+      currentTask = currentChild?.tasks.FirstOrDefault(task => !task.IsComplete(currentState));
+    }
+
+    private bool IsTasksComplete(List<Task> tasks){
+      return tasks.All(task => task.IsComplete(gameStateManager.CurrentGameStateData));
     }
 
     public void UpdateGameState() {
       var currentState = gameStateManager.CurrentGameStateData;
       
-      foreach (var child in currentState.childStates.Where(child => IsObjectivesComplete(child.objectives))) {
+      foreach (var child in currentState.childStates.Where(child => IsTasksComplete(child.tasks))) {
         gameStateManager.SetGameState(child.nextStateData, child.persistObjectiveState);
         break;
       }
-    }
-
-    private bool IsObjectivesComplete(List<Objective> objectives) {
-      return objectives.All(ObjectiveComplete);
-    }
-
-    private bool ObjectiveComplete(Objective objective) {
-      var progressForState = completedObjectives[gameStateManager.CurrentGameStateData];
-      switch (objective.objectiveType) {
-        case ObjectiveType.CONVERSATION:
-          return ObjectiveTypeComplete(objective.conversations, progressForState.conversations);
-        case ObjectiveType.FIND_OBJECTS:
-          return ObjectiveTypeComplete(objective.objects, progressForState.objects);
-        case ObjectiveType.USE_ENTRANCE:
-          return ObjectiveTypeComplete(objective.entrances, progressForState.entrances);
-        default:
-          return false;
-      }
-    }
-
-    private bool ObjectiveTypeComplete<T>(List<T> reqs, List<T> progress) {
-      return reqs.All(progress.Contains);
-    }
-    
-    public void UpdateCurrentObjective() {
-      var currentState = gameStateManager.CurrentGameStateData;
-      MaybeAddState(currentState);
-      var info = gameStateManager.StateList.FirstOrDefault(i => i == currentState);
-      var currentChild = info?.childStates.FirstOrDefault(child => !IsObjectivesComplete(child.objectives));
-      currentObjective = currentChild?.objectives.FirstOrDefault(objective => !ObjectiveComplete(objective));
-      CurrentObjective = currentObjective;
     }
   }
 

@@ -921,8 +921,7 @@ MonoBehaviour:
   observeIndicator: {fileID: 1625484053}
   objectInfo:
     dialoguesForStates:
-    - gameState: 6
-      gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 85984d843660a1b47b11eda621b1e374, type: 3}
@@ -931,6 +930,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 996643458}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 568670188}
+  task: {fileID: 11400000, guid: 2ed2983aed66f644a85c65113cecbfcd, type: 2}
 --- !u!4 &117006450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7180915979764319560, guid: c01f3426d82e9574793c81a2c52ae6ab,
@@ -1834,14 +1834,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterIndicator: {fileID: 1761390941}
   locationDialoguesForState:
-  - gameState: 6
-    gameStateData: {fileID: 0}
+  - gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
     isBlocking: 1
     locationDialogue:
       dialogue:
       - {fileID: 4900000, guid: e82efa4bfafccd846a0a218a98ca2875, type: 3}
-  - gameState: 7
-    gameStateData: {fileID: 0}
+  - gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
     isBlocking: 0
     locationDialogue:
       dialogue:
@@ -1853,6 +1851,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   locationPosition: {fileID: 0}
   particleSystem: {fileID: 0}
+  task: {fileID: 11400000, guid: 0b7a39ce064ea7747b86a212b1e9ec82, type: 2}
 --- !u!61 &265590791
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1950,7 +1949,6 @@ MonoBehaviour:
     waitTime: 0
     promptType: 3
     promptText: Press E next to benches to hide.
-  eventGameSequence: 6
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &267770827
 BoxCollider2D:
@@ -3528,8 +3526,7 @@ MonoBehaviour:
   observeIndicator: {fileID: 561598036}
   objectInfo:
     dialoguesForStates:
-    - gameState: 6
-      gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 0245f03bf4cb284438458eec0ca4d40b, type: 3}
@@ -3538,6 +3535,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1958845566}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 1929927754}
+  task: {fileID: 11400000, guid: 4de6093a1aba91847ad33fb846ab3b26, type: 2}
 --- !u!1 &511623633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4541,8 +4539,7 @@ MonoBehaviour:
   observeIndicator: {fileID: 1902232901}
   objectInfo:
     dialoguesForStates:
-    - gameState: 6
-      gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 1d9cb05dd6b3ffc428749c983e23c4c9, type: 3}
@@ -4551,6 +4548,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 669611391}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 1875233695}
+  task: {fileID: 11400000, guid: f468197e82c70804e94536ca97821afd, type: 2}
 --- !u!1 &651427352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4704,7 +4702,6 @@ MonoBehaviour:
     waitTime: 0
     promptType: 4
     promptText: 
-  eventGameSequence: 6
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &658488786
 BoxCollider2D:
@@ -5116,7 +5113,6 @@ MonoBehaviour:
     waitTime: 0
     promptType: 0
     promptText: 
-  eventGameSequence: 6
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &682431220
 BoxCollider2D:
@@ -6323,7 +6319,6 @@ MonoBehaviour:
     waitTime: 0
     promptType: 5
     promptText: 
-  eventGameSequence: 6
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &802682262
 BoxCollider2D:
@@ -12434,7 +12429,6 @@ MonoBehaviour:
     waitTime: 0
     promptType: 0
     promptText: 0
-  eventGameSequence: 6
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &1717906630
 BoxCollider2D:
@@ -12536,7 +12530,6 @@ MonoBehaviour:
     waitTime: 0
     promptType: 5
     promptText: Sense at vantage points to see more of your surroundings.
-  eventGameSequence: 6
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &1780035356
 BoxCollider2D:
@@ -12771,8 +12764,7 @@ MonoBehaviour:
   observeIndicator: {fileID: 1792039235}
   objectInfo:
     dialoguesForStates:
-    - gameState: 6
-      gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: af0423818c450b6448b4cb339794d906, type: 3}
@@ -12781,6 +12773,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1237018799}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 1861479893}
+  task: {fileID: 11400000, guid: 3cfbaf149aba5c84b827ecf87bee3976, type: 2}
 --- !u!1 &1825010073
 GameObject:
   m_ObjectHideFlags: 0
@@ -13049,8 +13042,7 @@ MonoBehaviour:
   observeIndicator: {fileID: 1325757407}
   objectInfo:
     dialoguesForStates:
-    - gameState: 6
-      gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 2a22ed99b6c07f14081c9e01de4189a5, type: 3}
@@ -13059,6 +13051,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1352846973}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 22958916}
+  task: {fileID: 11400000, guid: 6aa7ba2be0f6ab341af4446f3eec1bd0, type: 2}
 --- !u!1 &1845849240
 GameObject:
   m_ObjectHideFlags: 0
@@ -13929,8 +13922,7 @@ MonoBehaviour:
   observeIndicator: {fileID: 1195648763}
   objectInfo:
     dialoguesForStates:
-    - gameState: 6
-      gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    - gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: eaea28c4783cf034ba73ef891d4f61d4, type: 3}
@@ -13939,6 +13931,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1516490750}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 572260487}
+  task: {fileID: 11400000, guid: 471b585f2524f14449ef4453d8c492ae, type: 2}
 --- !u!1 &1894958094
 GameObject:
   m_ObjectHideFlags: 0
@@ -14358,7 +14351,6 @@ MonoBehaviour:
     waitTime: 0
     promptType: 3
     promptText: Press E next to trees to climb up or down..
-  eventGameSequence: 6
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &1932814100
 BoxCollider2D:

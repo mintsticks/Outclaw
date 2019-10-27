@@ -14,6 +14,9 @@ namespace City {
     List<InteractableObject> Objects { get; }
     List<InteractableCat> Cats { get; }
     List<InteractableLocation> Locations { get; }
+
+    void RegisterTask(IHaveTask task);
+    Transform GetTransformOfTask(Task task);
   }
   
   public class ObjectiveTransformManager : MonoBehaviour, IObjectiveTransformManager {
@@ -24,6 +27,8 @@ namespace City {
     public List<InteractableObject> Objects => objects;
     public List<InteractableCat> Cats => cats;
     public List<InteractableLocation> Locations => locations;
+
+    private List<IHaveTask> tasks = new List<IHaveTask>();
 
     public void Awake() {
       objects = new List<InteractableObject>();
@@ -41,6 +46,12 @@ namespace City {
     
     public Transform GetTransformOfEntrance(EntranceType type) {
       return locations.FirstOrDefault(i => i.Type == type)?.LocationPosition;
+    }
+
+    public void RegisterTask(IHaveTask task) => tasks.Add(task);
+
+    public Transform GetTransformOfTask(Task task){
+      return tasks.FirstOrDefault(i => i.ContainedTask == task)?.Location;
     }
   }
 }
