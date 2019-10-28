@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: First Heist
   m_EditorClassIdentifier: 
   childStates:
-  - nextState: 7
-    nextStateData: {fileID: 11400000, guid: dc2057afafe3a934999aff3b59531e51, type: 2}
-    objectives:
-    - objectiveType: 2
-      conversations: 
-      objects: 07000000
-      entrances: 
+  - nextStateData: {fileID: 11400000, guid: dc2057afafe3a934999aff3b59531e51, type: 2}
+    tasks:
+    - {fileID: 11400000, guid: f468197e82c70804e94536ca97821afd, type: 2}
     persistObjectiveState: 0

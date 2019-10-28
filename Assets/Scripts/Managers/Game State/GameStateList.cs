@@ -10,8 +10,5 @@ namespace Outclaw{
     [SerializeField] List<GameStateData> states;
 
     public GameStateData this[int i] => states[i];
-
-    public GameStateData FirstOrDefault(System.Func<GameStateData, bool> predicate) 
-      => states.FirstOrDefault(predicate);
   }
 }

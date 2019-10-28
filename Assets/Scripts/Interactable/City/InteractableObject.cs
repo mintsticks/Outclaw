@@ -9,14 +9,19 @@ using Zenject;
 using IObjectiveManager = City.IObjectiveManager;
 
 namespace Outclaw.City {
-  public class InteractableObject : MonoBehaviour, ObjectiveInteractable {
+  public class InteractableObject : MonoBehaviour, ObjectiveInteractable, IHaveTask {
     [SerializeField] private Indicator observeIndicator;
     [SerializeField] private ObjectDialogues objectInfo;
     [SerializeField] private LocationData location;
     [SerializeField] private ObjectType objectType;
+
+    [Header("Effects")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform objectPosition;
     [SerializeField] private ParticleSystem particleSystem;
+
+    [Header("Objective Tracking")]
+    [SerializeField] private Task task;
 
     [Inject] private ILocationManager locationManager;
     [Inject] private IDialogueManager dialogueManager;
@@ -30,9 +35,11 @@ namespace Outclaw.City {
     private bool created;
 
     public ObjectType ObjectType => objectType;
+    public Task ContainedTask { get => task; }
+    public Transform Location { get => transform; }
 
     public void Awake() {
-      objectiveTransformManager.Objects.Add(this);
+      objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
     }
 
@@ -109,7 +116,7 @@ namespace Outclaw.City {
 
     private void CompleteInteraction() {
       locationManager.IncreaseProgressForLocationObject(location, objectType);
-      objectiveManager.CompleteObjectObjective(objectType);
+      objectiveManager.CompleteTask(task);
       InRange();
     }
 

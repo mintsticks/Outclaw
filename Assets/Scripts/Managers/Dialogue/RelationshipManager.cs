@@ -11,6 +11,7 @@ namespace Outclaw.City {
     void RankUpCat(CatType type);
     void RankUpCatInGameState(CatType type, GameStateData state);
     void LoadRelationshipState();
+    void ResetRelationships();
   }
   
   public class RelationshipManager : IInitializable, IRelationshipManager {
@@ -58,9 +59,13 @@ namespace Outclaw.City {
     }
 
     public void LoadRelationshipState() {
+      ResetRelationships();
+      //TODO(dwong): add rank based on saved state.
+    }
+
+    public void ResetRelationships(){
       catRanks = new Dictionary<CatType, int>();
       gameStateProgress = new Dictionary<CatType, Dictionary<GameStateData, int>>();
-      //TODO(dwong): add rank based on saved state.
     }
   }
   

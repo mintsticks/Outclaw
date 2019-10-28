@@ -543,6 +543,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d,
         type: 2}
+    - target: {fileID: 2689329210336527570, guid: d9170f523b7444901af92891c8591433,
+        type: 3}
+      propertyPath: task
+      value: 
+      objectReference: {fileID: 11400000, guid: c18685baa9d2a164d93ab4217b1df8e8,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 2689329210336527564, guid: d9170f523b7444901af92891c8591433, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d9170f523b7444901af92891c8591433, type: 3}
@@ -1243,6 +1249,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d,
         type: 2}
+    - target: {fileID: 1572336508017664789, guid: a8d0f2e88011f46b8bbbe803f3aba51a,
+        type: 3}
+      propertyPath: task
+      value: 
+      objectReference: {fileID: 11400000, guid: af6fdc997dd7c314da2da2ee97fa9c89,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8d0f2e88011f46b8bbbe803f3aba51a, type: 3}
 --- !u!1 &499154657
@@ -1274,7 +1286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbf0ac72f8bf544bb65fab3cf279838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugGameState: 0
+  debugGameState: {fileID: 0}
 --- !u!4 &499154659
 Transform:
   m_ObjectHideFlags: 0
@@ -2482,6 +2494,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   locationPosition: {fileID: 0}
   particleSystem: {fileID: 0}
+  task: {fileID: 11400000, guid: 6d40c4c2d3a69a649b5a839ea6fd22ae, type: 2}
 --- !u!61 &1571872844
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2890,6 +2903,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d,
         type: 2}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: task
+      value: 
+      objectReference: {fileID: 11400000, guid: 567d9cf514066a74783e1e88372b2f7e,
+        type: 2}
     - target: {fileID: 360107579333356726, guid: 8c8cd9af1cf61f043bfd819994e0c940,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3283,6 +3302,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6987993041539253374, guid: 1286c96fdffbf5346b0e24c8efba10a5,
+        type: 3}
+      propertyPath: playerInstance
+      value: 
+      objectReference: {fileID: 788264176}
     - target: {fileID: 1592506306157068994, guid: 1286c96fdffbf5346b0e24c8efba10a5,
         type: 3}
       propertyPath: backgroundMusic
@@ -3293,11 +3317,6 @@ PrefabInstance:
       propertyPath: ambientSound
       value: 
       objectReference: {fileID: 8300000, guid: 0794d6905f2244046928f827cc1e1474, type: 3}
-    - target: {fileID: 6987993041539253374, guid: 1286c96fdffbf5346b0e24c8efba10a5,
-        type: 3}
-      propertyPath: playerInstance
-      value: 
-      objectReference: {fileID: 788264176}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1286c96fdffbf5346b0e24c8efba10a5, type: 3}
 --- !u!4 &2091593923 stripped

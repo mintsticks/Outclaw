@@ -67,9 +67,9 @@ namespace Outclaw {
     }
 
     private bool HasObjectiveInScene() {
-      objectiveManager.UpdateCurrentObjective();
-      Debug.Log((objectiveManager.CurrentObjective));
-      return GetObjectivePosition(objectiveManager.CurrentObjective) != null;
+      objectiveManager.UpdateCurrentTask();
+      Debug.Log((objectiveManager.CurrentTask));
+      return GetTaskPosition(objectiveManager.CurrentTask) != null;
     }
     
     private void CheckSenseDown() {
@@ -100,8 +100,8 @@ namespace Outclaw {
     }
 
     private void FindIntersection() {
-      var currentObjective = objectiveManager.CurrentObjective;
-      var objectivePosition = GetObjectivePosition(currentObjective);
+      var currentTask = objectiveManager.CurrentTask;
+      var objectivePosition = GetTaskPosition(currentTask);
       if (objectivePosition == null) {
         return;
       }
@@ -171,8 +171,8 @@ namespace Outclaw {
     }
     
     private float GetColorIntensity() {
-      var currentObjective = objectiveManager.CurrentObjective;
-      var objectivePosition = GetObjectivePosition(currentObjective);
+      var currentTask = objectiveManager.CurrentTask;
+      var objectivePosition = GetTaskPosition(currentTask);
       if (objectivePosition == null) {
         return 0f;
       }
@@ -217,17 +217,9 @@ namespace Outclaw {
       isAnimating = false;
     }
 
-    private Vector3? GetObjectivePosition(Objective currentObjective) {
-      switch (currentObjective.objectiveType) {
-        case ObjectiveType.FIND_OBJECTS:
-          return objectiveTransformManager.GetTransformOfObject(currentObjective.objects[0])?.position;
-        case ObjectiveType.CONVERSATION:
-          return objectiveTransformManager.GetTransformOfCat(currentObjective.conversations[0])?.position;
-        case ObjectiveType.USE_ENTRANCE:
-          return objectiveTransformManager.GetTransformOfEntrance(currentObjective.entrances[0])?.position;
-        default:
-          return transform.position;
-      }
+
+    private Vector3? GetTaskPosition(Task task){
+      return objectiveTransformManager.GetTransformOfTask(task)?.position;
     }
   }
 }

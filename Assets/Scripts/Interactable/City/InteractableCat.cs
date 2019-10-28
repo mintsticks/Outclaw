@@ -7,7 +7,7 @@ using City;
 using Zenject;
 
 namespace Outclaw.City {
-  public class InteractableCat : MonoBehaviour, ObjectiveInteractable {
+  public class InteractableCat : MonoBehaviour, ObjectiveInteractable, IHaveTask {
     [SerializeField]
     private CatDialogues catDialogues;
     
@@ -25,6 +25,9 @@ namespace Outclaw.City {
     
     [SerializeField]
     private CatType type;
+
+    [SerializeField]
+    private Task task;
     
     [Inject]
     private IPlayer player;
@@ -55,9 +58,11 @@ namespace Outclaw.City {
 
     public CatType CatType => type;
     public Transform CatPosition => catPosition != null ? catPosition : transform;
+    public Task ContainedTask { get => task; }
+    public Transform Location { get => transform; }
     
     public void Awake() {
-      objectiveTransformManager.Cats.Add(this);
+      objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
     }
 
@@ -137,7 +142,7 @@ namespace Outclaw.City {
       relationshipManager.RankUpCatInGameState(type, state);
       if (!HasDialogueForCurrentState()) {
         //TODO(dwong): add non required game state dialogue
-        objectiveManager.CompleteConversationObjective(type);
+        objectiveManager.CompleteTask(task);
       }
       InRange();
     }
