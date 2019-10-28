@@ -203,6 +203,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 2402215683257505217}
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &2892921191195802069
@@ -280,8 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1cb2e8995d440196a52ef9e3de5e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 8217840924305955387, guid: 3877c275ea0ab1c45b496551593ee9ed,
-    type: 3}
 --- !u!1 &5257725814554780807
 GameObject:
   m_ObjectHideFlags: 0

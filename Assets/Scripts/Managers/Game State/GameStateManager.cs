@@ -49,7 +49,6 @@ namespace Outclaw {
       currentGameStateData = StateList[0];
 
       allTasks = Resources.LoadAll<Task>("Tasks");
-      Debug.Log(allTasks.Length);
     }
 
     private void ResetTasks(){

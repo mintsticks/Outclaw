@@ -12,8 +12,8 @@ namespace Outclaw {
 
     string PreviousScene { get; set; }
     string LastCheckpoint { get; set; }
-    Vector3 GetSpawnPoint();
-    Vector3 GetCheckpoint();
+    Vector3? GetSpawnPoint();
+    Vector3? GetCheckpoint();
     List<Checkpoint> Checkpoints { get; }
   }
   
@@ -45,26 +45,24 @@ namespace Outclaw {
       lastCheckpoint = "Start";
     }
 
-    public Vector3 GetSpawnPoint() {
+    public Vector3? GetSpawnPoint() {
       List<SpawnPoint> spawnList;
-      try {
-        spawnList = GameObject.Find("SpawnList").GetComponent<SpawnList>().SpawnPoints;
-      }
-      catch (NullReferenceException e) {
-        return new Vector3(-1, -1, -1);
+      spawnList = GameObject.Find("SpawnList")?.GetComponent<SpawnList>()?.SpawnPoints;
+      if(spawnList == null){
+        return null;
       }
 
       var entryPoint = spawnList.FirstOrDefault(point => point.EntryLocation.SceneName.Equals(previousScene));
       if (entryPoint == null) {
-        return new Vector3(-1, -1, -1);
+        return null;
       }
       return entryPoint.PointPosition;
     }
 
-    public Vector3 GetCheckpoint() {
+    public Vector3? GetCheckpoint() {
       var checkpoint = checkpoints.FirstOrDefault(point => point.CheckpointName.Equals(lastCheckpoint));
       if (checkpoint == null) {
-        return new Vector3(-1,-1,-1);
+        return null;
       }
       return checkpoint.transform.position;
     }

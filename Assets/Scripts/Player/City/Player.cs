@@ -7,6 +7,7 @@ namespace Outclaw.City {
     Transform PlayerTransform { get; }
     Vector3 PlayerVelocity { get; }
     bool InputDisabled { get; set; }
+    void UpdatePosition(Vector3? position);
   }
   
   public class Player : MonoBehaviour, IPlayer {
@@ -37,12 +38,11 @@ namespace Outclaw.City {
     }
 
     private void Start() {
-      Vector3 spawnPoint = spawnManager.GetSpawnPoint();
-      Vector3 falsePosition = new Vector3(-1,-1,-1);
-      if (spawnPoint == falsePosition) {
+      Vector3? spawnPoint = spawnManager.GetSpawnPoint();
+      if (spawnPoint == null) {
         return;
       }
-      transform.position = spawnPoint;
+      transform.position = spawnPoint.Value;
     }
 
     void FixedUpdate() {
@@ -60,6 +60,13 @@ namespace Outclaw.City {
     
     private void OnTriggerExit2D(Collider2D other) {
       interactionController.HandleExit(other);
+    }
+    
+    public void UpdatePosition(Vector3? spawnPoint) {
+      if (spawnPoint == null) {
+        return;
+      }
+      transform.position = spawnPoint.Value;
     }
   }
 }
