@@ -5,15 +5,14 @@ using Zenject;
 namespace Outclaw {
   public class CheckpointUpdater : MonoBehaviour {
 
-    [SerializeField] private PlayerController playerController;
-
+    [Inject] private City.IPlayer player;
     [Inject] private ISpawnManager spawnManager;
     [Inject] private IPauseGame pauseGame;
 
     public void UpdateCheckpoint() {
       var point = spawnManager.GetCheckpoint();
-      playerController.UpdatePosition(point);
-      pauseGame.Unpause();
+      player.UpdatePosition(point);
+      player.InputDisabled = false;
     }
 
   }

@@ -84,12 +84,11 @@ namespace Outclaw.Heist {
       }
     }
     
-    public void UpdatePosition(Vector3 spawnPoint) {
-      Vector3 falsePosition = new Vector3(-1,-1,-1);
-      if (spawnPoint == falsePosition) {
+    public void UpdatePosition(Vector3? spawnPoint) {
+      if (spawnPoint == null) {
         return;
       }
-      transform.position = spawnPoint;
+      transform.position = spawnPoint.Value;
     }
   }
 }
