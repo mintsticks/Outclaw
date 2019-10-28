@@ -11,21 +11,38 @@ namespace Outclaw {
   public interface ISpawnManager {
 
     string PreviousScene { get; set; }
+    string LastCheckpoint { get; set; }
     Vector3 GetSpawnPoint();
-
+    Vector3 GetCheckpoint();
+    List<Checkpoint> Checkpoints { get; }
   }
   
   public class SpawnManager : MonoBehaviour, IInitializable, ISpawnManager {
 
     private string previousScene;
+    private string lastCheckpoint;
+    private List<Checkpoint> checkpoints;
 
     public string PreviousScene {
       get => previousScene;
       set => previousScene = value;
     }
 
+    public string LastCheckpoint
+    {
+      get => lastCheckpoint;
+      set => lastCheckpoint = value;
+    }
+
+    public List<Checkpoint> Checkpoints => checkpoints;
+
+    private void Awake() {
+      checkpoints = new List<Checkpoint>();
+    }
+
     public void Initialize() {
       previousScene = "Start";
+      lastCheckpoint = "Start";
     }
 
     public Vector3 GetSpawnPoint() {
@@ -43,5 +60,14 @@ namespace Outclaw {
       }
       return entryPoint.PointPosition;
     }
+
+    public Vector3 GetCheckpoint() {
+      var checkpoint = checkpoints.FirstOrDefault(point => point.CheckpointName.Equals(lastCheckpoint));
+      if (checkpoint == null) {
+        return new Vector3(-1,-1,-1);
+      }
+      return checkpoint.transform.position;
+    }
+    
   }
 }

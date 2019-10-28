@@ -15,6 +15,7 @@ namespace Outclaw.Heist {
     [Inject] private IPlayerInput playerInput;
     [Inject] private ISoundManager soundManager;
     [Inject] private IPauseGame pauseGame;
+    [Inject] private ISpawnManager spawnManager;
 
     private bool inputDisabled;
 
@@ -81,6 +82,14 @@ namespace Outclaw.Heist {
 
         Unhide();
       }
+    }
+    
+    public void UpdatePosition(Vector3 spawnPoint) {
+      Vector3 falsePosition = new Vector3(-1,-1,-1);
+      if (spawnPoint == falsePosition) {
+        return;
+      }
+      transform.position = spawnPoint;
     }
   }
 }

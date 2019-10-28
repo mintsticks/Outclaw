@@ -14,6 +14,7 @@ namespace Outclaw.Heist {
     [SerializeField] private LayerMask lineOfSightLayer;
     [SerializeField] private LayerMask lightLayer;
     [SerializeField] private LayerMask vantageLayer;
+    [SerializeField] private LayerMask checkpointLayer;
     
     [Inject] private IPlayerInput playerInput;
     [Inject] private IPlayer player;
@@ -75,6 +76,11 @@ namespace Outclaw.Heist {
       
       if ((1 << other.gameObject.layer & lightLayer) != 0) {
         playerLitManager.IsLit = true;
+      }
+
+      if ((1 << other.gameObject.layer & checkpointLayer) != 0) {
+        var checkpoint = other.GetComponentInParent<Checkpoint>();
+        checkpoint.UpdateLastCheckpoint();
       }
     }
 

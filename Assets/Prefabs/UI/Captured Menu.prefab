@@ -192,8 +192,8 @@ MonoBehaviour:
   onSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5789725320074524148}
-        m_MethodName: ReloadCurrent
+      - m_Target: {fileID: 3746048000134655831}
+        m_MethodName: UpdateCheckpoint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -202,7 +202,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &2892921191195802069
@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 1319293480114440399}
   - component: {fileID: 2402215683257505217}
   - component: {fileID: 5789725320074524148}
+  - component: {fileID: 3746048000134655831}
   m_Layer: 0
   m_Name: Captured Menu
   m_TagString: Untagged
@@ -251,7 +252,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseTime: 0.1
-  animationFreq: 0.02
   contents: {fileID: 3228648567855803533}
   eventItems:
   - {fileID: 6714518495593116948}
@@ -268,6 +268,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3fa4e3cfaedea4d831fc179cfb9762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3746048000134655831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892921191195802069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1cb2e8995d440196a52ef9e3de5e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 8217840924305955387, guid: 3877c275ea0ab1c45b496551593ee9ed,
+    type: 3}
 --- !u!1 &5257725814554780807
 GameObject:
   m_ObjectHideFlags: 0
