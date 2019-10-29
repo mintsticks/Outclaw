@@ -7,14 +7,18 @@ using Zenject;
 namespace Outclaw{
   public class SceneSwitcher : MonoBehaviour
   {
-    [Inject] private ISceneTransitionManager tranition;
+    [Inject] private ISceneTransitionManager transition;
 
     public void SwitchToScene(string scene){
-      tranition.TransitionToScene(scene);
+      transition.TransitionToScene(scene);
+    }
+
+    public void SwitchToLocation(LocationData location){
+      transition.TransitionToScene(location);
     }
 
     public void ReloadCurrent(){
-      tranition.TransitionToScene(SceneManager.GetActiveScene().name);
+      transition.TransitionToScene(SceneManager.GetActiveScene().name);
     }
   }
 }

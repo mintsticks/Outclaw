@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6f3ee13713b994bb81b7a5f86303b6, type: 3}
+  m_Name: First Time City
+  m_EditorClassIdentifier: 
+  childStates:
+  - nextStateData: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d, type: 2}
+    tasks:
+    - {fileID: 11400000, guid: 3f530a1a7fecefa42a1ea22d1f9a1c7a, type: 2}
+    - {fileID: 11400000, guid: 567d9cf514066a74783e1e88372b2f7e, type: 2}
+    - {fileID: 11400000, guid: 6d40c4c2d3a69a649b5a839ea6fd22ae, type: 2}
+    persistObjectiveState: 0

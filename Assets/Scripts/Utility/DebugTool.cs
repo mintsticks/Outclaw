@@ -4,7 +4,7 @@ using Zenject;
 namespace Outclaw {
   public class DebugTool : MonoBehaviour {
     [SerializeField]
-    private GameStateType debugGameState;
+    private GameStateData debugGameState;
 
     [Inject]
     private IGameStateManager gameStateManager;
@@ -16,7 +16,7 @@ namespace Outclaw {
 
     [ContextMenu("PrintGameState")]
     private void PrintGameState() {
-      Debug.Log(gameStateManager.CurrentGameState);
+      Debug.Log(gameStateManager.CurrentGameStateData);
     }
   }
 }

@@ -17,6 +17,9 @@ namespace Outclaw {
     [SerializeField]
     private PauseGame pause;
 
+    [SerializeField] 
+    private GameObject spawnManagerPrefab;
+
     /// <summary>
     /// For all classes that are common to all scenes.
     /// Bind the interfaces to the concrete classes.
@@ -31,7 +34,7 @@ namespace Outclaw {
       Container.Bind<IPauseGame>()
         .FromInstance(pause)
         .AsSingle();
-      
+
       InstallManagers();
       InstallFactories();
     }
@@ -50,7 +53,11 @@ namespace Outclaw {
         .FromComponentInNewPrefab(objectiveManagerPrefab)
         .AsSingle()
         .NonLazy();
-      Container.BindInterfacesAndSelfTo<RelationshipManager>()
+      Container.Bind<ISpawnManager>()
+        .To<SpawnManager>()
+        .FromComponentInNewPrefab(spawnManagerPrefab)
+        .AsSingle();
+        Container.BindInterfacesAndSelfTo<RelationshipManager>()
         .AsSingle();
       Container.BindInterfacesAndSelfTo<LocationManager>()
         .AsSingle();

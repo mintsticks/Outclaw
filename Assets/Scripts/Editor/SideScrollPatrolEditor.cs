@@ -13,9 +13,15 @@ namespace Outclaw.Heist{
 
     public override void OnInspectorGUI(){
       DrawDefaultInspector();
+
+      if(GUILayout.Button("Align Center Along to Ground")){
+        for(int i = 0; i < NUM_PASSES; ++i){
+          SnapCenterAlongGround();
+        }
+      }
       if(GUILayout.Button("Snap Path to Ground")){
         for(int i = 0; i < NUM_PASSES; ++i){
-          SnapToGround();
+          SnapPathToGround();
         }
       }
     }
@@ -36,21 +42,32 @@ namespace Outclaw.Heist{
       return (Vector3)hit.point + (Vector3.up * height);
     }
 
-    private void SnapToGround(){
+    private void SnapCenterAlongGround(){
       SideScrollPatrol patrol = (SideScrollPatrol)target;
-      LineRenderer path = patrol.Path;
-      Collider2D col = patrol.MovementComponent.gameObject.GetComponent<Collider2D>();
+      Bounds bounds = patrol.MovementComponent.BodyBounds;
 
-      float halfHeight = col.bounds.extents.y;
+      float halfHeight = bounds.extents.y;
+
+      SnapPath(patrol, halfHeight);
+    }
+
+    private void SnapPathToGround(){
+      SnapPath((SideScrollPatrol)target, 0);
+    }
+
+    private void SnapPath(SideScrollPatrol patrol, float height){
+      LineRenderer path = patrol.Path;
 
       Undo.RecordObject(path, "Snapped path");
 
-      List<Vector3> newPoints = AdjustPoints(path, patrol.GroundLayer, halfHeight);
+      List<Vector3> newPoints = AdjustPoints(path, patrol.GroundLayer, height);
       path.positionCount = newPoints.Count;
       path.SetPositions(newPoints.ToArray());
       if(path.positionCount > 1){
         path.Simplify(SIMPLIFY_TOL);
       }
+
+      patrol.MoveToStart();
     }
 
     private List<Vector3> AdjustPoints(LineRenderer path, LayerMask groundLayer,

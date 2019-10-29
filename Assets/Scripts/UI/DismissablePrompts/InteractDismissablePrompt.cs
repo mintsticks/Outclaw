@@ -23,7 +23,7 @@ namespace Outclaw.City {
     public bool IsDismissable() {
       //TODO(dwong): check if player is in range of an interactable with dialogue instead.
       //return dialogueManager.IsDialogueRunning && playerInput.IsInteract();
-      return playerInput.IsInteract();
+      return playerInput.IsInteractDown();
     }
 
     public IEnumerator DismissPrompt() {

@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Outclaw.ManagedRoutine;
 using UnityEngine;
+using Utility;
 using Zenject;
 
 namespace Outclaw.UI{
@@ -8,18 +11,28 @@ namespace Outclaw.UI{
   {
     [Header("Fading Content")]
     [SerializeField] protected float pauseTime;
-    [SerializeField] protected float animationFreq = .02f;
     [SerializeField] protected CanvasGroup contents;
 
     protected int currentIndex;
 
     protected bool active = false;
 
+    protected float waitTime = 0.25f;
+
+    protected ManagedCoroutine upWait = null;
+
+    protected ManagedCoroutine downWait = null;
+
     [Inject]
     protected IPlayerInput playerInput;
 
     protected abstract IMenuItem this[int i]{ get; }
     protected abstract int ItemCount();
+
+    protected void Start() {
+      upWait = new ManagedCoroutine(this, StallInput);
+      downWait = new ManagedCoroutine(this, StallInput);
+    }
 
     protected virtual void CheckSelectionState() {
       CheckDownSelection();
@@ -36,8 +49,13 @@ namespace Outclaw.UI{
     }
     
     protected virtual void CheckDownSelection() {
-      if (!playerInput.IsDownPress()) {
+      if (!playerInput.IsDownPress() || downWait.IsRunning) {
         return;
+      }
+      
+      downWait.StartCoroutine();
+      if (upWait.IsRunning) {
+        upWait.StopCoroutine();
       }
       
       if (currentIndex >= ItemCount() - 1) {
@@ -51,8 +69,13 @@ namespace Outclaw.UI{
     }
     
     protected virtual void CheckUpSelection() {
-      if (!playerInput.IsUpPress()) {
+      if (!playerInput.IsUpPress() || upWait.IsRunning) {
         return;
+      }
+      
+      upWait.StartCoroutine();
+      if (downWait.IsRunning) {
+        downWait.StopCoroutine();
       }
       
       if (currentIndex <= 0) {
@@ -71,17 +94,25 @@ namespace Outclaw.UI{
     }
 
     protected IEnumerator FadeInContent() {
-      for (var i = 0f; i < pauseTime; i += animationFreq) {
+      for (var i = 0f; i < pauseTime; i += GlobalConstants.ANIMATION_FREQ) {
         contents.alpha = i / pauseTime;
-        yield return new WaitForSecondsRealtime(animationFreq);
+        yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
+
+      contents.alpha = 1;
     }
     
     protected IEnumerator FadeOutContent() {
-      for (var i = pauseTime; i >= 0; i -= animationFreq) {
+      for (var i = pauseTime; i >= 0; i -= GlobalConstants.ANIMATION_FREQ) {
         contents.alpha = i / pauseTime;
-        yield return new WaitForSecondsRealtime(animationFreq);
+        yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
+
+      contents.alpha = 0;
+    }
+
+    protected IEnumerator StallInput() {
+      yield return new WaitForSecondsRealtime(waitTime);
     }
   }
 }
