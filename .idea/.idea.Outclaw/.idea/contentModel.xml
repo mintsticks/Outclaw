@@ -553,6 +553,7 @@
             <e p="CameraBehavior.cs" t="Include" />
             <e p="OffsetController.cs" t="Include" />
           </e>
+          <e p="Checkpoint.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="CameraBehaviorEditor.cs" t="Include" />
             <e p="GuardMovementEditor.cs" t="Include" />
@@ -595,9 +596,14 @@
               <e p="DialogueManager.cs" t="Include" />
               <e p="RelationshipManager.cs" t="Include" />
             </e>
-            <e p="GameState.cs" t="Include" />
-            <e p="GameStateManager.cs" t="Include" />
+            <e p="Game State" t="Include">
+              <e p="GameState.cs" t="Include" />
+              <e p="GameStateData.cs" t="Include" />
+              <e p="GameStateList.cs" t="Include" />
+              <e p="GameStateManager.cs" t="Include" />
+            </e>
             <e p="Location" t="Include">
+              <e p="LocationData.cs" t="Include" />
               <e p="LocationManager.cs" t="Include" />
               <e p="SpawnList.cs" t="Include" />
               <e p="SpawnManager.cs" t="Include" />
@@ -608,8 +614,10 @@
                 <e p="Objective.cs" t="Include" />
                 <e p="ObjectiveManager.cs" t="Include" />
               </e>
+              <e p="IHaveTask.cs" t="Include" />
               <e p="ObjectiveManager.cs" t="Include" />
               <e p="ObjectiveTransformManager.cs" t="Include" />
+              <e p="Task.cs" t="Include" />
             </e>
             <e p="PauseGame.cs" t="Include" />
             <e p="PlayerLitManager.cs" t="Include" />
@@ -703,6 +711,7 @@
           </e>
           <e p="Utility" t="Include">
             <e p="CameraExt.cs" t="Include" />
+            <e p="CheckpointUpdater.cs" t="Include" />
             <e p="DebugTool.cs" t="Include" />
             <e p="GlobalConstants.cs" t="Include" />
             <e p="LineHelperExt.cs" t="Include" />
