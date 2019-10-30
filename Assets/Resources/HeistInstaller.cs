@@ -9,6 +9,7 @@ namespace Outclaw.Heist {
     [SerializeField] private GameObject abilityManagerPrefab;
     [SerializeField] private CameraBehavior cameraBehavior;
     [SerializeField] private PlayerController controller;
+    [SerializeField] private HeistInteractionController interactionController;
     [SerializeField] private GameObject capturedMenuPrefab;
     [SerializeField] private GameObject footprintPrefab;
     [SerializeField] private GameObject senseManager;
@@ -35,6 +36,10 @@ namespace Outclaw.Heist {
         .NonLazy();
       Container.Bind<IPlayer>()
         .FromInstance(controller)
+        .AsSingle()
+        .NonLazy();
+      Container.Bind<IHeistInteractionController>()
+        .FromInstance(interactionController)
         .AsSingle()
         .NonLazy();
       Container.Bind<ICameraBehavior>()

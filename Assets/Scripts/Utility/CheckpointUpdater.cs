@@ -6,6 +6,7 @@ namespace Outclaw {
   public class CheckpointUpdater : MonoBehaviour {
 
     [Inject] private City.IPlayer player;
+    [Inject] private IHeistInteractionController interactionController;
     [Inject] private ISpawnManager spawnManager;
     [Inject] private IPauseGame pauseGame;
 
