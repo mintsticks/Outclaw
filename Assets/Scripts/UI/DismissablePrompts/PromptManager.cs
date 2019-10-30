@@ -6,10 +6,11 @@ using UnityEngine;
 using Zenject;
 
 namespace Outclaw.City {
-  public class PromptManager : MonoBehaviour{
-    [SerializeField]
-    private List<GameStatePrompts> gameStatePrompts;
+  public class PromptManager : MonoBehaviour {
+    [SerializeField] private List<GameStatePrompts> gameStatePrompts;
 
+    [SerializeField] private List<PromptInfo> prompts;
+    
     [Inject]
     private IPlayerInput playerInput;
     
@@ -59,5 +60,27 @@ namespace Outclaw.City {
   public class GameStatePrompts {
     public GameStateData gameState;
     public List<PromptType> prompts;
+  }
+
+  [Serializable]
+  public class PromptInfo {
+    public GameStateData promptGameState;
+    public PromptInfoType promptInfoType;
+    public PromptInfoType nextPromptType;
+    public Sprite promptImage;
+    public string promptTitle;
+    public string promptDescription;
+    public bool hasImage;
+    public bool hasTitle;
+  }
+
+  public enum PromptInfoType {
+    NONE = 0,
+    MOVE = 1,
+    JUMP = 2,
+    INTERACT = 3,
+    SOUND_DANGER = 4,
+    SNEAK = 5,
+    SENSE = 6,
   }
 }

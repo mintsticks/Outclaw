@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using ModestTree;
 using Outclaw.City;
 using UnityEngine;
 using Zenject;
@@ -15,7 +14,7 @@ namespace Outclaw {
     private GameStateData eventGameState;
     
     [Inject]
-    private DismissablePromptFactory dismissablePromptFactory;
+    private PromptDisplay.Factory promptFactory;
     
     [Inject]
     private IDialogueManager dialogueManager;
@@ -34,9 +33,13 @@ namespace Outclaw {
       }
 
       executed = true;
+      player.InputDisabled = true;
       foreach (var eventInfo in events) {
+        player.InputDisabled = true;
         yield return HandleEvent(eventInfo);
       }
+
+      player.InputDisabled = false;
     }
 
     private IEnumerator HandleEvent(EventInfo eventInfo) {
@@ -45,33 +48,21 @@ namespace Outclaw {
           yield return new WaitForSeconds(eventInfo.waitTime);
           break;
         case EventType.PROMPT:
-          yield return HandlePrompt(eventInfo.promptType, eventInfo.promptText);
+          yield return HandlePrompt(eventInfo.promptInfo);
           break;
         case EventType.DIALOGUE:
           yield return HandleDialogue(eventInfo.dialogue);
           break;
-        case EventType.DIALOGUE_PROMPT:
-          StartCoroutine(HandlePrompt(eventInfo.promptType, eventInfo.promptText));
-          yield return HandleDialogue(eventInfo.dialogue);
-          break;
-        case EventType.INTERACT_ON:
-          break;
-        case EventType.INTERACT_OFF:
-          break;
       }
     }
     
-    private IEnumerator HandlePrompt(PromptType prompt, string promptText) {
-      var promptObj = dismissablePromptFactory.Create(prompt);
-      Debug.Log("i made a prompt");
-      if (!promptText.IsEmpty()) {
-        promptObj.SetPromptText(promptText);
-      }
-      
-      while (!promptObj.IsDismissable()) {
+    private IEnumerator HandlePrompt(PromptData prompt) {
+      var promptObj = promptFactory.Create(new PromptDisplay.Data { Info = prompt });
+      while (!promptObj.IsDismissed) {
         yield return null;
       }
-      StartCoroutine(promptObj.DismissPrompt());
+      
+      Destroy(promptObj.gameObject);
     }
 
     private IEnumerator HandleDialogue(TextAsset[] dialogue) {
@@ -87,22 +78,17 @@ namespace Outclaw {
   }
 
   [Serializable]
-  public class EventInfo {
-    //Unity doesn't support serialized interfaces, so we have to combine all fields into this class.
+  public class EventInfo { 
     public EventType eventType;
     public TextAsset[] dialogue;
     public int waitTime;
-    public PromptType promptType;
-    public string promptText;
+    public PromptData promptInfo;
   }
   
   public enum EventType {
     NONE,
     WAIT,
     PROMPT,
-    DIALOGUE,
-    DIALOGUE_PROMPT,
-    INTERACT_OFF,
-    INTERACT_ON,
+    DIALOGUE
   }
 }
