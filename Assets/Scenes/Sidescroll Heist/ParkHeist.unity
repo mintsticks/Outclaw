@@ -1941,13 +1941,7 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: a15f3cc76c86ed14ab8c6f1df15fb511, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 0
-  - eventType: 2
-    dialogue: []
-    waitTime: 0
-    promptType: 3
-    promptText: Press E next to benches to hide.
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &267770827
 BoxCollider2D:
@@ -4783,13 +4777,15 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 274beeadedd35c4489da217dadf83db3, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
+    promptInfo: {fileID: 11400000, guid: 7ade53bf7e92f7641a395a12f5d10b5a, type: 2}
   - eventType: 2
     dialogue: []
     waitTime: 0
-    promptType: 4
-    promptText: 
+    promptInfo: {fileID: 11400000, guid: d8c61130008d1f943973381ac64aaac2, type: 2}
+  - eventType: 2
+    dialogue: []
+    waitTime: 0
+    promptInfo: {fileID: 11400000, guid: 7ade53bf7e92f7641a395a12f5d10b5a, type: 2}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &658488786
 BoxCollider2D:
@@ -5199,8 +5195,7 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 44de38fb48acd794f9c26bc026539600, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &682431220
 BoxCollider2D:
@@ -6400,13 +6395,11 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: b5a690afdfa99174494202c2a9057229, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
+    promptInfo: {fileID: 0}
   - eventType: 2
     dialogue: []
     waitTime: 0
-    promptType: 5
-    promptText: 
+    promptInfo: {fileID: 11400000, guid: de4ce10c28f65714f89862b0f63acfff, type: 2}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &802682262
 BoxCollider2D:
@@ -12515,8 +12508,7 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 15d668205929bdd43a95a3c38ac981e3, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 0
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &1717906630
 BoxCollider2D:
@@ -12611,13 +12603,7 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 43bcb697ce650cf4fa65be3a2ef2ddb7, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
-  - eventType: 2
-    dialogue: []
-    waitTime: 0
-    promptType: 5
-    promptText: Sense at vantage points to see more of your surroundings.
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &1780035356
 BoxCollider2D:
@@ -14432,13 +14418,7 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 6dda58c82a96aad47957d321305658e6, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
-  - eventType: 2
-    dialogue: []
-    waitTime: 0
-    promptType: 3
-    promptText: Press E next to trees to climb up or down..
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &1932814100
 BoxCollider2D:

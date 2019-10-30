@@ -5,20 +5,12 @@ using Zenject;
 
 namespace Outclaw {
   public class GameInstaller : MonoInstaller {
-    [SerializeField]
-    private GameObject soundManagerPrefab;
-
-    [SerializeField]
-    private GameObject sceneTransitionManagerPrefab;
-
-    [SerializeField]
-    private GameObject objectiveManagerPrefab;
-    
-    [SerializeField]
-    private PauseGame pause;
-
-    [SerializeField] 
-    private GameObject spawnManagerPrefab;
+    [SerializeField] private GameObject soundManagerPrefab;
+    [SerializeField] private GameObject sceneTransitionManagerPrefab;
+    [SerializeField] private GameObject objectiveManagerPrefab;
+    [SerializeField] private PauseGame pause;
+    [SerializeField] private GameObject spawnManagerPrefab;
+    [SerializeField] private GameObject promptDisplayPrefab;
 
     /// <summary>
     /// For all classes that are common to all scenes.
@@ -57,15 +49,18 @@ namespace Outclaw {
         .To<SpawnManager>()
         .FromComponentInNewPrefab(spawnManagerPrefab)
         .AsSingle();
-        Container.BindInterfacesAndSelfTo<RelationshipManager>()
+      Container.BindFactory<PromptDisplay.Data, 
+          PromptDisplay, 
+          PromptDisplay.Factory>()
+        .FromComponentInNewPrefab(promptDisplayPrefab);
+      Container.BindInterfacesAndSelfTo<RelationshipManager>()
         .AsSingle();
       Container.BindInterfacesAndSelfTo<LocationManager>()
         .AsSingle();
       Container.BindInterfacesAndSelfTo<GameStateManager>()
         .AsSingle();
     }
-    
-    private void InstallFactories() {
-    }
+
+    private void InstallFactories() { }
   }
 }
