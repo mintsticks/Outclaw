@@ -301,7 +301,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7950e1b673f9a354ca199f71f00a24d7, type: 3}
+    m_Font: {fileID: 12800000, guid: 61c072a2fe5ad8e45a939d11ace3f94f, type: 3}
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
@@ -312,9 +312,12 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Squids are really cool. I want this to overlap and then continune at the
-    bottom, but I know it'll truncate. So how do I do this?
+    m_LineSpacing: 1.25
+  m_Text: '- To move LEFT, press the A or left arrow key.
+
+    - To move RIGHT, press the D or right arrow key.
+
+    - To JUMP, press the W key.'
 --- !u!114 &5446227500106310215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,7 +474,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7950e1b673f9a354ca199f71f00a24d7, type: 3}
+    m_Font: {fileID: 12800000, guid: 61c072a2fe5ad8e45a939d11ace3f94f, type: 3}
     m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 0
@@ -565,7 +568,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7950e1b673f9a354ca199f71f00a24d7, type: 3}
+    m_Font: {fileID: 12800000, guid: 607743b17172fd945b8043dfc7e24756, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -645,7 +648,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0

@@ -61,7 +61,11 @@ namespace Outclaw {
     }
 
     private void HandleDescriptionData(Data data) {
-      description.text = data.Info.promptDescription;
+      description.text = ParseDescription(data.Info.promptDescription);
+    }
+
+    private string ParseDescription(string text) {
+      return text.Replace("<n>", "\n");
     }
     
     

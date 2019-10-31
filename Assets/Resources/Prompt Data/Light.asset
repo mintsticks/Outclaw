@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0772911a68b4223b19bc198a045c3d4, type: 3}
-  m_Name: Jump
+  m_Name: Light
   m_EditorClassIdentifier: 
-  promptImage: {fileID: 0}
-  promptTitle: 'Tutorial: Jump'
-  promptDescription: Press W or Up Arrow to jump.
-  hasImage: 0
+  promptImage: {fileID: 21300000, guid: da7ace83cfcb30546b811d042ef5b9f2, type: 3}
+  promptTitle: 'Tutorial: Light'
+  promptDescription: If you are lit up, guards will be able to see you, even if you
+    sneak. Stay away from lamps and flashlights when guards are facing you!
+  hasImage: 1
   hasTitle: 1
