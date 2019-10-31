@@ -1015,6 +1015,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 996643458}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 568670188}
+  task: {fileID: 0}
 --- !u!4 &117006450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7180915979764319560, guid: c01f3426d82e9574793c81a2c52ae6ab,
@@ -1093,15 +1094,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -6315251355010335135, guid: 45bd6256073391d4a8cbe2d69bdaa389,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 4.592545
-      objectReference: {fileID: 0}
     - target: {fileID: 2584940750091716165, guid: 45bd6256073391d4a8cbe2d69bdaa389,
         type: 3}
       propertyPath: checkpointName
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -6315251355010335135, guid: 45bd6256073391d4a8cbe2d69bdaa389,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 4.592545
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45bd6256073391d4a8cbe2d69bdaa389, type: 3}
@@ -2014,11 +2015,11 @@ MonoBehaviour:
       - {fileID: 4900000, guid: 9df8067f75d3c4e43a166433980c9030, type: 3}
   destinationLocation: {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf,
     type: 2}
-  entranceType: 7
   enterClip: {fileID: 8300000, guid: 35cadffa6668fea4092735578f9f1c70, type: 3}
   spriteRenderer: {fileID: 0}
   locationPosition: {fileID: 0}
   particleSystem: {fileID: 0}
+  task: {fileID: 0}
 --- !u!61 &265590791
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2109,13 +2110,11 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: a15f3cc76c86ed14ab8c6f1df15fb511, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 0
+    promptInfo: {fileID: 0}
   - eventType: 2
     dialogue: []
     waitTime: 0
-    promptType: 3
-    promptText: Press E next to benches to hide.
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &267770827
 BoxCollider2D:
@@ -3787,6 +3786,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1958845566}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 1929927754}
+  task: {fileID: 0}
 --- !u!1 &511623633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4799,6 +4799,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 669611391}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 1875233695}
+  task: {fileID: 0}
 --- !u!1 &651427352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4945,13 +4946,11 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 274beeadedd35c4489da217dadf83db3, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
+    promptInfo: {fileID: 0}
   - eventType: 2
     dialogue: []
     waitTime: 0
-    promptType: 4
-    promptText: 
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &658488786
 BoxCollider2D:
@@ -5361,8 +5360,7 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 44de38fb48acd794f9c26bc026539600, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &682431220
 BoxCollider2D:
@@ -6568,13 +6566,11 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: b5a690afdfa99174494202c2a9057229, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
+    promptInfo: {fileID: 0}
   - eventType: 2
     dialogue: []
     waitTime: 0
-    promptType: 5
-    promptText: 
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &802682262
 BoxCollider2D:
@@ -11295,6 +11291,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3877c275ea0ab1c45b496551593ee9ed, type: 3}
+--- !u!114 &1508514960 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2788178951741197799, guid: 3877c275ea0ab1c45b496551593ee9ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1479258094}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bacb3127b544bbb42ae736c72ccd62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1509298740 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3554640959624558192, guid: e00cd4aca455b1a4cba0537030e7f49d,
@@ -12909,8 +12917,7 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 15d668205929bdd43a95a3c38ac981e3, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 0
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &1717906630
 BoxCollider2D:
@@ -13084,13 +13091,11 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 43bcb697ce650cf4fa65be3a2ef2ddb7, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
+    promptInfo: {fileID: 0}
   - eventType: 2
     dialogue: []
     waitTime: 0
-    promptType: 5
-    promptText: Sense at vantage points to see more of your surroundings.
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &1780035356
 BoxCollider2D:
@@ -13334,6 +13339,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1237018799}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 1861479893}
+  task: {fileID: 0}
 --- !u!4 &1807500337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9086822743349190178, guid: 45bd6256073391d4a8cbe2d69bdaa389,
@@ -13617,6 +13623,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1352846973}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 22958916}
+  task: {fileID: 0}
 --- !u!1 &1845849240
 GameObject:
   m_ObjectHideFlags: 0
@@ -13962,15 +13969,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -6315251355010335135, guid: 45bd6256073391d4a8cbe2d69bdaa389,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 4.592545
-      objectReference: {fileID: 0}
     - target: {fileID: 2584940750091716165, guid: 45bd6256073391d4a8cbe2d69bdaa389,
         type: 3}
       propertyPath: checkpointName
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -6315251355010335135, guid: 45bd6256073391d4a8cbe2d69bdaa389,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 4.592545
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45bd6256073391d4a8cbe2d69bdaa389, type: 3}
@@ -14654,6 +14661,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1516490750}
   objectPosition: {fileID: 0}
   particleSystem: {fileID: 572260487}
+  task: {fileID: 0}
 --- !u!1 &1894958094
 GameObject:
   m_ObjectHideFlags: 0
@@ -15145,13 +15153,11 @@ MonoBehaviour:
     dialogue:
     - {fileID: 4900000, guid: 6dda58c82a96aad47957d321305658e6, type: 3}
     waitTime: 0
-    promptType: 0
-    promptText: 
+    promptInfo: {fileID: 0}
   - eventType: 2
     dialogue: []
     waitTime: 0
-    promptType: 3
-    promptText: Press E next to trees to climb up or down..
+    promptInfo: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
 --- !u!61 &1932814100
 BoxCollider2D:
@@ -16723,5 +16729,10 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 154034093}
+    - target: {fileID: 7336105400421786618, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: interactionController
+      value: 
+      objectReference: {fileID: 1508514960}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 781c4c76b1cbba544922f33235329f2e, type: 3}

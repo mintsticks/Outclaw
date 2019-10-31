@@ -19,6 +19,7 @@ namespace Outclaw.Heist{
 
     [Inject] private ICapturedMenu captureMenu;
     [Inject] private IPlayer player;
+    [Inject] private IHeistInteractionController interactionController;
 
     private ManagedCoroutine captureRoutine;
     private ManagedCoroutine fadeOutRoutine;
@@ -39,6 +40,8 @@ namespace Outclaw.Heist{
     }
 
     public void CapturePlayerImmediate(){
+      interactionController.ClearInteractable();
+      awareness = 0;
       captureMenu.Show();
     }
 
@@ -57,6 +60,8 @@ namespace Outclaw.Heist{
       yield return FadeAlertIn();
       player.InputDisabled = true;
       yield return new WaitForSeconds(.5f);
+      interactionController.ClearInteractable();
+      awareness = 0;
       captureMenu.Show();
     }
 

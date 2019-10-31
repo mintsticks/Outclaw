@@ -5,7 +5,11 @@ using UnityEngine;
 using Zenject;
 
 namespace Outclaw.Heist {
-  public class HeistInteractionController : MonoBehaviour {
+
+  public interface IHeistInteractionController {
+    void ClearInteractable();
+  }
+  public class HeistInteractionController : MonoBehaviour, IHeistInteractionController {
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private LayerMask objectiveInteractableLayer;
     [SerializeField] private LayerMask eventSequenceLayer;
@@ -25,6 +29,10 @@ namespace Outclaw.Heist {
     private ObjectiveInteractable currentObjectiveInteractable;
     private AttentionZone currentZone;
     private LineOfSight currentLineOfSight;
+
+    public void ClearInteractable() {
+      currentInteractable = null;
+    }
 
     public void UpdateInteraction() {
       if (player.InputDisabled) {
