@@ -13,7 +13,7 @@ namespace Outclaw.City {
     [SerializeField] private Indicator observeIndicator;
     [SerializeField] private ObjectDialogues objectInfo;
     [SerializeField] private LocationData location;
-    [SerializeField] private ObjectType objectType;
+    [SerializeField] private ObjectDialogueData dialogueData;
 
     [Header("Effects")]
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -34,7 +34,6 @@ namespace Outclaw.City {
     private Transform parent;
     private bool created;
 
-    public ObjectType ObjectType => objectType;
     public Task ContainedTask { get => task; }
     public Transform Location { get => transform; }
 
@@ -100,7 +99,7 @@ namespace Outclaw.City {
         return null;
       }
 
-      var objProgress = locationManager.GetProgressForLocationObject(location, objectType);
+      var objProgress = dialogueData.Progress;
       var objectDialogues = dialoguesForState.objectDialogues;
       if (objProgress >= objectDialogues.Count) {
         Debug.Log("No dialogues for object progress");
@@ -115,7 +114,7 @@ namespace Outclaw.City {
     }
 
     private void CompleteInteraction() {
-      locationManager.IncreaseProgressForLocationObject(location, objectType);
+      locationManager.IncreaseProgress(dialogueData);
       objectiveManager.CompleteTask(task);
       InRange();
     }
@@ -137,22 +136,6 @@ namespace Outclaw.City {
     public void OnDeactivate() {
       DisableEffect();
     }
-  }
-  
-  public enum ObjectType {
-    NONE = 0,
-    BED = 1,
-    SHOWER = 2,
-    DESK = 3,
-    TRAPDOOR = 4,
-    TABLE = 5,
-    CABINET = 6,
-    COLLAR = 7,
-    NO_ANIMAL_SIGN = 8,
-    GUM_WRAP = 9,
-    AKIO_TOY = 10,
-    RED_FABRIC = 11,
-    ROPE = 12,
   }
   
   [Serializable]

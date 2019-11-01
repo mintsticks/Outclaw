@@ -14,12 +14,15 @@ namespace Outclaw.City {
     void ResetRelationships();
   }
   
-  public class RelationshipManager : IInitializable, IRelationshipManager {
+  public class RelationshipManager : IInitializable, IRelationshipManager, IResetableManager {
     private Dictionary<CatType, int> catRanks;
     private Dictionary<CatType, Dictionary<GameStateData, int>> gameStateProgress;
 
+    [Inject] IGameStateManager gameStateManager;
+
     public void Initialize() {
       LoadRelationshipState();
+      gameStateManager.RegisterNonpersistResetOnStateChange(this);
     }
 
     public int GetRankForCat(CatType type) {
@@ -66,6 +69,10 @@ namespace Outclaw.City {
     public void ResetRelationships(){
       catRanks = new Dictionary<CatType, int>();
       gameStateProgress = new Dictionary<CatType, Dictionary<GameStateData, int>>();
+    }
+
+    public void Reset(){
+      ResetRelationships();
     }
   }
   

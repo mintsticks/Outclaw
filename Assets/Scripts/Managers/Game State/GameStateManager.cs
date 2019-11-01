@@ -1,4 +1,6 @@
-﻿using City;
+﻿using System.Collections;
+using System.Collections.Generic;
+using City;
 using Outclaw.City;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,19 +11,17 @@ namespace Outclaw {
     GameStateData CurrentGameStateData { get; }
     GameStateList StateList { get; }
     void SetGameState(GameStateData state, bool persist = false);
+
+    void RegisterAlwaysResetOnStateChange(IResetableManager manager);
+    void RegisterNonpersistResetOnStateChange(IResetableManager manager);
   }
   
   public class GameStateManager : IInitializable, IGameStateManager {
 
     private GameStateData currentGameStateData;
 
-    private Task[] allTasks;
-
-    [Inject]
-    private ILocationManager locationManager;
-
-    [Inject]
-    private IRelationshipManager relationManager;
+    private HashSet<IResetableManager> alwaysReset = new HashSet<IResetableManager>();
+    private HashSet<IResetableManager> nonpersistReset = new HashSet<IResetableManager>();
 
     public GameStateData CurrentGameStateData => currentGameStateData;
 
@@ -34,12 +34,18 @@ namespace Outclaw {
       }
 
       currentGameStateData = state;
+      
+      foreach(IResetableManager manager in alwaysReset){
+        manager.Reset();
+      }
+
       if (persist) {
         return;
       }
-      locationManager.ResetObjectProgress();
-      relationManager.ResetRelationships();
-      ResetTasks();
+
+      foreach(IResetableManager manager in nonpersistReset){
+        manager.Reset();
+      }
     }
 
     public void Initialize() {
@@ -47,14 +53,9 @@ namespace Outclaw {
 
       StateList = Resources.Load<GameStateList>("Game State Data/Game State List");
       currentGameStateData = StateList[0];
-
-      allTasks = Resources.LoadAll<Task>("Tasks");
     }
 
-    private void ResetTasks(){
-      foreach(Task t in allTasks){
-        t.Reset();
-      }
-    }
+    public void RegisterAlwaysResetOnStateChange(IResetableManager manager) => alwaysReset.Add(manager);
+    public void RegisterNonpersistResetOnStateChange(IResetableManager manager) => nonpersistReset.Add(manager);
   }
 }
