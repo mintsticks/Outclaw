@@ -17,18 +17,13 @@ namespace Outclaw.City {
 
     [SerializeField]
     private GameObject senseManagerPrefab;
-    
-    [SerializeField]
-    private PromptSettings promptSettings;
 
     /// <summary>
     /// For all classes common to city scenes.
     /// Bind the interfaces to the concrete classes.
     /// </summary>
     public override void InstallBindings() {
-      Container.BindInstance(promptSettings);
       BindComponents();
-      BindFactories();
     }
 
     private void BindComponents() {
@@ -56,13 +51,6 @@ namespace Outclaw.City {
         .To<CitySenseVisuals>()
         .AsSingle()
         .NonLazy();
-    }
-    
-    private void BindFactories() {
-      Container.BindFactory<PromptType,
-          IDismissablePrompt, 
-          DismissablePromptFactory>()
-        .FromFactory<CustomPromptFactory>();
     }
   }
 }

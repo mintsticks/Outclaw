@@ -542,7 +542,6 @@
           <e p="GameInstaller.cs" t="Include" />
           <e p="HeistInstaller.cs" t="Include" />
           <e p="IntroInstaller.cs" t="Include" />
-          <e p="PromptInstaller.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
           <e p="Audio" t="Include">
@@ -636,7 +635,10 @@
               <e p="SenseManager.cs" t="Include" />
               <e p="SenseVisuals.cs" t="Include" />
             </e>
-            <e p="SneakManager.cs" t="Include" />
+            <e p="Sneak" t="Include">
+              <e p="SneakManager.cs" t="Include" />
+              <e p="SneakVisual.cs" t="Include" />
+            </e>
           </e>
           <e p="Physics" t="Include">
             <e p="OneWayPlatform.cs" t="Include" />
@@ -675,16 +677,9 @@
               <e p="OptionIndicator.cs" t="Include" />
             </e>
             <e p="DismissablePrompts" t="Include">
-              <e p="DismissablePrompt.cs" t="Include" />
-              <e p="InteractDismissablePrompt.cs" t="Include" />
-              <e p="JumpDismissablePrompt.cs" t="Include" />
-              <e p="MoveDismissablePrompt.cs" t="Include" />
               <e p="PromptAnimationComponent.cs" t="Include" />
               <e p="PromptData.cs" t="Include" />
               <e p="PromptDisplay.cs" t="Include" />
-              <e p="PromptManager.cs" t="Include" />
-              <e p="SenseDismissablePrompt.cs" t="Include" />
-              <e p="SneakDismissablePrompt.cs" t="Include" />
             </e>
             <e p="IntroDialogueUI.cs" t="Include" />
             <e p="Menus" t="Include">
