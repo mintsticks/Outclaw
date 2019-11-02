@@ -16,9 +16,6 @@ namespace Outclaw.City {
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
-
-    [SerializeField]
-    private Transform catPosition;
     
     [SerializeField]
     private ParticleSystem particleSystem;
@@ -57,7 +54,6 @@ namespace Outclaw.City {
     private bool created;
 
     public CatType CatType => type;
-    public Transform CatPosition => catPosition != null ? catPosition : transform;
     public Task ContainedTask { get => task; }
     public Transform Location { get => transform; }
     

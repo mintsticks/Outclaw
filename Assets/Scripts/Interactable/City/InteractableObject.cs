@@ -12,12 +12,10 @@ namespace Outclaw.City {
   public class InteractableObject : MonoBehaviour, ObjectiveInteractable, IHaveTask {
     [SerializeField] private Indicator observeIndicator;
     [SerializeField] private ObjectDialogues objectInfo;
-    [SerializeField] private LocationData location;
     [SerializeField] private ObjectDialogueData dialogueData;
 
     [Header("Effects")]
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Transform objectPosition;
     [SerializeField] private ParticleSystem particleSystem;
 
     [Header("Objective Tracking")]
@@ -41,8 +39,6 @@ namespace Outclaw.City {
       objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
     }
-
-    public Transform ObjectPosition => objectPosition != null ? objectPosition : transform;
 
     public void InRange() {
       if (!HasInteraction()) {
