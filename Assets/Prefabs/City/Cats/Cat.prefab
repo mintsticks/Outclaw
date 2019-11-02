@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 605628281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5628549467109088888}
   m_RootOrder: 1
@@ -154,13 +154,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catDialogues:
     dialoguesForStates:
-    - gameState: 3
+    - gameStateData: {fileID: 0}
       catDialogue:
       - dialogue:
         - {fileID: 4900000, guid: 144afdc0d29820749a0d370c034017bd, type: 3}
       - dialogue:
         - {fileID: 4900000, guid: a2ce66e1a26697f488cd686eae3df536, type: 3}
-    - gameState: 4
+    - gameStateData: {fileID: 0}
       catDialogue:
       - dialogue:
         - {fileID: 4900000, guid: 9a2665f09e87c984e942eaf67db1f652, type: 3}
@@ -168,9 +168,9 @@ MonoBehaviour:
   talkIndicator: {fileID: 1572077227990514498}
   spriteRenderer: {fileID: 5628549467109088891, guid: 8c8cd9af1cf61f043bfd819994e0c940,
     type: 3}
-  catPosition: {fileID: 0}
   particleSystem: {fileID: 0}
   type: 1
+  task: {fileID: 0}
 --- !u!1001 &3304105019163273768
 PrefabInstance:
   m_ObjectHideFlags: 0
