@@ -6,59 +6,31 @@ using Zenject;
 
 namespace Outclaw.City {
   public interface IRelationshipManager {
-    int GetRankForCat(CatType type);
-    int GetRankForCatInGameState(CatType type, GameStateData state);
-    void RankUpCat(CatType type);
-    void RankUpCatInGameState(CatType type, GameStateData state);
+    void RankUpCat(CatDialogueData data);
+    void RankUpCatInGameState(CatDialogueData data);
     void LoadRelationshipState();
     void ResetRelationships();
   }
   
-  public class RelationshipManager : IInitializable, IRelationshipManager, IResetableManager {
-    private Dictionary<CatType, int> catRanks;
-    private Dictionary<CatType, Dictionary<GameStateData, int>> gameStateProgress;
+  public class RelationshipManager : IInitializable, IRelationshipManager{
+
+    private HashSet<CatDialogueData> activeData = new HashSet<CatDialogueData>();
 
     [Inject] IGameStateManager gameStateManager;
 
     public void Initialize() {
       LoadRelationshipState();
-      gameStateManager.RegisterNonpersistResetOnStateChange(this);
+      gameStateManager.OnNonpersistReset += Reset;
     }
 
-    public int GetRankForCat(CatType type) {
-      CheckRankForCat(type);
-      return catRanks[type];
-    }
-
-    public int GetRankForCatInGameState(CatType type, GameStateData state) {
-      CheckRankForCatInGameState(type, state);
-      return gameStateProgress[type][state];
-    }
-
-    public void RankUpCat(CatType type) {
-      CheckRankForCat(type);
-      catRanks[type]++;
+    public void RankUpCat(CatDialogueData data) {
+      data.IncreaseRank();
+      activeData.Add(data);
     }
     
-    public void RankUpCatInGameState(CatType type, GameStateData state) {
-      CheckRankForCatInGameState(type, state);
-      gameStateProgress[type][state]++;
-    }
-
-    private void CheckRankForCat(CatType type) {
-      if (!catRanks.ContainsKey(type)) {
-        catRanks.Add(type, 0);
-      }
-    }
-
-    private void CheckRankForCatInGameState(CatType type, GameStateData state) {
-      if (!gameStateProgress.ContainsKey(type)) {
-        gameStateProgress.Add(type, new Dictionary<GameStateData, int>());
-      }
-      var stateForCat = gameStateProgress[type];
-      if (!stateForCat.ContainsKey(state)) {
-        stateForCat.Add(state, 0);
-      }
+    public void RankUpCatInGameState(CatDialogueData data) {
+      data.IncreateGameStateRank();
+      activeData.Add(data);
     }
 
     public void LoadRelationshipState() {
@@ -67,21 +39,16 @@ namespace Outclaw.City {
     }
 
     public void ResetRelationships(){
-      catRanks = new Dictionary<CatType, int>();
-      gameStateProgress = new Dictionary<CatType, Dictionary<GameStateData, int>>();
+
+      foreach(CatDialogueData data in activeData){
+        data.Reset();
+      }
+      activeData.Clear();
     }
 
     public void Reset(){
       ResetRelationships();
     }
-  }
-  
-  public enum CatType {
-    NONE = 0,
-    CROOK = 1,
-    BEAUTY = 2,
-    JOKER = 3,
-    SLIM = 4
   }
 
   // Wrapper class for our conversation list, so it can be serialized.

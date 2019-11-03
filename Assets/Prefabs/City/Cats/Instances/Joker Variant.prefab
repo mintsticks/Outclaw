@@ -10,7 +10,65 @@ PrefabInstance:
     - target: {fileID: 5628549467109088869, guid: 8c8cd9af1cf61f043bfd819994e0c940,
         type: 3}
       propertyPath: m_Name
-      value: Joker
+      value: Joker Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].gameStateData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d,
+        type: 2}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[0].dialogue.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: c0281fae8c05b2141b0975352fdf2e2f, type: 3}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[1].dialogue.Array.data[0]
+      value: 
+      objectReference: {fileID: 4900000, guid: f821a769f0bfe62488b551df471c21c1, type: 3}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: task
+      value: 
+      objectReference: {fileID: 11400000, guid: c18685baa9d2a164d93ab4217b1df8e8,
+        type: 2}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: dialogueData
+      value: 
+      objectReference: {fileID: 11400000, guid: b42000c31a325544888f8b23583e215a,
+        type: 2}
+    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.02283454
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.12298918
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 4.3402324
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.3739414
       objectReference: {fileID: 0}
     - target: {fileID: 5628549467109088888, guid: 8c8cd9af1cf61f043bfd819994e0c940,
         type: 3}
@@ -67,58 +125,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0.02283454
+    - target: {fileID: 605628282, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
       objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0.12298918
+    - target: {fileID: 605628282, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
       objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 4.3402324
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.3739414
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: catDialogues.dialoguesForStates.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: catDialogues.dialoguesForStates.Array.data[0].gameStateData
-      value: 
-      objectReference: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d,
-        type: 2}
-    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[0].dialogue.Array.data[0]
-      value: 
-      objectReference: {fileID: 4900000, guid: c0281fae8c05b2141b0975352fdf2e2f, type: 3}
-    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: catDialogues.dialoguesForStates.Array.data[0].catDialogue.Array.data[1].dialogue.Array.data[0]
-      value: 
-      objectReference: {fileID: 4900000, guid: f821a769f0bfe62488b551df471c21c1, type: 3}
-    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: type
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: task
-      value: 
-      objectReference: {fileID: 11400000, guid: c18685baa9d2a164d93ab4217b1df8e8,
-        type: 2}
     - target: {fileID: 360107579333356726, guid: 8c8cd9af1cf61f043bfd819994e0c940,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -128,14 +142,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 605628282, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 605628282, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 605628283, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
       propertyPath: m_Sprite

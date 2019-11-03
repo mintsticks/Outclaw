@@ -19,9 +19,9 @@ namespace Outclaw.City {
     
     [SerializeField]
     private ParticleSystem particleSystem;
-    
+
     [SerializeField]
-    private CatType type;
+    private CatDialogueData dialogueData;
 
     [SerializeField]
     private Task task;
@@ -53,7 +53,6 @@ namespace Outclaw.City {
     private Transform parent;
     private bool created;
 
-    public CatType CatType => type;
     public Task ContainedTask { get => task; }
     public Transform Location { get => transform; }
     
@@ -105,7 +104,7 @@ namespace Outclaw.City {
     }
 
     private bool HasDialogueForCurrentRank() {
-      var rank = relationshipManager.GetRankForCat(type);
+      var rank = dialogueData.Rank;
       var maxRank = catDialogues.dialoguesForRank.Count - 1;
       return rank <= maxRank;
     }
@@ -119,13 +118,13 @@ namespace Outclaw.City {
       }
       
       var maxRank = dialogueForState.catDialogue.Count - 1;
-      var rank = relationshipManager.GetRankForCatInGameState(type, currentGameState);
+      var rank = dialogueData.GameStateRank;
       return rank <= maxRank;
     }
     
     private void StartGameStateDialogue(GameStateData state) {
       var dialogueForState = GetDialogueForState(state);
-      var gameStateRank = relationshipManager.GetRankForCatInGameState(type, state);
+      var gameStateRank = dialogueData.GameStateRank;
       var dialogue = dialogueForState.catDialogue[gameStateRank].dialogue;
       
       dialogueManager.SetDialogueType(DialogueType.SPEECH);
@@ -135,7 +134,7 @@ namespace Outclaw.City {
     }
 
     private void CompleteGameStateDialogue(GameStateData state) {
-      relationshipManager.RankUpCatInGameState(type, state);
+      relationshipManager.RankUpCatInGameState(dialogueData);
       if (!HasDialogueForCurrentState()) {
         //TODO(dwong): add non required game state dialogue
         objectiveManager.CompleteTask(task);
@@ -144,7 +143,7 @@ namespace Outclaw.City {
     }
     
     private void StartRelationshipDialogue() {
-      var rank = relationshipManager.GetRankForCat(type);
+      var rank = dialogueData.Rank;
       var dialogue = catDialogues.dialoguesForRank[rank].dialogue;
       
       dialogueManager.SetDialogueType(DialogueType.SPEECH);
@@ -154,7 +153,7 @@ namespace Outclaw.City {
     }
     
     private void CompleteRankDialogue() {
-      relationshipManager.RankUpCat(type);
+      relationshipManager.RankUpCat(dialogueData);
       InRange();
     }
     

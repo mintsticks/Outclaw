@@ -15,10 +15,4 @@ namespace Outclaw {
     public List<Task> tasks;
     public bool persistObjectiveState;
   }
-
-  [Serializable]
-  public class ConversationObjective {
-    public CatType type;
-    public int requiredConversationCount;
-  }
 }

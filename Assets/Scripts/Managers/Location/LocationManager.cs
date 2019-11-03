@@ -10,7 +10,7 @@ namespace Outclaw.City {
     void IncreaseProgress(ObjectDialogueData data);
   }
 
-  public class LocationManager : IInitializable, ILocationManager, IResetableManager  {
+  public class LocationManager : IInitializable, ILocationManager {
     private LocationData currentLocation;
 
     private HashSet<ObjectDialogueData> activeData = new HashSet<ObjectDialogueData>();
@@ -18,7 +18,7 @@ namespace Outclaw.City {
     [Inject] IGameStateManager gameStateManager;
 
     public void Initialize() {
-      gameStateManager.RegisterNonpersistResetOnStateChange(this);
+      gameStateManager.OnNonpersistReset += Reset;
     }
 
     public void Reset(){

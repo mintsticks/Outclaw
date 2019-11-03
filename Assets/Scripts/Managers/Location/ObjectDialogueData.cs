@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Outclaw{
 
-  [CreateAssetMenu(fileName = "New Object Data", menuName = "Outclaw/New Object Data")]
+  [CreateAssetMenu(fileName = "New Object Dialogue Data", menuName = "Outclaw/Dialogue/New Object Data")]
   public class ObjectDialogueData : ScriptableObject
   {
     private int count = 0;

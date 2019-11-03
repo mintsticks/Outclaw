@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using City;
 using Outclaw.City;
@@ -7,26 +8,29 @@ using UnityEngine.Events;
 using Zenject;
 
 namespace Outclaw {
+
+  public delegate void OnReset();
+
   public interface IGameStateManager {
     GameStateData CurrentGameStateData { get; }
     GameStateList StateList { get; }
     void SetGameState(GameStateData state, bool persist = false);
 
-    void RegisterAlwaysResetOnStateChange(IResetableManager manager);
-    void RegisterNonpersistResetOnStateChange(IResetableManager manager);
+    event OnReset OnAllReset;
+    event OnReset OnNonpersistReset;
   }
   
   public class GameStateManager : IInitializable, IGameStateManager {
 
     private GameStateData currentGameStateData;
 
-    private HashSet<IResetableManager> alwaysReset = new HashSet<IResetableManager>();
-    private HashSet<IResetableManager> nonpersistReset = new HashSet<IResetableManager>();
-
     public GameStateData CurrentGameStateData => currentGameStateData;
 
     public GameStateList StateList { get; private set; }
     
+    public event OnReset OnAllReset;
+    public event OnReset OnNonpersistReset;
+
     public void SetGameState(GameStateData state, bool persist = false) {
       if(state == null){
         Debug.LogError("Null game state passed in.");
@@ -35,17 +39,11 @@ namespace Outclaw {
 
       currentGameStateData = state;
       
-      foreach(IResetableManager manager in alwaysReset){
-        manager.Reset();
-      }
-
+      OnAllReset?.Invoke();
       if (persist) {
         return;
       }
-
-      foreach(IResetableManager manager in nonpersistReset){
-        manager.Reset();
-      }
+      OnNonpersistReset?.Invoke();
     }
 
     public void Initialize() {
@@ -54,8 +52,5 @@ namespace Outclaw {
       StateList = Resources.Load<GameStateList>("Game State Data/Game State List");
       currentGameStateData = StateList[0];
     }
-
-    public void RegisterAlwaysResetOnStateChange(IResetableManager manager) => alwaysReset.Add(manager);
-    public void RegisterNonpersistResetOnStateChange(IResetableManager manager) => nonpersistReset.Add(manager);
   }
 }

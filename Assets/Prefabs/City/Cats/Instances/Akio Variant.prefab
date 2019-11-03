@@ -12,6 +12,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Akio Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[0].gameStateData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d,
+        type: 2}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: catDialogues.dialoguesForStates.Array.data[1].gameStateData
+      value: 
+      objectReference: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d,
+        type: 2}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: task
+      value: 
+      objectReference: {fileID: 11400000, guid: b9446bf47a3b2c94dabd40ba55b2e586,
+        type: 2}
+    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: dialogueData
+      value: 
+      objectReference: {fileID: 11400000, guid: fefb35507cee38c4e84a917beffd5975,
+        type: 2}
+    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.20283103
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3.0255818
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 1.6128186
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.113743
+      objectReference: {fileID: 0}
     - target: {fileID: 5628549467109088888, guid: 8c8cd9af1cf61f043bfd819994e0c940,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,44 +111,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.20283103
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 3.0255818
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 1.6128186
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 5.113743
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: catDialogues.dialoguesForStates.Array.data[0].gameStateData
-      value: 
-      objectReference: {fileID: 11400000, guid: 1defba0c4608ce049b28e50914070f1d,
-        type: 2}
-    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: catDialogues.dialoguesForStates.Array.data[1].gameStateData
-      value: 
-      objectReference: {fileID: 11400000, guid: b61787afb265e904096b8ba8080cae9d,
-        type: 2}
-    - target: {fileID: 5628549467109088890, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-        type: 3}
-      propertyPath: task
-      value: 
-      objectReference: {fileID: 11400000, guid: b9446bf47a3b2c94dabd40ba55b2e586,
-        type: 2}
     - target: {fileID: 605628282, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4

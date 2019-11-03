@@ -14,7 +14,7 @@ namespace City {
     void UpdateGameState();
   }
   
-  public class ObjectiveManager : MonoBehaviour, IObjectiveManager, IResetableManager {
+  public class ObjectiveManager : MonoBehaviour, IObjectiveManager{
     [SerializeField]
     private List<GameState> objectiveInfos;
 
@@ -27,7 +27,7 @@ namespace City {
     public Task CurrentTask { get => currentTask; }
 
     public void Start(){
-      gameStateManager.RegisterAlwaysResetOnStateChange(this);
+      gameStateManager.OnAllReset += Reset;
     }
 
     public void CompleteTask(Task task){
