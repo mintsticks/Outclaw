@@ -10,6 +10,7 @@ namespace Outclaw.Heist {
     [SerializeField] private HeistInteractionController interactionController;
     [SerializeField] private AudioClip senseSfx;
     [SerializeField] private SpriteController spriteController;
+    [SerializeField] private Rigidbody2D rb;
     
     [Inject] private IAbilityCooldownManager abilityCooldownManager;
     [Inject] private IPlayerInput playerInput;
@@ -89,6 +90,7 @@ namespace Outclaw.Heist {
         return;
       }
       transform.position = spawnPoint.Value;
+      rb.position = spawnPoint.Value;
     }
   }
 }
