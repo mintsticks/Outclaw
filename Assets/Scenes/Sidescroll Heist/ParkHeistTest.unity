@@ -1010,10 +1010,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 85984d843660a1b47b11eda621b1e374, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 12
+  dialogueData: {fileID: 0}
   spriteRenderer: {fileID: 996643458}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 568670188}
   task: {fileID: 0}
 --- !u!4 &117006450 stripped
@@ -3781,10 +3779,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 0245f03bf4cb284438458eec0ca4d40b, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 11
+  dialogueData: {fileID: 0}
   spriteRenderer: {fileID: 1958845566}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 1929927754}
   task: {fileID: 0}
 --- !u!1 &511623633
@@ -4794,10 +4790,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 1d9cb05dd6b3ffc428749c983e23c4c9, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 7
+  dialogueData: {fileID: 0}
   spriteRenderer: {fileID: 669611391}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 1875233695}
   task: {fileID: 0}
 --- !u!1 &651427352
@@ -13334,10 +13328,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: af0423818c450b6448b4cb339794d906, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 10
+  dialogueData: {fileID: 0}
   spriteRenderer: {fileID: 1237018799}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 1861479893}
   task: {fileID: 0}
 --- !u!4 &1807500337 stripped
@@ -13618,10 +13610,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 2a22ed99b6c07f14081c9e01de4189a5, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 9
+  dialogueData: {fileID: 0}
   spriteRenderer: {fileID: 1352846973}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 22958916}
   task: {fileID: 0}
 --- !u!1 &1845849240
@@ -13917,12 +13907,12 @@ PrefabInstance:
     - target: {fileID: 9086822743349190178, guid: 45bd6256073391d4a8cbe2d69bdaa389,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 209.65
+      value: 196.19
       objectReference: {fileID: 0}
     - target: {fileID: 9086822743349190178, guid: 45bd6256073391d4a8cbe2d69bdaa389,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.03
+      value: 7.23
       objectReference: {fileID: 0}
     - target: {fileID: 9086822743349190178, guid: 45bd6256073391d4a8cbe2d69bdaa389,
         type: 3}
@@ -14656,10 +14646,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: eaea28c4783cf034ba73ef891d4f61d4, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 8
+  dialogueData: {fileID: 0}
   spriteRenderer: {fileID: 1516490750}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 572260487}
   task: {fileID: 0}
 --- !u!1 &1894958094
@@ -16719,6 +16707,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6246249019535767102, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: _monoInstallers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246249019535767102, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: _autoRun
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7336105400421786618, guid: 781c4c76b1cbba544922f33235329f2e,
         type: 3}
       propertyPath: cameraBehavior
@@ -16734,5 +16732,11 @@ PrefabInstance:
       propertyPath: interactionController
       value: 
       objectReference: {fileID: 1508514960}
+    - target: {fileID: 7336105400421786618, guid: 781c4c76b1cbba544922f33235329f2e,
+        type: 3}
+      propertyPath: sneakManagerPrefab
+      value: 
+      objectReference: {fileID: 8402918925066923784, guid: 4ea9eecc3d77855418f9de8febb356dd,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 781c4c76b1cbba544922f33235329f2e, type: 3}
