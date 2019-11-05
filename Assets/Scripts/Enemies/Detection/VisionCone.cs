@@ -24,8 +24,6 @@ namespace Outclaw.Heist {
     [Header("Detection")] 
     [SerializeField] private LayerMask hitLayers;
     [SerializeField] private LayerMask targetLayer;
-    [Tooltip("Radius near player to test cone")]
-    [SerializeField] private float activeRadius = 10;
     public OnDetect onDetect = new OnDetect();
 
     [Header("Component Links")] 
@@ -70,7 +68,6 @@ namespace Outclaw.Heist {
 
       foreach(Vector3 point in points){
         angleCache.Add(point, AngleTo(point));
-        DrawCrosshair(point);
       }
       points.Sort((Vector3 a, Vector3 b) => {
           return (int)Mathf.Sign(angleCache[a] - angleCache[b]);
