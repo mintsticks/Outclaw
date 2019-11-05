@@ -61,7 +61,11 @@ namespace Outclaw {
     }
 
     private void HandleDescriptionData(Data data) {
-      description.text = ParseDescription(data.Info.promptDescription);
+#if UNITY_XBOXONE
+      description.text = ParseDescription(data.Info.xboxPromptDescription);
+#else
+      description.text = ParseDescription(data.Info.defaultPromptDescription);
+#endif
     }
 
     private string ParseDescription(string text) {

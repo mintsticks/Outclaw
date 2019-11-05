@@ -813,6 +813,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5833642431444462902, guid: 08348905f0a87854c817ea11fc0434cb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.096741
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833642431444462902, guid: 08348905f0a87854c817ea11fc0434cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6167507
+      objectReference: {fileID: 0}
     - target: {fileID: 6593664779537174761, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -832,16 +842,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Positions.Array.data[1].y
       value: -5.003249
-      objectReference: {fileID: 0}
-    - target: {fileID: 5833642431444462902, guid: 08348905f0a87854c817ea11fc0434cb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -12.096741
-      objectReference: {fileID: 0}
-    - target: {fileID: 5833642431444462902, guid: 08348905f0a87854c817ea11fc0434cb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.6167507
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08348905f0a87854c817ea11fc0434cb, type: 3}
@@ -925,11 +925,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 85984d843660a1b47b11eda621b1e374, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 12
   dialogueData: {fileID: 11400000, guid: 1097a98ab2d59cd4cad933e350d739b1, type: 2}
   spriteRenderer: {fileID: 996643458}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 568670188}
   task: {fileID: 11400000, guid: 2ed2983aed66f644a85c65113cecbfcd, type: 2}
 --- !u!4 &117006450 stripped
@@ -3531,11 +3528,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 0245f03bf4cb284438458eec0ca4d40b, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 11
   dialogueData: {fileID: 11400000, guid: 20cf392b6064a6a4a8958afc2c3c3b1f, type: 2}
   spriteRenderer: {fileID: 1958845566}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 1929927754}
   task: {fileID: 11400000, guid: 4de6093a1aba91847ad33fb846ab3b26, type: 2}
 --- !u!1 &511623633
@@ -4362,11 +4356,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 1d9cb05dd6b3ffc428749c983e23c4c9, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 7
   dialogueData: {fileID: 11400000, guid: 7ed31a352db166441839a62c4be6b72b, type: 2}
   spriteRenderer: {fileID: 669611391}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 1875233695}
   task: {fileID: 11400000, guid: f468197e82c70804e94536ca97821afd, type: 2}
 --- !u!4 &657030920 stripped
@@ -12421,11 +12412,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: af0423818c450b6448b4cb339794d906, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 10
   dialogueData: {fileID: 11400000, guid: b20232bcf11c21145a80b18dcad0a7cf, type: 2}
   spriteRenderer: {fileID: 1237018799}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 1861479893}
   task: {fileID: 11400000, guid: 3cfbaf149aba5c84b827ecf87bee3976, type: 2}
 --- !u!1 &1825010073
@@ -12700,11 +12688,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: 2a22ed99b6c07f14081c9e01de4189a5, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 9
   dialogueData: {fileID: 11400000, guid: e969bf24a5b22e846acef2100781abaa, type: 2}
   spriteRenderer: {fileID: 1352846973}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 22958916}
   task: {fileID: 11400000, guid: 6aa7ba2be0f6ab341af4446f3eec1bd0, type: 2}
 --- !u!1 &1845849240
@@ -13581,11 +13566,8 @@ MonoBehaviour:
       objectDialogues:
       - dialogue:
         - {fileID: 4900000, guid: eaea28c4783cf034ba73ef891d4f61d4, type: 3}
-  location: {fileID: 11400000, guid: 20a35b2e6c6e11a4b8908ca34a0f86fe, type: 2}
-  objectType: 8
   dialogueData: {fileID: 11400000, guid: a3afcd1e6abb4d548be6cd920c547fd5, type: 2}
   spriteRenderer: {fileID: 1516490750}
-  objectPosition: {fileID: 0}
   particleSystem: {fileID: 572260487}
   task: {fileID: 11400000, guid: 471b585f2524f14449ef4453d8c492ae, type: 2}
 --- !u!1 &1894958094
@@ -15279,6 +15261,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5833642431444462902, guid: 08348905f0a87854c817ea11fc0434cb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.3649597
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833642431444462902, guid: 08348905f0a87854c817ea11fc0434cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35936975
+      objectReference: {fileID: 0}
     - target: {fileID: 6593664779537174761, guid: 08348905f0a87854c817ea11fc0434cb,
         type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -15298,16 +15290,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Positions.Array.data[1].y
       value: -5.003249
-      objectReference: {fileID: 0}
-    - target: {fileID: 5833642431444462902, guid: 08348905f0a87854c817ea11fc0434cb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.3649597
-      objectReference: {fileID: 0}
-    - target: {fileID: 5833642431444462902, guid: 08348905f0a87854c817ea11fc0434cb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.35936975
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08348905f0a87854c817ea11fc0434cb, type: 3}
