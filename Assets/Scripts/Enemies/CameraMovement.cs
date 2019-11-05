@@ -21,7 +21,7 @@ namespace Outclaw.Heist{
       Quaternion start = Quaternion.AngleAxis(startAngle, Vector3.forward);
       Quaternion end = Quaternion.AngleAxis(endAngle, Vector3.forward);
 
-      transform.rotation = start;
+      movement.SetVision(start);
       while(true){
         yield return movement.TurnVision(end, turnTime);
         yield return new WaitForSeconds(pauseTime);
