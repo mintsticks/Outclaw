@@ -5,7 +5,10 @@ namespace Outclaw {
   public class PromptData : ScriptableObject {
     public Sprite promptImage;
     public string promptTitle;
-    public string promptDescription;
+    [TextArea(15,20)]
+    public string defaultPromptDescription;
+    [TextArea(15,20)]
+    public string xboxDescription;
     public bool hasImage;
     public bool hasTitle;
   }
