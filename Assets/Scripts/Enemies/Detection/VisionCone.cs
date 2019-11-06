@@ -63,12 +63,7 @@ namespace Outclaw.Heist {
     }
 
     private GameObject TestConeAccurate() {
-      List<Vector3> points = GetVerticesInRange();
-      Dictionary<Vector3, float> angleCache = new Dictionary<Vector3, float>();
-
-      foreach(Vector3 point in points){
-        angleCache.Add(point, AngleTo(point));
-      }
+      GetVerticesInRange(out List<Vector3> points, out Dictionary<Vector3, float> angleCache);
       points.Sort((Vector3 a, Vector3 b) => {
           return (int)Mathf.Sign(angleCache[a] - angleCache[b]);
         });
@@ -81,74 +76,93 @@ namespace Outclaw.Heist {
       return target;
     }
 
-    private List<Vector3> GetVerticesInRange(){
+    private void GetVerticesInRange(out List<Vector3> points, 
+          out Dictionary<Vector3, float> angleCache){
       Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position,
         visionDistance, hitLayers);
 
-      List<Vector3> res = new List<Vector3>();
+      points = new List<Vector3>();
+      angleCache = new Dictionary<Vector3, float>();
       foreach(Collider2D col in cols){
-        res.AddRange(GetVerticesInRangeOnCollider(col));
+        GetVerticesInRangeOnCollider(col, points, angleCache);
       }
-      return res;
     }
 
-    private List<Vector3> GetVerticesInRangeOnCollider(Collider2D col){
+    // fills points with points in range on the collider,
+    // angleCache will have the angle from transform.up to the direction to the point
+    private void GetVerticesInRangeOnCollider(Collider2D col, 
+          List<Vector3> points, Dictionary<Vector3, float> angleCache){
       if(col is CompositeCollider2D){
-        return GetVerticesInRangeOnCompositeCollider((CompositeCollider2D)col);
+        GetVerticesInRangeOnCompositeCollider((CompositeCollider2D)col,
+          points, angleCache);
       }
       else if(col is BoxCollider2D){
-        return GetVerticesInRangeOnBoxCollider((BoxCollider2D)col);
+        GetVerticesInRangeOnBoxCollider((BoxCollider2D)col,
+          points, angleCache);
       }
 
-      // case not handled
-      return new List<Vector3>();
+      //TODO: add vertex detection for other colliders
     }
 
-    private List<Vector3> GetVerticesInRangeOnBoxCollider(BoxCollider2D col){
-      List<Vector3> res = new List<Vector3>();
-      Vector3 topRight = col.bounds.max;
-      Vector3 bottomLeft = col.bounds.min;
-      Vector3 topLeft = new Vector3(bottomLeft.x, topRight.y, 0);
-      Vector3 bottomRight = new Vector3(topRight.x, bottomLeft.y, 0);
+    // fills points with points in range on the collider,
+    // angleCache will have the angle from transform.up to the direction to the point
+    private void GetVerticesInRangeOnBoxCollider(BoxCollider2D col, 
+          List<Vector3> points, Dictionary<Vector3, float> angleCache){
+      Vector3[] corners = new Vector3[]{
+        col.bounds.max,
+        col.bounds.min,
+        new Vector3(col.bounds.min.x, col.bounds.max.y, 0),
+        new Vector3(col.bounds.max.x, col.bounds.min.y, 0)
+      };
 
-      if((topRight - transform.position).sqrMagnitude < visionDistance * visionDistance){
-        res.Add(topRight);
-      }
-      if((bottomLeft - transform.position).sqrMagnitude < visionDistance * visionDistance){
-        res.Add(bottomLeft);
-      }
-      if((topLeft - transform.position).sqrMagnitude < visionDistance * visionDistance){
-        res.Add(topLeft);
-      }
-      if((bottomRight - transform.position).sqrMagnitude < visionDistance * visionDistance){
-        res.Add(bottomRight);
-      }
+      foreach(Vector3 corner in corners){
+        // out of radius
+        if((corner - transform.position).sqrMagnitude > visionDistance * visionDistance){
+          continue;
+        }
 
-      return res;
+        // out of angle
+        float angle = AngleTo(corner);
+        if(Mathf.Abs(angle) > coneAngle / 2){
+          continue;
+        }
+
+        points.Add(corner);
+        angleCache.Add(corner, angle);
+      }
     }
 
-    private List<Vector3> GetVerticesInRangeOnCompositeCollider(CompositeCollider2D col){
-      List<Vector3> res = new List<Vector3>();
+    // fills points with points in range on the collider,
+    // angleCache will have the angle from transform.up to the direction to the point
+    private void GetVerticesInRangeOnCompositeCollider(CompositeCollider2D col, 
+          List<Vector3> points, Dictionary<Vector3, float> angleCache){
       int numPaths = col.pathCount;
       for(int i = 0; i < numPaths; ++i){
 
-        List<Vector2> points = new List<Vector2>();
-        col.GetPath(i, points);
-        foreach(Vector2 pt in points){
-          if((pt - (Vector2)transform.position).sqrMagnitude < visionDistance * visionDistance){
-            res.Add(pt);
+        List<Vector2> verts = new List<Vector2>();
+        col.GetPath(i, verts);
+        foreach(Vector2 vert in verts){
+          // out of radius
+          if((vert - (Vector2)transform.position).sqrMagnitude > visionDistance * visionDistance){
+            continue;
           }
+
+          // out of angle
+          float angle = AngleTo(vert);
+          if(Mathf.Abs(angle) > coneAngle / 2){
+            continue;
+          }
+
+          points.Add(vert);
+          angleCache.Add(vert, angle);
         }
       }
-      return res;
     }
 
     // returns angle of vector from current position to pt
     private float AngleTo(Vector3 pt){
       Vector3 dir = pt - transform.position;
-
-      // using negative z axis because this function is in right handed system(?)
-      float angle = Vector3.SignedAngle(dir, transform.up, -Vector3.forward);
+      float angle = Vector2.SignedAngle(transform.up, dir);
       return angle;
     }
 
@@ -181,11 +195,11 @@ namespace Outclaw.Heist {
 
         // need to smooth vert across arc if previous and current both missed
         hitPt = TestRay(negRot * dir, out objHit);
-        if(objHit == null && prevCastMissed){
-          AddVertsToSmooth(meshBoarder, 
-            (i == startIdx) ? minAngle : angleCache[points[i - 1]],
-            angleCache[points[i]]);
-        }
+        CheckRangeBetween(meshBoarder, 
+          (i == startIdx) ? minAngle : angleCache[points[i - 1]], 
+          prevCastMissed,
+          angleCache[points[i]], 
+          objHit == null);
         meshBoarder.Add(hitPt);
         target = target ?? (FoundTarget(objHit) ? objHit : null);
 
@@ -200,11 +214,11 @@ namespace Outclaw.Heist {
       // test largest edge
       Quaternion maxRot = Quaternion.AngleAxis(maxAngle, Vector3.forward);
       hitPt = TestRay(maxRot * negRot * transform.up, out objHit);
-      if(objHit == null && prevCastMissed){
-        AddVertsToSmooth(meshBoarder, 
-          (i == startIdx) ? minAngle : angleCache[points[i - 1]],
-          maxAngle);
-      }
+      CheckRangeBetween(meshBoarder,
+        (i == startIdx) ? minAngle : angleCache[points[i - 1]],
+        prevCastMissed,
+        maxAngle,
+        objHit == null);
       meshBoarder.Add(hitPt);
       target = target ?? (FoundTarget(objHit) ? objHit : null);
       meshBoarder.Add(TestRay(maxRot * transform.up, out objHit));
@@ -213,13 +227,181 @@ namespace Outclaw.Heist {
       return target;
     }
 
-    private void AddVertsToSmooth(List<Vector3> meshBoarder, float startAngle, float endAngle){
+    private void CheckRangeBetween(List<Vector3> meshBoarder, float prevAngle, 
+        bool prevCastMissed, float curAngle, bool curCastMissed){
+
+      if(curCastMissed && prevCastMissed){
+        AddVertsForArc(meshBoarder, prevAngle, curAngle);
+      }
+      else if(!curCastMissed && prevCastMissed){
+        AddMissHitIntersection(meshBoarder, curAngle, prevAngle);
+      }
+      else if(curCastMissed && !prevCastMissed){
+        AddMissHitIntersection(meshBoarder, prevAngle, curAngle);
+      }
+      else{
+        MaybeAddHitHitIntersection(meshBoarder, prevAngle, curAngle);
+      }
+    }
+
+    // adds verts between startAngle and endAngle to approximate a circle arc
+    private void AddVertsForArc(List<Vector3> meshBoarder, float startAngle, float endAngle){
       Vector3 toEdge = transform.up * visionDistance;
       for(float angle = startAngle + minArcOffset; angle < endAngle; angle += minArcOffset){
         Vector3 newPt = Quaternion.AngleAxis(angle, Vector3.forward) * toEdge
           + transform.position;
         meshBoarder.Add(transform.InverseTransformPoint(newPt));
       }
+    }
+
+    private void MaybeAddHitHitIntersection(List<Vector3> meshBoarder,
+        float prevAngle, float curAngle){
+
+      // shift slightly towards prevAngle in case vertex is concave corner
+      curAngle -= accuracyRayOffset;
+      prevAngle += accuracyRayOffset;
+      RaycastHit2D hit = Physics2D.Raycast(transform.position,
+        Quaternion.AngleAxis(curAngle, Vector3.forward) * transform.up,
+        visionDistance, hitLayers & (~targetLayer));
+      Vector3 maxHitPt = hit.point;
+      Vector3 maxHitNorm = hit.normal;
+
+      // 3 points are in line, mesh created is fine
+      if(IsColinear(meshBoarder[meshBoarder.Count - 2], meshBoarder[meshBoarder.Count - 1], 
+            transform.InverseTransformPoint(maxHitPt))){
+        return;
+      }
+
+      float minRange = prevAngle;
+      float maxRange = curAngle;
+
+      // check for intersect near prevAngle
+      hit = Physics2D.Raycast(transform.position,
+        Quaternion.AngleAxis(prevAngle, Vector3.forward) * transform.up,
+        visionDistance, hitLayers & (~targetLayer));
+      Vector3 hitPt = hit.point;
+      Vector3 surfaceDir = Vector3.Cross(hit.normal, Vector3.forward);
+      Vector3 rayDir = hitPt - transform.position;
+      FindCircleLineIntersection(surfaceDir, rayDir,
+        out float t0, out float t1);
+      Vector3 intersectionPoint;
+      float intersectionAngle;
+      bool hasPrevIntersect = HasIntersectionInAngleRange(
+        hitPt + (surfaceDir * t0), hitPt + (surfaceDir * t1), prevAngle, 
+        curAngle, out intersectionPoint, out intersectionAngle);
+      if(hasPrevIntersect){
+        minRange = intersectionAngle;
+        meshBoarder.Add(transform.InverseTransformPoint(intersectionPoint));
+      }
+
+      // check for intersect near curAngle
+      surfaceDir = Vector3.Cross(maxHitNorm, Vector3.forward);
+      rayDir = maxHitPt - transform.position;
+      FindCircleLineIntersection(surfaceDir, rayDir, out t0, out t1);
+      bool hasCurIntersect = HasIntersectionInAngleRange(
+        maxHitPt + (surfaceDir * t0), maxHitPt + (surfaceDir * t1), prevAngle, 
+        curAngle, out intersectionPoint, out intersectionAngle);
+      if(hasCurIntersect){
+        maxRange = intersectionAngle;
+        if(hasPrevIntersect){
+          AddVertsForArc(meshBoarder, minRange, maxRange);
+        }
+        meshBoarder.Add(transform.InverseTransformPoint(intersectionPoint));
+      }
+    }
+
+    // find area of triangle from 3 points, colinear if near 0
+    private bool IsColinear(Vector3 a, Vector3 b, Vector3 c){
+      Vector3 v = (b - a).normalized;
+      Vector3 u = (c - a).normalized;
+      Vector3 cross = Vector3.Cross(v, u);
+
+      return cross.magnitude < .01f;
+    }
+
+    /*
+     * Since there's a hit on one side and a miss on the other, there's probably
+     * an intersection of some ray and the ground that's missing.
+     * 
+     * Assumes surface between hit and missing part is flat
+     */
+    private void AddMissHitIntersection(List<Vector3> meshBoarder, float hitAngle,
+          float missAngle){
+      // shift slightly towards missAngle in case vertex is concave corner
+      hitAngle += Mathf.Sign(missAngle - hitAngle) * accuracyRayOffset;
+      RaycastHit2D hit = Physics2D.Raycast(transform.position,
+        Quaternion.AngleAxis(hitAngle, Vector3.forward) * transform.up,
+        visionDistance, hitLayers & (~targetLayer));
+      Vector3 hitPt = hit.point;
+
+      Vector3 surfaceDir = Vector3.Cross(hit.normal, Vector3.forward);
+      Vector3 rayDir = hitPt - transform.position;
+
+      FindCircleLineIntersection(surfaceDir, rayDir,
+        out float t0, out float t1);
+
+      // figure out if there's a point between the angles
+      float minAngle = Mathf.Min(hitAngle, missAngle);
+      float maxAngle = Mathf.Max(hitAngle, missAngle);
+      if(!HasIntersectionInAngleRange(hitPt + (surfaceDir * t0), 
+          hitPt + (surfaceDir * t1), minAngle, maxAngle,
+          out Vector3 intersectionPoint, out float intersectionAngle)){
+        return;
+      }
+
+      // build the mesh
+      if(minAngle == missAngle){
+        AddVertsForArc(meshBoarder, minAngle, intersectionAngle);
+      }
+      meshBoarder.Add(transform.InverseTransformPoint(intersectionPoint));
+      if(maxAngle == missAngle){
+        AddVertsForArc(meshBoarder, intersectionAngle, maxAngle);
+      }
+    }
+
+    /*
+     * Finds circle-line intersection based on:
+     *   surfaceDir: the vector that points along the line
+     *   rayDir: the vector from the circle center to a point on the line
+     *   visionDistance: the radius of the circle
+     */
+    private void FindCircleLineIntersection(Vector3 surfaceDir, Vector3 rayDir,
+        out float t0, out float t1){
+
+      float dot = Vector3.Dot(surfaceDir, rayDir);
+      float surfaceDot = Vector3.Dot(surfaceDir, surfaceDir);
+      float rayDot = Vector3.Dot(rayDir, rayDir);
+
+      // compute circle, surface line intersections as t0 and t1
+      float firstTerm = -dot;
+      float rootTerm = Mathf.Sqrt((dot * dot) - (surfaceDot * rayDot)
+        + (surfaceDot * visionDistance * visionDistance));
+      float denomTerm = surfaceDot;
+
+      t0 = (firstTerm + rootTerm) / denomTerm;
+      t1 = (firstTerm - rootTerm) / denomTerm;
+    }
+
+    // returns true if either t0 or t1 * rayDir + origin results in
+    //   an angle from transform.up within minAngle and maxAngle
+    // if true, the results are put into angle and point
+    private bool HasIntersectionInAngleRange(Vector3 p0, Vector3 p1, 
+        float minAngle, float maxAngle, out Vector3 point, out float angle){
+
+      point = p0;
+      angle = AngleTo(point);
+
+      if(!(minAngle < angle && angle < maxAngle)){
+        point = p1;
+        angle = AngleTo(point);
+        
+        // neither intersection is in the angle range, return false
+        if(!(minAngle < angle && angle < maxAngle)){
+          return false;
+        }
+      }
+
+      return true;
     }
 
     private bool FoundTarget(GameObject hit){
