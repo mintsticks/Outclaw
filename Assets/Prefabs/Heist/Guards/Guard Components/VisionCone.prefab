@@ -49,10 +49,12 @@ MonoBehaviour:
   coneAngle: 90
   visionDistance: 4
   numSamples: 12
+  accuracyRayOffset: 0.00001
+  minArcOffset: 5
   hitLayers:
     serializedVersion: 2
     m_Bits: 66359
-  playerLayer:
+  targetLayer:
     serializedVersion: 2
     m_Bits: 512
   activeRadius: 30

@@ -83,6 +83,10 @@ namespace Outclaw.Heist{
       yield break;
     }
 
+    public void SetVision(Quaternion rot){
+      visionConeTransform.rotation = rot;
+    }
+
     // pass in angle below horizontal to put arm at (up to 90 degree below)
     public void SetArmAngle(float angle){
       anim?.SetFlashlightAngle(Mathf.Clamp(angle, 0, 90));
