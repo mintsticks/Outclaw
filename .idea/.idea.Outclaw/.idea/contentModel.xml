@@ -17,14 +17,26 @@
             <e p="AkioFirstTimeCity2.yarn.txt" t="Include" />
             <e p="AkioFoundCollar.yarn.txt" t="Include" />
             <e p="AkioFoundHana1.yarn.txt" t="Include" />
+            <e p="Denni1.yarn.txt" t="Include" />
+            <e p="Denni2.yarn.txt" t="Include" />
             <e p="GuardDialogue.yarn.txt" t="Include" />
             <e p="Hana.yarn.txt" t="Include" />
             <e p="Hana2.yarn.txt" t="Include" />
+            <e p="Keiko1.yarn.txt" t="Include" />
+            <e p="Keiko2.yarn.txt" t="Include" />
+            <e p="Keiko3.yarn.txt" t="Include" />
+            <e p="Momo1.yarn.txt" t="Include" />
+            <e p="Momo2.yarn.txt" t="Include" />
+            <e p="Momo3.yarn.txt" t="Include" />
+            <e p="Momo4.yarn.txt" t="Include" />
             <e p="NPC1.yarn.txt" t="Include" />
             <e p="NPC12.yarn.txt" t="Include" />
             <e p="NPC2.yarn.txt" t="Include" />
             <e p="NPC22.yarn.txt" t="Include" />
             <e p="oldNPC2.yarn.txt" t="Include" />
+            <e p="Taro1.yarn.txt" t="Include" />
+            <e p="Taro2.yarn.txt" t="Include" />
+            <e p="Taro3.yarn.txt" t="Include" />
           </e>
           <e p="DontLeaveHouse.yarn.txt" t="Include" />
           <e p="foundCollar.yarn.txt" t="Include" />
@@ -559,19 +571,23 @@
             <e p="SideScrollPatrolEditor.cs" t="Include" />
           </e>
           <e p="Enemies" t="Include">
-            <e p="AttentionZone.cs" t="Include" />
             <e p="CameraMovement.cs" t="Include" />
-            <e p="Capture.cs" t="Include" />
-            <e p="Footprint.cs" t="Include" />
-            <e p="FootprintManager.cs" t="Include" />
-            <e p="GuardAnimationController.cs" t="Include" />
-            <e p="LineOfSight.cs" t="Include" />
+            <e p="Detection" t="Include">
+              <e p="AttentionZone.cs" t="Include" />
+              <e p="Capture.cs" t="Include" />
+              <e p="LineOfSight.cs" t="Include" />
+              <e p="VisionCone.cs" t="Include" />
+            </e>
             <e p="Sidescroll Movement" t="Include">
               <e p="GuardMovement.cs" t="Include" />
               <e p="SideScrollPatrol.cs" t="Include" />
               <e p="SideScrollSentry.cs" t="Include" />
             </e>
-            <e p="VisionCone.cs" t="Include" />
+            <e p="Visuals" t="Include">
+              <e p="Footprint.cs" t="Include" />
+              <e p="FootprintManager.cs" t="Include" />
+              <e p="GuardAnimationController.cs" t="Include" />
+            </e>
           </e>
           <e p="EventSequence.cs" t="Include" />
           <e p="Interactable" t="Include">
@@ -717,6 +733,7 @@
             <e p="ManagedCoroutine.cs" t="Include" />
             <e p="SceneSwitcher.cs" t="Include" />
             <e p="SpriteBundle.cs" t="Include" />
+            <e p="SpriteSkinCulling.cs" t="Include" />
           </e>
         </e>
       </e>
