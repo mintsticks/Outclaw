@@ -24,6 +24,8 @@ namespace Outclaw {
     bool IsPauseDown();
     bool IsSneakDown();
     bool IsSneakUp();
+    bool IsStart();
+    bool IsStartDown();
   }
 
   public class PlayerInput : IPlayerInput{
@@ -101,6 +103,14 @@ namespace Outclaw {
 
     public bool IsSneakUp() {
       return Input.GetButtonUp("Sneak");
+    }
+
+    public bool IsStart() {
+      return Input.GetButton("Start");
+    }
+
+    public bool IsStartDown() {
+      return Input.GetButtonDown("Start");
     }
   }
 }

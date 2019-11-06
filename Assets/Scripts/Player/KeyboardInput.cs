@@ -77,5 +77,13 @@ namespace Outclaw {
     public bool IsSneakUp() {
       return Input.GetKeyUp(KeyCode.R);
     }
+
+    public bool IsStart() {
+      return Input.GetKey(KeyCode.Space);
+    }
+
+    public bool IsStartDown() {
+      return Input.GetKeyDown(KeyCode.Space);
+    }
   }
 }
