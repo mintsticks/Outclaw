@@ -17,6 +17,9 @@ namespace Outclaw {
     [SerializeField] private CanvasGroup canvas;
     [SerializeField] private Text title;
     [SerializeField] private Text description;
+    [SerializeField] private Text dismissText;
+    [SerializeField] private string defaultDismiss;
+    [SerializeField] private string xboxDismiss;
     [SerializeField] private Image image;
 
     [SerializeField] private AnimationWrapper animationWrapper;
@@ -61,10 +64,12 @@ namespace Outclaw {
     }
 
     private void HandleDescriptionData(Data data) {
-#if UNITY_XBOXONE
-      description.text = ParseDescription(data.Info.xboxPromptDescription);
+#if UNITY_WSA
+      description.text = ParseDescription(data.Info.xboxDescription);
+      dismissText.text = xboxDismiss;
 #else
       description.text = ParseDescription(data.Info.defaultPromptDescription);
+      dismissText.text = defaultDismiss;
 #endif
     }
 
