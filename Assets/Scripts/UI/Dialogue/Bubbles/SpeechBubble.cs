@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,12 +22,17 @@ namespace Outclaw.City {
     [SerializeField] private float characterAnimateSpeed = 1000f;
     [SerializeField] private bool isUpperCase = true;
     [SerializeField] private int startFontSize = 1;
+    [SerializeField] private float horizontalPadding = 20f;
+    [SerializeField] private float verticalPadding = 15f;
+    
     [SerializeField] private Vector3 offset;
     [SerializeField] private Text bubbleText;
     [SerializeField] private Transform speechTrail;
     [SerializeField] private Transform thoughtTrail;
     [SerializeField] private CanvasGroup canvas;
 
+    [SerializeField] private RectTransform bubbleImage;
+    
     private bool skipped;
     private Transform tail;
     private Transform parent;
@@ -41,37 +47,57 @@ namespace Outclaw.City {
       HandleType(data.Type);
     }
 
+    private string ProcessText(string text) {
+      bubbleText.color = bubbleText.color.WithAlpha(0);
+      var newText = TestText(text);
+      CheckTextBounds(newText);
+      bubbleText.text = "";
+      bubbleText.color = bubbleText.color.WithAlpha(1f);
+      return newText;
+    }
+    
     private string TestText(string text) {
       if (isUpperCase) {
         text = text.ToUpper();
       }
-      
-      var textGen = new TextGenerator();
-      var generationSettings = bubbleText.GetGenerationSettings(bubbleText.rectTransform.rect.size);
 
       var processed = new StringBuilder();
       var buffer = new StringBuilder();
       var previousHeight = -1f;
-
+      
       foreach (var word in text.Split(' ')) {
         buffer.Append(word + " ");
-        var height = textGen.GetPreferredHeight(buffer.ToString(), generationSettings);
+        bubbleText.text = buffer.ToString();
+        var height = LayoutUtility.GetPreferredHeight(bubbleText.rectTransform);
         if (previousHeight < 0f) {
           previousHeight = height;
         }
-        
+
         if (Math.Abs(height - previousHeight) > .001) {
           previousHeight = height;
           processed.Append("\n");
-        } 
+        }
+
         processed.Append(word + " ");
       }
-
+      
       return processed.ToString().TrimEnd();
     }
 
+    private void CheckTextBounds(string text) {
+      bubbleText.text = text;
+      var height = LayoutUtility.GetPreferredHeight(bubbleText.rectTransform);
+      var width = LayoutUtility.GetPreferredWidth(bubbleText.rectTransform);
+      if (width < bubbleText.rectTransform.sizeDelta.x) {
+        bubbleText.rectTransform.sizeDelta = new Vector2(width, height);
+      }
+      bubbleImage.sizeDelta = new Vector2(width + horizontalPadding * 2, height + verticalPadding * 2);
+      bubbleText.rectTransform.position = bubbleText.rectTransform.position.AddToXY(horizontalPadding, -verticalPadding);
+      bubbleText.color = bubbleText.color.WithAlpha(1f);
+    }
+
     public IEnumerator ShowText(string text) {
-      text = TestText(text);
+      text = ProcessText(text);
       currentStringBuilder = new StringBuilder();
       skipped = false;
       
@@ -135,17 +161,10 @@ namespace Outclaw.City {
       transform.position = main.WorldToScreenPoint(parent.position + offset);
     }
 
-    public void SetText(string text) {
-      bubbleText.text = text;
-    }
-
     public void SetOpacity(float opacity) {
       canvas.alpha = opacity;
     }
-
-    public void RemoveTail() {
-      tail.gameObject.SetActive(false);
-    }
+    
 
     private void HandleType(DialogueType type) {
       var isSpeech = type == DialogueType.SPEECH;
