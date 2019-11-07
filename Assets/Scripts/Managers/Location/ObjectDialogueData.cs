@@ -7,7 +7,7 @@ namespace Outclaw{
   [CreateAssetMenu(fileName = "New Object Dialogue Data", menuName = "Outclaw/Dialogue/New Object Data")]
   public class ObjectDialogueData : ScriptableObject
   {
-    private int count = 0;
+    [System.NonSerialized] private int count = 0;
 
     public int Progress{
       get => count;

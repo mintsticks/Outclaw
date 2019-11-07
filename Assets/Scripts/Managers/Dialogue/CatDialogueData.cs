@@ -6,8 +6,8 @@ namespace Outclaw.City{
   [CreateAssetMenu(fileName = "New Cat Dialogue", menuName = "Outclaw/Dialogue/New Cat Dialogue")]
   public class CatDialogueData : ScriptableObject
   {
-    private int rank = 0;
-    private int stateRank = 0;
+    [System.NonSerialized] private int rank = 0;
+    [System.NonSerialized] private int stateRank = 0;
 
     public int Rank { get => rank; }
     public int GameStateRank { get => stateRank; }
