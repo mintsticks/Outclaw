@@ -98,7 +98,7 @@ namespace Outclaw.City {
       var objProgress = dialogueData.Progress;
       var objectDialogues = dialoguesForState.objectDialogues;
       if (objProgress >= objectDialogues.Count) {
-        Debug.Log("No dialogues for object progress");
+        Debug.Log("No dialogues for object progress" + objProgress);
         return null;
       }
 
