@@ -38,6 +38,7 @@ namespace Outclaw {
         return;
       }
       spawnManager.PreviousScene = SceneManager.GetActiveScene().name;
+      spawnManager.ClearCheckpoints();
       isSwitching = true;
       StartCoroutine(TransitionRoutine(scene));
     }

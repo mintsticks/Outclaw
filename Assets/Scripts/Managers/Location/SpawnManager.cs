@@ -11,10 +11,12 @@ namespace Outclaw {
   public interface ISpawnManager {
 
     string PreviousScene { get; set; }
-    string LastCheckpoint { get; set; }
     Vector3? GetSpawnPoint();
     Vector3? GetCheckpoint();
+
+    string LastCheckpoint { get; set; }
     List<Checkpoint> Checkpoints { get; }
+    void ClearCheckpoints();
   }
   
   public class SpawnManager : MonoBehaviour, IInitializable, ISpawnManager {
@@ -67,5 +69,8 @@ namespace Outclaw {
       return checkpoint.transform.position;
     }
     
+    public void ClearCheckpoints(){
+      checkpoints.Clear();
+    }
   }
 }
