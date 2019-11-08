@@ -7,17 +7,27 @@ namespace Outclaw.City{
   public class CatDialogueData : ScriptableObject
   {
     [System.NonSerialized] private int rank = 0;
-    [System.NonSerialized] private int stateRank = 0;
+    [System.NonSerialized] private Dictionary<GameStateData, int> stateRanks = new Dictionary<GameStateData, int>();
 
     public int Rank { get => rank; }
-    public int GameStateRank { get => stateRank; }
+    public int GetGameStateRank(GameStateData state) {
+      CheckForGameState(state);
+      return stateRanks[state]; 
+    }
 
     public void IncreaseRank(){
       ++rank;
     }
 
-    public void IncreateGameStateRank(){
-      ++stateRank;
+    public void IncreateGameStateRank(GameStateData state){
+      CheckForGameState(state);
+      ++stateRanks[state];
+    }
+
+    private void CheckForGameState(GameStateData state){
+      if(!stateRanks.ContainsKey(state)){
+        stateRanks.Add(state, 0);
+      }
     }
 
     public void Reset(){
@@ -30,7 +40,7 @@ namespace Outclaw.City{
     }
 
     public void ResetStateRank(){
-      stateRank = 0;
+      stateRanks.Clear();
     }
   }
 }

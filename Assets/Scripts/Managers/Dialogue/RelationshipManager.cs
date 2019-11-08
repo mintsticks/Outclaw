@@ -9,7 +9,6 @@ namespace Outclaw.City {
     void RankUpCat(CatDialogueData data);
     void RankUpCatInGameState(CatDialogueData data);
     void LoadRelationshipState();
-    void ResetRelationships();
   }
   
   public class RelationshipManager : IInitializable, IRelationshipManager{
@@ -20,7 +19,7 @@ namespace Outclaw.City {
 
     public void Initialize() {
       LoadRelationshipState();
-      gameStateManager.OnNonpersistReset += Reset;
+      gameStateManager.OnNonpersistReset += ResetRelationships;
     }
 
     public void RankUpCat(CatDialogueData data) {
@@ -29,7 +28,7 @@ namespace Outclaw.City {
     }
     
     public void RankUpCatInGameState(CatDialogueData data) {
-      data.IncreateGameStateRank();
+      data.IncreateGameStateRank(gameStateManager.CurrentGameStateData);
       activeData.Add(data);
     }
 
@@ -40,14 +39,21 @@ namespace Outclaw.City {
 
     public void ResetRelationships(){
 
-      foreach(CatDialogueData data in activeData){
-        data.Reset();
-      }
+      ResetRelationRanks();
+      ResetStateRanks();
       activeData.Clear();
     }
 
-    public void Reset(){
-      ResetRelationships();
+    private void ResetRelationRanks(){
+      foreach(CatDialogueData data in activeData){
+        data.ResetRank();
+      }
+    }
+
+    private void ResetStateRanks(){
+      foreach(CatDialogueData data in activeData){
+        data.ResetStateRank();
+      }
     }
   }
 
