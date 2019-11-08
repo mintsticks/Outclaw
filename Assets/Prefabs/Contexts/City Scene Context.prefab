@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22908880eb14d64a3811d586029a597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 0}
+  backgroundMusic: {fileID: 8300000, guid: 5ff2b3d7e9254824ca7da4e3bdbee508, type: 3}
   ambientSound: {fileID: 8300000, guid: cb0ce982ca0798b458108b11873ca8ab, type: 3}
 --- !u!114 &6987993041539253374
 MonoBehaviour:
@@ -89,17 +89,6 @@ MonoBehaviour:
     type: 3}
   senseManagerPrefab: {fileID: 4481578212403098552, guid: 5441a43ef1d1d1c4e9db2ea61e621fb8,
     type: 3}
-  promptSettings:
-    promptPrefabs:
-    - promptType: 1
-      prefab: {fileID: 7532689861681819102, guid: 39d65b80c62ff2d448bd98e1fd2aa181,
-        type: 3}
-    - promptType: 2
-      prefab: {fileID: 1910718599010050522, guid: 6d9f411b1b47e154ca4bbbd7daded44e,
-        type: 3}
-    - promptType: 3
-      prefab: {fileID: 650114432654141598, guid: f7f67620a2e034241b984e46632e1be5,
-        type: 3}
 --- !u!114 &756594638325271138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManagerPrefab: {fileID: 7652190617852912222, guid: 93a8915f2eb31e847ae63cf7bcb31492,
     type: 3}
-  speechBubblePrefab: {fileID: 8641793541296546377, guid: a2a408fdeb8b985419734eaec4299fa6,
+  speechBubblePrefab: {fileID: 1358098358285364759, guid: a2a408fdeb8b985419734eaec4299fa6,
     type: 3}
   thoughtBubblePrefab: {fileID: 7449775068322359441, guid: 81d10ad83844897428b257f1fd0a6689,
     type: 3}
