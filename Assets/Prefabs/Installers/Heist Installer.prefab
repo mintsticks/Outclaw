@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7234415411251894210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4853128822882010786}
+  - component: {fileID: 6578541699925379518}
+  m_Layer: 0
+  m_Name: HeistInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4853128822882010786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7234415411251894210}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6578541699925379518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7234415411251894210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e715a893cb94c7e4c9f5d4b34aa08315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityManagerPrefab: {fileID: 5447647215815304152, guid: a5bdee44fdfa7f44ab032f541d5ad6e8,
+    type: 3}
+  cameraBehavior: {fileID: 0}
+  controller: {fileID: 0}
+  interactionController: {fileID: 0}
+  capturedMenuPrefab: {fileID: 2892921191195802069, guid: a2c89d0288903a74c9d6a33e7dbd1c36,
+    type: 3}
+  footprintPrefab: {fileID: 3941315448148219730, guid: c81dd0dbd6690704998b0fc343717c4f,
+    type: 3}
+  senseManager: {fileID: 4481578212403098552, guid: 5441a43ef1d1d1c4e9db2ea61e621fb8,
+    type: 3}
+  vantageManagerPrefab: {fileID: 3776921949009355969, guid: a33ad9e93eae5f84abfd2eb873464cad,
+    type: 3}
+  sneakManagerPrefab: {fileID: 8402918925066923784, guid: 4ea9eecc3d77855418f9de8febb356dd,
+    type: 3}
+  objectiveTransformManagerPrefab: {fileID: 1551093554144406942, guid: 853f0934fc56c994c936f97a979beadd,
+    type: 3}

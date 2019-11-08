@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7234415411251894210
+--- !u!1 &4227156920761967918
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4853128822882010786}
-  - component: {fileID: 6578541699925379518}
+  - component: {fileID: 3107876275490286815}
+  - component: {fileID: 6253187797880640350}
   m_Layer: 0
-  m_Name: HeistInstaller
+  m_Name: Dialogue Installer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4853128822882010786
+--- !u!4 &3107876275490286815
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7234415411251894210}
+  m_GameObject: {fileID: 4227156920761967918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,20 +31,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6578541699925379518
+--- !u!114 &6253187797880640350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7234415411251894210}
+  m_GameObject: {fileID: 4227156920761967918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e715a893cb94c7e4c9f5d4b34aa08315, type: 3}
+  m_Script: {fileID: 11500000, guid: 7102e8e101d263748b2ef3c93cd002ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityManagerPrefab: {fileID: 5447647215815304152, guid: a5bdee44fdfa7f44ab032f541d5ad6e8,
+  dialogueManagerPrefab: {fileID: 7652190617852912222, guid: 93a8915f2eb31e847ae63cf7bcb31492,
     type: 3}
-  controller: {fileID: 8217840924305955387, guid: 3877c275ea0ab1c45b496551593ee9ed,
+  speechBubblePrefab: {fileID: 1358098358285364759, guid: a2a408fdeb8b985419734eaec4299fa6,
     type: 3}
-  pauseMenuManagerPrefab: {fileID: 0}
+  thoughtBubblePrefab: {fileID: 7449775068322359441, guid: 81d10ad83844897428b257f1fd0a6689,
+    type: 3}
+  optionIndicatorPrefab: {fileID: 1078197831242203693, guid: e2c7011dbf7e68048a550b6d0b913c7e,
+    type: 3}
+  dialogueIconManagerPrefab: {fileID: 7676714812861992969, guid: f4ddd1c6361da5d45a0339a70d8be8a4,
+    type: 3}
