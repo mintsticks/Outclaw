@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 using Zenject;
 
 namespace Outclaw.City {
@@ -15,7 +16,9 @@ namespace Outclaw.City {
     public class Data {
       public string BubbleText;
       public Transform BubbleParent;
+      public Transform UIParent;
       public DialogueType Type;
+      public List<Bounds> InvalidBounds;
     }
 
     [SerializeField] private float textSpeed = 0.025f;
@@ -24,8 +27,9 @@ namespace Outclaw.City {
     [SerializeField] private int startFontSize = 1;
     [SerializeField] private float horizontalPadding = 20f;
     [SerializeField] private float verticalPadding = 15f;
+    [SerializeField] private float numPositions;
     
-    [SerializeField] private Vector3 offset;
+    [SerializeField] private float tailDistance;
     [SerializeField] private Text bubbleText;
     [SerializeField] private Transform speechTrail;
     [SerializeField] private Transform thoughtTrail;
@@ -38,13 +42,20 @@ namespace Outclaw.City {
     private Transform parent;
     private Camera main;
     private StringBuilder currentStringBuilder;
-
+    private List<Bounds> invalidBounds;
+    private Vector3 parentCachedPos;
+    
     [Inject]
     public void Initialize(Data data) {
       bubbleText.text = data.BubbleText;
       parent = data.BubbleParent;
       main = Camera.main;
       HandleType(data.Type);
+      transform.SetParent(data.UIParent, false);
+      invalidBounds = data.InvalidBounds ?? new List<Bounds>();
+
+      UpdateCachedParentPosition();
+      UpdatePosition();
     }
 
     private string ProcessText(string text) {
@@ -152,19 +163,72 @@ namespace Outclaw.City {
     }
 
     private void Update() {
+      if (parent.position == parentCachedPos) {
+        return;
+      }
       UpdatePosition();
+      UpdateCachedParentPosition();
     }
 
     public Transform BubbleTransform => transform;
 
+    private void UpdateCachedParentPosition() {
+      parentCachedPos = parent.position;
+    }
+    
     public void UpdatePosition() {
-      transform.position = main.WorldToScreenPoint(parent.position + offset);
+      if (invalidBounds.Count == 0) {
+        FindValidPosition(90, 450);
+        return;
+      }
+      
+      var interactableCenter = invalidBounds[0].center;
+      var startAngle = Vector3.Angle(interactableCenter - parent.position, Vector3.right);
+      if (interactableCenter.x < parent.position.x) {
+        FindValidPosition(startAngle, startAngle + 360);
+        return;
+      } 
+      FindValidPosition(startAngle, startAngle - 360);
     }
 
+    private void OnDrawGizmos() {
+      if (invalidBounds.Count != 0) {
+       Gizmos.DrawCube(invalidBounds[0].center, invalidBounds[0].extents);
+      }
+    }
+
+    private void FindValidPosition(float startAngle, float endAngle) {
+      var cameraBounds = main.OrthographicBounds();
+      cameraBounds.center = new Vector3(cameraBounds.center.x, cameraBounds.center.y, 0);
+      
+      var angleChange = (endAngle - startAngle) / numPositions;
+      for (var i = 0; i < numPositions; i++) {
+        var angle = startAngle + i * angleChange;
+        var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance, angle);
+        Debug.Log(angle);
+        if (!IsValidPosition(pos, cameraBounds, invalidBounds)) {
+          continue;
+        }
+        
+        transform.position = main.WorldToScreenPoint(pos);
+        return;
+      }
+    }
+
+    private bool IsValidPosition(Vector3 position, Bounds requiredBound, List<Bounds> invalidAreas) {
+      var newPos = main.WorldToScreenPoint(position);
+      var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(main);
+
+      if (!requiredBound.Contains(bubbleBound.min) || !requiredBound.Contains(bubbleBound.max)) {
+        return false;
+      }
+      return invalidAreas.All(invalidBound => !invalidBound.Intersects(bubbleBound));
+    }
+    
+    
     public void SetOpacity(float opacity) {
       canvas.alpha = opacity;
     }
-    
 
     private void HandleType(DialogueType type) {
       var isSpeech = type == DialogueType.SPEECH;

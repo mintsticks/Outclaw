@@ -1,5 +1,6 @@
 ﻿using Managers;
 using Outclaw.City;
+using Player;
 using UnityEngine;
 using Zenject;
 
@@ -9,10 +10,7 @@ namespace Outclaw.Heist {
     private CharacterController2D controller;
     
     [SerializeField]
-    private PlayerAnimController ac;
-    
-    [SerializeField] 
-    private Rigidbody2D rb;
+    private AnimationController animationController;
 
     [SerializeField] 
     private float jumpHeight;
@@ -50,7 +48,7 @@ namespace Outclaw.Heist {
     public void UpdateMovement() {
       UpdateHorizontal();
       UpdateVertical();
-      UpdateAnimationState(velocity);
+      animationController.UpdateAnimationState(velocity, controller);
     }
 
     public void UpdatePhysics() {
@@ -68,10 +66,7 @@ namespace Outclaw.Heist {
         return;
       }
 
-      var scale = rb.transform.localScale;
-      if ((moveDir < 0 && scale.x > 0) || (moveDir > 0 && scale.x < 0)) {
-        rb.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
-      }
+      animationController.TurnCharacter(moveDir < 0);
     }
 
     private int MoveDirection() {
@@ -106,12 +101,6 @@ namespace Outclaw.Heist {
       if (playerInput.IsDownPress()) {
         isDescending = true;
       }
-    }
-
-    private void UpdateAnimationState(Vector3 move) {
-      ac.SetHorizontalVelocity(Mathf.Abs(move.x));
-      ac.SetVerticalVelocity(controller.isGrounded ? 0 : move.y);
-      ac.SetIsLanding(move.y <= 0 && controller.IsNearGround(Mathf.Abs(gravity)));
     }
   }
 }

@@ -8,54 +8,33 @@ using Zenject;
 
 namespace Outclaw.City {
   public class InteractableCat : MonoBehaviour, ObjectiveInteractable, IHaveTask {
-    [SerializeField]
-    private CatDialogues catDialogues;
+    [SerializeField] private CatDialogues catDialogues;
+    [SerializeField] private Indicator talkIndicator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private BoxCollider2D bound;
+    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private CatDialogueData dialogueData;
+    [SerializeField] private Task task;
     
-    [SerializeField]
-    private Indicator talkIndicator;
-
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
-    
-    [SerializeField]
-    private ParticleSystem particleSystem;
-
-    [SerializeField]
-    private CatDialogueData dialogueData;
-
-    [SerializeField]
-    private Task task;
-    
-    [Inject]
-    private IPlayer player;
-
-    [Inject]
-    private IRelationshipManager relationshipManager;
-
-    [Inject]
-    private IGameStateManager gameStateManager;
-    
-    [Inject]
-    private IDialogueManager dialogueManager;
-    
-    [Inject]
-    private ISceneTransitionManager sceneTransitionManager;
-
-    [Inject]
-    private IObjectiveManager objectiveManager;
-
-    [Inject] 
-    private IObjectiveTransformManager objectiveTransformManager;
-    
-    [Inject]
-    private ISenseVisuals senseVisuals;
+    [Inject] private IPlayer player;
+    [Inject] private IRelationshipManager relationshipManager;
+    [Inject] private IGameStateManager gameStateManager;
+    [Inject] private IDialogueManager dialogueManager;
+    [Inject] private ISceneTransitionManager sceneTransitionManager;
+    [Inject] private IObjectiveManager objectiveManager;
+    [Inject] private IObjectiveTransformManager objectiveTransformManager;
+    [Inject] private ISenseVisuals senseVisuals;
     
     private Transform parent;
     private bool created;
 
-    public Task ContainedTask { get => task; }
-    public Transform Location { get => transform; }
-    
+    public Task ContainedTask => task;
+    public Transform Location => transform;
+    public Transform ObjectiveTransform => transform;
+
+    public Bounds ObjectiveBounds => bound == null ? spriteRenderer.bounds : bound.bounds;
+
+
     public void Awake() {
       objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
@@ -126,11 +105,7 @@ namespace Outclaw.City {
       var dialogueForState = GetDialogueForState(state);
       var gameStateRank = dialogueData.GameStateRank;
       var dialogue = dialogueForState.catDialogue[gameStateRank].dialogue;
-      
-      dialogueManager.SetDialogueType(DialogueType.SPEECH);
-      dialogueManager.SetDialogue(dialogue);
-      dialogueManager.SetBubbleParent(transform);
-      dialogueManager.StartDialogue(() => CompleteGameStateDialogue(state));
+      dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, transform, this, () => CompleteGameStateDialogue(state));
     }
 
     private void CompleteGameStateDialogue(GameStateData state) {
@@ -145,11 +120,7 @@ namespace Outclaw.City {
     private void StartRelationshipDialogue() {
       var rank = dialogueData.Rank;
       var dialogue = catDialogues.dialoguesForRank[rank].dialogue;
-      
-      dialogueManager.SetDialogueType(DialogueType.SPEECH);
-      dialogueManager.SetDialogue(dialogue);
-      dialogueManager.SetBubbleParent(transform);
-      dialogueManager.StartDialogue(CompleteRankDialogue);
+      dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, transform, this, CompleteRankDialogue);
     }
     
     private void CompleteRankDialogue() {

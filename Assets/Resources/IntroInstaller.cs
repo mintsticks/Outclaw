@@ -20,7 +20,7 @@ namespace Outclaw {
     private void BindComponents()
     {
       Container.Bind<IPlayer>()
-        .To<Player>()
+        .To<City.Player>()
         .FromComponentInNewPrefab(playerPrefab)
         .AsSingle()
         .NonLazy();

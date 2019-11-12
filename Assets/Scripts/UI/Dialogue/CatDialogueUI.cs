@@ -35,6 +35,7 @@ namespace Outclaw {
     private DialogueType dialogueType;
     private HashSet<Bubble> bubbles = new HashSet<Bubble>();
     private bool skip;
+    private ObjectiveInteractable currentInteractable;
 
     public Action OnDialogueComplete {
       set => onDialogueComplete = value;
@@ -48,6 +49,10 @@ namespace Outclaw {
       set => dialogueType = value;
     }
 
+    public ObjectiveInteractable CurrentInteractable {
+      set => currentInteractable = value;
+    }
+
     public override IEnumerator RunLine(Line line) {
       var lineText = line.text;
       var parent = bubbleParent;
@@ -56,13 +61,19 @@ namespace Outclaw {
         parent = player.PlayerTransform;
       }
 
+      var bounds = new List<Bounds>();
+      if (currentInteractable != null) {
+        bounds.Add(currentInteractable.ObjectiveBounds);
+      }
+      
       var bubble = speechBubbleFactory.Create(new SpeechBubble.Data() {
         BubbleText = "",
         BubbleParent = parent,
-        Type = dialogueType
+        UIParent = transform,
+        Type = dialogueType,
+        InvalidBounds = bounds
       });
-      bubble.transform.SetParent(transform, false);
-      bubble.UpdatePosition();
+      
       bubbles.Add(bubble);
       var text = ReplaceVariables(lineText);
       var detectSkip = DetectSkip(bubble);
@@ -77,34 +88,7 @@ namespace Outclaw {
       bubble.StartCoroutine(FadeBubble(bubble)); // make bubble own coroutine so it's never stopped
       yield return new WaitForEndOfFrame();
     }
-/*
-    private IEnumerator ShowText(SpeechBubble bubble, string text) {
-      if (textSpeed <= 0.0f) {
-        bubble.SetText(text);
-        yield return new WaitForEndOfFrame();
-        yield break;
-      }
-
-      var stringBuilder = new StringBuilder();
-      skip = false;
-      var detectSkip = DetectSkip();
-      StartCoroutine(detectSkip);
-      foreach (var c in text) {
-        if (skip) {
-          bubble.SetText(text);
-          skip = false;
-          yield return new WaitForEndOfFrame();
-          yield break;
-        }
-
-        stringBuilder.Append(c);
-        bubble.SetText(stringBuilder.ToString());
-        yield return new WaitForSeconds(textSpeed);
-      }
-
-      StopCoroutine(detectSkip);
-    }
-*/
+    
     private IEnumerator DetectSkip(SpeechBubble bubble) {
       while (true) {
         if (!playerInput.IsInteractDown()) {

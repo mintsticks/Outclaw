@@ -1,5 +1,6 @@
 ﻿using City;
 using Outclaw.City;
+using Player;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +14,9 @@ namespace Outclaw {
 
     [SerializeField]
     private LayerMask oneWayTriggerLayer;
+
+    [SerializeField]
+    private AnimationController animationController;
     
     [Inject]
     private IPlayerInput playerInput;
@@ -21,15 +25,23 @@ namespace Outclaw {
     private IPlayer player;
 
     private ObjectiveInteractable currentInteractable;
-    
+    private IHaveTask currentTask;
     public void UpdateInteraction() {
       if (player.InputDisabled) {
         return;
       }
-      
-      if (playerInput.IsInteractDown()) {
-        currentInteractable?.Interact();
+
+      if (!playerInput.IsInteractDown() || currentInteractable == null) {
+        return;
       }
+
+      
+      if (!currentInteractable.HasInteraction()) {
+        return;
+      }
+      var isLeftOfObject = player.PlayerTransform.position.x < currentInteractable.ObjectiveTransform.position.x;
+      animationController.TurnCharacter(!isLeftOfObject);
+      currentInteractable?.Interact();
     }
 
     public void HandleEnter(Collider2D other) {

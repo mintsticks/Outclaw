@@ -18,7 +18,8 @@ namespace Outclaw.City {
     [SerializeField] private Indicator enterIndicator;
     [SerializeField] private List<LocationDialogueForState> locationDialoguesForState;
     [SerializeField] private LocationData destinationLocation;
-
+    [SerializeField] private BoxCollider2D bound;
+    
     [Header("Effects")]
     [SerializeField] private AudioClip enterClip;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -38,8 +39,22 @@ namespace Outclaw.City {
     [Inject] private ISenseVisuals senseVisuals;
 
     public Transform LocationPosition => locationPosition != null ? locationPosition : transform;
-    public Task ContainedTask { get => task; }
-    public Transform Location { get => transform; }
+    public Task ContainedTask => task;
+    public Transform Location => transform;
+    public Transform ObjectiveTransform => transform;
+
+    public Bounds ObjectiveBounds {
+      get {
+        if (bound == null) {
+          var bounds = new Bounds();
+          bounds.center = transform.position;
+          return bounds;
+        }
+
+        return bound.bounds;
+      }
+    }
+    
 
     public void Awake() {
       objectiveTransformManager.RegisterTask(this);
@@ -88,10 +103,11 @@ namespace Outclaw.City {
 
     private void HandleDialogue(LocationDialogueForState locationDialogueForState) {
       enterIndicator.FadeOut();
-      dialogueManager.SetDialogueType(DialogueType.THOUGHT);
-      dialogueManager.SetDialogue(locationDialogueForState.locationDialogue.dialogue);
-      dialogueManager.SetBubbleParent(player.PlayerTransform);
-      dialogueManager.StartDialogue(() => CompleteDialogue(!locationDialogueForState.isBlocking));
+      dialogueManager.StartDialogue(locationDialogueForState.locationDialogue.dialogue, 
+        DialogueType.SPEECH,
+        player.PlayerTransform, 
+        this, 
+        () => CompleteDialogue(!locationDialogueForState.isBlocking));
     }
 
     private void CompleteDialogue(bool enter) {

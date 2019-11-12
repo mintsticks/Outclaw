@@ -53,7 +53,8 @@ MonoBehaviour:
   startFontSize: 1
   horizontalPadding: 20
   verticalPadding: 15
-  offset: {x: 0, y: 2, z: 0}
+  numPositions: 12
+  tailDistance: 2.5
   bubbleText: {fileID: 6240400284197850734}
   speechTrail: {fileID: 2359121143201525564}
   thoughtTrail: {fileID: 7292803558101148904}
@@ -258,7 +259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2359121143201525564
 RectTransform:
   m_ObjectHideFlags: 0

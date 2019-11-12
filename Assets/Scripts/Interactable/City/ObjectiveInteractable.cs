@@ -9,5 +9,7 @@ namespace Outclaw.City {
     bool HasInteraction();
     void EnableEffect();
     void DisableEffect();
+    Transform ObjectiveTransform { get; }
+    Bounds ObjectiveBounds { get; }
   }
 }

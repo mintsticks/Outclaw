@@ -1,5 +1,7 @@
 ﻿using Managers;
+using Player;
 using UnityEngine;
+using Utility;
 using Zenject;
 
 namespace Outclaw.City {
@@ -9,18 +11,12 @@ namespace Outclaw.City {
   public class MovementController : MonoBehaviour {
     [SerializeField]
     private CharacterController2D controller;
-    
+
     [SerializeField]
-    private PlayerAnimController ac;
-    
-    [SerializeField] 
-    private Rigidbody2D rb;
+    private AnimationController animationController;
 
     [SerializeField] 
     private float jumpHeight;
-
-    [SerializeField]
-    private float gravity;
 
     [SerializeField]
     private float runSpeed;
@@ -46,7 +42,7 @@ namespace Outclaw.City {
     public void UpdateMovement() {
       UpdateHorizontal();
       UpdateVertical();
-      UpdateAnimationState(velocity);
+      animationController.UpdateAnimationState(velocity, controller);
     }
 
     public void UpdatePhysics() {
@@ -63,10 +59,7 @@ namespace Outclaw.City {
         return;
       }
 
-      var scale = rb.transform.localScale;
-      if ((moveDir < 0 && scale.x > 0) || (moveDir > 0 && scale.x < 0)) {
-        rb.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
-      }
+      animationController.TurnCharacter(moveDir < 0);
     }
 
     private int MoveDirection() {
@@ -79,7 +72,7 @@ namespace Outclaw.City {
     private void UpdateVertical() {
       CheckDescend();
       CheckJump();
-      velocity.y += gravity * Time.deltaTime;
+      velocity.y += GlobalConstants.GRAVITY * Time.deltaTime;
     }
 
     private void CheckJump() {
@@ -91,7 +84,7 @@ namespace Outclaw.City {
         isJumping = true;
       }
       
-      velocity.y = isJumping ? Mathf.Sqrt(2f * jumpHeight * -gravity) : velocity.y;
+      velocity.y = isJumping ? Mathf.Sqrt(2f * jumpHeight * -GlobalConstants.GRAVITY) : velocity.y;
     }
 
     private void CheckDescend() {
@@ -101,12 +94,6 @@ namespace Outclaw.City {
       if (playerInput.IsDownPress()) {
         isDescending = true;
       }
-    }
-
-    private void UpdateAnimationState(Vector3 move) {
-      ac.SetHorizontalVelocity(Mathf.Abs(move.x));
-      ac.SetVerticalVelocity(controller.isGrounded ? 0 : move.y);
-      ac.SetIsLanding(move.y <= 0 && controller.IsNearGround(Mathf.Abs(gravity)));
     }
   }
 }

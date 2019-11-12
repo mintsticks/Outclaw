@@ -120,6 +120,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &5212246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5212247}
+  - component: {fileID: 5212248}
+  m_Layer: 2
+  m_Name: DialogueBounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5212247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5212246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 511270371}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5212248
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5212246}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07913995, y: 0.5755663}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.2590957, y: 0.71221733}
+  m_EdgeRadius: 0
 --- !u!1 &43853902
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +487,7 @@ MonoBehaviour:
       - {fileID: 4900000, guid: 21a831cbb5be68a4585c3c3fdf411ed8, type: 3}
   destinationLocation: {fileID: 11400000, guid: 77cfee38660a1da4db378a400a07b085,
     type: 2}
+  bound: {fileID: 0}
   enterClip: {fileID: 8300000, guid: 35cadffa6668fea4092735578f9f1c70, type: 3}
   spriteRenderer: {fileID: 0}
   locationPosition: {fileID: 0}
@@ -1145,6 +1203,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 21f0bd0983118814d9f7dd2fc133bef0, type: 3}
   dialogueData: {fileID: 11400000, guid: 7e51b507ffd688741b7ded2c152a99d4, type: 2}
+  bound: {fileID: 0}
   spriteRenderer: {fileID: 656790587}
   particleSystem: {fileID: 1127259958}
   task: {fileID: 11400000, guid: 15a019a2ced2b784aa23b3df09cca47a, type: 2}
@@ -1328,6 +1387,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 6c3ef2c957412474298c63f8f07b2775, type: 3}
   dialogueData: {fileID: 11400000, guid: 7d8709efdbca76b48996203c16a9ea49, type: 2}
+  bound: {fileID: 0}
   spriteRenderer: {fileID: 1099322505}
   particleSystem: {fileID: 680033820}
   task: {fileID: 11400000, guid: 41b1a4622ad482f4b90659953ef9ab5e, type: 2}
@@ -1587,6 +1647,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 76df4e1529fb26d4bad27aafbcdc6691, type: 3}
   dialogueData: {fileID: 11400000, guid: de7c8d96458a7c844b31a12ea4c5bdc1, type: 2}
+  bound: {fileID: 0}
   spriteRenderer: {fileID: 77781440}
   particleSystem: {fileID: 1469858598}
   task: {fileID: 11400000, guid: 4220f945deddf6f4e967d3958181971b, type: 2}
@@ -1749,6 +1810,7 @@ Transform:
   - {fileID: 866821679}
   - {fileID: 79198615}
   - {fileID: 923338770}
+  - {fileID: 5212247}
   m_Father: {fileID: 237241815}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1798,6 +1860,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: a869d1ac72167d440ae8daab60eafb21, type: 3}
   dialogueData: {fileID: 11400000, guid: 580653f7a32ac0b478f6e017b5030b48, type: 2}
+  bound: {fileID: 5212248}
   spriteRenderer: {fileID: 866821680}
   particleSystem: {fileID: 79198616}
   task: {fileID: 11400000, guid: 83346012ecbd7d04fb187988128dcfff, type: 2}
@@ -2563,6 +2626,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 62d35a270ddcf4a49b956818fa64b68e, type: 3}
   dialogueData: {fileID: 11400000, guid: 46db32a9e108d404aa30dc56db85112d, type: 2}
+  bound: {fileID: 0}
   spriteRenderer: {fileID: 1275948599}
   particleSystem: {fileID: 144481634}
   task: {fileID: 11400000, guid: 51bc6731c199fae48b17a07f3915ebcb, type: 2}
@@ -4475,6 +4539,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3809594339668810660, guid: 9b849348fa7d05a46978ab61e717d52d,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b849348fa7d05a46978ab61e717d52d, type: 3}
 --- !u!1 &1574613284
@@ -4910,6 +4979,7 @@ MonoBehaviour:
       - dialogue:
         - {fileID: 4900000, guid: 3987fb35179ae174abf05030c1d1fa49, type: 3}
   dialogueData: {fileID: 11400000, guid: 8fd33dbaa0711544da11970deb16b3e4, type: 2}
+  bound: {fileID: 0}
   spriteRenderer: {fileID: 1629020094}
   particleSystem: {fileID: 467188776}
   task: {fileID: 11400000, guid: 52238c9c0e631654a97f856d63ace1c2, type: 2}

@@ -13,7 +13,8 @@ namespace Outclaw.City {
     [SerializeField] private Indicator observeIndicator;
     [SerializeField] private ObjectDialogues objectInfo;
     [SerializeField] private ObjectDialogueData dialogueData;
-
+    [SerializeField] private BoxCollider2D bound;
+    
     [Header("Effects")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private ParticleSystem particleSystem;
@@ -32,9 +33,16 @@ namespace Outclaw.City {
     private Transform parent;
     private bool created;
 
-    public Task ContainedTask { get => task; }
-    public Transform Location { get => transform; }
+    public Task ContainedTask => task;
+    public Transform Location => transform;
+    public Transform ObjectiveTransform => transform;
+    public Bounds ObjectiveBounds => bound == null ? spriteRenderer.bounds : bound.bounds;
 
+    private void OnDrawGizmos() {
+      
+        Gizmos.DrawCube(ObjectiveBounds.center, ObjectiveBounds.extents * 2);
+    }
+    
     public void Awake() {
       objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
@@ -59,10 +67,7 @@ namespace Outclaw.City {
 
       var dialogue = GetObjectDialogue();
       observeIndicator.FadeOut();
-      dialogueManager.SetDialogueType(DialogueType.THOUGHT);
-      dialogueManager.SetDialogue(dialogue);
-      dialogueManager.SetBubbleParent(player.PlayerTransform);
-      dialogueManager.StartDialogue(CompleteInteraction);
+      dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, player.PlayerTransform, this, CompleteInteraction);
     }
 
     public bool HasInteraction() {

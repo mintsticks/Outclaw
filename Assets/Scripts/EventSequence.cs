@@ -66,11 +66,7 @@ namespace Outclaw {
     }
 
     private IEnumerator HandleDialogue(TextAsset[] dialogue) {
-      //TODO(dwong): handle dialgue event involving other cats
-      dialogueManager.SetDialogueType(DialogueType.THOUGHT);
-      dialogueManager.SetDialogue(dialogue);
-      dialogueManager.SetBubbleParent(player.PlayerTransform);
-      dialogueManager.StartDialogue();
+      dialogueManager.StartDialogue(dialogue, DialogueType.THOUGHT, player.PlayerTransform);
       while (dialogueManager.IsDialogueRunning) {
         yield return null;
       }
