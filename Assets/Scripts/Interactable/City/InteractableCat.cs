@@ -97,13 +97,13 @@ namespace Outclaw.City {
       }
       
       var maxRank = dialogueForState.catDialogue.Count - 1;
-      var rank = dialogueData.GameStateRank;
+      var rank = dialogueData.GetGameStateRank(currentGameState);
       return rank <= maxRank;
     }
     
     private void StartGameStateDialogue(GameStateData state) {
       var dialogueForState = GetDialogueForState(state);
-      var gameStateRank = dialogueData.GameStateRank;
+      var gameStateRank = dialogueData.GetGameStateRank(state);
       var dialogue = dialogueForState.catDialogue[gameStateRank].dialogue;
       dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, transform, this, () => CompleteGameStateDialogue(state));
     }

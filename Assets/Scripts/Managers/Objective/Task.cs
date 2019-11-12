@@ -7,7 +7,7 @@ namespace Outclaw{
   [CreateAssetMenu(fileName = "New Task", menuName = "Outclaw/Task")]
   public class Task : ScriptableObject
   {
-    private bool completed;
+    [System.NonSerialized] private bool completed;
 
     public void Complete(){
       completed = true;

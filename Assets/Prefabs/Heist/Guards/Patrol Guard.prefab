@@ -51,8 +51,8 @@ MonoBehaviour:
   visionConeTransform: {fileID: 0}
   speed: 2
   bodyBounds:
-    m_Center: {x: 0, y: 2.94, z: 0}
-    m_Extent: {x: 0.67, y: 2.78, z: 0}
+    m_Center: {x: 0, y: 2.68, z: 0}
+    m_Extent: {x: 0.67, y: 2.7, z: 0}
   anim: {fileID: 1695070704044528259}
 --- !u!1 &1579354208151354933
 GameObject:
@@ -124,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579354208814728735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.95, z: 0}
+  m_LocalPosition: {x: 0, y: 2.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4980907155430099105}
@@ -690,6 +690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233071593524746221, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8638292515777594075, guid: 37ff4c626ee5f2b4a90f2751b6f9cd4d,
         type: 3}
