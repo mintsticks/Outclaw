@@ -38,11 +38,6 @@ namespace Outclaw.City {
     public Transform ObjectiveTransform => transform;
     public Bounds ObjectiveBounds => bound == null ? spriteRenderer.bounds : bound.bounds;
 
-    private void OnDrawGizmos() {
-      
-        Gizmos.DrawCube(ObjectiveBounds.center, ObjectiveBounds.extents * 2);
-    }
-    
     public void Awake() {
       objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
@@ -67,7 +62,7 @@ namespace Outclaw.City {
 
       var dialogue = GetObjectDialogue();
       observeIndicator.FadeOut();
-      dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, player.PlayerTransform, this, CompleteInteraction);
+      dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, player.HeadTransform, this, CompleteInteraction);
     }
 
     public bool HasInteraction() {

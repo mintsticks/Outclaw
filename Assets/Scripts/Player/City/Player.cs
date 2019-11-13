@@ -5,32 +5,24 @@ using Zenject;
 namespace Outclaw.City {
   public interface IPlayer {
     Transform PlayerTransform { get; }
-    Vector3 PlayerVelocity { get; }
+    Transform HeadTransform { get; }
     bool InputDisabled { get; set; }
     void UpdatePosition(Vector3? position);
   }
-  
+
   public class Player : MonoBehaviour, IPlayer {
-    [SerializeField]
-    private MovementController movementController;
-
-    [SerializeField]
-    private InteractionController interactionController;
+    [SerializeField] private MovementController movementController;
+    [SerializeField] private InteractionController interactionController;
+    [SerializeField] private Transform headTransform;
     
-    [Inject]
-    private IPlayerData playerData;
+    [Inject] private IPlayerData playerData;
+    [Inject] private IPauseGame pauseGame;
+    [Inject] private ISpawnManager spawnManager;
 
-    [Inject] 
-    private IPauseGame pauseGame;
-
-    [Inject] 
-    private ISpawnManager spawnManager;
-    
     private bool inputDisabled;
-    
-    public Transform PlayerTransform => transform;
 
-    public Vector3 PlayerVelocity => movementController.Velocity;
+    public Transform PlayerTransform => transform;
+    public Transform HeadTransform => headTransform;
 
     public bool InputDisabled {
       get => inputDisabled || pauseGame.IsPaused;
@@ -42,6 +34,7 @@ namespace Outclaw.City {
       if (spawnPoint == null) {
         return;
       }
+
       transform.position = spawnPoint.Value;
     }
 
@@ -57,15 +50,16 @@ namespace Outclaw.City {
     private void OnTriggerEnter2D(Collider2D other) {
       interactionController.HandleEnter(other);
     }
-    
+
     private void OnTriggerExit2D(Collider2D other) {
       interactionController.HandleExit(other);
     }
-    
+
     public void UpdatePosition(Vector3? spawnPoint) {
       if (spawnPoint == null) {
         return;
       }
+
       transform.position = spawnPoint.Value;
     }
   }

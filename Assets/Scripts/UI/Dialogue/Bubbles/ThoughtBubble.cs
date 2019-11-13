@@ -11,7 +11,6 @@ namespace Outclaw.City {
   public interface Bubble {
     void SetOpacity(float opacity);
     Transform BubbleTransform { get; }
-    void UpdatePosition();
   }
   
   public class ThoughtBubble : MonoBehaviour, Bubble {

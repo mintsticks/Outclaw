@@ -11,6 +11,7 @@ namespace Outclaw.Heist {
     [SerializeField] private AudioClip senseSfx;
     [SerializeField] private SpriteController spriteController;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform headTransform;
     
     [Inject] private IAbilityCooldownManager abilityCooldownManager;
     [Inject] private IPlayerInput playerInput;
@@ -27,6 +28,7 @@ namespace Outclaw.Heist {
     private bool hidden;
 
     public Transform PlayerTransform => transform;
+    public Transform HeadTransform => headTransform;
     public Vector3 PlayerVelocity { get; }
 
     public bool InputDisabled {

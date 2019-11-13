@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1601247267401818689}
   - component: {fileID: 7292803557507377925}
   - component: {fileID: 6810005122080069919}
+  - component: {fileID: 122106010598435365}
   m_Layer: 0
   m_Name: SpeechBubble
   m_TagString: Untagged
@@ -53,13 +54,12 @@ MonoBehaviour:
   startFontSize: 1
   horizontalPadding: 20
   verticalPadding: 15
-  numPositions: 12
-  tailDistance: 2.5
   bubbleText: {fileID: 6240400284197850734}
   speechTrail: {fileID: 2359121143201525564}
   thoughtTrail: {fileID: 7292803558101148904}
   canvas: {fileID: 7292803557507377925}
   bubbleImage: {fileID: 2359121142810595841}
+  bubblePositionHelper: {fileID: 122106010598435365}
 --- !u!225 &7292803557507377925
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -168,6 +168,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &122106010598435365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358098358285364759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3089b42509a4a60bc62be8e81cfe873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numPositions: 36
+  tailDistance: 1.25
+  canvas: {fileID: 7292803557507377925}
 --- !u!1 &2359121142810595846
 GameObject:
   m_ObjectHideFlags: 0

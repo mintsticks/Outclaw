@@ -66,7 +66,7 @@ namespace Outclaw {
     }
 
     private IEnumerator HandleDialogue(TextAsset[] dialogue) {
-      dialogueManager.StartDialogue(dialogue, DialogueType.THOUGHT, player.PlayerTransform);
+      dialogueManager.StartDialogue(dialogue, DialogueType.THOUGHT, player.HeadTransform);
       while (dialogueManager.IsDialogueRunning) {
         yield return null;
       }
