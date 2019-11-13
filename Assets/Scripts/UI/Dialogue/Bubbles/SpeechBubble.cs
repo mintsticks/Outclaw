@@ -49,8 +49,8 @@ namespace Outclaw.City {
       HandleType(data.Type);
       transform.SetParent(data.UIParent, false);
       invalidBounds = data.InvalidBounds ?? new List<Bounds>();
-      bubblePositionHelper.Initialize(invalidBounds, main, parent, bubbleImage);
       canvas = data.UI.DialogueCanvas;
+      bubblePositionHelper.Initialize(invalidBounds, main, parent, bubbleImage, canvas);
     }
 
     private string ProcessText(string text) {

@@ -10,7 +10,7 @@ namespace UI.Dialogue {
     [SerializeField] private int numPositions;
     [SerializeField] private float tailDistance;
     [SerializeField] private float headSize;
-    [SerializeField] private CanvasGroup canvas;
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private BubbleTail bubbleTail;
 
     private List<Bounds> invalidBounds;
@@ -18,14 +18,15 @@ namespace UI.Dialogue {
     private Transform parent;
     private Vector3 parentCachedPos;
     private RectTransform bubbleImage;
-    private float cachedAngle;
+    private Canvas canvas;
     
-    public void Initialize(List<Bounds> invalidBounds, Camera camera, Transform parent, RectTransform bubbleImage) {
+    public void Initialize(List<Bounds> invalidBounds, Camera camera, Transform parent, RectTransform bubbleImage, Canvas canvas) {
       this.invalidBounds = invalidBounds;
       this.camera = camera;
       this.parent = parent;
       this.bubbleImage = bubbleImage;
-      canvas.alpha = 0;
+      this.canvas = canvas;
+      canvasGroup.alpha = 0;
     }
 
     public void Update() {
@@ -33,7 +34,7 @@ namespace UI.Dialogue {
         return;
       }
 
-      canvas.alpha = 1;
+      canvasGroup.alpha = 1;
       UpdatePosition();
       UpdateTail();
       parentCachedPos = parent.position;
@@ -61,7 +62,7 @@ namespace UI.Dialogue {
       cameraBounds.center = new Vector3(cameraBounds.center.x, cameraBounds.center.y, 0);
       for(var i = 0; i <= numPositions; i++) {
         var angle = GetAngleForIndex(i, GlobalConstants.CIRCLE_ANGLE / numPositions, startAngle);
-        var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + GetPaddingForAngle(angle), angle);
+        var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(angle), angle);
         var newPos = camera.WorldToScreenPoint(pos);
         var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(camera);
 
@@ -72,15 +73,13 @@ namespace UI.Dialogue {
         if (invalidBounds.Any(bound => bubbleBound.Intersects(bound))) {
           continue;
         }
-
-        cachedAngle = angle;
+        
         transform.position = newPos;
         return;
       }
       
-      var defaultPos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + GetPaddingForAngle(startAngle), startAngle);
+      var defaultPos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(startAngle), startAngle);
       transform.position = camera.WorldToScreenPoint(defaultPos);
-      cachedAngle = startAngle;
     }
     
 
