@@ -19,6 +19,7 @@ namespace UI.Dialogue {
     private Vector3 parentCachedPos;
     private RectTransform bubbleImage;
     private Canvas canvas;
+    private bool shouldFollow = true;
     
     public void Initialize(List<Bounds> invalidBounds, Camera camera, Transform parent, RectTransform bubbleImage, Canvas canvas) {
       this.invalidBounds = invalidBounds;
@@ -27,19 +28,56 @@ namespace UI.Dialogue {
       this.bubbleImage = bubbleImage;
       this.canvas = canvas;
       canvasGroup.alpha = 0;
+      bubbleTail.SetOpacity(0);
     }
+/*
+   private void OnDrawGizmos() {
+      var cameraBounds = camera.OrthographicBounds();
+      cameraBounds.center = new Vector3(cameraBounds.center.x, cameraBounds.center.y, 0);
+      for(var i = 0; i <= numPositions; i++) {
+        var angle = GetAngleForIndex(i, GlobalConstants.CIRCLE_ANGLE / numPositions, 48);
+        var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(angle), angle);
+        
+        
+        var newPos = camera.WorldToScreenPoint(pos);
+        var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(camera);
+        bubbleBound.center = new Vector3(bubbleBound.center.x, bubbleBound.center.y, 0);
+        
+        
+        if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
+          Gizmos.color = Color.blue;
+          Gizmos.DrawCube(pos, new Vector3(.1f, .1f, 1));
+          continue;
+        }
+
+        if (invalidBounds.Any(bound => bubbleBound.Intersects(bound))) {
+          Gizmos.color = Color.red;
+          Gizmos.DrawCube(pos, new Vector3(.1f, .1f, 1));
+          continue;
+        }
+        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(pos, new Vector3(.1f, .1f, 1));
+        return;
+      }
+    }*/
 
     public void Update() {
-      if (parentCachedPos == parent.position) {
+      if (!shouldFollow || parentCachedPos == parent.position) {
         return;
       }
 
       canvasGroup.alpha = 1;
+      bubbleTail.SetOpacity(1);
       UpdatePosition();
       UpdateTail();
       parentCachedPos = parent.position;
     }
 
+    public void StopFollowing() {
+      shouldFollow = false;
+    }
+    
     private void UpdatePosition() {
       if (invalidBounds.Count == 0) {
         FindValidPosition(90);
@@ -53,8 +91,9 @@ namespace UI.Dialogue {
 
     private void UpdateTail() {
       var position = parent.position;
-      var dirVector = (camera.ScreenToWorldPoint(transform.position) - position).normalized;
-      bubbleTail.UpdatePoints(position + headSize * dirVector,  position + tailDistance * dirVector);
+      var bubblePos = camera.ScreenToWorldPoint(transform.position);
+      var dirVector = (bubblePos- position).normalized;
+      bubbleTail.UpdatePoints(position + headSize * dirVector,  bubblePos);
     }
 
     private void FindValidPosition(float startAngle) {
@@ -65,15 +104,19 @@ namespace UI.Dialogue {
         var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(angle), angle);
         var newPos = camera.WorldToScreenPoint(pos);
         var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(camera);
-
+        bubbleBound.center = new Vector3(bubbleBound.center.x, bubbleBound.center.y, 0);
+        
         if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
+          Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.magenta, 5);
           continue;
         }
 
         if (invalidBounds.Any(bound => bubbleBound.Intersects(bound))) {
+          Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.red, 5);
           continue;
         }
         
+        Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.yellow, 5);
         transform.position = newPos;
         return;
       }

@@ -1,27 +1,17 @@
-﻿
+﻿using Managers.Dialogue;
 using UnityEngine;
 using Zenject;
 
-namespace Outclaw.City{
-  public class DialogueInstaller : MonoInstaller
-  {
-    [SerializeField]
-    private GameObject dialogueManagerPrefab;
-
-    [SerializeField]
-    private GameObject speechBubblePrefab;
-
-    [SerializeField]
-    private GameObject thoughtBubblePrefab;
-
-    [SerializeField]
-    private GameObject optionIndicatorPrefab;
-
-    [SerializeField]
-    private GameObject dialogueIconManagerPrefab;
-
-
-
+namespace Outclaw.City {
+  public class DialogueInstaller : MonoInstaller {
+    [SerializeField] private GameObject dialogueManagerPrefab;
+    [SerializeField] private GameObject speechBubblePrefab;
+    [SerializeField] private GameObject iconBubblePrefab;
+    [SerializeField] private GameObject thoughtBubblePrefab;
+    [SerializeField] private GameObject optionIndicatorPrefab;
+    [SerializeField] private GameObject dialogueIconManagerPrefab;
+    [SerializeField] private GameObject iconNameManagerPrefab;
+    
     public override void InstallBindings() {
       BindComponents();
       BindFactories();
@@ -33,6 +23,11 @@ namespace Outclaw.City{
         .FromComponentInNewPrefab(dialogueManagerPrefab)
         .AsSingle()
         .NonLazy();
+      Container.Bind<IIconNameManager>()
+        .To<IconNameManager>()
+        .FromComponentInNewPrefab(iconNameManagerPrefab)
+        .AsSingle()
+        .NonLazy();
       Container.Bind<IDialogueIconManager>()
         .To<DialogueIconManager>()
         .FromComponentInNewPrefab(dialogueIconManagerPrefab)
@@ -40,15 +35,19 @@ namespace Outclaw.City{
     }
 
     private void BindFactories() {
-      Container.BindFactory<SpeechBubble.Data, 
-          SpeechBubble, 
+      Container.BindFactory<SpeechBubble.Data,
+          SpeechBubble,
           SpeechBubble.Factory>()
         .FromComponentInNewPrefab(speechBubblePrefab);
-      Container.BindFactory<ThoughtBubble.Data, 
-          ThoughtBubble, 
+      Container.BindFactory<IconBubble.Data,
+          IconBubble,
+          IconBubble.Factory>()
+        .FromComponentInNewPrefab(iconBubblePrefab);
+      Container.BindFactory<ThoughtBubble.Data,
+          ThoughtBubble,
           ThoughtBubble.Factory>()
         .FromComponentInNewPrefab(thoughtBubblePrefab);
-      Container.BindFactory<OptionIndicator, 
+      Container.BindFactory<OptionIndicator,
           OptionIndicator.Factory>()
         .FromComponentInNewPrefab(optionIndicatorPrefab);
     }

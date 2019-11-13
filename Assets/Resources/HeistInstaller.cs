@@ -16,6 +16,7 @@ namespace Outclaw.Heist {
     [SerializeField] private GameObject vantageManagerPrefab;
     [SerializeField] private GameObject sneakManagerPrefab;
     [SerializeField] private GameObject objectiveTransformManagerPrefab;
+    [SerializeField] private GameObject heistDialogueSettingPrefab;
     /// <summary>
     /// For all classes common to heist scenes.
     /// Bind the interfaces to the concrete classes.
@@ -79,6 +80,10 @@ namespace Outclaw.Heist {
         .To<HeistSenseVisuals>()
         .AsSingle()
         .NonLazy();
+      Container.Bind<IDialogueSettings>()
+        .To<DialogueSettings>()
+        .FromComponentInNewPrefab(heistDialogueSettingPrefab)
+        .AsSingle();
       BindFactories();
     }
 

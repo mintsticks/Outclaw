@@ -494,6 +494,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1469033577216939400}
   - component: {fileID: 7008096492463295152}
+  - component: {fileID: -3054991048449347791}
+  - component: {fileID: 4965366785216298205}
   m_Layer: 0
   m_Name: ThoughtBubble
   m_TagString: Untagged
@@ -532,14 +534,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583c1c71753e472ba23970336c147cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0.25, y: 2, z: 0}
   bubbleText: {fileID: 2531127753685960936}
   bubble: {fileID: 2396389911520370432}
-  trail: {fileID: 7951336435937779728}
   indicatorGrid: {fileID: 7873772576365222870}
   leftArrow: {fileID: 6701791008957261187}
   rightArrow: {fileID: 8762296362765028918}
-  icon: {fileID: 2497373557768875368}
+  bubbleAnimationHelper: {fileID: -3054991048449347791}
+--- !u!114 &-3054991048449347791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449775068322359441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be8fd71555a4c6580ee081b44abb6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleFadeTime: 0.1
+  bubbleFade:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  canvasGroup: {fileID: 4965366785216298205}
+  bubbleTail: {fileID: 0}
+--- !u!225 &4965366785216298205
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449775068322359441}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &8244312516905714125
 GameObject:
   m_ObjectHideFlags: 0

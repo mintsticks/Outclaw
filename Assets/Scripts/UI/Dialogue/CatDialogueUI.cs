@@ -18,12 +18,11 @@ namespace Outclaw {
   }
 
   public class CatDialogueUI : DialogueUIBehaviour {
-    [SerializeField] private float bubbleFadeTime;
-    [SerializeField] private AnimationCurve bubbleFade;
     [SerializeField] private List<DialogueVariable> dialogueVariables;
     [SerializeField] private Canvas canvas;
-    
+
     [Inject] private SpeechBubble.Factory speechBubbleFactory;
+    [Inject] private IconBubble.Factory iconBubbleFactory;
     [Inject] private ThoughtBubble.Factory thoughtBubbleFactory;
     [Inject] private IPlayerInput playerInput;
     [Inject] private IPauseGame pause;
@@ -58,37 +57,68 @@ namespace Outclaw {
     public override IEnumerator RunLine(Line line) {
       var lineText = line.text;
       var parent = bubbleParent;
-      if (HasMultipleText(lineText)) {
-        lineText = ParseMultipleText(lineText);
-        parent = player.PlayerTransform;
-      }
-
       var bounds = new List<Bounds>();
-      if (currentInteractable != null) {
+      if (currentInteractable != null && currentInteractable.ObjectiveTransform != parent) {
         bounds.Add(currentInteractable.ObjectiveBounds);
       }
+      if (parent != player.PlayerTransform && parent != player.HeadTransform) {
+        bounds.Add(player.PlayerBounds);
+      }
       
+      if (HasIcon(lineText)) {
+        yield return HandleIconBubble(parent, ParseIconName(lineText), bounds);
+        yield break;
+      }
+      
+      if (HasMultipleText(lineText)) {
+        lineText = ParseMultipleText(lineText);
+        parent = player.HeadTransform;
+      }
+
+      yield return HandleTextBubble(parent, lineText, bounds);
+    }
+
+    private IEnumerator HandleIconBubble(Transform parent, string key, List<Bounds> bounds) {
+      var bubble = iconBubbleFactory.Create(new IconBubble.Data() {
+        InvalidBounds = bounds,
+        IconName = key,
+        BubbleParent = parent,
+        UIParent = transform,
+        UI = this
+      });
+      bubbles.Add(bubble);
+      
+      while (!IsValidDialogueProgression()) {
+        yield return null;
+      }
+
+      bubbles.Remove(bubble);
+      bubble.StartCoroutine(bubble.FadeBubble()); // make bubble own coroutine so it's never stopped
+      yield return new WaitForEndOfFrame();
+    }
+    
+    private IEnumerator HandleTextBubble(Transform parent, string lineText, List<Bounds> bounds) {
       var bubble = speechBubbleFactory.Create(new SpeechBubble.Data() {
         BubbleText = "",
         BubbleParent = parent,
         UIParent = transform,
-        Type = dialogueType,
         InvalidBounds = bounds,
         UI = this
       });
-      
+
       bubbles.Add(bubble);
       var text = ReplaceVariables(lineText);
       var detectSkip = DetectSkip(bubble);
       StartCoroutine(detectSkip);
       yield return bubble.ShowText(text);
       StopCoroutine(detectSkip);
-      
+
       while (!IsValidDialogueProgression()) {
         yield return null;
       }
-      
-      bubble.StartCoroutine(FadeBubble(bubble)); // make bubble own coroutine so it's never stopped
+
+      bubbles.Remove(bubble);
+      bubble.StartCoroutine(bubble.FadeBubble()); // make bubble own coroutine so it's never stopped
       yield return new WaitForEndOfFrame();
     }
     
@@ -115,31 +145,17 @@ namespace Outclaw {
         OnSelect = SetOption
       });
       bubble.transform.SetParent(transform, false);
-      bubble.UpdatePosition();
       bubbles.Add(bubble);
 
       while (SetSelectedOption != null) {
         yield return null;
       }
 
-      bubble.ToBubble();
-      StartCoroutine(FadeBubble(bubble));
+      bubbles.Remove(bubble);
+      bubble.StartCoroutine(bubble.FadeBubble());
       yield return new WaitForEndOfFrame();
     }
 
-    private IEnumerator FadeBubble(Bubble bubble) {
-      for (var t = 0f; t <= bubbleFadeTime; t += Time.deltaTime) {
-        if (bubble == null) {
-          yield break;
-        }
-
-        bubble.SetOpacity(1 - bubbleFade.Evaluate(t / bubbleFadeTime));
-        yield return null;
-      }
-
-      bubbles.Remove(bubble);
-      Destroy(bubble.BubbleTransform.gameObject);
-    }
 
     private string ReplaceVariables(string input) {
       foreach (var variable in dialogueVariables) {
@@ -151,6 +167,14 @@ namespace Outclaw {
 
     private List<string> ParseOptions(Options optionsCollection) {
       return optionsCollection.options.Select(ReplaceVariables).ToList();
+    }
+
+    private bool HasIcon(string text) {
+      return text.ToCharArray()[0] == '=';
+    }
+
+    private string ParseIconName(string text) {
+      return text.Substring(1);
     }
 
     private bool HasMultipleText(string text) {

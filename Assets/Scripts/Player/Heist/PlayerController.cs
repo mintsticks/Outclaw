@@ -12,6 +12,7 @@ namespace Outclaw.Heist {
     [SerializeField] private SpriteController spriteController;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform headTransform;
+    [SerializeField] private BoxCollider2D visualBounds;
     
     [Inject] private IAbilityCooldownManager abilityCooldownManager;
     [Inject] private IPlayerInput playerInput;
@@ -28,6 +29,7 @@ namespace Outclaw.Heist {
     private bool hidden;
 
     public Transform PlayerTransform => transform;
+    public Bounds PlayerBounds => visualBounds.bounds;
     public Transform HeadTransform => headTransform;
     public Vector3 Velocity => movementController.Velocity;
     

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Outclaw;
+using UnityEngine;
 
 namespace UI.Dialogue {
   public class BubbleTail : MonoBehaviour {
@@ -9,6 +10,16 @@ namespace UI.Dialogue {
         var position = Vector3.Lerp(origin, destination, (float)i / lineRenderer.positionCount);
         lineRenderer.SetPosition(i, position);
       }
+    }
+
+    public void SetOpacity(float opacity) {
+      lineRenderer.startColor = lineRenderer.startColor.WithAlpha(opacity);
+      lineRenderer.endColor = lineRenderer.endColor.WithAlpha(opacity);
+    }
+
+    public void SetColor(Color color) {
+      lineRenderer.startColor = color;
+      lineRenderer.endColor = color;
     }
   }
 }
