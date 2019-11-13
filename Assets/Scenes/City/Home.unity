@@ -765,10 +765,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3682f9fdc642e2a593a836e355c570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - entryScene: Main
-    entryLocation: {fileID: 11400000, guid: 77cfee38660a1da4db378a400a07b085, type: 2}
-    spawnPoint: {fileID: 164212814}
 --- !u!4 &239054487
 Transform:
   m_ObjectHideFlags: 0
@@ -4548,6 +4544,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809594339668810660, guid: 9b849348fa7d05a46978ab61e717d52d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921530639174087261, guid: 9b849348fa7d05a46978ab61e717d52d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921530639174087261, guid: 9b849348fa7d05a46978ab61e717d52d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.394
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b849348fa7d05a46978ab61e717d52d, type: 3}

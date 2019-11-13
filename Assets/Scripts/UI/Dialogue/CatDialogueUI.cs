@@ -18,11 +18,11 @@ namespace Outclaw {
   }
 
   public class CatDialogueUI : DialogueUIBehaviour {
-    [SerializeField] private float textSpeed = 0.025f;
     [SerializeField] private float bubbleFadeTime;
     [SerializeField] private AnimationCurve bubbleFade;
     [SerializeField] private List<DialogueVariable> dialogueVariables;
-
+    [SerializeField] private Canvas canvas;
+    
     [Inject] private SpeechBubble.Factory speechBubbleFactory;
     [Inject] private ThoughtBubble.Factory thoughtBubbleFactory;
     [Inject] private IPlayerInput playerInput;
@@ -36,6 +36,8 @@ namespace Outclaw {
     private HashSet<Bubble> bubbles = new HashSet<Bubble>();
     private bool skip;
     private ObjectiveInteractable currentInteractable;
+
+    public Canvas DialogueCanvas => canvas;
 
     public Action OnDialogueComplete {
       set => onDialogueComplete = value;
@@ -71,7 +73,8 @@ namespace Outclaw {
         BubbleParent = parent,
         UIParent = transform,
         Type = dialogueType,
-        InvalidBounds = bounds
+        InvalidBounds = bounds,
+        UI = this
       });
       
       bubbles.Add(bubble);

@@ -50,7 +50,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45156745780c4b4cbec4b8364627f2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textSpeed: 0.025
   bubbleFadeTime: 0.5
   bubbleFade:
     serializedVersion: 2
@@ -122,3 +121,4 @@ MonoBehaviour:
   dialogueVariables:
   - key: '[$name]'
     value: Kupo
+  canvas: {fileID: 228145367154521193}

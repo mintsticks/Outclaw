@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UI.Dialogue;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
 using Zenject;
 
 namespace Outclaw.City {
@@ -20,6 +18,7 @@ namespace Outclaw.City {
       public Transform UIParent;
       public DialogueType Type;
       public List<Bounds> InvalidBounds;
+      public CatDialogueUI UI;
     }
 
     [SerializeField] private float textSpeed = 0.025f;
@@ -30,20 +29,17 @@ namespace Outclaw.City {
     [SerializeField] private float verticalPadding = 15f;
 
     [SerializeField] private Text bubbleText;
-    [SerializeField] private Transform speechTrail;
-    [SerializeField] private Transform thoughtTrail;
-    [SerializeField] private CanvasGroup canvas;
-
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private RectTransform bubbleImage;
     [SerializeField] private BubblePositionHelper bubblePositionHelper;
-    
+
     private bool skipped;
-    private Transform tail;
     private Transform parent;
     private Camera main;
     private StringBuilder currentStringBuilder;
     private List<Bounds> invalidBounds;
     private Vector3 parentCachedPos;
+    private Canvas canvas;
     
     [Inject]
     public void Initialize(Data data) {
@@ -54,6 +50,7 @@ namespace Outclaw.City {
       transform.SetParent(data.UIParent, false);
       invalidBounds = data.InvalidBounds ?? new List<Bounds>();
       bubblePositionHelper.Initialize(invalidBounds, main, parent, bubbleImage);
+      canvas = data.UI.DialogueCanvas;
     }
 
     private string ProcessText(string text) {
@@ -100,8 +97,9 @@ namespace Outclaw.City {
       if (width < bubbleText.rectTransform.sizeDelta.x) {
         bubbleText.rectTransform.sizeDelta = new Vector2(width, height);
       }
+      
       bubbleImage.sizeDelta = new Vector2(width + horizontalPadding * 2, height + verticalPadding * 2);
-      bubbleText.rectTransform.position = bubbleText.rectTransform.position.AddToXY(horizontalPadding, -verticalPadding);
+      bubbleText.rectTransform.position = bubbleText.rectTransform.position.AddToXY(canvas.scaleFactor * horizontalPadding, canvas.scaleFactor * -verticalPadding);
       bubbleText.color = bubbleText.color.WithAlpha(1f);
     }
 
@@ -162,16 +160,15 @@ namespace Outclaw.City {
     public Transform BubbleTransform => transform;
     
     public void SetOpacity(float opacity) {
-      canvas.alpha = opacity;
+      canvasGroup.alpha = opacity;
     }
 
     private void HandleType(DialogueType type) {
-      var isSpeech = type == DialogueType.SPEECH;
+      /*var isSpeech = type == DialogueType.SPEECH;
       var isThought = type == DialogueType.THOUGHT;
-
-      tail = isSpeech ? speechTrail : thoughtTrail;
+      
       speechTrail.gameObject.SetActive(isSpeech);
-      thoughtTrail.gameObject.SetActive(isThought);
+      thoughtTrail.gameObject.SetActive(isThought);*/
     }
   }
 

@@ -9,14 +9,17 @@ namespace UI.Dialogue {
   public class BubblePositionHelper : MonoBehaviour {
     [SerializeField] private int numPositions;
     [SerializeField] private float tailDistance;
+    [SerializeField] private float headSize;
     [SerializeField] private CanvasGroup canvas;
-    
+    [SerializeField] private BubbleTail bubbleTail;
+
     private List<Bounds> invalidBounds;
     private Camera camera;
     private Transform parent;
     private Vector3 parentCachedPos;
     private RectTransform bubbleImage;
-
+    private float cachedAngle;
+    
     public void Initialize(List<Bounds> invalidBounds, Camera camera, Transform parent, RectTransform bubbleImage) {
       this.invalidBounds = invalidBounds;
       this.camera = camera;
@@ -29,17 +32,11 @@ namespace UI.Dialogue {
       if (parentCachedPos == parent.position) {
         return;
       }
+
       canvas.alpha = 1;
       UpdatePosition();
+      UpdateTail();
       parentCachedPos = parent.position;
-    }
-
-    public void OnDrawGizmos() {
-      for(var i = 0; i <= numPositions; i++) {
-        var angle = GetAngleForIndex(i, GlobalConstants.CIRCLE_ANGLE / numPositions, 90);
-        var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + GetPaddingForAngle(angle), angle);
-        Gizmos.DrawCube(pos, new Vector3(.1f, .1f, 1));
-      }
     }
 
     private void UpdatePosition() {
@@ -47,10 +44,16 @@ namespace UI.Dialogue {
         FindValidPosition(90);
         return;
       }
-      
+
       var interactableCenter = invalidBounds[0].center;
-      var startAngle = Vector3.SignedAngle(Vector3.right, interactableCenter - parent.position,Vector3.forward);
+      var startAngle = Vector3.SignedAngle(Vector3.right, interactableCenter - parent.position, Vector3.forward);
       FindValidPosition(startAngle);
+    }
+
+    private void UpdateTail() {
+      var position = parent.position;
+      var dirVector = (camera.ScreenToWorldPoint(transform.position) - position).normalized;
+      bubbleTail.UpdatePoints(position + headSize * dirVector,  position + tailDistance * dirVector);
     }
 
     private void FindValidPosition(float startAngle) {
@@ -69,12 +72,15 @@ namespace UI.Dialogue {
         if (invalidBounds.Any(bound => bubbleBound.Intersects(bound))) {
           continue;
         }
+
+        cachedAngle = angle;
         transform.position = newPos;
         return;
       }
       
       var defaultPos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + GetPaddingForAngle(startAngle), startAngle);
       transform.position = camera.WorldToScreenPoint(defaultPos);
+      cachedAngle = startAngle;
     }
     
 
