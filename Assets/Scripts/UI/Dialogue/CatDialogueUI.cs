@@ -57,25 +57,30 @@ namespace Outclaw {
     public override IEnumerator RunLine(Line line) {
       var lineText = line.text;
       var parent = bubbleParent;
-
+      var bounds = new List<Bounds>();
+      if (currentInteractable != null && currentInteractable.ObjectiveTransform != parent) {
+        Debug.Log("adding cat");
+        bounds.Add(currentInteractable.ObjectiveBounds);
+      }
+      if (parent != player.PlayerTransform && parent != player.HeadTransform) {
+        Debug.Log("adding me");
+        bounds.Add(player.PlayerBounds);
+      }
+      
       if (HasIcon(lineText)) {
-        yield return HandleIconBubble(parent, ParseIconName(lineText));
+        yield return HandleIconBubble(parent, ParseIconName(lineText), bounds);
         yield break;
       }
       
       if (HasMultipleText(lineText)) {
         lineText = ParseMultipleText(lineText);
-        parent = player.PlayerTransform;
+        parent = player.HeadTransform;
       }
 
-      yield return HandleTextBubble(parent, lineText);
+      yield return HandleTextBubble(parent, lineText, bounds);
     }
 
-    private IEnumerator HandleIconBubble(Transform parent, string key) {
-      var bounds = new List<Bounds>();
-      if (currentInteractable != null) {
-        bounds.Add(currentInteractable.ObjectiveBounds);
-      }
+    private IEnumerator HandleIconBubble(Transform parent, string key, List<Bounds> bounds) {
       var bubble = iconBubbleFactory.Create(new IconBubble.Data() {
         InvalidBounds = bounds,
         IconName = key,
@@ -94,12 +99,7 @@ namespace Outclaw {
       yield return new WaitForEndOfFrame();
     }
     
-    private IEnumerator HandleTextBubble(Transform parent, string lineText) {
-      var bounds = new List<Bounds>();
-      if (currentInteractable != null) {
-        bounds.Add(currentInteractable.ObjectiveBounds);
-      }
-
+    private IEnumerator HandleTextBubble(Transform parent, string lineText, List<Bounds> bounds) {
       var bubble = speechBubbleFactory.Create(new SpeechBubble.Data() {
         BubbleText = "",
         BubbleParent = parent,

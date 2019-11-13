@@ -31,6 +31,35 @@ namespace UI.Dialogue {
       bubbleTail.SetOpacity(0);
     }
 
+   /* private void OnDrawGizmos() {
+      var cameraBounds = camera.OrthographicBounds();
+      cameraBounds.center = new Vector3(cameraBounds.center.x, cameraBounds.center.y, 0);
+      for(var i = 0; i <= numPositions; i++) {
+        var angle = GetAngleForIndex(i, GlobalConstants.CIRCLE_ANGLE / numPositions, -108);
+        var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(angle), angle);
+        
+        
+        var newPos = camera.WorldToScreenPoint(pos);
+        var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(camera);
+        bubbleBound.center = new Vector3(bubbleBound.center.x, bubbleBound.center.y, 0);
+        
+        
+        if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
+
+          continue;
+        }
+
+        if (invalidBounds.Any(bound => bubbleBound.Intersects(bound))) {
+          Gizmos.color = Color.red;
+          Gizmos.DrawCube(pos, new Vector3(.1f, .1f, 1));
+          continue;
+        }
+        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(pos, new Vector3(.1f, .1f, 1));
+      }
+    }*/
+
     public void Update() {
       if (!shouldFollow || parentCachedPos == parent.position) {
         return;
@@ -73,7 +102,8 @@ namespace UI.Dialogue {
         var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(angle), angle);
         var newPos = camera.WorldToScreenPoint(pos);
         var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(camera);
-
+        bubbleBound.center = new Vector3(bubbleBound.center.x, bubbleBound.center.y, 0);
+        
         if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
           continue;
         }

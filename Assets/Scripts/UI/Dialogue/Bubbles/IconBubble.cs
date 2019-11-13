@@ -34,7 +34,6 @@ namespace Outclaw.City {
 
     [Inject]
     public void Initialize(Data data) {
-      Debug.Log(data.IconName);
       bubbleImage.sprite = iconNameManager.IconForName(data.IconName);
       transform.SetParent(data.UIParent, false);
       var parent = data.BubbleParent;

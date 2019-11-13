@@ -5,6 +5,7 @@ using Zenject;
 namespace Outclaw.City {
   public interface IPlayer {
     Transform PlayerTransform { get; }
+    Bounds PlayerBounds { get; }
     Transform HeadTransform { get; }
     bool InputDisabled { get; set; }
     void UpdatePosition(Vector3? position);
@@ -15,6 +16,7 @@ namespace Outclaw.City {
     [SerializeField] private MovementController movementController;
     [SerializeField] private InteractionController interactionController;
     [SerializeField] private Transform headTransform;
+    [SerializeField] private BoxCollider2D visualBounds;
     
     [Inject] private IPlayerData playerData;
     [Inject] private IPauseGame pauseGame;
@@ -22,6 +24,7 @@ namespace Outclaw.City {
 
     private bool inputDisabled;
 
+    public Bounds PlayerBounds => visualBounds.bounds;
     public Transform PlayerTransform => transform;
     public Transform HeadTransform => headTransform;
     public Vector3 Velocity => movementController.Velocity;
