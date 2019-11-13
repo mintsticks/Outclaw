@@ -67,7 +67,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1749279607
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ce8ae114155e10146a7a3668c655503f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -166,10 +166,10 @@ MonoBehaviour:
         - {fileID: 4900000, guid: 9a2665f09e87c984e942eaf67db1f652, type: 3}
     dialoguesForRank: []
   talkIndicator: {fileID: 1572077227990514498}
-  spriteRenderer: {fileID: 5628549467109088891, guid: 8c8cd9af1cf61f043bfd819994e0c940,
-    type: 3}
+  spriteRenderer: {fileID: 605628283}
+  bound: {fileID: 0}
   particleSystem: {fileID: 0}
-  type: 1
+  dialogueData: {fileID: 0}
   task: {fileID: 0}
 --- !u!1001 &3304105019163273768
 PrefabInstance:
