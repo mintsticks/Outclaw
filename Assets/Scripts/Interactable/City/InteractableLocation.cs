@@ -41,6 +41,7 @@ namespace Outclaw.City {
     public Transform LocationPosition => locationPosition != null ? locationPosition : transform;
     public Task ContainedTask => task;
     public Transform Location => transform;
+    public LocationData Destination => destinationLocation;
     public Transform ObjectiveTransform => transform;
 
     public Bounds ObjectiveBounds {

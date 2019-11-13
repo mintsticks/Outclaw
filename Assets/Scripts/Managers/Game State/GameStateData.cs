@@ -8,5 +8,9 @@ namespace Outclaw{
   public class GameStateData : ScriptableObject
   {
     public List<GameStateObjectives> childStates;
+
+    public bool HasCompleteObjective{
+      get => childStates.Any(childState => childState.HasAllTasksComplete);
+    }
   }
 }

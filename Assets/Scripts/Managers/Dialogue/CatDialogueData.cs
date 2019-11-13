@@ -11,7 +11,9 @@ namespace Outclaw.City{
 
     public int Rank { get => rank; }
     public int GetGameStateRank(GameStateData state) {
-      CheckForGameState(state);
+      if(!stateRanks.ContainsKey(state)){
+        return 0;
+      }
       return stateRanks[state]; 
     }
 

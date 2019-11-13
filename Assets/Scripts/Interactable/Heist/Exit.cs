@@ -11,7 +11,7 @@ namespace Outclaw.Heist {
     private Indicator exitIndicator;
 
     [SerializeField]
-    private string exitScene = "Main";
+    private LocationData exitScene;
 
     [SerializeField]
     private AudioClip victorySound;
@@ -19,13 +19,26 @@ namespace Outclaw.Heist {
     [SerializeField]
     private VictoryMenu menu;
 
-    [Inject]
-    private IObjectiveManager objectiveManager;
+    [SerializeField]
+    private GameStateData taskToOpen;
 
     [Inject]
     private ISoundManager soundManager;
-    
-    private bool isComplete;
+
+    [Inject]
+    private ISceneTransitionManager transition;
+
+    #if UNITY_EDITOR
+    void Awake(){
+      if(exitScene == null){
+        Debug.LogError("Exit Scene not set in " + gameObject);
+      }
+      if(taskToOpen == null){
+        Debug.LogError("Required task not set in " + gameObject);
+      }
+    }
+    #endif
+
     public void InRange() {
       exitIndicator.FadeIn();
     }
@@ -35,11 +48,11 @@ namespace Outclaw.Heist {
     }
 
     public void Interact() {
-      if (!objectiveManager.ObjectivesComplete()) {
+      if (!taskToOpen.HasCompleteObjective) {
         return;
       }
       if(victorySound == null){
-        SceneManager.LoadScene(exitScene);
+        transition.TransitionToScene(exitScene);
       }
       else{
         StartCoroutine(StartExit());
@@ -50,7 +63,7 @@ namespace Outclaw.Heist {
       soundManager.PlaySFX(victorySound);
       menu.Show();
       yield return new WaitForSeconds(victorySound.length);
-      SceneManager.LoadScene(exitScene);
+      transition.TransitionToScene(exitScene);
     }
   }
 }

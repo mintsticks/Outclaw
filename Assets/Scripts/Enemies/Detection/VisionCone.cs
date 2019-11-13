@@ -33,6 +33,12 @@ namespace Outclaw.Heist {
     [Inject] private IHideablePlayer player;
     [Inject] private IPauseGame pause;
 
+    private float AccuracyRayOffsetDeg{
+      get{
+        return Mathf.Rad2Deg * accuracyRayOffset;
+      }
+    }
+
     void LateUpdate() {
       if (pause.IsPaused) {
         return;
@@ -180,14 +186,16 @@ namespace Outclaw.Heist {
 
       // test smallest angle
       Quaternion minRot = Quaternion.AngleAxis(minAngle, Vector3.forward);
-      meshBoarder.Add(TestRay(minRot * transform.up, out GameObject objHit));
+      Vector3 hitPt = TestRay(minRot * transform.up, out GameObject objHit);
+      meshBoarder.Add(hitPt);
+
+      hitPt = TestRay(minRot * posRot * transform.up, out objHit);
       GameObject target = FoundTarget(objHit) ? objHit : null;
-      meshBoarder.Add(TestRay(minRot * posRot * transform.up, out objHit));
+      meshBoarder.Add(hitPt);
       target = target ?? (FoundTarget(objHit) ? objHit : null);
       bool prevCastMissed = objHit == null;
 
       // test point directly and some offset around the point
-      Vector3 hitPt;
       int i = startIdx;
       for(; i < points.Count && angleCache[points[i]] < maxAngle; ++i){
 
@@ -202,10 +210,13 @@ namespace Outclaw.Heist {
           objHit == null);
         meshBoarder.Add(hitPt);
         target = target ?? (FoundTarget(objHit) ? objHit : null);
-
-        meshBoarder.Add(TestRay(dir, out objHit));
+        
+        hitPt = TestRay(dir, out objHit);
+        meshBoarder.Add(hitPt);
         target = target ?? (FoundTarget(objHit) ? objHit : null);
-        meshBoarder.Add(TestRay(posRot * dir, out objHit));
+
+        hitPt = TestRay(posRot * dir, out objHit);
+        meshBoarder.Add(hitPt);
         target = target ?? (FoundTarget(objHit) ? objHit : null);
 
         prevCastMissed = objHit == null;
@@ -221,7 +232,8 @@ namespace Outclaw.Heist {
         objHit == null);
       meshBoarder.Add(hitPt);
       target = target ?? (FoundTarget(objHit) ? objHit : null);
-      meshBoarder.Add(TestRay(maxRot * transform.up, out objHit));
+      hitPt = TestRay(maxRot * transform.up, out objHit);
+      meshBoarder.Add(hitPt);
       target = target ?? (FoundTarget(objHit) ? objHit : null);
 
       return target;
@@ -258,8 +270,8 @@ namespace Outclaw.Heist {
         float prevAngle, float curAngle){
 
       // shift slightly towards prevAngle in case vertex is concave corner
-      curAngle -= accuracyRayOffset;
-      prevAngle += accuracyRayOffset;
+      curAngle -= AccuracyRayOffsetDeg;
+      prevAngle += AccuracyRayOffsetDeg;
       RaycastHit2D hit = Physics2D.Raycast(transform.position,
         Quaternion.AngleAxis(curAngle, Vector3.forward) * transform.up,
         visionDistance, hitLayers & (~targetLayer));
@@ -327,8 +339,9 @@ namespace Outclaw.Heist {
      */
     private void AddMissHitIntersection(List<Vector3> meshBoarder, float hitAngle,
           float missAngle){
+
       // shift slightly towards missAngle in case vertex is concave corner
-      hitAngle += Mathf.Sign(missAngle - hitAngle) * accuracyRayOffset;
+      hitAngle += Mathf.Sign(missAngle - hitAngle) * AccuracyRayOffsetDeg;
       RaycastHit2D hit = Physics2D.Raycast(transform.position,
         Quaternion.AngleAxis(hitAngle, Vector3.forward) * transform.up,
         visionDistance, hitLayers & (~targetLayer));
@@ -418,7 +431,7 @@ namespace Outclaw.Heist {
     }
 
     private void GetExtraRotation(out Quaternion negRot, out Quaternion posRot){
-      float degrees = Mathf.Rad2Deg * accuracyRayOffset;
+      float degrees = AccuracyRayOffsetDeg;
       negRot = Quaternion.AngleAxis(-degrees, Vector3.forward).normalized;
       posRot = Quaternion.AngleAxis(degrees, Vector3.forward).normalized;
     }
@@ -455,6 +468,11 @@ namespace Outclaw.Heist {
     private void DrawCrosshair(Vector3 point){
       Debug.DrawLine(point + (Vector3.up / 3), point + (Vector3.down / 3), Color.white);
       Debug.DrawLine(point + (Vector3.left / 3), point + (Vector3.right / 3), Color.white);
+    }
+
+    private void DrawHitOrMissRay(Vector3 dest, bool hit){
+      Debug.DrawLine(transform.position, dest,
+        hit ? Color.blue : Color.red);
     }
   }
 }

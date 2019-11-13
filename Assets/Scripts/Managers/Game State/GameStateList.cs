@@ -10,5 +10,9 @@ namespace Outclaw{
     [SerializeField] List<GameStateData> states;
 
     public GameStateData this[int i] => states[i];
+
+    public IEnumerator<GameStateData> GetEnumerator(){
+      return states.GetEnumerator();
+    }
   }
 }
