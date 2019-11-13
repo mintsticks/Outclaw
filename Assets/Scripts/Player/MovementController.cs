@@ -49,6 +49,7 @@ namespace Outclaw.City {
     public void UpdatePhysics() {
       controller.Move(inputVelocity * Time.fixedDeltaTime, ref isJumping, ref isDescending);
       velocity = controller.Velocity;
+      inputVelocity = controller.Velocity;
     }
     
     private void UpdateHorizontal() {
@@ -73,9 +74,7 @@ namespace Outclaw.City {
     private void UpdateVertical() {
       CheckDescend();
       CheckJump();
-      if (!controller.isGrounded) {
-        inputVelocity.y += GlobalConstants.GRAVITY * Time.deltaTime;
-      }
+      inputVelocity.y += GlobalConstants.GRAVITY * Time.deltaTime;
     }
 
     private void CheckJump() {
