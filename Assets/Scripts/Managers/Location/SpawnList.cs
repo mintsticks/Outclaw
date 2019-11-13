@@ -4,8 +4,16 @@ using UnityEngine;
 
 namespace Outclaw {
   public class SpawnList : MonoBehaviour {
-    [SerializeField] private List<SpawnPoint> spawnPoints;
+    private List<SpawnPoint> spawnPoints;
 
     public List<SpawnPoint> SpawnPoints => spawnPoints;
+
+    void Awake(){
+      City.InteractableLocation[] locations = GetComponentsInChildren<City.InteractableLocation>();
+      spawnPoints = new List<SpawnPoint>();
+      foreach(City.InteractableLocation location in locations){
+        spawnPoints.Add(new SpawnPoint(location.Destination, location.LocationPosition.gameObject));
+      }
+    }
   }
 }

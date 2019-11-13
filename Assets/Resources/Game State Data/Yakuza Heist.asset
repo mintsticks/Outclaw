@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba6f3ee13713b994bb81b7a5f86303b6, type: 3}
-  m_Name: Found Collar
+  m_Name: Yakuza Heist
   m_EditorClassIdentifier: 
   childStates:
-  - nextStateData: {fileID: 11400000, guid: 5d9b8a98b1bddef49b232a0da2a7beb0, type: 2}
+  - nextStateData: {fileID: 11400000, guid: 6cc79530861f03142bcc90c03493e69b, type: 2}
     tasks:
-    - {fileID: 11400000, guid: 3026f389beb924c46aca22d166af7b0c, type: 2}
+    - {fileID: 11400000, guid: 4f4c778162fedb94892093fd8eedbf86, type: 2}
+    - {fileID: 11400000, guid: 4255ed63f8a204740bcb002752226a4e, type: 2}
     persistObjectiveState: 0

@@ -43,18 +43,14 @@ namespace City {
 
     public void UpdateCurrentTask(){
       var currentState = gameStateManager.CurrentGameStateData;
-      var currentChild = currentState.childStates.FirstOrDefault(child => !IsTasksComplete(child.tasks));
+      var currentChild = currentState.childStates.FirstOrDefault(child => !child.HasAllTasksComplete);
       currentTask = currentChild?.tasks.FirstOrDefault(task => !task.IsComplete);
-    }
-
-    private bool IsTasksComplete(List<Task> tasks){
-      return tasks.All(task => task.IsComplete);
     }
 
     public void UpdateGameState() {
       var currentState = gameStateManager.CurrentGameStateData;
       
-      foreach (var child in currentState.childStates.Where(child => IsTasksComplete(child.tasks))) {
+      foreach (var child in currentState.childStates.Where(child => child.HasAllTasksComplete)) {
         gameStateManager.SetGameState(child.nextStateData, child.persistObjectiveState);
         break;
       }

@@ -49,7 +49,7 @@ namespace Outclaw {
 
     public Vector3? GetSpawnPoint() {
       List<SpawnPoint> spawnList;
-      spawnList = GameObject.Find("SpawnList")?.GetComponent<SpawnList>()?.SpawnPoints;
+      spawnList = GameObject.FindObjectOfType<SpawnList>()?.SpawnPoints;
       if(spawnList == null){
         return null;
       }

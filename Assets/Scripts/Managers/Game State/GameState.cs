@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using City;
 using Outclaw.City;
 
@@ -14,5 +15,9 @@ namespace Outclaw {
     public GameStateData nextStateData;
     public List<Task> tasks;
     public bool persistObjectiveState;
+
+    public bool HasAllTasksComplete{
+      get => tasks.All(task => task.IsComplete);
+    }
   }
 }
