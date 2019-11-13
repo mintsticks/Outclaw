@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Outclaw.Heist{
   public class GuardMovement : MonoBehaviour
@@ -22,6 +23,8 @@ namespace Outclaw.Heist{
     [Header("Component Links")]
     [Tooltip("Optional to fill, animation actions will not update if blank.")]
     [SerializeField] private GuardAnimationController anim;
+
+    [Inject] private IPauseGame pause;
 
     public Quaternion VisionRotation { get => visionConeTransform.rotation; }
     public Bounds BodyBounds { get => bodyBounds; }
@@ -70,6 +73,10 @@ namespace Outclaw.Heist{
       float totalTime = 0;
       float angleRange = 90f - defaultAngle;
       while(totalTime < duration){
+        if(pause.IsPaused){
+          yield return null;
+        }
+
         totalTime += Time.deltaTime;
         visionConeTransform.rotation = Quaternion.Lerp(start, destination, 
           totalTime / duration);

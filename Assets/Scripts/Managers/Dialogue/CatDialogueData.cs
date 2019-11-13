@@ -21,7 +21,7 @@ namespace Outclaw.City{
       ++rank;
     }
 
-    public void IncreateGameStateRank(GameStateData state){
+    public void IncreaseGameStateRank(GameStateData state){
       CheckForGameState(state);
       ++stateRanks[state];
     }
@@ -34,14 +34,19 @@ namespace Outclaw.City{
 
     public void Reset(){
       ResetRank();
-      ResetStateRank();
+      ResetStateRanks();
     }
 
     public void ResetRank(){
       rank = 0;
     }
 
-    public void ResetStateRank(){
+    public void ResetStateRank(GameStateData state){
+      CheckForGameState(state);
+      stateRanks[state] = 0;
+    }
+
+    public void ResetStateRanks(){
       stateRanks.Clear();
     }
   }

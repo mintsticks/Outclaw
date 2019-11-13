@@ -28,7 +28,7 @@ namespace Outclaw.City {
     }
     
     public void RankUpCatInGameState(CatDialogueData data) {
-      data.IncreateGameStateRank(gameStateManager.CurrentGameStateData);
+      data.IncreaseGameStateRank(gameStateManager.CurrentGameStateData);
       activeData.Add(data);
     }
 
@@ -52,7 +52,7 @@ namespace Outclaw.City {
 
     private void ResetStateRanks(){
       foreach(CatDialogueData data in activeData){
-        data.ResetStateRank();
+        data.ResetStateRanks();
       }
     }
   }

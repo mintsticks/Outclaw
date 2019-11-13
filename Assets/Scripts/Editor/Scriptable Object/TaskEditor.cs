@@ -10,6 +10,12 @@ namespace Outclaw{
     public override void OnInspectorGUI(){
       Task task = (Task)target;
       EditorGUILayout.LabelField("Is Complete:", "" + task.IsComplete);
+      if(GUILayout.Button("Force Complete")){
+        task.Complete();
+      }
+      if(GUILayout.Button("Force Reset")){
+        task.Reset();
+      }
     }
   }
 }
