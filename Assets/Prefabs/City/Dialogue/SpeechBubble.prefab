@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7292803557507377925}
   - component: {fileID: 6810005122080069919}
   - component: {fileID: 122106010598435365}
+  - component: {fileID: 4769602999149835537}
+  - component: {fileID: 2422126734790508103}
   m_Layer: 0
   m_Name: SpeechBubble
   m_TagString: Untagged
@@ -48,42 +50,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b800526581d048a0a94bea356874b1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleFadeTime: 0.1
-  bubbleFade:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  textSpeed: 0.0175
-  characterAnimateSpeed: 500
-  isUpperCase: 1
-  startFontSize: 1
-  horizontalPadding: 20
-  verticalPadding: 15
-  bubbleText: {fileID: 6240400284197850734}
-  canvasGroup: {fileID: 7292803557507377925}
-  bubbleImage: {fileID: 2359121142810595841}
-  bubblePositionHelper: {fileID: 122106010598435365}
+  bubbleImageTransform: {fileID: 2359121142810595841}
+  bubbleImage: {fileID: 2359121142810595840}
+  bubbleAnimationHelper: {fileID: 2422126734790508103}
   bubbleTail: {fileID: 2314774578742900052}
+  bubbleTextHelper: {fileID: 4769602999149835537}
+  bubblePositionHelper: {fileID: 122106010598435365}
 --- !u!225 &7292803557507377925
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -207,6 +179,64 @@ MonoBehaviour:
   numPositions: 36
   tailDistance: 1.25
   headSize: 0.25
+  canvasGroup: {fileID: 7292803557507377925}
+  bubbleTail: {fileID: 2314774578742900052}
+--- !u!114 &4769602999149835537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358098358285364759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8ea85fa767440a81e89a9094e6bdad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textSpeed: 0.015
+  characterAnimateSpeed: 500
+  isUpperCase: 1
+  startFontSize: 1
+  horizontalPadding: 20
+  verticalPadding: 15
+  bubbleText: {fileID: 6240400284197850734}
+--- !u!114 &2422126734790508103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358098358285364759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be8fd71555a4c6580ee081b44abb6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleFadeTime: 0.1
+  bubbleFade:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   canvasGroup: {fileID: 7292803557507377925}
   bubbleTail: {fileID: 2314774578742900052}
 --- !u!1 &2359121142810595846

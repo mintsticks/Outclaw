@@ -21,10 +21,10 @@ namespace Outclaw.City{
 
       EditorGUILayout.LabelField("Relationship Rank:", "" + data.Rank);
       EditorGUILayout.LabelField("State Ranks");
-      foreach(GameStateData state in stateList){
-        int rank = data.GetGameStateRank(state);
+      foreach(GameStateData stateData in stateList){
+        int rank = data.GetGameStateRank(stateData);
         if(rank > 0){
-          EditorGUILayout.LabelField(state.name, "" + rank);
+          EditorGUILayout.LabelField(stateData.name, "" + rank);
         }
       }
 
