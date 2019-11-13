@@ -33,7 +33,8 @@ namespace Outclaw.City {
     [Inject] 
     private IPlayer player;
 
-    private Vector3 velocity;  
+    private Vector3 inputVelocity;
+    private Vector3 velocity;
     public Vector3 Velocity => velocity;
     
     private bool isJumping;
@@ -42,18 +43,18 @@ namespace Outclaw.City {
     public void UpdateMovement() {
       UpdateHorizontal();
       UpdateVertical();
-      animationController.UpdateAnimationState(velocity, controller);
+      animationController.UpdateAnimationState(inputVelocity, controller);
     }
 
     public void UpdatePhysics() {
-      controller.Move(velocity * Time.fixedDeltaTime, ref isJumping, ref isDescending);
+      controller.Move(inputVelocity * Time.fixedDeltaTime, ref isJumping, ref isDescending);
       velocity = controller.Velocity;
     }
     
     private void UpdateHorizontal() {
       var moveDir = MoveDirection();
       var dampingFactor = controller.isGrounded ? groundDamping : inAirDamping;
-      velocity.x = Mathf.Lerp(velocity.x, moveDir * runSpeed, Time.deltaTime * dampingFactor);
+      inputVelocity.x = Mathf.Lerp(inputVelocity.x, moveDir * runSpeed, Time.deltaTime * dampingFactor);
 
       if (moveDir == 0) {
         return;
@@ -72,7 +73,9 @@ namespace Outclaw.City {
     private void UpdateVertical() {
       CheckDescend();
       CheckJump();
-      velocity.y += GlobalConstants.GRAVITY * Time.deltaTime;
+      if (!controller.isGrounded) {
+        inputVelocity.y += GlobalConstants.GRAVITY * Time.deltaTime;
+      }
     }
 
     private void CheckJump() {
@@ -84,7 +87,7 @@ namespace Outclaw.City {
         isJumping = true;
       }
       
-      velocity.y = isJumping ? Mathf.Sqrt(2f * jumpHeight * -GlobalConstants.GRAVITY) : velocity.y;
+      inputVelocity.y = isJumping ? Mathf.Sqrt(2f * jumpHeight * -GlobalConstants.GRAVITY) : inputVelocity.y;
     }
 
     private void CheckDescend() {

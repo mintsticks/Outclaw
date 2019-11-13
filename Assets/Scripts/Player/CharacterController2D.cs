@@ -122,8 +122,8 @@ namespace Outclaw {
       
       UpdateHorizontal();
       UpdateVertical();
-
-      if (Math.Abs(deltaMovement.y) <epsilon) {
+      
+      if (Math.Abs(deltaMovement.y) < epsilon) {
         collisionState.below = true;
       }
       

@@ -3,9 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/City/Dialogue/SpeechBubble.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/City/Dialogue/SpeechBubble.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubblePositionHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubblePositionHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/SpeechBubble.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/SpeechBubble.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/CharacterController2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/CharacterController2D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/MovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/MovementController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,8 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/ShowOnSenseElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/DarkenOnSenseElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/City/GreyOnSenseElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Footprint.cs" />
@@ -151,7 +154,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/Indicator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseVisuals.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PromptManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/SneakManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/CityInstaller.cs" />
@@ -162,13 +164,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleMeshGenerator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/ColorExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/TransformExt.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/AnimationController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/MovementController.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/IntroInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistMovementController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/CameraExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/VectorUtil.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/ObjectiveInteractable.cs" />
@@ -180,8 +179,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/GlobalConstants.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/BoundsExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/ThoughtBubble.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableObject.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EventSequence.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/Curver.cs" />
@@ -189,6 +186,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/CatDialogueUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/SpeechBubble.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubblePositionHelper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/MovementController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/CharacterController2D.cs" />
+        <option value="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInput.cs" />
       </list>
     </option>
   </component>

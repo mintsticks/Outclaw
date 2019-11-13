@@ -29,8 +29,8 @@ namespace Outclaw.Heist {
 
     public Transform PlayerTransform => transform;
     public Transform HeadTransform => headTransform;
-    public Vector3 PlayerVelocity { get; }
-
+    public Vector3 Velocity => movementController.Velocity;
+    
     public bool InputDisabled {
       get => inputDisabled || pauseGame.IsPaused;
       set => inputDisabled = value;

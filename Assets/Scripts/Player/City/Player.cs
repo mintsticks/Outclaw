@@ -8,6 +8,7 @@ namespace Outclaw.City {
     Transform HeadTransform { get; }
     bool InputDisabled { get; set; }
     void UpdatePosition(Vector3? position);
+    Vector3 Velocity { get; }
   }
 
   public class Player : MonoBehaviour, IPlayer {
@@ -23,7 +24,7 @@ namespace Outclaw.City {
 
     public Transform PlayerTransform => transform;
     public Transform HeadTransform => headTransform;
-
+    public Vector3 Velocity => movementController.Velocity;
     public bool InputDisabled {
       get => inputDisabled || pauseGame.IsPaused;
       set => inputDisabled = value;

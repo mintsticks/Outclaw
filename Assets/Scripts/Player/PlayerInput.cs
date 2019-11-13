@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace Outclaw {
   /// <summary>
@@ -28,13 +29,46 @@ namespace Outclaw {
     bool IsStartDown();
   }
 
-  public class PlayerInput : IPlayerInput{
+  public class PlayerInput : IPlayerInput, ITickable {
+    private bool isLeftPressed;
+    private bool isLeftOnce;
+    
+    private bool isRightPressed;
+    private bool isRightOnce;
+    
+    private bool isDownPressed;
+    private bool isDownOnce;
+    
+    private bool isUpPressed;
+    private bool isUpOnce;
+    
+    public void Tick() {
+      UpdatePress(Input.GetAxisRaw("Vertical") < -0.5f, ref isDownPressed, ref isDownOnce);
+      UpdatePress(Input.GetAxisRaw("Vertical") > 0.5f, ref isUpPressed, ref isUpOnce);
+      UpdatePress(Input.GetAxisRaw("Horizontal") < 0, ref isLeftPressed, ref isLeftOnce);
+      UpdatePress(Input.GetAxisRaw("Horizontal") > 0, ref isRightPressed, ref isRightOnce);
+    }
+
+    private void UpdatePress(bool axis, ref bool pressed, ref bool once) {
+      if (!axis) {
+        pressed = false;
+        once = false;
+        return;
+      }
+
+      if (!pressed) {
+        pressed = true;
+        once = true;
+        return;
+      }
+      once = false;
+    }
     public bool IsLeft() {
       return Input.GetAxisRaw("Horizontal") < 0;
     }
 
     public bool IsLeftDown() {
-      return Input.GetAxisRaw("Horizontal") < 0;
+      return isLeftOnce;
     }
 
     public bool IsRight() {
@@ -42,7 +76,7 @@ namespace Outclaw {
     }
     
     public bool IsRightDown() {
-      return Input.GetAxisRaw("Horizontal") > 0;
+      return isRightOnce;
     }
 
     public bool IsUp() {
@@ -50,7 +84,7 @@ namespace Outclaw {
     }
 
     public bool IsUpPress() {
-      return Input.GetAxisRaw("Vertical") > 0.5f;
+      return isUpOnce;
     }
     
     public bool IsDown() {
@@ -58,7 +92,7 @@ namespace Outclaw {
     }
 
     public bool IsDownPress() {
-      return Input.GetAxisRaw("Vertical") < -0.5f;
+      return isDownOnce;
     }
     
     public bool IsJump() {
