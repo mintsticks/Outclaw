@@ -19,6 +19,7 @@ namespace UI.Dialogue {
     private Vector3 parentCachedPos;
     private RectTransform bubbleImage;
     private Canvas canvas;
+    private bool shouldFollow = true;
     
     public void Initialize(List<Bounds> invalidBounds, Camera camera, Transform parent, RectTransform bubbleImage, Canvas canvas) {
       this.invalidBounds = invalidBounds;
@@ -27,19 +28,25 @@ namespace UI.Dialogue {
       this.bubbleImage = bubbleImage;
       this.canvas = canvas;
       canvasGroup.alpha = 0;
+      bubbleTail.SetOpacity(0);
     }
 
     public void Update() {
-      if (parentCachedPos == parent.position) {
+      if (!shouldFollow || parentCachedPos == parent.position) {
         return;
       }
 
       canvasGroup.alpha = 1;
+      bubbleTail.SetOpacity(1);
       UpdatePosition();
       UpdateTail();
       parentCachedPos = parent.position;
     }
 
+    public void StopFollowing() {
+      shouldFollow = false;
+    }
+    
     private void UpdatePosition() {
       if (invalidBounds.Count == 0) {
         FindValidPosition(90);
@@ -53,8 +60,9 @@ namespace UI.Dialogue {
 
     private void UpdateTail() {
       var position = parent.position;
-      var dirVector = (camera.ScreenToWorldPoint(transform.position) - position).normalized;
-      bubbleTail.UpdatePoints(position + headSize * dirVector,  position + tailDistance * dirVector);
+      var bubblePos = camera.ScreenToWorldPoint(transform.position);
+      var dirVector = (bubblePos- position).normalized;
+      bubbleTail.UpdatePoints(position + headSize * dirVector,  bubblePos);
     }
 
     private void FindValidPosition(float startAngle) {

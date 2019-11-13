@@ -45,10 +45,12 @@ namespace Outclaw {
       var isLeftOfObject = player.PlayerTransform.position.x < currentInteractable.ObjectiveTransform.position.x;
       animationController.TurnCharacter(!isLeftOfObject);
       currentInteractable?.Interact();
+      //TODO: zero out velocity. make colliders at base of feet so it cannot be interacted while jumping
     }
     
     private IEnumerator QueueInteraction() {
       queuedInteraction = true;
+      player.InputDisabled = true;
       while (!player.Velocity.IsZero()) {
         yield return null;
       }
