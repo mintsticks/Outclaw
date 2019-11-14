@@ -30,12 +30,12 @@ namespace UI.Dialogue {
       canvasGroup.alpha = 0;
       bubbleTail.SetOpacity(0);
     }
-
-   /* private void OnDrawGizmos() {
+/*
+   private void OnDrawGizmos() {
       var cameraBounds = camera.OrthographicBounds();
       cameraBounds.center = new Vector3(cameraBounds.center.x, cameraBounds.center.y, 0);
       for(var i = 0; i <= numPositions; i++) {
-        var angle = GetAngleForIndex(i, GlobalConstants.CIRCLE_ANGLE / numPositions, -108);
+        var angle = GetAngleForIndex(i, GlobalConstants.CIRCLE_ANGLE / numPositions, 48);
         var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(angle), angle);
         
         
@@ -45,7 +45,8 @@ namespace UI.Dialogue {
         
         
         if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
-
+          Gizmos.color = Color.blue;
+          Gizmos.DrawCube(pos, new Vector3(.1f, .1f, 1));
           continue;
         }
 
@@ -57,6 +58,7 @@ namespace UI.Dialogue {
         
         Gizmos.color = Color.yellow;
         Gizmos.DrawCube(pos, new Vector3(.1f, .1f, 1));
+        return;
       }
     }*/
 
@@ -105,13 +107,16 @@ namespace UI.Dialogue {
         bubbleBound.center = new Vector3(bubbleBound.center.x, bubbleBound.center.y, 0);
         
         if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
+          Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.magenta, 5);
           continue;
         }
 
         if (invalidBounds.Any(bound => bubbleBound.Intersects(bound))) {
+          Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.red, 5);
           continue;
         }
         
+        Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.yellow, 5);
         transform.position = newPos;
         return;
       }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5572826811031589413}
   - component: {fileID: 1325915518943306015}
   - component: {fileID: 3435070141461686864}
+  - component: {fileID: 6002001955287529112}
   m_Layer: 0
   m_Name: IconBubble
   m_TagString: Untagged
@@ -173,6 +174,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53aaeb6cbae4c92b4cbc1ed928abbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubbleImage: {fileID: 7015155056892862711}
+  bubbleTransform: {fileID: 3704808589957077307}
+  bubblePositionHelper: {fileID: 1325915518943306015}
+  bubbleTail: {fileID: 3731492676545085038}
+  bubbleAnimationHelper: {fileID: 6002001955287529112}
+--- !u!114 &6002001955287529112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76482734708499757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be8fd71555a4c6580ee081b44abb6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   bubbleFadeTime: 0.1
   bubbleFade:
     serializedVersion: 2
@@ -198,10 +216,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  bubbleImage: {fileID: 7015155056892862711}
   canvasGroup: {fileID: 8566525804417998911}
-  bubbleTransform: {fileID: 3704808589957077307}
-  bubblePositionHelper: {fileID: 1325915518943306015}
   bubbleTail: {fileID: 3731492676545085038}
 --- !u!1 &1457184744903637335
 GameObject:

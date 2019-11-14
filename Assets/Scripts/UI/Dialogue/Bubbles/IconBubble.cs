@@ -20,16 +20,12 @@ namespace Outclaw.City {
       public List<Bounds> InvalidBounds;
       public CatDialogueUI UI;
     }
-    
-    [SerializeField] private float bubbleFadeTime;
-    [SerializeField] private AnimationCurve bubbleFade;
 
     [SerializeField] private Image bubbleImage;
-    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private RectTransform bubbleTransform;
     [SerializeField] private BubblePositionHelper bubblePositionHelper;
-    [SerializeField] private BubbleTail bubbleTail;
-
+    [SerializeField] private BubbleAnimationHelper bubbleAnimationHelper;
+    
     [Inject] private IIconNameManager iconNameManager;
 
     [Inject]
@@ -43,18 +39,10 @@ namespace Outclaw.City {
 
     public IEnumerator FadeBubble() {
       bubblePositionHelper.StopFollowing();
-      for (var t = 0f; t <= bubbleFadeTime; t += Time.deltaTime) {
-        SetOpacity(1 - bubbleFade.Evaluate(t / bubbleFadeTime));
-        bubbleTail.SetOpacity(1 - bubbleFade.Evaluate(t / bubbleFadeTime));
-        yield return null;
-      }
+      yield return bubbleAnimationHelper.FadeBubble();
       Destroy(gameObject);
     }
 
     public Transform BubbleTransform => transform;
-    
-    public void SetOpacity(float opacity) {
-      canvasGroup.alpha = opacity;
-    }
   }
 }

@@ -16,5 +16,10 @@ namespace UI.Dialogue {
       lineRenderer.startColor = lineRenderer.startColor.WithAlpha(opacity);
       lineRenderer.endColor = lineRenderer.endColor.WithAlpha(opacity);
     }
+
+    public void SetColor(Color color) {
+      lineRenderer.startColor = color;
+      lineRenderer.endColor = color;
+    }
   }
 }

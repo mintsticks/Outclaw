@@ -59,11 +59,9 @@ namespace Outclaw {
       var parent = bubbleParent;
       var bounds = new List<Bounds>();
       if (currentInteractable != null && currentInteractable.ObjectiveTransform != parent) {
-        Debug.Log("adding cat");
         bounds.Add(currentInteractable.ObjectiveBounds);
       }
       if (parent != player.PlayerTransform && parent != player.HeadTransform) {
-        Debug.Log("adding me");
         bounds.Add(player.PlayerBounds);
       }
       
@@ -104,7 +102,6 @@ namespace Outclaw {
         BubbleText = "",
         BubbleParent = parent,
         UIParent = transform,
-        Type = dialogueType,
         InvalidBounds = bounds,
         UI = this
       });
@@ -148,14 +145,14 @@ namespace Outclaw {
         OnSelect = SetOption
       });
       bubble.transform.SetParent(transform, false);
-      bubble.UpdatePosition();
       bubbles.Add(bubble);
 
       while (SetSelectedOption != null) {
         yield return null;
       }
 
-      bubble.ToBubble();
+      bubbles.Remove(bubble);
+      bubble.StartCoroutine(bubble.FadeBubble());
       yield return new WaitForEndOfFrame();
     }
 

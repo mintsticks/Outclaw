@@ -6,17 +6,11 @@ using Zenject;
 
 namespace Outclaw.City {
   public class CityInstaller : MonoInstaller {
-    [SerializeField]
-    private Player playerInstance;
-
-    [SerializeField] 
-    private CameraBehavior cameraInstance;
-    
-    [SerializeField]
-    private GameObject objectiveTransformManagerPrefab;
-
-    [SerializeField]
-    private GameObject senseManagerPrefab;
+    [SerializeField] private Player playerInstance;
+    [SerializeField] private CameraBehavior cameraInstance;
+    [SerializeField] private GameObject objectiveTransformManagerPrefab;
+    [SerializeField] private GameObject senseManagerPrefab;
+    [SerializeField] private GameObject cityDialogueSettingPrefab;
 
     /// <summary>
     /// For all classes common to city scenes.
@@ -51,6 +45,10 @@ namespace Outclaw.City {
         .To<CitySenseVisuals>()
         .AsSingle()
         .NonLazy();
+      Container.Bind<IDialogueSettings>()
+        .To<DialogueSettings>()
+        .FromComponentInNewPrefab(cityDialogueSettingPrefab)
+        .AsSingle();
     }
   }
 }
