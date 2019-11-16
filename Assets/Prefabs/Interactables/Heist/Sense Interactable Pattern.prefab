@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2921557368656831586}
   - component: {fileID: 424986885086712546}
   - component: {fileID: 2658354068878555997}
+  - component: {fileID: 7380224466704350177}
   m_Layer: 11
-  m_Name: Sense Pattern
+  m_Name: Sense Interactable Pattern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +92,7 @@ SortingGroup:
   m_GameObject: {fileID: 8200613139897148308}
   m_Enabled: 1
   m_SortingLayerID: 244063553
-  m_SortingLayer: 7
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!114 &2658354068878555997
 MonoBehaviour:
@@ -109,9 +110,21 @@ MonoBehaviour:
   patternMask: {fileID: 2921557368656831586}
   patternTransform: {fileID: 3380843459240129875}
   patternSprite: {fileID: 3963031282646409637}
-  hideColor: {r: 1, g: 1, b: 1, a: 0}
-  showColor: {r: 1, g: 1, b: 1, a: 1}
-  animateVelocity: {x: 0.5, y: 0.5}
+--- !u!114 &7380224466704350177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8200613139897148308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f495e9387a654802811ef5a5819e9264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3963031282646409637}
+  regularColor: {r: 1, g: 1, b: 1, a: 0}
+  showColor: {r: 1, g: 1, b: 1, a: 0.5882353}
 --- !u!1 &8991432053752938010
 GameObject:
   m_ObjectHideFlags: 0
