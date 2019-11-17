@@ -11,7 +11,6 @@ namespace Outclaw.City {
     void StartDialogue(Action onComplete = null);
     bool IsDialogueRunning { get; }
     void SetBubbleParent(Transform parent);
-    void SetDialogueType(DialogueType type);
     void StartDialogue(TextAsset[] text, 
       DialogueType type, 
       Transform parent, 
@@ -36,10 +35,6 @@ namespace Outclaw.City {
       runner.SourceText = text;
     }
 
-    public void SetDialogueType(DialogueType type) {
-      uiBehaviour.DialogueType = type;
-    }
-
     public void StartDialogue(Action onComplete = null) {
       uiBehaviour.OnDialogueComplete = onComplete + EnableInput;
       player.InputDisabled = true;
@@ -52,7 +47,6 @@ namespace Outclaw.City {
       ObjectiveInteractable currentInteractable = null, 
       Action onComplete = null) {
       runner.SourceText = text;
-      uiBehaviour.DialogueType = type;
       uiBehaviour.BubbleParent = parent;
       uiBehaviour.CurrentInteractable = currentInteractable;
       uiBehaviour.OnDialogueComplete = onComplete + EnableInput;

@@ -11,8 +11,11 @@
       <e p="Assets" t="Include">
         <e p="Dialogue" t="Include">
           <e p="AkiPark.yarn.txt" t="Include" />
+          <e p="baseEnter.yarn.txt" t="Include" />
+          <e p="baseExit.yarn.txt" t="Include" />
           <e p="CatDialogue" t="Include">
             <e p="Akio2.yarn.txt" t="Include" />
+            <e p="AkioEndDefault.yarn.txt" t="Include" />
             <e p="AkioFirstTimeCity1.yarn.txt" t="Include" />
             <e p="AkioFirstTimeCity2.yarn.txt" t="Include" />
             <e p="AkioFoundCollar.yarn.txt" t="Include" />
@@ -37,14 +40,41 @@
             <e p="Taro1.yarn.txt" t="Include" />
             <e p="Taro2.yarn.txt" t="Include" />
             <e p="Taro3.yarn.txt" t="Include" />
+            <e p="TaroDefault.yarn.txt" t="Include" />
+            <e p="TaroEnd.yarn.txt" t="Include" />
           </e>
+          <e p="dontLeaveBase.yarn.txt" t="Include" />
           <e p="DontLeaveHouse.yarn.txt" t="Include" />
           <e p="foundCollar.yarn.txt" t="Include" />
+          <e p="getKeyBase.yarn.txt" t="Include" />
+          <e p="lookAtFiles.yarn.txt" t="Include" />
           <e p="ObjectDialogue" t="Include">
             <e p="AkioToy.txt" t="Include" />
+            <e p="Arcade" t="Include">
+              <e p="insideArcade.txt" t="Include" />
+            </e>
             <e p="Bathroom1.yarn.txt" t="Include" />
             <e p="Bed1.yarn.txt" t="Include" />
             <e p="Cabinet1.yarn.txt" t="Include" />
+            <e p="City" t="Include">
+              <e p="bikeRack.txt" t="Include" />
+              <e p="busStop.txt" t="Include" />
+              <e p="catCafeWorker1.txt" t="Include" />
+              <e p="catCafeWorker2.txt" t="Include" />
+              <e p="catCafeWorkerReturn.txt" t="Include" />
+              <e p="construction.txt" t="Include" />
+              <e p="endStreet.txt" t="Include" />
+              <e p="fountainAfterTaro.txt" t="Include" />
+              <e p="fountainDefault.txt" t="Include" />
+              <e p="outsideArcade.txt" t="Include" />
+              <e p="person1Girl.txt" t="Include" />
+              <e p="person1Guy.txt" t="Include" />
+              <e p="person2Guy.txt" t="Include" />
+              <e p="plant1.txt" t="Include" />
+              <e p="plant2.txt" t="Include" />
+              <e p="strayCleanupPoster.txt" t="Include" />
+              <e p="yakuzaGraffiti.txt" t="Include" />
+            </e>
             <e p="Collar.txt" t="Include" />
             <e p="Desk1.yarn.txt" t="Include" />
             <e p="Desk2.yarn.txt" t="Include" />
@@ -58,6 +88,18 @@
             <e p="Rope.txt" t="Include" />
             <e p="Table1.yarn.txt" t="Include" />
             <e p="Trapdoor1.yarn.txt" t="Include" />
+            <e p="Yakuza Base" t="Include">
+              <e p="baseEnter.yarn.txt" t="Include" />
+              <e p="baseExit.yarn.txt" t="Include" />
+              <e p="baseStart.yarn.txt" t="Include" />
+              <e p="cantOpenFiles.yarn.txt" t="Include" />
+              <e p="dontLeaveBase.yarn.txt" t="Include" />
+              <e p="getKeyBase.yarn.txt" t="Include" />
+              <e p="guard1.yarn.txt" t="Include" />
+              <e p="guard2.yarn.txt" t="Include" />
+              <e p="lookAtFiles.yarn.txt" t="Include" />
+              <e p="PoundEnter.yarn.txt" t="Include" />
+            </e>
           </e>
           <e p="ParkDefault.yarn.txt" t="Include" />
           <e p="ParkExitInvalid.txt" t="Include" />
@@ -607,8 +649,9 @@
                 <e p="GreyOnSenseElement.cs" t="Include" />
               </e>
               <e p="Heist" t="Include">
-                <e p="DarkenOnSenseElement.cs" t="Include" />
-                <e p="ShowOnSenseElement.cs" t="Include" />
+                <e p="ChangeColorOnSenseElement.cs" t="Include" />
+                <e p="InitSensePattern.cs" t="Include" />
+                <e p="ShowCanvasOnSense.cs" t="Include" />
                 <e p="VantagePoint.cs" t="Include" />
                 <e p="VantagePointManager.cs" t="Include" />
               </e>

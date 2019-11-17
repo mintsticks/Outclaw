@@ -31,7 +31,7 @@ namespace Outclaw {
     private OptionChooser SetSelectedOption;
     private Transform bubbleParent;
     private Action onDialogueComplete;
-    private DialogueType dialogueType;
+    private Vector3? cachedBubblePosition;
     private HashSet<Bubble> bubbles = new HashSet<Bubble>();
     private bool skip;
     private ObjectiveInteractable currentInteractable;
@@ -45,11 +45,7 @@ namespace Outclaw {
     public Transform BubbleParent {
       set => bubbleParent = value;
     }
-
-    public DialogueType DialogueType {
-      set => dialogueType = value;
-    }
-
+    
     public ObjectiveInteractable CurrentInteractable {
       set => currentInteractable = value;
     }
@@ -98,13 +94,10 @@ namespace Outclaw {
     }
     
     private IEnumerator HandleTextBubble(Transform parent, string lineText, List<Bounds> bounds) {
-      var bubble = speechBubbleFactory.Create(new SpeechBubble.Data() {
-        BubbleText = "",
-        BubbleParent = parent,
-        UIParent = transform,
-        InvalidBounds = bounds,
-        UI = this
-      });
+      var bubble = CreateSpeechBubble(parent, bounds);
+      if (cachedBubblePosition == null) {
+        cachedBubblePosition = bubble.transform.position;
+      }
 
       bubbles.Add(bubble);
       var text = ReplaceVariables(lineText);
@@ -120,6 +113,24 @@ namespace Outclaw {
       bubbles.Remove(bubble);
       bubble.StartCoroutine(bubble.FadeBubble()); // make bubble own coroutine so it's never stopped
       yield return new WaitForEndOfFrame();
+    }
+
+    private SpeechBubble CreateSpeechBubble(Transform parent, List<Bounds> bounds) {
+      if (cachedBubblePosition == null) {
+        return speechBubbleFactory.Create(new SpeechBubble.Data {
+          BubbleText = "",
+          BubbleParent = parent,
+          UIParent = transform,
+          InvalidBounds = bounds,
+          UI = this
+        });
+      }
+      return speechBubbleFactory.Create(new SpeechBubble.Data {
+        InitialPosition = cachedBubblePosition,
+        UIParent = transform,
+        BubbleParent = parent,
+        UI = this
+      });
     }
     
     private IEnumerator DetectSkip(SpeechBubble bubble) {
@@ -212,8 +223,10 @@ namespace Outclaw {
         yield break;
       }
 
+      cachedBubblePosition = null;
       onDialogueComplete.Invoke();
       onDialogueComplete = null;
+      
     }
   }
 }
