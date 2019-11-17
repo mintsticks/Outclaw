@@ -7,7 +7,7 @@ using Zenject;
 namespace Outclaw.Heist{
   [RequireComponent(typeof(SpriteMask))]
   [RequireComponent(typeof(SortingGroup))]
-  [RequireComponent(typeof(ShowOnSenseElement))]
+  [RequireComponent(typeof(ChangeColorOnSenseElement))]
   public class InitSensePattern : MonoBehaviour
   {
     [Header("Main Sprite")]
@@ -19,6 +19,11 @@ namespace Outclaw.Heist{
     [SerializeField] private SpriteRenderer patternSprite;
 
     void Awake() {
+      // can't do anything without a source sprite
+      if(sourceSprite == null){
+        patternMask.sprite = null;
+        return;
+      }
 
       // force mask size to be the same size as the sourceSprite size
       if(sourceSprite.transform.lossyScale != transform.lossyScale){

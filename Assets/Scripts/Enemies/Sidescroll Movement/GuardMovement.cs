@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Outclaw.Heist{
@@ -23,6 +24,8 @@ namespace Outclaw.Heist{
     [Header("Component Links")]
     [Tooltip("Optional to fill, animation actions will not update if blank.")]
     [SerializeField] private GuardAnimationController anim;
+    [Tooltip("Optional")]
+    [SerializeField] private Image turnIndicator;
 
     [Inject] private IPauseGame pause;
 
@@ -31,6 +34,10 @@ namespace Outclaw.Heist{
 
     void Start(){
       anim?.SetFlashlight(visionCone != null);
+
+      if(turnIndicator != null){
+        turnIndicator.fillAmount = 0;
+      }
     }
 
     public void UpdateVisionCone(Vector3 facingDir){
@@ -84,8 +91,14 @@ namespace Outclaw.Heist{
         float progress = totalTime / duration;
         anim?.SetFlashlightAngle(defaultAngle +
           angleRange * (turningUp ? 1 - progress : progress));
-
+        if(turnIndicator != null){
+          turnIndicator.fillAmount = progress;
+        }
         yield return null;
+      }
+      
+      if(turnIndicator != null){
+        turnIndicator.fillAmount = 0;
       }
       yield break;
     }
