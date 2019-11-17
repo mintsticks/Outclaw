@@ -11,6 +11,10 @@ namespace Outclaw.City{
 
     public int Rank { get => rank; }
     public int GetGameStateRank(GameStateData state) {
+      if(state == null){
+        Debug.LogWarning("No state provided, ignoring");
+        return 0;
+      }
       if(!stateRanks.ContainsKey(state)){
         return 0;
       }
@@ -22,6 +26,11 @@ namespace Outclaw.City{
     }
 
     public void IncreaseGameStateRank(GameStateData state){
+      if(state == null){
+        Debug.LogWarning("No state provided, ignoring");
+        return;
+      }
+
       CheckForGameState(state);
       ++stateRanks[state];
     }
