@@ -17,15 +17,21 @@ namespace Outclaw {
     [SerializeField] private Text bubbleText;
 
     private bool skipped;
+    private float bottomPadding;
     private StringBuilder currentStringBuilder;
     private Canvas canvas;
     private RectTransform bubbleImageTransform;
     
-    public void Initialize(Canvas canvas, RectTransform bubbleImageTransform, int fontSize, string initialText = "") {
+    public void Initialize(Canvas canvas, RectTransform bubbleImageTransform, int fontSize, string initialText = "", float bottomPadding = 0f) {
       this.canvas = canvas;
       this.bubbleImageTransform = bubbleImageTransform;
       bubbleText.text = initialText;
       bubbleText.fontSize = fontSize;
+      bubbleText.rectTransform.position = 
+        bubbleText.rectTransform.position.AddToXY(
+          canvas.scaleFactor * horizontalPadding, 
+          canvas.scaleFactor * -verticalPadding);
+      this.bottomPadding = bottomPadding;
     }
     
     private string ProcessText(string text) {
@@ -73,8 +79,7 @@ namespace Outclaw {
         bubbleText.rectTransform.sizeDelta = new Vector2(width, height);
       }
       
-      bubbleImageTransform.sizeDelta = new Vector2(width + horizontalPadding * 2, height + verticalPadding * 2);
-      bubbleText.rectTransform.position = bubbleText.rectTransform.position.AddToXY(canvas.scaleFactor * horizontalPadding, canvas.scaleFactor * -verticalPadding);
+      bubbleImageTransform.sizeDelta = new Vector2(width + horizontalPadding * 2, height + verticalPadding * 2 + bottomPadding);
       bubbleText.color = bubbleText.color.WithAlpha(1f);
     }
 

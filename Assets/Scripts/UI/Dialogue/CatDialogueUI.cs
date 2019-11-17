@@ -31,7 +31,7 @@ namespace Outclaw {
     private OptionChooser SetSelectedOption;
     private Transform bubbleParent;
     private Action onDialogueComplete;
-    private Vector3? cachedBubblePosition;
+    private Dictionary<Transform, Vector3?> bubblePositionsForParent = new Dictionary<Transform, Vector3?>();
     private HashSet<Bubble> bubbles = new HashSet<Bubble>();
     private bool skip;
     private ObjectiveInteractable currentInteractable;
@@ -54,6 +54,12 @@ namespace Outclaw {
       var lineText = line.text;
       var parent = bubbleParent;
       var bounds = new List<Bounds>();
+      
+      if (HasMultipleText(lineText)) {
+        lineText = ParseMultipleText(lineText);
+        parent = player.HeadTransform;
+      }
+      
       if (currentInteractable != null && currentInteractable.ObjectiveTransform != parent) {
         bounds.Add(currentInteractable.ObjectiveBounds);
       }
@@ -64,11 +70,6 @@ namespace Outclaw {
       if (HasIcon(lineText)) {
         yield return HandleIconBubble(parent, ParseIconName(lineText), bounds);
         yield break;
-      }
-      
-      if (HasMultipleText(lineText)) {
-        lineText = ParseMultipleText(lineText);
-        parent = player.HeadTransform;
       }
 
       yield return HandleTextBubble(parent, lineText, bounds);
@@ -95,8 +96,8 @@ namespace Outclaw {
     
     private IEnumerator HandleTextBubble(Transform parent, string lineText, List<Bounds> bounds) {
       var bubble = CreateSpeechBubble(parent, bounds);
-      if (cachedBubblePosition == null) {
-        cachedBubblePosition = bubble.transform.position;
+      if (!bubblePositionsForParent.ContainsKey(parent)) {
+        bubblePositionsForParent[parent] = bubble.transform.position;
       }
 
       bubbles.Add(bubble);
@@ -116,7 +117,7 @@ namespace Outclaw {
     }
 
     private SpeechBubble CreateSpeechBubble(Transform parent, List<Bounds> bounds) {
-      if (cachedBubblePosition == null) {
+      if (!bubblePositionsForParent.ContainsKey(parent)) {
         return speechBubbleFactory.Create(new SpeechBubble.Data {
           BubbleText = "",
           BubbleParent = parent,
@@ -126,7 +127,7 @@ namespace Outclaw {
         });
       }
       return speechBubbleFactory.Create(new SpeechBubble.Data {
-        InitialPosition = cachedBubblePosition,
+        InitialPosition = bubblePositionsForParent[parent],
         UIParent = transform,
         BubbleParent = parent,
         UI = this
@@ -150,12 +151,13 @@ namespace Outclaw {
     }
 
     public override IEnumerator RunOptions(Options optionsCollection, OptionChooser optionChooser) {
+      var bounds = new List<Bounds>();
+      if (currentInteractable != null) {
+        bounds.Add(currentInteractable.ObjectiveBounds);
+      }
+
       SetSelectedOption = optionChooser;
-      var bubble = thoughtBubbleFactory.Create(new ThoughtBubble.Data {
-        Options = ParseOptions(optionsCollection),
-        OnSelect = SetOption
-      });
-      bubble.transform.SetParent(transform, false);
+      var bubble = CreateThoughtBubble(optionsCollection, player.HeadTransform, bounds);
       bubbles.Add(bubble);
 
       while (SetSelectedOption != null) {
@@ -168,6 +170,28 @@ namespace Outclaw {
     }
 
 
+    private ThoughtBubble CreateThoughtBubble(Options options, Transform parent, List<Bounds> bounds) {
+      if (!bubblePositionsForParent.ContainsKey(parent)) {
+        return thoughtBubbleFactory.Create(new ThoughtBubble.Data {
+          Options = ParseOptions(options),
+          OnSelect = SetOption,
+          BubbleText = "",
+          BubbleParent = player.HeadTransform,
+          UIParent = transform,
+          InvalidBounds = bounds,
+          UI = this
+        });
+      }
+      return thoughtBubbleFactory.Create(new ThoughtBubble.Data {
+        Options = ParseOptions(options),
+        OnSelect = SetOption,
+        UIParent = transform,
+        InitialPosition = bubblePositionsForParent[parent],
+        BubbleParent = parent,
+        UI = this
+      });
+    }
+    
     private string ReplaceVariables(string input) {
       foreach (var variable in dialogueVariables) {
         input = input.Replace(variable.key, variable.value);
@@ -223,7 +247,7 @@ namespace Outclaw {
         yield break;
       }
 
-      cachedBubblePosition = null;
+      bubblePositionsForParent.Clear();
       onDialogueComplete.Invoke();
       onDialogueComplete = null;
       
