@@ -35,6 +35,10 @@ namespace Outclaw.Heist{
     }
 
     public void CancelCapture(){
+      // already captured, don't cancel
+      if(awareness >= maxAwareness){
+        return;
+      }
       captureRoutine.StopCoroutine();
       fadeOutRoutine.StartCoroutine();
     }
