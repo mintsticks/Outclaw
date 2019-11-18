@@ -1,20 +1,59 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Utility;
 
 namespace Outclaw {
   public class Indicator : MonoBehaviour {
     [SerializeField] private float fadeTime = .25f;
     [SerializeField] private AnimationWrapper animationWrapper;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Image image;
 
-    [SerializeField] private Color minColor = new Color(1, 1, 1, 0);
-    [SerializeField] private Color maxColor = new Color(1, 1, 1, 1);
+    [SerializeField] private GameObject worldParent;
+    [SerializeField] private GameObject indicatorParent;
+    [SerializeField] private GameObject tutorialParent;
+    [SerializeField] private Image tutorialImage;
+    [SerializeField] private Text tutorialText;
+    [SerializeField] private PlatformInfo info;
+    [SerializeField] private Task indicatorTask;
+
+    [SerializeField] private CanvasGroup canvasGroup;
     
     private float animationProgress;
+    private Camera main;
+    private bool active;
+    
+    private void Start() {
+      if (indicatorTask.IsComplete) {
+        return;
+      }
+      Platform currentPlatform;
+#if UNITY_WSA
+      currentPlatform = Platform.XBOX;
+#else
+      currentPlatform = Platform.PC;
+#endif
+      tutorialImage.sprite = info.images.FirstOrDefault(i => i.platform == currentPlatform)?.image;
+      tutorialText.text = info.texts.FirstOrDefault(i => i.platform == currentPlatform)?.text;
+      main = Camera.main;
+    }
 
+    public void Update() {
+      if (!active) {
+        return;
+      }
+      indicatorParent.transform.position = main.WorldToScreenPoint(worldParent.transform.position);
+    }
+    
     public void FadeIn() {
+      UpdateTutorial();
       animationWrapper.StartNewAnimation(FadeInAnim());
+    }
+
+    private void UpdateTutorial() {
+      tutorialParent.SetActive(!indicatorTask.IsComplete);
     }
     
     public void FadeOut() {
@@ -22,13 +61,15 @@ namespace Outclaw {
     }
 
     private IEnumerator FadeInAnim() {
-      spriteRenderer.enabled = true;
+      image.enabled = true;
+      active = true;
       yield return UpdateIndicator(animationProgress, 1 - animationProgress);
     }
 
     private IEnumerator FadeOutAnim() {
       yield return UpdateIndicator(animationProgress,-animationProgress);
-      spriteRenderer.enabled = false;
+      image.enabled = false;
+      active = false;
     }
     
     private IEnumerator UpdateIndicator(float startAmount, float changeAmount) {
@@ -43,8 +84,7 @@ namespace Outclaw {
     }
     
     private void UpdateIndicator() {
-      var color = Color.Lerp(minColor, maxColor, animationProgress);
-      spriteRenderer.color = color;
+      canvasGroup.alpha = animationProgress;
     }
   }
 }

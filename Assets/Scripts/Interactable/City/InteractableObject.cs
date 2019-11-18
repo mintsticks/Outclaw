@@ -14,6 +14,7 @@ namespace Outclaw.City {
     [SerializeField] private ObjectDialogues objectInfo;
     [SerializeField] private ObjectDialogueData dialogueData;
     [SerializeField] private BoxCollider2D bound;
+    [SerializeField] private Task promptTask;
     
     [Header("Effects")]
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -63,6 +64,10 @@ namespace Outclaw.City {
       var dialogue = GetObjectDialogue();
       observeIndicator.FadeOut();
       dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, player.HeadTransform, this, CompleteInteraction);
+      if (promptTask != null && !promptTask.IsComplete) {
+        Debug.Log("yeet");
+        promptTask.Complete();
+      }
     }
 
     public bool HasInteraction() {
