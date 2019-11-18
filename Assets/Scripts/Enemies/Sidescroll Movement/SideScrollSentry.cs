@@ -8,7 +8,6 @@ namespace Outclaw.Heist{
     [Header("Turning")]
     [Tooltip("Does this guard turn around?")]
     [SerializeField] private bool turns = true;
-    [SerializeField] private float turnPause = 1f;
     [SerializeField] private float lookPause = .1f;
     [SerializeField] private float armTurnTime = 1f;
 
@@ -34,14 +33,11 @@ namespace Outclaw.Heist{
 
     private IEnumerator Sentry(Vector3 leftDir, Vector3 rightDir){
       while(true){
-        for(float time = 0; time < turnPause; time += Time.deltaTime){
-          movement.UpdateVisionCone(isFacingLeft ? leftDir : rightDir);
-          yield return null;
-        }
         if (!turns) {
           yield break;
         }
-        yield return LookAround(leftDir, rightDir);
+        yield return movement.Turn(leftDir, rightDir, !isFacingLeft, lookPause, 
+          armTurnTime, armAngle, ToggleFacingDir);
       }
     }
 
@@ -54,19 +50,8 @@ namespace Outclaw.Heist{
         * Vector3.right;
     }
 
-    private IEnumerator LookAround(Vector3 leftDir, Vector3 rightDir){
-      movement.MoveTowards(movement.transform.position, 0);
-
-      Vector3 endDir = isFacingLeft ? rightDir : leftDir;
-      Quaternion bottomRot = Quaternion.AngleAxis(180f, Vector3.forward);
-      Quaternion endRot =  Quaternion.LookRotation(Vector3.forward, endDir);
-      yield return new WaitForSeconds(lookPause);
-      yield return movement.TurnVision(bottomRot, armTurnTime, armAngle, false);
-      movement.TurnBody();
-      yield return movement.TurnVision(endRot, armTurnTime, armAngle, true);
-
+    private void ToggleFacingDir(){
       isFacingLeft = !isFacingLeft;
-      yield break;
     }
   }
 }
