@@ -1,5 +1,6 @@
 ﻿#pragma warning disable 649
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +19,7 @@ namespace Outclaw.Heist{
     [SerializeField] private Transform visionConeTransform;
     [SerializeField] private float speed = 1;
 
-    [SerializeField]
-    private Bounds bodyBounds;
+    [SerializeField] private Bounds bodyBounds;
 
     [Header("Component Links")]
     [Tooltip("Optional to fill, animation actions will not update if blank.")]
@@ -91,16 +91,38 @@ namespace Outclaw.Heist{
         float progress = totalTime / duration;
         anim?.SetFlashlightAngle(defaultAngle +
           angleRange * (turningUp ? 1 - progress : progress));
+        yield return null;
+      }
+
+      yield break;
+    }
+
+    public IEnumerator Turn(Vector3 leftDir, Vector3 rightDir, bool startingLeft,
+        float lookPause, float turnTime, float visionAngle, Action finishCallback = null){
+
+      MoveTowards(transform.position, 0);
+
+      Vector3 endDir = startingLeft ? leftDir : rightDir;
+      Quaternion bottomRot = Quaternion.AngleAxis(180f, Vector3.forward);
+      Quaternion endRot =  Quaternion.LookRotation(Vector3.forward, endDir);
+      yield return WaitForTurn(lookPause);
+      yield return TurnVision(bottomRot, turnTime, visionAngle, false);
+      TurnBody();
+      yield return TurnVision(endRot, turnTime, visionAngle, true);
+
+      finishCallback?.Invoke();
+      yield break;
+    }
+
+    private IEnumerator WaitForTurn(float waitTime){
+      for(float time = 0; time < waitTime; time += Time.deltaTime){
         if(turnIndicator != null){
-          turnIndicator.fillAmount = progress;
+          turnIndicator.fillAmount = time / waitTime;
         }
         yield return null;
       }
-      
-      if(turnIndicator != null){
-        turnIndicator.fillAmount = 0;
-      }
-      yield break;
+
+      turnIndicator.fillAmount = 0;
     }
 
     public void SetVision(Quaternion rot){

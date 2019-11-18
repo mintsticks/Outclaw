@@ -140,10 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714edc76f0ab7904294a84069a98bf3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSound: {fileID: 8300000, guid: ee5a248a26a6a42bda67eaa33636b7b6, type: 3}
+  selectSound: {fileID: 8300000, guid: 7fab8a81bbd794694863c83a2cdecdb9, type: 3}
   pauseTime: 0.1
-  blurAmount: 3
-  animationFreq: 0.02
   contents: {fileID: 7013526966450916002}
+  blurAmount: 3
   background: {fileID: 145902271574793451}
   pauseResumeItem: {fileID: 1220024815985087803}
   pauseSaveItem: {fileID: 4940294770399496295}

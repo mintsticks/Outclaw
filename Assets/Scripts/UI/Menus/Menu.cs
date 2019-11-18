@@ -9,6 +9,10 @@ using Zenject;
 namespace Outclaw.UI{
   public abstract class Menu : MonoBehaviour
   {
+    [Header("Audio")]
+    [SerializeField] protected AudioClip moveSound;
+    [SerializeField] protected AudioClip selectSound;
+
     [Header("Fading Content")]
     [SerializeField] protected float pauseTime;
     [SerializeField] protected CanvasGroup contents;
@@ -23,8 +27,8 @@ namespace Outclaw.UI{
 
     protected ManagedCoroutine downWait = null;
 
-    [Inject]
-    protected IPlayerInput playerInput;
+    [Inject] protected IPlayerInput playerInput;
+    [Inject] protected ISoundManager soundManager;
 
     protected abstract IMenuItem this[int i]{ get; }
     protected abstract int ItemCount();
@@ -45,6 +49,7 @@ namespace Outclaw.UI{
         return;
       }
       
+      soundManager.PlaySFX(selectSound);
       this[currentIndex].Select();
     }
     
@@ -91,6 +96,7 @@ namespace Outclaw.UI{
     protected virtual void HoverIndex(int oldIndex, int newIndex) {
       this[oldIndex].Unhover();
       this[newIndex].Hover();
+      soundManager.PlaySFX(moveSound);
     }
 
     protected IEnumerator FadeInContent() {
