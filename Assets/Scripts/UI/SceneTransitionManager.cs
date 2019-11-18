@@ -40,6 +40,7 @@ namespace Outclaw {
       spawnManager.PreviousScene = SceneManager.GetActiveScene().name;
       spawnManager.ClearCheckpoints();
       isSwitching = true;
+      StopAllCoroutines(); // can still switch when fading out, so stop any lingering coroutines
       StartCoroutine(TransitionRoutine(scene));
     }
     
@@ -49,14 +50,16 @@ namespace Outclaw {
       loadingOp = SceneManager.LoadSceneAsync(scene);
       yield return loadingOp;
       
-      yield return FadeOut();
       isSwitching = false;
+      yield return FadeOut();
     }
     
     
+    // lerps starting from current alpha in case of mid fadeOut start
     private IEnumerator FadeIn() {
+      float startAlpha = content.alpha;
       for (var i = 0f; i <= fadeTime; i += Time.unscaledDeltaTime) {
-        content.alpha = i / fadeTime;
+        content.alpha = startAlpha + ((1 - startAlpha) * i / fadeTime);
         yield return null;
       }
 

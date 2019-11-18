@@ -37,20 +37,34 @@ namespace Outclaw.City {
       return currentPosition;
     }
     
+    void Start(){
+      SnapToPlayer();
+    }
+
     void FixedUpdate() {
       if (!ShouldFollow) {
         return;
       }
       var desiredPos = player.PlayerTransform.position + offset;
       var smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);
-      smoothedPos.x = Mathf.Clamp(smoothedPos.x, minBound.x, maxBound.x);
-      smoothedPos.y = Mathf.Clamp(smoothedPos.y, minBound.y, maxBound.y);
+      ClampPosition(ref smoothedPos);
       currentPosition = smoothedPos;
 
       if (!ShouldFollow) {
         return;
       }
       transform.position = currentPosition;
+    }
+
+    private void ClampPosition(ref Vector3 pos){
+      pos.x = Mathf.Clamp(pos.x, minBound.x, maxBound.x);
+      pos.y = Mathf.Clamp(pos.y, minBound.y, maxBound.y);
+    }
+
+    private void SnapToPlayer(){
+      Vector3 newPos = player.PlayerTransform.position;
+      ClampPosition(ref newPos);
+      transform.position = newPos;
     }
   }
 }
