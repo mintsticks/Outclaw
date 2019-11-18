@@ -146,7 +146,8 @@ namespace Outclaw.Heist{
       while(true){
         if((movement.transform.position - path.GetPosition(targetIdx)).magnitude < arrivalTolerance){
           if(NextPoint()){
-            yield return LookAround(leftDir, rightDir);
+            yield return movement.Turn(leftDir, rightDir, movingLeft,
+              lookPause, headTurnTime, visionAngle);
           }
         }
         movement.MoveTowards(path.GetPosition(targetIdx), Time.deltaTime);
@@ -162,21 +163,6 @@ namespace Outclaw.Heist{
         * Vector3.left;
       rightDir = Quaternion.AngleAxis(-visionAngle, Vector3.forward)
         * Vector3.right;
-    }
-
-    private IEnumerator LookAround(Vector3 leftDir, Vector3 rightDir){
-      movement.MoveTowards(movement.transform.position, 0);
-
-      // inverted because it was toggled before this call
-      Vector3 endDir = movingLeft ? leftDir : rightDir;
-      Quaternion bottomRot = Quaternion.AngleAxis(180f, Vector3.forward);
-      Quaternion endRot =  Quaternion.LookRotation(Vector3.forward, endDir);
-      yield return new WaitForSeconds(lookPause);
-      yield return movement.TurnVision(bottomRot, headTurnTime, visionAngle, false);
-      movement.TurnBody();
-      yield return movement.TurnVision(endRot, headTurnTime, visionAngle, true);
-
-      yield break;
     }
 
     private void TogglePathVisibility(bool shown){
