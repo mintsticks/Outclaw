@@ -8,7 +8,7 @@ namespace Outclaw.Heist {
     void OnDeactivate();
   }
   
-  public class ShowOnSenseElement : MonoBehaviour, ISenseElement {
+  public class ChangeColorOnSenseElement : MonoBehaviour, ISenseElement {
     [Inject] private ISenseVisuals senseVisuals;
     
     [SerializeField] private SpriteRenderer spriteRenderer;

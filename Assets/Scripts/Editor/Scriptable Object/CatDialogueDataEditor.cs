@@ -40,7 +40,7 @@ namespace Outclaw.City{
       if(GUILayout.Button("Force Increase")){
         data.IncreaseGameStateRank(state);
       }
-      if(GUILayout.Button("Force Reset")){
+      if(GUILayout.Button("Force Reset") && state != null){
         data.ResetStateRank(state);
       }
       if(GUILayout.Button("Force Reset All")){

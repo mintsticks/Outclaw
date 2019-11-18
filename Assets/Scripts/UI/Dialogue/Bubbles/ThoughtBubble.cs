@@ -19,39 +19,73 @@ namespace Outclaw.City {
     public class Data {
       public List<string> Options;
       public Action<int> OnSelect;
+      public string BubbleText;
+      public Transform BubbleParent;
+      public Transform UIParent;
+      public List<Bounds> InvalidBounds;
+      public CatDialogueUI UI;
+      public Vector3? InitialPosition;
     }
     
-    [SerializeField] private Text bubbleText;
-    [SerializeField] private Image bubble;
     [SerializeField] private Transform indicatorGrid;
     [SerializeField] private Transform leftArrow;
     [SerializeField] private Transform rightArrow;
-    [SerializeField] private BubbleAnimationHelper bubbleAnimationHelper;
     
-    [Inject] private IPlayer player;
+    [SerializeField] private Image bubble;
+    [SerializeField] private RectTransform bubbleImageTransform;
+    [SerializeField] private BubbleTail bubbleTail;
+    [SerializeField] private BubbleTextHelper bubbleTextHelper;
+    [SerializeField] private BubblePositionHelper bubblePositionHelper;
+    [SerializeField] private BubbleAnimationHelper bubbleAnimationHelper;
+    [SerializeField] private AnimationWrapper animationWrapper;
+
+    [SerializeField] private float optionPadding = 15f;
+    
     [Inject] private IPlayerInput playerInput;
     [Inject] private OptionIndicator.Factory optionIndicatorFactory;
-    [Inject] private IDialogueIconManager dialogueIconManager;
+    [Inject] private IDialogueSettings dialogueSettings;
     [Inject] private IPauseGame pause;
 
     private List<string> options;
     private List<OptionIndicator> indicators;
     private int currentIndex;
     private Action<int> onSelect;
+    private bool initialized;
 
     [Inject]
     public void Initialize(Data data) {
+      bubble.color = dialogueSettings.BubbleColor;
+      bubbleTail.SetColor(dialogueSettings.BubbleColor);
+      transform.SetParent(data.UIParent, false);
+      var invalidBounds = data.InvalidBounds ?? new List<Bounds>();
+      var canvas = data.UI.DialogueCanvas;
+      InitializeBubblePosition(data, canvas, invalidBounds);
+      
+      
       options = data.Options;
       onSelect = data.OnSelect;
       currentIndex = 0;
+      if (options.Count <= 1) {
+        indicatorGrid.gameObject.SetActive(false);
+        bubbleTextHelper.Initialize(canvas, bubbleImageTransform, (int)dialogueSettings.FontSize, data.BubbleText, 0);
+        return;
+      }
+      
+      bubbleTextHelper.Initialize(canvas, bubbleImageTransform, (int)dialogueSettings.FontSize, data.BubbleText, optionPadding);
       indicators = new List<OptionIndicator>();
       for (var i = 0; i < options.Count; i++) {
         var indicator = optionIndicatorFactory.Create();
         indicator.transform.SetParent(indicatorGrid);
         indicators.Add(indicator);
       }
-
-      SetOption(currentIndex);
+    }
+    
+    private void InitializeBubblePosition(Data data, Canvas canvas, List<Bounds> invalidBounds) {
+      if (data.InitialPosition == null) {
+        bubblePositionHelper.Initialize(invalidBounds, Camera.main, data.BubbleParent, bubbleImageTransform, canvas);
+        return;
+      }
+      bubblePositionHelper.Initialize(data.InitialPosition.Value, data.BubbleParent, Camera.main);
     }
 
     public Transform BubbleTransform => transform;
@@ -61,6 +95,11 @@ namespace Outclaw.City {
         return;
       }
 
+      if (!initialized) {
+        SetOption(0);
+        initialized = true;
+      }
+      
       if (playerInput.IsLeftDown()) {
         SelectLeft();
       }
@@ -95,25 +134,25 @@ namespace Outclaw.City {
 
     private void SetOption(int index) {
       UpdateArrows(index);
-      bubbleText.text = options[index];
+      UpdateText(options[index].Trim());
+      if (options.Count <= 1) {
+        return;
+      }
+
       indicators[currentIndex].Deselect();
       indicators[index].Select();
       currentIndex = index;
     }
 
+    private void UpdateText(string text) {
+      animationWrapper.StartNewAnimation(bubbleTextHelper.ShowText(text));
+    }
+    
     private void UpdateArrows(int index) {
       leftArrow.gameObject.SetActive(index > 0);
       rightArrow.gameObject.SetActive(index < options.Count - 1);
     }
 
-    public void SetOpacity(float opacity) {
-      var oldTextColor = bubbleText.color;
-      bubbleText.color = new Color(oldTextColor.r, oldTextColor.g, oldTextColor.b, opacity);
-
-      var oldBubbleColor = bubble.color;
-      bubble.color = new Color(oldBubbleColor.r, oldBubbleColor.g, oldBubbleColor.b, opacity);
-    }
-    
     public IEnumerator FadeBubble() {
       yield return bubbleAnimationHelper.FadeBubble();
       Destroy(gameObject);

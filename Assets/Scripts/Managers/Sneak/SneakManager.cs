@@ -16,6 +16,7 @@ namespace Managers {
     [SerializeField] private float sneakCooldownFactor = .75f;
     [SerializeField] private float warningPercent = .8f;
     [Inject] private IPlayerInput playerInput;
+    [Inject] private Outclaw.City.IPlayer player;
     
     public bool IsSneaking => isSneaking;
     public bool IsSneakingDown => isSneakingDown;
@@ -28,6 +29,7 @@ namespace Managers {
     private float sneakSeconds;
     private bool visible = true;
     private bool pulsing;
+
     private void Update() {
       CheckSneakDown();
       CheckSneakUp();
@@ -37,7 +39,8 @@ namespace Managers {
     }
 
     private void CheckSneakDown() {
-      if (!playerInput.IsSneakDown()) {
+        // v------ hot fix to disable sneak when input is disabled
+      if (player.InputDisabled || !playerInput.IsSneakDown()) {
         isSneakingDown = false;
         return;
       }

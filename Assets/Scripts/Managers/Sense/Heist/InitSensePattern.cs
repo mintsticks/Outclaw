@@ -7,7 +7,8 @@ using Zenject;
 namespace Outclaw.Heist{
   [RequireComponent(typeof(SpriteMask))]
   [RequireComponent(typeof(SortingGroup))]
-  public class PatternOnSenseElement : MonoBehaviour, ISenseElement 
+  [RequireComponent(typeof(ChangeColorOnSenseElement))]
+  public class InitSensePattern : MonoBehaviour
   {
     [Header("Main Sprite")]
     [SerializeField] private SpriteRenderer sourceSprite;
@@ -16,13 +17,13 @@ namespace Outclaw.Heist{
     [SerializeField] private SpriteMask patternMask;
     [SerializeField] private Transform patternTransform;
     [SerializeField] private SpriteRenderer patternSprite;
-    [SerializeField] private Color hideColor = new Color(1, 1, 1, 0);
-    [SerializeField] private Color showColor = new Color(1, 1, 1, 1);
-
-    [Inject] private ISenseVisuals senseVisuals;
 
     void Awake() {
-      senseVisuals.RegisterSenseElement(this);
+      // can't do anything without a source sprite
+      if(sourceSprite == null){
+        patternMask.sprite = null;
+        return;
+      }
 
       // force mask size to be the same size as the sourceSprite size
       if(sourceSprite.transform.lossyScale != transform.lossyScale){
@@ -49,17 +50,6 @@ namespace Outclaw.Heist{
       patternSize.x *= origScale.x;
       patternSize.y *= origScale.y;
       patternSprite.size = patternSize;
-
-      
-      patternSprite.color = hideColor;
     }
-
-    public void UpdateElement(float animationProgress) {
-      Color color = Color.Lerp(hideColor, showColor, animationProgress);
-      patternSprite.color = color;
-    }
-
-    public void OnActivate(){}
-    public void OnDeactivate(){}
   }
 }

@@ -15,6 +15,7 @@ namespace Outclaw.City {
       public Transform UIParent;
       public List<Bounds> InvalidBounds;
       public CatDialogueUI UI;
+      public Vector3? InitialPosition;
     }
     
     [SerializeField] private RectTransform bubbleImageTransform;
@@ -33,8 +34,16 @@ namespace Outclaw.City {
       transform.SetParent(data.UIParent, false);
       var invalidBounds = data.InvalidBounds ?? new List<Bounds>();
       var canvas = data.UI.DialogueCanvas;
-      bubblePositionHelper.Initialize(invalidBounds, Camera.main, data.BubbleParent, bubbleImageTransform, canvas);
+      InitializeBubblePosition(data, canvas, invalidBounds);
       bubbleTextHelper.Initialize(canvas, bubbleImageTransform, (int)dialogueSettings.FontSize, data.BubbleText);
+    }
+
+    private void InitializeBubblePosition(Data data, Canvas canvas, List<Bounds> invalidBounds) {
+      if (data.InitialPosition == null) {
+        bubblePositionHelper.Initialize(invalidBounds, Camera.main, data.BubbleParent, bubbleImageTransform, canvas);
+        return;
+      }
+      bubblePositionHelper.Initialize(data.InitialPosition.Value, data.BubbleParent, Camera.main);
     }
 
     public Transform BubbleTransform => transform;

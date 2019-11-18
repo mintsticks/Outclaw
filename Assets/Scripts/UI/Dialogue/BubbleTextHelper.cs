@@ -13,23 +13,32 @@ namespace Outclaw {
     [SerializeField] private int startFontSize = 1;
     [SerializeField] private float horizontalPadding = 20f;
     [SerializeField] private float verticalPadding = 15f;
-
+    [SerializeField] private float defaultWidth = 200f;
+    [SerializeField] private float resizeTime = .1f;
+    
     [SerializeField] private Text bubbleText;
-
+    
+    private AnimationWrapper animationWrapper;
     private bool skipped;
+    private float bottomPadding;
     private StringBuilder currentStringBuilder;
-    private Canvas canvas;
     private RectTransform bubbleImageTransform;
     
-    public void Initialize(Canvas canvas, RectTransform bubbleImageTransform, int fontSize, string initialText = "") {
-      this.canvas = canvas;
+    public void Initialize(Canvas canvas, RectTransform bubbleImageTransform, int fontSize, string initialText = "", float bottomPadding = 0f) {
       this.bubbleImageTransform = bubbleImageTransform;
       bubbleText.text = initialText;
       bubbleText.fontSize = fontSize;
+      bubbleText.rectTransform.position = 
+        bubbleText.rectTransform.position.AddToXY(
+          canvas.scaleFactor * horizontalPadding, 
+          canvas.scaleFactor * -verticalPadding);
+      this.bottomPadding = bottomPadding;
+      animationWrapper = gameObject.AddComponent<AnimationWrapper>();
     }
     
     private string ProcessText(string text) {
       bubbleText.color = bubbleText.color.WithAlpha(0);
+      bubbleText.rectTransform.sizeDelta = new Vector2(defaultWidth, 0);
       var newText = TestText(text);
       CheckTextBounds(newText);
       bubbleText.text = "";
@@ -73,13 +82,13 @@ namespace Outclaw {
         bubbleText.rectTransform.sizeDelta = new Vector2(width, height);
       }
       
-      bubbleImageTransform.sizeDelta = new Vector2(width + horizontalPadding * 2, height + verticalPadding * 2);
-      bubbleText.rectTransform.position = bubbleText.rectTransform.position.AddToXY(canvas.scaleFactor * horizontalPadding, canvas.scaleFactor * -verticalPadding);
+      bubbleImageTransform.sizeDelta = new Vector2(width + horizontalPadding * 2, height + verticalPadding * 2 + bottomPadding);
       bubbleText.color = bubbleText.color.WithAlpha(1f);
     }
 
     public IEnumerator ShowText(string text) {
       text = ProcessText(text);
+
       currentStringBuilder = new StringBuilder();
       skipped = false;
       

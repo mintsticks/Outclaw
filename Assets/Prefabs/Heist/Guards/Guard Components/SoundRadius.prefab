@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1506042843
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 029959e4ebb042743ba74a4155942852, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5058824}
@@ -90,12 +90,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 755534395362890792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f495e9387a654802811ef5a5819e9264, type: 3}
+  m_Script: {fileID: 11500000, guid: ee8f140d23d56f242942cb52620aa79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 755534395362890794}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
-  showColor: {r: 1, g: 1, b: 1, a: 0.48235294}
+  showColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &755534395453629708
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1506042843
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1352a0ad477643a4db4b785fc5ae9a9c, type: 3}
   m_Color: {r: 0.9926008, g: 1, b: 0.05660379, a: 0.5647059}
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 755534395453629708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f495e9387a654802811ef5a5819e9264, type: 3}
+  m_Script: {fileID: 11500000, guid: ee8f140d23d56f242942cb52620aa79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 755534395453629710}
@@ -292,3 +292,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: Outclaw.Heist.OnDetect, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  onDetectLoss:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
