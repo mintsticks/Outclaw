@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: 8992900199418301057, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
       propertyPath: m_Name
-      value: Bench (4)
+      value: Bench
       objectReference: {fileID: 0}
     - target: {fileID: 8992900199418301058, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
@@ -144,6 +144,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 4.408248
       objectReference: {fileID: 0}
+    - target: {fileID: 8992900199418301084, guid: 658c5aae1235c61468d16c83df32ab8f,
+        type: 3}
+      propertyPath: promptTask
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ce0ce912a8a3b14186254f634a9ec1d,
+        type: 2}
     - target: {fileID: 6814456943820882899, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
       propertyPath: m_Offset.y
@@ -198,6 +204,16 @@ PrefabInstance:
     - target: {fileID: 7412486962147923180, guid: 658c5aae1235c61468d16c83df32ab8f,
         type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323796038602243579, guid: 658c5aae1235c61468d16c83df32ab8f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323796038602243579, guid: 658c5aae1235c61468d16c83df32ab8f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

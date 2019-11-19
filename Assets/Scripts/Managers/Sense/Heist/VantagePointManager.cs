@@ -59,7 +59,7 @@ namespace Outclaw.Heist {
       
       inVantage = true;
       currentVantagePoint.HideIndicator();
-
+      currentVantagePoint.UseVantage();
       cameraBehavior.ShouldFollow = false;
       animationWrapper.StartNewAnimation(UpdateCamera(currentVantagePoint.cameraPosition,
         currentVantagePoint.cameraSize, false, shiftToTime));

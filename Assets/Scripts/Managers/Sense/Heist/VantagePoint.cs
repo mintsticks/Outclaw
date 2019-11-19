@@ -2,13 +2,21 @@
 
 namespace Outclaw.Heist {
   public class VantagePoint : MonoBehaviour {
+    [SerializeField] private Task promptTask;
+    [SerializeField] private Indicator indicator;
+    
     public Vector3 cameraPosition;
     public float cameraSize;
 
-    [SerializeField] private Indicator indicator;
-    
     public void ShowIndicator() {
       indicator.FadeIn();
+    }
+
+    public void UseVantage() {
+      if (promptTask == null || promptTask.IsComplete) {
+        return;
+      }
+      promptTask.Complete();
     }
     
     public void HideIndicator() {

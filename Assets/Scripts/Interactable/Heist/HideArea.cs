@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 namespace Outclaw.Heist{
-  public class HideArea : MonoBehaviour, Interactable
-  {
+  public class HideArea : MonoBehaviour, Interactable {
     [SerializeField] private Indicator hideIndicator;
     [SerializeField] private AudioClip hideSound;
-
+    [SerializeField] private Task promptTask;
+    
     [Inject] private IHideablePlayer hidePlayer;
     [Inject] private City.IPlayer player;
     [Inject] private ISoundManager soundManager;
@@ -23,6 +23,9 @@ namespace Outclaw.Heist{
     }
 
     public void Interact() {
+      if (promptTask != null && !promptTask.IsComplete) {
+        promptTask.Complete();
+      }
       player.PlayerTransform.position = transform.position;
       soundManager.PlaySFX(hideSound);
       if (!hidePlayer.Hidden) {

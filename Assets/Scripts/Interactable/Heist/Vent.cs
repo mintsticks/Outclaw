@@ -4,24 +4,16 @@ using Zenject;
 
 namespace Outclaw.Heist {
   public class Vent : MonoBehaviour, Interactable {
-    [SerializeField]
-    private Vector3 ventOffset;
+    [SerializeField] private Vector3 ventOffset;
+    [SerializeField] private Vent destination;
+    [SerializeField] private Indicator ventIndicator;
+    [SerializeField] private AudioClip ventSound;
+    [SerializeField] private Task promptTask;
     
-    [SerializeField]
-    private Vent destination;
+    [Inject] private IPlayer player;
 
-    [SerializeField]
-    private Indicator ventIndicator;
-    
-    [SerializeField]
-    private AudioClip ventSound;
-    
-    [Inject]
-    private IPlayer player;
+    [Inject] private ISoundManager soundManager;
 
-    [Inject]
-    private ISoundManager soundManager;
-    
     public void InRange() {
       ventIndicator.FadeIn();
     }
@@ -33,6 +25,11 @@ namespace Outclaw.Heist {
     public void Interact() {
       player.PlayerTransform.position = destination.transform.position + ventOffset;
       soundManager.PlaySFX(ventSound);
+      
+      if (promptTask == null || promptTask.IsComplete) {
+        return;
+      }
+      promptTask.Complete();
     }
   }
 }
