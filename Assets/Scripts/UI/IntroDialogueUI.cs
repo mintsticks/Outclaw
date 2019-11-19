@@ -19,6 +19,9 @@ namespace Outclaw {
     [SerializeField]
     private LocationData nextLocation;
 
+    [SerializeField]
+    private BubbleTextHelper textHelper;
+
     [Inject]
     private IPlayerInput playerInput;
 

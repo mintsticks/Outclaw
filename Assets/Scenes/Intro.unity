@@ -203,6 +203,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &357151940
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1358098358285364759, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_Name
+      value: SpeechBubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 55.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 32.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050679849415512846, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773623470332681416, guid: a2a408fdeb8b985419734eaec4299fa6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a2a408fdeb8b985419734eaec4299fa6, type: 3}
 --- !u!1 &368626729
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,11 +302,11 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368626729}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1421211504}
+  m_Father: {fileID: 988416243}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -356,6 +430,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1421211504}
+  - {fileID: 368626730}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -390,6 +465,7 @@ MonoBehaviour:
   - He would ever abandon me!.n I know something's not right.
   - I have to get out of here and find out what happened.n I have to bring him home...
   nextLocation: {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf, type: 2}
+  textHelper: {fileID: 0}
 --- !u!1 &1421211503
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +478,7 @@ GameObject:
   - component: {fileID: 1421211506}
   - component: {fileID: 1421211505}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -420,7 +496,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1923259842}
-  - {fileID: 368626730}
   m_Father: {fileID: 988416243}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -615,23 +690,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62d3b612d4ca8484c8f2322b025eb11c, type: 3}
---- !u!1 &8116667928064481385 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8116667929166650614, guid: 62d3b612d4ca8484c8f2322b025eb11c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8116667928064481384}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8116667928064481386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8116667928064481385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c22908880eb14d64a3811d586029a597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 8300000, guid: f2448108aea970248bbac9dc9c15a667, type: 3}
-  ambientSound: {fileID: 0}

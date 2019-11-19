@@ -1,41 +1,62 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Outclaw.ManagedRoutine;
 
 namespace Outclaw {
   public interface ISoundManager {
     void PlaySFX(AudioClip clip);
+    void PlaySFX(AudioClip clip, bool loop);
+    void StopSFX();
+
     void PlayMusic(AudioClip clip);
     void PlayAmbientSound(AudioClip clip);
+
+    void SubdueBackground();
+    void UnsubdueBackground();
   }
   
   public class SoundManager : MonoBehaviour, ISoundManager {
-    [SerializeField]
-    private AudioSource sfxSource;
+    [Header("Sound Effects")]
+    [SerializeField] private AudioSource sfxSource;
 
     [Header("Music")]
-    [SerializeField]
-    private AudioSource currentMusicSource;
-
-    [SerializeField]
-    private AudioSource nextMusicSource;
-
+    [SerializeField] private AudioSource currentMusicSource;
+    [SerializeField] private AudioSource nextMusicSource;
     private Coroutine musicCrossfade;
+    private ManagedCoroutine<AudioSource, AudioSource> musicCrossfadeRoutine;
 
     [Header("Ambient")]
-    [SerializeField]
-    private AudioSource currentAmbientSource;
-
-    [SerializeField]
-    private AudioSource nextAmbientSource;
-
+    [SerializeField] private AudioSource currentAmbientSource;
+    [SerializeField] private AudioSource nextAmbientSource;
     private Coroutine ambientCrossfade;
+    private ManagedCoroutine<AudioSource, AudioSource> ambientCrossfadeRoutine;
 
-    [SerializeField]
-    private float crossfadeDuration = .5f;
-    
-    public void PlaySFX(AudioClip clip) {
+    [Header("Extra Effects")]
+    [SerializeField] private float crossfadeDuration = .5f;
+    [SerializeField] private float timeToSubdue = .5f;
+    [SerializeField] [Range(0, 1)] private float subduedVolume = .5f;
+    private ManagedCoroutine<float> subdueBackgroundRoutine;
+
+    void Awake(){
+      musicCrossfadeRoutine = new ManagedCoroutine<AudioSource, AudioSource>(this, Crossfade);
+      ambientCrossfadeRoutine = new ManagedCoroutine<AudioSource, AudioSource>(this, Crossfade);
+      subdueBackgroundRoutine = new ManagedCoroutine<float>(this, LerpBackgroundVolume);
+    }
+
+    // need to have separeate PlaySFX because default values don't count as
+    //   fufilling other function signitures
+    public void PlaySFX(AudioClip clip){
+      PlaySFX(clip, false);
+    }
+
+    public void PlaySFX(AudioClip clip, bool loop) {
       sfxSource.clip = clip;
+      sfxSource.loop = loop;
       sfxSource.Play();
+    }
+
+    public void StopSFX(){
+      sfxSource.Stop();
     }
 
     public void PlayMusic(AudioClip clip) {
@@ -44,7 +65,7 @@ namespace Outclaw {
         return;
       }
 
-      StartCrossfade(clip, ref musicCrossfade, ref currentMusicSource, 
+      StartCrossfade(clip, musicCrossfadeRoutine, ref currentMusicSource, 
         ref nextMusicSource);
     }
 
@@ -54,24 +75,23 @@ namespace Outclaw {
         return;
       }
 
-      StartCrossfade(clip, ref ambientCrossfade, ref currentAmbientSource, 
+      StartCrossfade(clip, ambientCrossfadeRoutine, ref currentAmbientSource, 
         ref nextAmbientSource);
     }
 
-    private void StartCrossfade(AudioClip clip, ref Coroutine crossfade, 
+    private void StartCrossfade(AudioClip clip, 
+        ManagedCoroutine<AudioSource, AudioSource> crossfade, 
         ref AudioSource current, ref AudioSource next) {
 
       // stop any previous crossfade
-      if(crossfade != null) {
-        StopCoroutine(crossfade);
-      }
+      crossfade.StopCoroutine();
 
       // start up crossfade
       AudioSource entering = next;
       AudioSource exiting = current;
       entering.clip = clip;
       entering.Play();
-      crossfade = StartCoroutine(Crossfade(entering, exiting));
+      crossfade.StartCoroutine(entering, exiting);
 
       // swap values
       current = entering;
@@ -91,6 +111,30 @@ namespace Outclaw {
 
       exiting.Stop();
       yield break;
+    }
+
+    public void SubdueBackground(){
+      subdueBackgroundRoutine.StopCoroutine();
+      subdueBackgroundRoutine.StartCoroutine(subduedVolume);
+    }
+
+    public void UnsubdueBackground(){
+      subdueBackgroundRoutine.StopCoroutine();
+      subdueBackgroundRoutine.StartCoroutine(1f);
+    }
+
+    private IEnumerator LerpBackgroundVolume(float endVolume){
+      float origMusicVolume = currentMusicSource.volume;
+      float origAmbientVolume = currentAmbientSource.volume;
+      for(float time = 0; time < timeToSubdue; time += Time.deltaTime){
+        currentMusicSource.volume = Mathf.Lerp(origMusicVolume, endVolume, time / timeToSubdue);
+        currentAmbientSource.volume = Mathf.Lerp(origAmbientVolume, endVolume, time / timeToSubdue);
+        yield return null;
+      }
+
+      // set directly incase lerp doesn't fully match
+      currentMusicSource.volume = endVolume;
+      currentAmbientSource.volume = endVolume;
     }
   }
 }
