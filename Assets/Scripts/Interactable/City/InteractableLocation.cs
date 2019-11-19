@@ -19,6 +19,7 @@ namespace Outclaw.City {
     [SerializeField] private List<LocationDialogueForState> locationDialoguesForState;
     [SerializeField] private LocationData destinationLocation;
     [SerializeField] private BoxCollider2D bound;
+    [SerializeField] private Task promptTask;
     
     [Header("Effects")]
     [SerializeField] private AudioClip enterClip;
@@ -72,6 +73,10 @@ namespace Outclaw.City {
 
     public void Interact() {
       var locationDialogueForState = GetDialogueForState(gameStateManager.CurrentGameStateData);
+      if (promptTask != null && !promptTask.IsComplete) {
+        promptTask.Complete();
+      }
+      
       if (locationDialogueForState != null) {
         HandleDialogue(locationDialogueForState);
         return;

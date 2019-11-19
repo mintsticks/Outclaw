@@ -11,19 +11,13 @@ namespace Outclaw {
   
   [Serializable]
   public class PlatformText {
-    public Platform platform;
+    public RuntimePlatform platform;
     public string text;
   }
   
   [Serializable]
   public class PlatformImage {
-    public Platform platform;
+    public RuntimePlatform platform;
     public Sprite image;
-  }
-  
-  public enum Platform {
-    NONE = 0,
-    PC = 1,
-    XBOX = 2
   }
 }

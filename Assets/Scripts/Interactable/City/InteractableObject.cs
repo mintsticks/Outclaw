@@ -65,7 +65,6 @@ namespace Outclaw.City {
       observeIndicator.FadeOut();
       dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, player.HeadTransform, this, CompleteInteraction);
       if (promptTask != null && !promptTask.IsComplete) {
-        Debug.Log("yeet");
         promptTask.Complete();
       }
     }

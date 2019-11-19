@@ -8,6 +8,7 @@ using Zenject;
 
 namespace Outclaw.City {
   public class InteractableCat : MonoBehaviour, ObjectiveInteractable, IHaveTask {
+    [SerializeField] private Task promptTask;
     [SerializeField] private CatDialogues catDialogues;
     [SerializeField] private Indicator talkIndicator;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -53,6 +54,9 @@ namespace Outclaw.City {
 
     public void Interact() {
       talkIndicator.FadeOut();
+      if (promptTask != null && !promptTask.IsComplete) {
+        promptTask.Complete();
+      }
       if (HasDialogueForCurrentState()) {
         StartGameStateDialogue(gameStateManager.CurrentGameStateData);
         return;
@@ -111,7 +115,6 @@ namespace Outclaw.City {
     private void CompleteGameStateDialogue(GameStateData state) {
       relationshipManager.RankUpCatInGameState(dialogueData);
       if (!HasDialogueForCurrentState()) {
-        //TODO(dwong): add non required game state dialogue
         objectiveManager.CompleteTask(task);
       }
       InRange();
