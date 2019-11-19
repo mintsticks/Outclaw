@@ -15,7 +15,6 @@ namespace Outclaw.Heist {
     [Tooltip("Degrees")]
     [SerializeField] [Range(0, 360)] private float coneAngle = 90;
     [SerializeField] private float visionDistance = 1;
-    [SerializeField] private int numSamples = 10;
     [Tooltip("Extra raycasts are +- this angle in radians in to give more accuracy on corners.")]
     [SerializeField] [Range(0, 1)] private float accuracyRayOffset = .00001f;
     [Tooltip("Angle in degrees of how far appart points on the edge can be.")]
@@ -127,8 +126,14 @@ namespace Outclaw.Heist {
           continue;
         }
 
-        // out of angle
         float angle = AngleTo(corner);
+
+        // already have point
+        if(angleCache.ContainsValue(angle)){
+          continue;
+        }
+
+        // out of angle
         if(Mathf.Abs(angle) > coneAngle / 2){
           continue;
         }
@@ -153,8 +158,14 @@ namespace Outclaw.Heist {
             continue;
           }
 
-          // out of angle
           float angle = AngleTo(vert);
+
+          // already have point
+          if(angleCache.ContainsValue(angle)){
+            continue;
+          }
+
+          // out of angle
           if(Mathf.Abs(angle) > coneAngle / 2){
             continue;
           }

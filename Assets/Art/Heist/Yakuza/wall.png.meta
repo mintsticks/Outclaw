@@ -1,7 +1,22 @@
 fileFormatVersion: 2
 guid: 58cc734a006c05142b99b20a54eeb73b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7101757399344267194
+    second: Left Wall
+  - first:
+      213: 7443488731601174181
+    second: Floor
+  - first:
+      213: 374193143463618782
+    second: Left Cap
+  - first:
+      213: -8633538896518254184
+    second: Right Cap
+  - first:
+      213: 5325489996076979687
+    second: Right Wall
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -84,7 +99,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Left Wall
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 112
+        width: 72
+        height: 942
+      alignment: 3
+      pivot: {x: 1, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8973818a2fbc0fe4dac2956ab7a1077d
+      internalID: -7101757399344267194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 53
+        width: 2943
+        height: 59
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf87ee26512aa9429775c57cbf1d8db
+      internalID: 7443488731601174181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Cap
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 53
+        width: 72
+        height: 59
+      alignment: 3
+      pivot: {x: 1, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07e0660d2c0c7fa4d8e780032d721fea
+      internalID: 374193143463618782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Right Cap
+      rect:
+        serializedVersion: 2
+        x: 3051
+        y: 51
+        width: 72
+        height: 61
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 777ac2941276ebc458d888be4f106a3d
+      internalID: -8633538896518254184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Right Wall
+      rect:
+        serializedVersion: 2
+        x: 3051
+        y: 112
+        width: 72
+        height: 940
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd65a1daaefa1b43a7a97070ab32956
+      internalID: 5325489996076979687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
