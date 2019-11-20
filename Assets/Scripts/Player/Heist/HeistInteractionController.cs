@@ -106,6 +106,11 @@ namespace Outclaw.Heist {
       if ((1 << other.gameObject.layer & lightLayer) != 0) {
         playerLitManager.IsLit = true;
       }
+      
+      if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) {
+        var eventSequence = other.GetComponentInParent<EventSequence>();
+        StartCoroutine(eventSequence.ExecuteSequence());
+      }
     }
 
     public void HandleExit(Collider2D other) {

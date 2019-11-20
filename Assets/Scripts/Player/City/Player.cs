@@ -64,6 +64,10 @@ namespace Outclaw.City {
     private void OnTriggerEnter2D(Collider2D other) {
       interactionController.HandleEnter(other);
     }
+    
+    private void OnTriggerStay2D(Collider2D other) {
+      interactionController.HandleStay(other);
+    }
 
     private void OnTriggerExit2D(Collider2D other) {
       interactionController.HandleExit(other);

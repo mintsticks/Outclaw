@@ -75,6 +75,13 @@ namespace Outclaw {
       }
     }
 
+    public void HandleStay(Collider2D other) {
+      if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) {
+        var eventSequence = other.GetComponentInParent<EventSequence>();
+        StartCoroutine(eventSequence.ExecuteSequence());
+      }
+    }
+
     public void HandleExit(Collider2D other) {
       if ((1 << other.gameObject.layer & interactableLayer) == 0) {
         return;
