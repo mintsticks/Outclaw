@@ -554,6 +554,11 @@
             <e p="BackgroundMusic.cs" t="Include" />
             <e p="SoundManager.cs" t="Include" />
           </e>
+          <e p="Background" t="Include">
+            <e p="AnimatedBackgroundElement.cs" t="Include" />
+            <e p="ParallaxBackgroundElement.cs" t="Include" />
+            <e p="RepeatedBackgroundElement.cs" t="Include" />
+          </e>
           <e p="Camera" t="Include">
             <e p="CameraBehavior.cs" t="Include" />
             <e p="OffsetController.cs" t="Include" />
@@ -586,6 +591,7 @@
               <e p="SideScrollSentry.cs" t="Include" />
             </e>
             <e p="Visuals" t="Include">
+              <e p="EnterSoundEffect.cs" t="Include" />
               <e p="Footprint.cs" t="Include" />
               <e p="FootprintManager.cs" t="Include" />
               <e p="GuardAnimationController.cs" t="Include" />
