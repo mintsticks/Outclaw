@@ -3,6 +3,7 @@ using Outclaw;
 using Outclaw.City;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 using Zenject;
 
 public class StartListener : MonoBehaviour {
@@ -13,12 +14,6 @@ public class StartListener : MonoBehaviour {
   [SerializeField] 
   private Text startText;
 
-  [SerializeField] 
-  private string defaultStart;
-
-  [SerializeField] 
-  private string xboxStart;
-
   [Inject]
   private IPlayerInput playerInput;
 
@@ -27,14 +22,9 @@ public class StartListener : MonoBehaviour {
   
   [Inject]
   private ISoundManager soundManager;
-
-
+  
   void Awake() {
-#if UNITY_WSA
-    startText.text = xboxStart;
-#else
-    startText.text = defaultStart;
-#endif
+    startText.text = "press " + InputStringHelper.GetStringForInput(InputType.START);
   }
   
   void Update() {
@@ -46,11 +36,7 @@ public class StartListener : MonoBehaviour {
     soundManager.PlaySFX(startSound);
     LoadIntro();
   }
-
-  private void LoadMain() {
-    sceneTransitionManager.TransitionToScene("Main");
-  }
-
+  
   private void LoadIntro() {
     sceneTransitionManager.TransitionToScene("Intro");
   }
