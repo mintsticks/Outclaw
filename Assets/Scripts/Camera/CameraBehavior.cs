@@ -21,16 +21,13 @@ namespace Outclaw.City {
     [SerializeField] private Vector2 maxSpeed = new Vector2(1f, 1f);
 
     [Header("X Offset Control")]
-    [Tooltip("Amount always to put the camera ahead of the player")]
     [SerializeField] private float defaultXOffset = 1;
     [Tooltip("Multiple of Velocity to add to x offset")]
     [SerializeField] private float velocityInfluence = .1f;
 
     [Header("Y Offset Control")]
-    [Tooltip("Amount always to put relative player")]
-    [SerializeField] private float defaultYOffset = 2;
     [Tooltip("Distance inside y bounds where camera will just follow the player")]
-    [SerializeField] private float followDist = 1f;
+    [SerializeField] private float yBoundOffset = 3.5f;
 
     [Inject] private IPlayerMotion player;
     
@@ -65,61 +62,30 @@ namespace Outclaw.City {
       if (!ShouldFollow) {
         return;
       }
-      LerpTo(player.PlayerTransform.position + offset);
 
-      // Vector3 dest = new Vector3(
-      //   IdealXPos(),
-      //   IdealYPos(),
-      //   currentPosition.z);
-      // smoothedPlayerVelocity = Vector2.Lerp(smoothedPlayerVelocity, player.Velocity, .05f);
-      // MoveTo(dest);
-
-      // dest.DrawCrosshair(Color.white);
-      // Debug.DrawLine(new Vector2(transform.position.x, 100), new Vector2(transform.position.x, -100), Color.blue);
-      // Bounds bounds = Camera.main.OrthographicBounds();
-      // bounds.Expand(new Vector3(0, -followDist, 0));
-      // Debug.DrawLine(new Vector2(100, bounds.max.y), new Vector2(-100, bounds.max.y), Color.red);
-      // Debug.DrawLine(new Vector2(100, bounds.min.y), new Vector2(-100, bounds.min.y), Color.red);
+      KeepPlayerInView();
+      MoveTo(player.PlayerTransform.position + offset);
     }
 
-    private float IdealXPos(){
-      float x = player.PlayerTransform.position.x;
-      float offset = defaultXOffset + (Mathf.Abs(smoothedPlayerVelocity.x) * velocityInfluence);
-
-      if(player.IsFacingLeft){
-        x -= offset;
-      }
-      else {
-        x += offset;
-      }
-      return x;
-    }
-
-    private float IdealYPos(){
-      if(player.IsGrounded){
-        return player.PlayerTransform.position.y + defaultYOffset;
-      }
-
+    private void KeepPlayerInView(){
       // player exiting bounds, immediately move camera to keep player inside
       Bounds bounds = Camera.main.OrthographicBounds();
-      bounds.Expand(new Vector3(0, -followDist, 100));
+      bounds.Expand(new Vector3(0, -yBoundOffset, 100));
       if(!bounds.Contains(player.PlayerTransform.position)){
         Vector3 nearest = bounds.ClosestPoint(player.PlayerTransform.position);
-        currentPosition.y += player.PlayerTransform.position.y - nearest.y;
+        currentPosition += player.PlayerTransform.position - nearest;
+
+        currentPosition = ClampPosition(currentPosition);
         transform.position = currentPosition;
       }
-
-      return currentPosition.y;
     }
 
     private void MoveTo(Vector3 position){
       Vector3 clampedPos = ClampPosition(position);
 
-      float xTime = Mathf.Abs(clampedPos.x - currentPosition.x) / maxSpeed.x;
       currentPosition.x = Mathf.SmoothDamp(currentPosition.x, clampedPos.x,
         ref currentSpeed.x, smoothSpeed);
 
-      float yTime = Mathf.Abs(clampedPos.y - currentPosition.y) / maxSpeed.y;
       currentPosition.y = Mathf.SmoothDamp(currentPosition.y, clampedPos.y,
         ref currentSpeed.y, smoothSpeed);
       transform.position = currentPosition;
