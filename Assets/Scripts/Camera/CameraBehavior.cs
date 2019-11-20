@@ -12,11 +12,30 @@ namespace Outclaw.City {
   public class CameraBehavior : MonoBehaviour, ICameraBehavior {
     [SerializeField] private float smoothSpeed = .125f;
     [SerializeField] private Vector3 offset;
+
+    [Header("Bounds")]
     [SerializeField] private Vector2 minBound;
     [SerializeField] private Vector2 maxBound;
 
-    [Inject] private IPlayer player;
+    [Header("Movement")]
+    [SerializeField] private Vector2 maxSpeed = new Vector2(1f, 1f);
+
+    [Header("X Offset Control")]
+    [Tooltip("Amount always to put the camera ahead of the player")]
+    [SerializeField] private float defaultXOffset = 1;
+    [Tooltip("Multiple of Velocity to add to x offset")]
+    [SerializeField] private float velocityInfluence = .1f;
+
+    [Header("Y Offset Control")]
+    [Tooltip("Amount always to put relative player")]
+    [SerializeField] private float defaultYOffset = 2;
+    [Tooltip("Distance inside y bounds where camera will just follow the player")]
+    [SerializeField] private float followDist = 1f;
+
+    [Inject] private IPlayerMotion player;
     
+    private Vector2 currentSpeed = Vector2.zero;
+
     private Vector3 currentPosition;
     private bool shouldFollow = true;
 
@@ -38,6 +57,7 @@ namespace Outclaw.City {
     }
     
     void Start(){
+      currentPosition = transform.position;
       SnapToPlayer();
     }
 
@@ -45,26 +65,75 @@ namespace Outclaw.City {
       if (!ShouldFollow) {
         return;
       }
-      var desiredPos = player.PlayerTransform.position + offset;
-      var smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);
-      ClampPosition(ref smoothedPos);
-      currentPosition = smoothedPos;
 
-      if (!ShouldFollow) {
-        return;
+      Vector3 dest = new Vector3(
+        IdealXPos(),
+        IdealYPos(),
+        currentPosition.z);
+      MoveTo(dest);
+
+      dest.DrawCrosshair(Color.white);
+      Debug.DrawLine(new Vector2(transform.position.x, 100), new Vector2(transform.position.x, -100), Color.blue);
+      Bounds bounds = Camera.main.OrthographicBounds();
+      bounds.Expand(new Vector3(0, -followDist, 0));
+      Debug.DrawLine(new Vector2(100, bounds.max.y), new Vector2(-100, bounds.max.y), Color.red);
+      Debug.DrawLine(new Vector2(100, bounds.min.y), new Vector2(-100, bounds.min.y), Color.red);
+    }
+
+    private float IdealXPos(){
+      float x = player.PlayerTransform.position.x;
+      float offset = defaultXOffset + (player.Velocity.x * velocityInfluence);
+
+      if(player.IsFacingLeft){
+        x -= offset;
       }
+      else {
+        x += offset;
+      }
+      return x;
+    }
+
+    private float IdealYPos(){
+      if(player.IsGrounded){
+        return player.PlayerTransform.position.y + defaultYOffset;
+      }
+
+      // player exiting bounds, immediately move camera to keep player inside
+      Bounds bounds = Camera.main.OrthographicBounds();
+      bounds.Expand(new Vector3(0, -followDist, 100));
+      if(!bounds.Contains(player.PlayerTransform.position)){
+        Vector3 nearest = bounds.ClosestPoint(player.PlayerTransform.position);
+        currentPosition.y += player.PlayerTransform.position.y - nearest.y;
+        transform.position = currentPosition;
+      }
+
+      return currentPosition.y;
+    }
+
+    private void MoveTo(Vector3 position){
+      Vector3 clampedPos = ClampPosition(position);
+
+      float xTime = Mathf.Abs(clampedPos.x - currentPosition.x) / maxSpeed.x;
+      currentPosition.x = Mathf.SmoothDamp(currentPosition.x, clampedPos.x,
+        ref currentSpeed.x, xTime, maxSpeed.x);
+
+      float yTime = Mathf.Abs(clampedPos.y - currentPosition.y) / maxSpeed.y;
+      currentPosition.y = Mathf.SmoothDamp(currentPosition.y, clampedPos.y,
+        ref currentSpeed.y, yTime, maxSpeed.y);
       transform.position = currentPosition;
     }
 
-    private void ClampPosition(ref Vector3 pos){
-      pos.x = Mathf.Clamp(pos.x, minBound.x, maxBound.x);
-      pos.y = Mathf.Clamp(pos.y, minBound.y, maxBound.y);
+    private Vector3 ClampPosition(Vector3 pos){
+      return new Vector3(
+        Mathf.Clamp(pos.x, minBound.x, maxBound.x),
+        Mathf.Clamp(pos.y, minBound.y, maxBound.y),
+        currentPosition.z);
     }
 
     private void SnapToPlayer(){
       Vector3 newPos = player.PlayerTransform.position;
-      ClampPosition(ref newPos);
-      transform.position = newPos;
+      currentPosition = ClampPosition(newPos);
+      transform.position = currentPosition;
     }
   }
 }
