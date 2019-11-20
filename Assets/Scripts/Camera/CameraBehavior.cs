@@ -66,18 +66,7 @@ namespace Outclaw.City {
         return;
       }
 
-      Vector3 dest = new Vector3(
-        IdealXPos(),
-        IdealYPos(),
-        currentPosition.z);
-      MoveTo(dest);
-
-      dest.DrawCrosshair(Color.white);
-      Debug.DrawLine(new Vector2(transform.position.x, 100), new Vector2(transform.position.x, -100), Color.blue);
-      Bounds bounds = Camera.main.OrthographicBounds();
-      bounds.Expand(new Vector3(0, -followDist, 0));
-      Debug.DrawLine(new Vector2(100, bounds.max.y), new Vector2(-100, bounds.max.y), Color.red);
-      Debug.DrawLine(new Vector2(100, bounds.min.y), new Vector2(-100, bounds.min.y), Color.red);
+      LerpTo(player.PlayerTransform.position + offset);
     }
 
     private float IdealXPos(){
@@ -121,6 +110,12 @@ namespace Outclaw.City {
       currentPosition.y = Mathf.SmoothDamp(currentPosition.y, clampedPos.y,
         ref currentSpeed.y, yTime, maxSpeed.y);
       transform.position = currentPosition;
+    }
+
+    private void LerpTo(Vector3 position){
+      var smoothedPos = Vector3.Lerp(transform.position, position, smoothSpeed);
+      smoothedPos = ClampPosition(smoothedPos);
+      transform.position = smoothedPos;
     }
 
     private Vector3 ClampPosition(Vector3 pos){
