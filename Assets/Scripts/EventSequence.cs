@@ -7,23 +7,14 @@ using Zenject;
 
 namespace Outclaw {
   public class EventSequence : MonoBehaviour {
-    [SerializeField]
-    private List<EventInfo> events;
+    [SerializeField] private List<EventInfo> events;
+    [SerializeField] private GameStateData eventGameState;
 
-    [SerializeField]
-    private GameStateData eventGameState;
-    
-    [Inject]
-    private PromptDisplay.Factory promptFactory;
-    
-    [Inject]
-    private IDialogueManager dialogueManager;
-
-    [Inject]
-    private IPlayer player;
-
-    [Inject]
-    private IGameStateManager gameStateManager;
+    [Inject] private PromptDisplay.Factory promptFactory;
+    [Inject] private IDialogueManager dialogueManager;
+    [Inject] private IPlayer player;
+    [Inject] private IGameStateManager gameStateManager;
+    [Inject] private ISceneTransitionManager sceneTransitionManager;
 
     private bool executed;
 
@@ -31,7 +22,7 @@ namespace Outclaw {
       if (executed || gameStateManager.CurrentGameStateData != eventGameState) {
         yield break;
       }
-      
+
       executed = true;
       yield return BlockUntilStill();
       foreach (var eventInfo in events) {
@@ -48,7 +39,7 @@ namespace Outclaw {
         yield return null;
       }
     }
-    
+
     private IEnumerator HandleEvent(EventInfo eventInfo) {
       switch (eventInfo.eventType) {
         case EventType.WAIT:
@@ -60,15 +51,18 @@ namespace Outclaw {
         case EventType.DIALOGUE:
           yield return HandleDialogue(eventInfo.dialogue);
           break;
+        case EventType.LOCATION:
+          sceneTransitionManager.TransitionToScene(eventInfo.location);
+          break;
       }
     }
-    
+
     private IEnumerator HandlePrompt(PromptData prompt) {
-      var promptObj = promptFactory.Create(new PromptDisplay.Data { Info = prompt });
+      var promptObj = promptFactory.Create(new PromptDisplay.Data {Info = prompt});
       while (!promptObj.IsDismissed) {
         yield return null;
       }
-      
+
       Destroy(promptObj.gameObject);
     }
 
@@ -81,17 +75,19 @@ namespace Outclaw {
   }
 
   [Serializable]
-  public class EventInfo { 
+  public class EventInfo {
     public EventType eventType;
     public TextAsset[] dialogue;
-    public int waitTime;
+    public float waitTime;
     public PromptData promptInfo;
+    public LocationData location;
   }
-  
+
   public enum EventType {
     NONE,
     WAIT,
     PROMPT,
-    DIALOGUE
+    DIALOGUE,
+    LOCATION,
   }
 }

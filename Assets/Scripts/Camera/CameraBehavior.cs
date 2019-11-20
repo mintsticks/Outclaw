@@ -35,9 +35,9 @@ namespace Outclaw.City {
     [Inject] private IPlayerMotion player;
     
     private Vector2 currentSpeed = Vector2.zero;
-
     private Vector3 currentPosition;
     private bool shouldFollow = true;
+    private Vector2 smoothedPlayerVelocity;
 
     public bool ShouldFollow {
       get => shouldFollow;
@@ -65,24 +65,26 @@ namespace Outclaw.City {
       if (!ShouldFollow) {
         return;
       }
+      LerpTo(player.PlayerTransform.position + offset);
 
-      Vector3 dest = new Vector3(
-        IdealXPos(),
-        IdealYPos(),
-        currentPosition.z);
-      MoveTo(dest);
+      // Vector3 dest = new Vector3(
+      //   IdealXPos(),
+      //   IdealYPos(),
+      //   currentPosition.z);
+      // smoothedPlayerVelocity = Vector2.Lerp(smoothedPlayerVelocity, player.Velocity, .05f);
+      // MoveTo(dest);
 
-      dest.DrawCrosshair(Color.white);
-      Debug.DrawLine(new Vector2(transform.position.x, 100), new Vector2(transform.position.x, -100), Color.blue);
-      Bounds bounds = Camera.main.OrthographicBounds();
-      bounds.Expand(new Vector3(0, -followDist, 0));
-      Debug.DrawLine(new Vector2(100, bounds.max.y), new Vector2(-100, bounds.max.y), Color.red);
-      Debug.DrawLine(new Vector2(100, bounds.min.y), new Vector2(-100, bounds.min.y), Color.red);
+      // dest.DrawCrosshair(Color.white);
+      // Debug.DrawLine(new Vector2(transform.position.x, 100), new Vector2(transform.position.x, -100), Color.blue);
+      // Bounds bounds = Camera.main.OrthographicBounds();
+      // bounds.Expand(new Vector3(0, -followDist, 0));
+      // Debug.DrawLine(new Vector2(100, bounds.max.y), new Vector2(-100, bounds.max.y), Color.red);
+      // Debug.DrawLine(new Vector2(100, bounds.min.y), new Vector2(-100, bounds.min.y), Color.red);
     }
 
     private float IdealXPos(){
       float x = player.PlayerTransform.position.x;
-      float offset = defaultXOffset + (player.Velocity.x * velocityInfluence);
+      float offset = defaultXOffset + (Mathf.Abs(smoothedPlayerVelocity.x) * velocityInfluence);
 
       if(player.IsFacingLeft){
         x -= offset;
@@ -115,11 +117,17 @@ namespace Outclaw.City {
 
       float xTime = Mathf.Abs(clampedPos.x - currentPosition.x) / maxSpeed.x;
       currentPosition.x = Mathf.SmoothDamp(currentPosition.x, clampedPos.x,
-        ref currentSpeed.x, xTime, maxSpeed.x);
+        ref currentSpeed.x, smoothSpeed);
 
       float yTime = Mathf.Abs(clampedPos.y - currentPosition.y) / maxSpeed.y;
       currentPosition.y = Mathf.SmoothDamp(currentPosition.y, clampedPos.y,
-        ref currentSpeed.y, yTime, maxSpeed.y);
+        ref currentSpeed.y, smoothSpeed);
+      transform.position = currentPosition;
+    }
+
+    private void LerpTo(Vector3 position){
+      var smoothedPos = Vector3.Lerp(transform.position, position, smoothSpeed);
+      currentPosition = ClampPosition(smoothedPos);
       transform.position = currentPosition;
     }
 

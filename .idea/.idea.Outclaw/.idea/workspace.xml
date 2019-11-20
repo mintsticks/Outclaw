@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Background/ParallaxBackgroundElement.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Background/ParallaxBackgroundElement.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EventSequence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EventSequence.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,6 +69,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Sidescroll Movement/GuardMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Sidescroll Movement/SideScrollPatrol.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Objective/IHaveTask.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Camera/IPlayerMotion.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.animation@2.2.0-preview.5/Editor/SpritePostProcess.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Internal/Assert.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/YarnSpinner/Code/DialogueRunner.cs" root0="FORCE_HIGHLIGHTING" />
@@ -153,18 +153,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Editor/CameraBehaviorEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/GlobalConstants.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/Curver.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/CharacterController2D.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInput.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/MovementController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/IconNameData.cs" />
         <option value="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/Cabinet1.yarn.txt" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/IconNameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/BoundsExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Editor/Scriptable Object/CatDialogueDataEditor.cs" />
@@ -191,7 +188,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableLocation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableCat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistMovementController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EventSequence.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/Indicator.cs" />
         <option value="$PROJECT_DIR$/Assets/Prefabs/Heist/Abilities/Vent.prefab" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePointManager.cs" />
@@ -204,6 +200,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AnimatedBackgroundElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Background/AnimatedBackgroundElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Background/ParallaxBackgroundElement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EventSequence.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" />
       </list>
     </option>
   </component>
@@ -282,7 +282,7 @@
       <workItem from="1573282555792" duration="755000" />
       <workItem from="1573309350613" duration="11023000" />
       <workItem from="1574109582744" duration="13547000" />
-      <workItem from="1574226483579" duration="7617000" />
+      <workItem from="1574226483579" duration="8583000" />
     </task>
     <servers />
   </component>
