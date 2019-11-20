@@ -14,6 +14,7 @@ namespace Outclaw {
 
   public class SenseManager : MonoBehaviour, ISenseManager {
     [SerializeField] private AnimationWrapper animationWrapper;
+
     [Inject] private IPlayerInput playerInput;
     [Inject] private ISenseVisuals senseVisuals;
 

@@ -4,11 +4,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Outclaw {
   public class BubbleTextHelper : MonoBehaviour {
+    [Header("Text Speed")]
     [SerializeField] private float textSpeed = 0.025f;
     [SerializeField] private float characterAnimateSpeed = 1000f;
+
+    [Header("Text Appearance")]
     [SerializeField] private bool isUpperCase = true;
     [SerializeField] private int startFontSize = 1;
     [SerializeField] private float horizontalPadding = 20f;
@@ -18,6 +22,10 @@ namespace Outclaw {
     
     [SerializeField] private Text bubbleText;
     
+    [Header("Audio")]
+    [SerializeField] private AudioClip textScrollClip;
+    [Inject] private ISoundManager soundManager;
+
     private AnimationWrapper animationWrapper;
     private bool skipped;
     private float bottomPadding;
@@ -89,6 +97,7 @@ namespace Outclaw {
     public IEnumerator ShowText(string text) {
       text = ProcessText(text);
 
+      soundManager.PlaySFX(textScrollClip);
       currentStringBuilder = new StringBuilder();
       skipped = false;
       
@@ -97,6 +106,7 @@ namespace Outclaw {
           bubbleText.text = text;
           skipped = false;
           yield return new WaitForEndOfFrame();
+          soundManager.StopSFX();
           yield break;
         }
 
@@ -107,6 +117,7 @@ namespace Outclaw {
         bubbleText.text = currentStringBuilder.ToString();
       }
       StartCoroutine(UpdateCharacterRoutine());
+      soundManager.StopSFX();
     }
 
     private IEnumerator UpdateCharacterRoutine() {

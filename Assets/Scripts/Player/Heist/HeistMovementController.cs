@@ -2,6 +2,7 @@
 using Outclaw.City;
 using Player;
 using UnityEngine;
+using Utility;
 using Zenject;
 
 namespace Outclaw.Heist {
@@ -38,8 +39,9 @@ namespace Outclaw.Heist {
 
     [Inject] 
     private ISneakManager sneakManager;
-    
-    private Vector3 velocity;  
+
+    private Vector3 velocity;
+    private Vector3 inputVelocity;  
     public Vector3 Velocity => velocity;
     
     private bool isJumping;
@@ -48,19 +50,20 @@ namespace Outclaw.Heist {
     public void UpdateMovement() {
       UpdateHorizontal();
       UpdateVertical();
-      animationController.UpdateAnimationState(velocity, controller);
+      animationController.UpdateAnimationState(inputVelocity, controller);
     }
 
     public void UpdatePhysics() {
-      controller.Move(velocity * Time.fixedDeltaTime, ref isJumping, ref isDescending);
+      controller.Move(inputVelocity * Time.fixedDeltaTime, ref isJumping, ref isDescending);
       velocity = controller.Velocity;
+      inputVelocity = controller.Velocity;
     }
     
     private void UpdateHorizontal() {
       var moveDir = MoveDirection();
       var dampingFactor = controller.isGrounded ? groundDamping : inAirDamping;
       var speed = sneakManager.IsSneaking ? sneakSpeed : runSpeed;
-      velocity.x = Mathf.Lerp(velocity.x, moveDir * speed, Time.deltaTime * dampingFactor);
+      inputVelocity.x = Mathf.Lerp(inputVelocity.x, moveDir * speed, Time.deltaTime * dampingFactor);
 
       if (moveDir == 0) {
         return;
@@ -79,7 +82,7 @@ namespace Outclaw.Heist {
     private void UpdateVertical() {
       CheckDescend();
       CheckJump();
-      velocity.y += gravity * Time.deltaTime;
+      inputVelocity.y += GlobalConstants.GRAVITY * Time.deltaTime;
     }
 
     private void CheckJump() {
@@ -91,7 +94,7 @@ namespace Outclaw.Heist {
         isJumping = true;
       }
       
-      velocity.y = isJumping ? Mathf.Sqrt(2f * jumpHeight * -gravity) : velocity.y;
+      inputVelocity.y = isJumping ? Mathf.Sqrt(2f * jumpHeight * -GlobalConstants.GRAVITY) : inputVelocity.y;
     }
 
     private void CheckDescend() {

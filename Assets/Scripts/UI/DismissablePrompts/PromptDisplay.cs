@@ -18,8 +18,7 @@ namespace Outclaw {
     [SerializeField] private Text title;
     [SerializeField] private Text description;
     [SerializeField] private Text dismissText;
-    [SerializeField] private string defaultDismiss;
-    [SerializeField] private string xboxDismiss;
+    [SerializeField] private InputType dismissInput;
     [SerializeField] private Image image;
 
     [SerializeField] private AnimationWrapper animationWrapper;
@@ -64,13 +63,13 @@ namespace Outclaw {
     }
 
     private void HandleDescriptionData(Data data) {
-#if UNITY_WSA
-      description.text = ParseDescription(data.Info.xboxDescription);
-      dismissText.text = xboxDismiss;
-#else
+      dismissText.text = "- PRESS " + InputStringHelper.GetStringForInput(dismissInput) + " TO CONTINUE -";
+      if (Application.platform == RuntimePlatform.XboxOne) {
+        description.text = ParseDescription(data.Info.xboxDescription);
+        return;
+      }
+      
       description.text = ParseDescription(data.Info.defaultPromptDescription);
-      dismissText.text = defaultDismiss;
-#endif
     }
 
     private string ParseDescription(string text) {

@@ -8,6 +8,7 @@ namespace Outclaw.Heist{
     [Header("Turning")]
     [Tooltip("Does this guard turn around?")]
     [SerializeField] private bool turns = true;
+    [SerializeField] private float startDelay = 2f;
     [SerializeField] private float lookPause = .1f;
     [SerializeField] private float armTurnTime = 1f;
 
@@ -32,6 +33,12 @@ namespace Outclaw.Heist{
     }
 
     private IEnumerator Sentry(Vector3 leftDir, Vector3 rightDir){
+
+      for(float time = 0; time < startDelay; time += Time.deltaTime){
+        movement.UpdateVisionCone(isFacingLeft ? leftDir : rightDir);
+        yield return null;
+      }
+
       while(true){
         if (!turns) {
           yield break;

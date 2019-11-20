@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad5cf9e4a94bd442b0590c475c47311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  promptTask: {fileID: 11400000, guid: d41ac566bef97a8438a8722274356b33, type: 2}
   catDialogues:
     dialoguesForStates:
     - gameStateData: {fileID: 0}
@@ -299,6 +300,21 @@ PrefabInstance:
     - target: {fileID: 2965006746417415838, guid: a038904332997e747b5709ceed877c57,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291742413572582247, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291742414020851792, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291742414020851792, guid: a038904332997e747b5709ceed877c57,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
