@@ -40,6 +40,8 @@ namespace Outclaw.City {
     private bool isJumping;
     private bool isDescending;
 
+    public bool IsGrounded => controller.isGrounded;
+    
     public void UpdateMovement() {
       UpdateHorizontal();
       UpdateVertical();
