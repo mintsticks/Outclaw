@@ -10,9 +10,10 @@ namespace Outclaw.City {
     bool InputDisabled { get; set; }
     void UpdatePosition(Vector3? position);
     Vector3 Velocity { get; }
+    bool IsGrounded { get; }
   }
 
-  public class Player : MonoBehaviour, IPlayer {
+  public class Player : MonoBehaviour, IPlayer, IPlayerMotion {
     [SerializeField] private MovementController movementController;
     [SerializeField] private InteractionController interactionController;
     [SerializeField] private Transform headTransform;
@@ -23,6 +24,7 @@ namespace Outclaw.City {
     [Inject] private ISpawnManager spawnManager;
 
     private bool inputDisabled;
+    private bool facingLeft;
 
     public Bounds PlayerBounds => visualBounds.bounds;
     public Transform PlayerTransform => transform;
@@ -32,6 +34,8 @@ namespace Outclaw.City {
       get => inputDisabled || pauseGame.IsPaused;
       set => inputDisabled = value;
     }
+    public bool IsGrounded => movementController.IsGrounded;
+    public bool IsFacingLeft => facingLeft;
 
     private void Start() {
       Vector3? spawnPoint = spawnManager.GetSpawnPoint();
@@ -44,6 +48,12 @@ namespace Outclaw.City {
 
     void FixedUpdate() {
       movementController.UpdatePhysics();
+      if(Velocity.x < 0){
+        facingLeft = true;
+      }
+      else if(Velocity.x > 0){
+        facingLeft = false;
+      }
     }
 
     void Update() {

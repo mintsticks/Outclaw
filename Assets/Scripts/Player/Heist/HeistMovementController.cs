@@ -47,9 +47,17 @@ namespace Outclaw.Heist {
     private bool isJumping;
     private bool isDescending;
 
+    public bool IsGrounded => controller.isGrounded;
+
     public void UpdateMovement() {
       UpdateHorizontal();
       UpdateVertical();
+      animationController.UpdateAnimationState(inputVelocity, controller);
+    }
+
+    public void UpdateStationary(){
+      inputVelocity.x = 0;
+      inputVelocity.y = 0;
       animationController.UpdateAnimationState(inputVelocity, controller);
     }
 

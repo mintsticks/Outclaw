@@ -26,6 +26,10 @@ namespace Outclaw.City {
         .FromInstance(playerInstance)
         .AsSingle()
         .NonLazy();
+      Container.Bind<IPlayerMotion>()
+        .FromInstance(playerInstance)
+        .AsSingle()
+        .NonLazy();
       Container.Bind<ICameraBehavior>()
         .To<CameraBehavior>()
         .FromInstance(cameraInstance)

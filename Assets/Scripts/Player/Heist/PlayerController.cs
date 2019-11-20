@@ -5,7 +5,7 @@ using UnityEngine;
 using Zenject;
 
 namespace Outclaw.Heist {
-  public class PlayerController : MonoBehaviour, IPlayer, IHideablePlayer {
+  public class PlayerController : MonoBehaviour, IPlayer, IHideablePlayer, IPlayerMotion {
     [SerializeField] private HeistMovementController movementController;
     [SerializeField] private HeistInteractionController interactionController;
     [SerializeField] private AudioClip senseSfx;
@@ -27,29 +27,37 @@ namespace Outclaw.Heist {
     private SpriteBundle sprites;
 
     private bool hidden;
+    private bool facingLeft;
 
     public Transform PlayerTransform => transform;
     public Bounds PlayerBounds => visualBounds.bounds;
     public Transform HeadTransform => headTransform;
     public Vector3 Velocity => movementController.Velocity;
+    public bool IsGrounded => movementController.IsGrounded;
+    public bool IsFacingLeft => facingLeft;
     
     public bool InputDisabled {
       get => inputDisabled || pauseGame.IsPaused;
       set => inputDisabled = value;
     }
 
-    void FixedUpdate() {
-      if (hidden) {
-        return;
-      }
 
+    void FixedUpdate() {
       movementController.UpdatePhysics();
+
+      if(Velocity.x < 0){
+        facingLeft = true;
+      }
+      else if(Velocity.x > 0){
+        facingLeft = false;
+      }
     }
 
     void Update() {
       interactionController.UpdateInteraction();
       spriteController.UpdateColor();
       if (hidden) {
+        movementController.UpdateStationary();
         return;
       }
 

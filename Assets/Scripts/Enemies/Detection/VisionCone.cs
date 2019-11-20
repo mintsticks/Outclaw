@@ -477,8 +477,7 @@ namespace Outclaw.Heist {
     }
 
     private void DrawCrosshair(Vector3 point){
-      Debug.DrawLine(point + (Vector3.up / 3), point + (Vector3.down / 3), Color.white);
-      Debug.DrawLine(point + (Vector3.left / 3), point + (Vector3.right / 3), Color.white);
+      point.DrawCrosshair(Color.white);
     }
 
     private void DrawHitOrMissRay(Vector3 dest, bool hit){

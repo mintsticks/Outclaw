@@ -36,10 +36,6 @@ namespace Outclaw.Heist {
         .To<ObjectiveManager>()
         .AsSingle()
         .NonLazy();
-      Container.Bind<IPlayer>()
-        .FromInstance(controller)
-        .AsSingle()
-        .NonLazy();
       Container.Bind<IHeistInteractionController>()
         .FromInstance(interactionController)
         .AsSingle()
@@ -47,10 +43,6 @@ namespace Outclaw.Heist {
       Container.Bind<ICameraBehavior>()
         .To<CameraBehavior>()
         .FromInstance(cameraBehavior)
-        .AsSingle()
-        .NonLazy();
-      Container.Bind<IHideablePlayer>()
-        .FromInstance(controller)
         .AsSingle()
         .NonLazy();
       Container.Bind<ISneakManager>()
@@ -84,6 +76,7 @@ namespace Outclaw.Heist {
         .To<DialogueSettings>()
         .FromComponentInNewPrefab(heistDialogueSettingPrefab)
         .AsSingle();
+      BindPlayer();
       BindFactories();
     }
 
@@ -92,6 +85,21 @@ namespace Outclaw.Heist {
           Footprint,
           Footprint.Factory>()
         .FromComponentInNewPrefab(footprintPrefab);
+    }
+
+    private void BindPlayer(){
+      Container.Bind<IPlayer>()
+        .FromInstance(controller)
+        .AsSingle()
+        .NonLazy();
+      Container.Bind<IHideablePlayer>()
+        .FromInstance(controller)
+        .AsSingle()
+        .NonLazy();
+      Container.Bind<IPlayerMotion>()
+        .FromInstance(controller)
+        .AsSingle()
+        .NonLazy();
     }
   }
 }
