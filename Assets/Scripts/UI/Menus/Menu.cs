@@ -12,6 +12,7 @@ namespace Outclaw.UI{
     [Header("Audio")]
     [SerializeField] protected AudioClip moveSound;
     [SerializeField] protected AudioClip selectSound;
+    [SerializeField] protected AudioClip showMenuSound;
 
     [Header("Fading Content")]
     [SerializeField] protected float pauseTime;

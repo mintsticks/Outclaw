@@ -7,8 +7,9 @@ using Outclaw.UI;
 using Utility;
 
 namespace Outclaw {
-  public interface IPauseMenuManager {
+  public interface IPauseMenuManager { 
     bool Active { get; }
+    //bool IsSubmenuActive { get; }
     void Unpause();
   }
 
@@ -25,15 +26,15 @@ namespace Outclaw {
     [SerializeField]
     private PauseResumeItem pauseResumeItem;
     
-    [SerializeField]
-    private PauseSaveItem pauseSaveItem;
-    
-    [SerializeField]
-    private PauseLoadItem pauseLoadItem;
+    [SerializeField] 
+    private PauseInfoItem pauseInfoItem;
     
     [SerializeField]
     private PauseOptionItem pauseOptionItem;
-    
+
+    [SerializeField]
+    private PauseCreditsItem pauseCreditsItem;
+
     [SerializeField]
     private PauseExitItem pauseExitItem;
 
@@ -55,7 +56,7 @@ namespace Outclaw {
 
     void Awake() {
       //Initialize list of pause items. Unity can't serialize interfaces, unfortunately.
-      items = new List<IMenuItem> { pauseResumeItem, pauseSaveItem, pauseLoadItem, pauseOptionItem, pauseExitItem};
+      items = new List<IMenuItem> { pauseResumeItem, pauseInfoItem, pauseOptionItem, pauseCreditsItem, pauseExitItem };
       currentIndex = 0;
       items[0].Hover();
       contents.alpha = 0;
