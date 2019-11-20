@@ -282,6 +282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1002161793}
+  - {fileID: 958702454}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -509,6 +510,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 23.246296, y: 1.0962038}
   m_EdgeRadius: 0
+--- !u!1 &141824320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 141824322}
+  - component: {fileID: 141824321}
+  m_Layer: 0
+  m_Name: DebugTool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &141824321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141824320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbf0ac72f8bf544bb65fab3cf279838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugGameState: {fileID: 11400000, guid: dc2057afafe3a934999aff3b59531e51, type: 2}
+--- !u!4 &141824322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141824320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.754671, y: -5.8779745, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &144481633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3596538131186950625, guid: e3ecbef985afc6e44bcd3e734ab6c413,
@@ -3080,6 +3125,84 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3ecbef985afc6e44bcd3e734ab6c413, type: 3}
+--- !u!1 &958702453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 958702454}
+  - component: {fileID: 958702456}
+  - component: {fileID: 958702455}
+  m_Layer: 15
+  m_Name: PostHeist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &958702454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958702453}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.98, y: -6.67, z: 96.12708}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 56730681}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &958702455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958702453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5942f8d354cc524b910f783e067437e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventType: 3
+    dialogue:
+    - {fileID: 4900000, guid: 16c2c12545f366f45a132bbc66d7da18, type: 3}
+    waitTime: 0
+    promptInfo: {fileID: 0}
+    location: {fileID: 0}
+  eventGameState: {fileID: 11400000, guid: dc2057afafe3a934999aff3b59531e51, type: 2}
+--- !u!61 &958702456
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958702453}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.1310368, y: 1.1163487}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.2620735, y: 3.2326975}
+  m_EdgeRadius: 0
 --- !u!1 &1002161790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,10 +3239,12 @@ MonoBehaviour:
     - {fileID: 4900000, guid: 3e7e830cd54f87c4192effd43c280981, type: 3}
     waitTime: 0
     promptInfo: {fileID: 0}
+    location: {fileID: 0}
   - eventType: 2
     dialogue: []
     waitTime: 0
     promptInfo: {fileID: 11400000, guid: d5296c9f121ff3f4da0678a37a5e76da, type: 2}
+    location: {fileID: 0}
   eventGameState: {fileID: 11400000, guid: 73175b8f13ba6fa43ab32ede07570d22, type: 2}
 --- !u!61 &1002161792
 BoxCollider2D:
@@ -6305,16 +6430,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.04
       objectReference: {fileID: 0}
-    - target: {fileID: 968738545, guid: b6096cba33c105c4c895423f488ab737, type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 386258393, guid: b6096cba33c105c4c895423f488ab737, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 386258393, guid: b6096cba33c105c4c895423f488ab737, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 968738545, guid: b6096cba33c105c4c895423f488ab737, type: 3}
+      propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

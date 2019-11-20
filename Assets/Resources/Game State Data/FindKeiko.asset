@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba6f3ee13713b994bb81b7a5f86303b6, type: 3}
-  m_Name: Found Collar
+  m_Name: FindKeiko
   m_EditorClassIdentifier: 
   objectiveText: 
   childStates:
-  - nextStateData: {fileID: 11400000, guid: 02ca63b0b72f3104398987ba85ca12fe, type: 2}
+  - nextStateData: {fileID: 11400000, guid: f28ff84326acf3a4a81179d10b9e0e19, type: 2}
     tasks:
-    - {fileID: 11400000, guid: a886d5cba5786b64cb3bc7d7ff113a11, type: 2}
-    - {fileID: 11400000, guid: b9446bf47a3b2c94dabd40ba55b2e586, type: 2}
+    - {fileID: 11400000, guid: 12b0e36d760d41f46a944839607874f9, type: 2}
     persistObjectiveState: 0
