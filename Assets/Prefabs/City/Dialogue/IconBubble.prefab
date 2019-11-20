@@ -56,7 +56,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76482734708499757}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c9dd7985419a87142bdb1814da5ed546, type: 3}
@@ -177,7 +177,6 @@ MonoBehaviour:
   bubbleImage: {fileID: 7015155056892862711}
   bubbleTransform: {fileID: 3704808589957077307}
   bubblePositionHelper: {fileID: 1325915518943306015}
-  bubbleTail: {fileID: 3731492676545085038}
   bubbleAnimationHelper: {fileID: 6002001955287529112}
 --- !u!114 &6002001955287529112
 MonoBehaviour:
@@ -437,7 +436,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1039237901
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Positions:
   - {x: 12.804, y: -6.465763, z: 0}
