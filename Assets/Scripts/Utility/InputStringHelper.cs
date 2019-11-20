@@ -27,6 +27,8 @@ namespace Utility {
           return "D";
         case InputType.SNEAK:
           return "C";
+        case InputType.START:
+          return "space";
       }
       return "Z";
     }
@@ -47,6 +49,8 @@ namespace Utility {
           return "the control stick right";
         case InputType.SNEAK:
           return "RB";
+        case InputType.START:
+          return "start";
       }
       return "X";
     }
@@ -61,5 +65,6 @@ namespace Utility {
     LEFT = 5,
     RIGHT = 6,
     SNEAK = 7,
+    START = 8
   }
 }
