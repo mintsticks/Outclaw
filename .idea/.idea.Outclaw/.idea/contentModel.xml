@@ -42,10 +42,16 @@
             <e p="Taro3.yarn.txt" t="Include" />
             <e p="TaroDefault.yarn.txt" t="Include" />
             <e p="TaroEnd.yarn.txt" t="Include" />
+            <e p="TaroTemp.txt" t="Include" />
           </e>
           <e p="dontLeaveBase.yarn.txt" t="Include" />
           <e p="DontLeaveHouse.yarn.txt" t="Include" />
           <e p="foundCollar.yarn.txt" t="Include" />
+          <e p="GameStateDialogue" t="Include">
+            <e p="FoundCollar" t="Include">
+              <e p="AfterHeistHome.txt" t="Include" />
+            </e>
+          </e>
           <e p="getKeyBase.yarn.txt" t="Include" />
           <e p="lookAtFiles.yarn.txt" t="Include" />
           <e p="ObjectDialogue" t="Include">
@@ -734,13 +740,17 @@
               <e p="MenuItem.cs" t="Include" />
               <e p="MenuItemText.cs" t="Include" />
               <e p="Pause Menu" t="Include">
+                <e p="CurrentObjectiveDisplay.cs" t="Include" />
+                <e p="PauseCreditsItem.cs" t="Include" />
                 <e p="PauseExitItem.cs" t="Include" />
+                <e p="PauseInfoItem.cs" t="Include" />
                 <e p="PauseInstaller.cs" t="Include" />
                 <e p="PauseLoadItem.cs" t="Include" />
                 <e p="PauseMenuManager.cs" t="Include" />
                 <e p="PauseOptionItem.cs" t="Include" />
                 <e p="PauseResumeItem.cs" t="Include" />
                 <e p="PauseSaveItem.cs" t="Include" />
+                <e p="Submenu.cs" t="Include" />
               </e>
             </e>
             <e p="ObjectivePointer.cs" t="Include" />
