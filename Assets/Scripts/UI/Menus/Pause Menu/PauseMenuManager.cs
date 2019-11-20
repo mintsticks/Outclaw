@@ -9,7 +9,6 @@ using Utility;
 namespace Outclaw {
   public interface IPauseMenuManager { 
     bool Active { get; }
-    //bool IsSubmenuActive { get; }
     void Unpause();
   }
 
@@ -27,17 +26,23 @@ namespace Outclaw {
     private PauseResumeItem pauseResumeItem;
     
     [SerializeField] 
-    private PauseInfoItem pauseInfoItem;
+    private EventMenuItem pauseInfoItem;
     
     [SerializeField]
     private PauseOptionItem pauseOptionItem;
 
     [SerializeField]
-    private PauseCreditsItem pauseCreditsItem;
+    private EventMenuItem pauseCreditsItem;
 
     [SerializeField]
     private PauseExitItem pauseExitItem;
 
+    [SerializeField] private Submenu creditsSubmenu;
+
+    [SerializeField] private Submenu optionsSubmenu;
+
+    [SerializeField] private Submenu infoSubmenu;
+    
     [Inject]
     private ISceneTransitionManager sceneTransitionManager;
     
@@ -50,6 +55,8 @@ namespace Outclaw {
 
     public bool Active { get => active; }
 
+    private bool isSubmenuActive;
+
     protected override IMenuItem this[int i] { get => items[i]; }
 
     protected override int ItemCount() => items.Count;
@@ -60,11 +67,21 @@ namespace Outclaw {
       currentIndex = 0;
       items[0].Hover();
       contents.alpha = 0;
+
+      isSubmenuActive = false;
+      infoSubmenu.gameObject.SetActive(false);
+      optionsSubmenu.gameObject.SetActive(false);
+      creditsSubmenu.gameObject.SetActive(false);
     }
     
     void Update() {
       CheckActiveState();
       if (!active) {
+        return;
+      }
+
+      if (isSubmenuActive)
+      {
         return;
       }
 
@@ -114,6 +131,18 @@ namespace Outclaw {
         pause.Unpause();
       }
       active = false;
+    }
+
+    public void ActivateSubmenu(Submenu submenu) {
+      submenu.gameObject.SetActive(true);
+      submenu.Active = true;
+      isSubmenuActive = true;
+    }
+    
+    public void ReturnFromSubmenu(Submenu submenu) {
+      submenu.gameObject.SetActive(false);
+      submenu.Active = false;
+      isSubmenuActive = false;
     }
   }
 }
