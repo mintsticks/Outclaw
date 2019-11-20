@@ -18,13 +18,13 @@ namespace Utility {
         case InputType.SENSE:
           return "X";
         case InputType.JUMP:
-          return "SPACE";
+          return "SPC";
         case InputType.DESCEND:
-          return "S";
+          return "↓";
         case InputType.LEFT:
-          return "W";
+          return "←";
         case InputType.RIGHT:
-          return "D";
+          return "→";
         case InputType.SNEAK:
           return "C";
       }
@@ -40,11 +40,11 @@ namespace Utility {
         case InputType.JUMP:
           return "A";
         case InputType.DESCEND:
-          return "the control stick down";
+          return "↓";
         case InputType.LEFT:
-          return "the control stick left";
+          return "←";
         case InputType.RIGHT:
-          return "the control stick right";
+          return "→";
         case InputType.SNEAK:
           return "RB";
       }

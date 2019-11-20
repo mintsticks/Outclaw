@@ -55,6 +55,8 @@ namespace Outclaw {
 
     public bool Active { get => active; }
 
+    private Submenu activeSubmenu;
+    
     private bool isSubmenuActive;
 
     protected override IMenuItem this[int i] { get => items[i]; }
@@ -69,6 +71,7 @@ namespace Outclaw {
       contents.alpha = 0;
 
       isSubmenuActive = false;
+      activeSubmenu = null;
       infoSubmenu.gameObject.SetActive(false);
       optionsSubmenu.gameObject.SetActive(false);
       creditsSubmenu.gameObject.SetActive(false);
@@ -118,6 +121,9 @@ namespace Outclaw {
     }
     
     public void Unpause() {
+      if (isSubmenuActive) {
+        ReturnFromSubmenu(activeSubmenu);
+      }
       StartCoroutine(AnimateBlurOut());
       StartCoroutine(FadeOutContent());
     }
@@ -137,12 +143,14 @@ namespace Outclaw {
       submenu.gameObject.SetActive(true);
       submenu.Active = true;
       isSubmenuActive = true;
+      activeSubmenu = submenu;
     }
     
     public void ReturnFromSubmenu(Submenu submenu) {
       submenu.gameObject.SetActive(false);
       submenu.Active = false;
       isSubmenuActive = false;
+      activeSubmenu = null;
     }
   }
 }
