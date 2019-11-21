@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 116769491}
   - component: {fileID: 116769490}
   m_Layer: 23
-  m_Name: Rope
+  m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -721,7 +721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116769488}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 195.41, y: 12.3, z: 0}
+  m_LocalPosition: {x: 194.78, y: 12.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1625484050}
@@ -2420,15 +2420,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6085494453856709707, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6467484766866147336, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
         type: 3}
       propertyPath: isFacingLeft
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085494453856709707, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9000a1ecdcdf1114fa56d947d4c022fb, type: 3}
@@ -5999,13 +5999,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996643456}
-  m_LocalRotation: {x: -0, y: -0, z: 0.6225885, w: 0.78254944}
-  m_LocalPosition: {x: 0.12, y: -1.83, z: 0}
-  m_LocalScale: {x: 0.302, y: 0.287, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.1623801, w: 0.98672837}
+  m_LocalPosition: {x: -0.27, y: -1.21, z: 0}
+  m_LocalScale: {x: 0.11897894, y: 0.11306939, z: 0.39397}
   m_Children: []
   m_Father: {fileID: 116769489}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 77.011}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 18.69}
 --- !u!212 &996643458
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6044,7 +6044,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 48ac2ee2a06acc644ad1d558fcf827d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3969d76871d305f4f8be59b8eecfcc8d, type: 3}
   m_Color: {r: 0.64520293, g: 0.67456007, b: 0.764151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10308,11 +10308,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sentry Guard
       objectReference: {fileID: 0}
-    - target: {fileID: 2498545742545783644, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
-        type: 3}
-      propertyPath: awarenessIncreaseRate
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 9185406459547179530, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10373,16 +10368,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 7099196131766126429, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
-        type: 3}
-      propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1520911412}
-    - target: {fileID: 7099196131766126429, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
-        type: 3}
-      propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CapturePlayerImmediate
-      objectReference: {fileID: 0}
     - target: {fileID: 6467484766866147336, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
         type: 3}
       propertyPath: turns
@@ -10392,6 +10377,21 @@ PrefabInstance:
         type: 3}
       propertyPath: isFacingLeft
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498545742545783644, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
+        type: 3}
+      propertyPath: awarenessIncreaseRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7099196131766126429, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
+        type: 3}
+      propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1520911412}
+    - target: {fileID: 7099196131766126429, guid: 9000a1ecdcdf1114fa56d947d4c022fb,
+        type: 3}
+      propertyPath: onDetect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CapturePlayerImmediate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9000a1ecdcdf1114fa56d947d4c022fb, type: 3}
@@ -11568,12 +11568,6 @@ PrefabInstance:
       propertyPath: sourceSprite
       value: 
       objectReference: {fileID: 1927813175}
-    - target: {fileID: 540825544340483887, guid: e00cd4aca455b1a4cba0537030e7f49d,
-        type: 3}
-      propertyPath: promptTask
-      value: 
-      objectReference: {fileID: 11400000, guid: 375597e68a7311747a9eb396ab4a70a4,
-        type: 2}
     - target: {fileID: 1926137226593398848, guid: e00cd4aca455b1a4cba0537030e7f49d,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -11614,6 +11608,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 540825544340483887, guid: e00cd4aca455b1a4cba0537030e7f49d,
+        type: 3}
+      propertyPath: promptTask
+      value: 
+      objectReference: {fileID: 11400000, guid: 375597e68a7311747a9eb396ab4a70a4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00cd4aca455b1a4cba0537030e7f49d, type: 3}
 --- !u!1001 &1964119237

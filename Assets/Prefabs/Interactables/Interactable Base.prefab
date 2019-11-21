@@ -69,15 +69,15 @@ SpriteRenderer:
   m_SortingLayerID: 1847365663
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 48ac2ee2a06acc644ad1d558fcf827d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.31, y: 2.93}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2290543102887624444
@@ -131,6 +131,8 @@ MonoBehaviour:
   objectInfo:
     dialoguesForStates: []
   dialogueData: {fileID: 0}
+  bound: {fileID: 0}
+  promptTask: {fileID: 0}
   spriteRenderer: {fileID: 2290543101461105186}
   particleSystem: {fileID: 3323899175971990851}
   task: {fileID: 0}
@@ -361,6 +363,14 @@ PrefabInstance:
     - target: {fileID: 807684523778283476, guid: b6096cba33c105c4c895423f488ab737,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 386258393, guid: b6096cba33c105c4c895423f488ab737, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 386258393, guid: b6096cba33c105c4c895423f488ab737, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
