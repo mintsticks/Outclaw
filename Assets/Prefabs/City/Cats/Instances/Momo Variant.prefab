@@ -32,6 +32,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToHide: 5
+  visualBounds:
+    m_Center: {x: 0, y: 6, z: 0}
+    m_Extent: {x: 5.5, y: 6, z: 0}
 --- !u!1001 &2505823991013544262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39,6 +42,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1175910582158669391}
     m_Modifications:
+    - target: {fileID: 7412675800521950271, guid: 1c20a109e907045c28b00c39893293d0,
+        type: 3}
+      propertyPath: m_Name
+      value: Momo_Comp_Final
+      objectReference: {fileID: 0}
     - target: {fileID: 8530903073048354632, guid: 1c20a109e907045c28b00c39893293d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -103,11 +111,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7412675800521950271, guid: 1c20a109e907045c28b00c39893293d0,
-        type: 3}
-      propertyPath: m_Name
-      value: Momo_Comp_Final
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 2546911617917623296, guid: 1c20a109e907045c28b00c39893293d0,
@@ -288,19 +291,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 605628282, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 605628282, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 605628283, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ad9a937b2f7c0e141bc93ef113f21fc7,
-        type: 3}
     - target: {fileID: 5628549467109088889, guid: 8c8cd9af1cf61f043bfd819994e0c940,
         type: 3}
       propertyPath: m_Offset.x
@@ -321,8 +311,31 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 2.5066395
       objectReference: {fileID: 0}
+    - target: {fileID: 605628282, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 605628282, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 605628283, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ad9a937b2f7c0e141bc93ef113f21fc7,
+        type: 3}
     - target: {fileID: 605628281, guid: 8c8cd9af1cf61f043bfd819994e0c940, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829949603986494072, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829949603986494072, guid: 8c8cd9af1cf61f043bfd819994e0c940,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
