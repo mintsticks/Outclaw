@@ -38,8 +38,6 @@ namespace Outclaw{
       Bounds camBounds = Camera.main.OrthographicBounds();
       camBounds.Expand(new Vector3(distanceToHide, distanceToHide, 100));
       visualBounds.center = transform.position + boundOffset;
-
-      Debug.DrawLine(visualBounds.min, visualBounds.max, Color.magenta);
       Toggle(camBounds.Intersects(visualBounds));
     }
 

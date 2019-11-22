@@ -5668,12 +5668,22 @@ PrefabInstance:
     - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
         type: 3}
       propertyPath: numPeopleToSpawn
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
         type: 3}
-      propertyPath: maxSpeed
-      value: 5
+      propertyPath: spawnHeight
+      value: -11.14499
+      objectReference: {fileID: 0}
+    - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
+        type: 3}
+      propertyPath: distBeyondCamera
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
+        type: 3}
+      propertyPath: boundBeyondCamera
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2638969102581303991, guid: 4909a532d4360dc4fa5765e1ecc657d0,
         type: 3}
@@ -5698,6 +5708,11 @@ PrefabInstance:
     - target: {fileID: 2638969102581303991, guid: 4909a532d4360dc4fa5765e1ecc657d0,
         type: 3}
       propertyPath: m_Positions.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638969102581303991, guid: 4909a532d4360dc4fa5765e1ecc657d0,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

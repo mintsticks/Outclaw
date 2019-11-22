@@ -10,10 +10,12 @@ namespace Outclaw.City{
     private float xVelocity;
 
     [SerializeField] private Transform visuals;
+    [SerializeField] private Animator anim;
 
-    public void Init(float min, float max, float speed){
-      minX = min;
-      maxX = max;
+    private PeopleSpawner spawner;
+
+    public void Init(PeopleSpawner spawner, float speed, float animMult){
+      this.spawner = spawner;
       xVelocity = speed;
 
       visuals.localScale = new Vector3(
@@ -21,19 +23,20 @@ namespace Outclaw.City{
           visuals.localScale.y,
           visuals.localScale.z
         );
+
+      anim?.SetFloat("animSpeed", animMult);
     }
 
     void Update(){
       Vector3 newPos = transform.position;
       newPos.x += xVelocity * Time.deltaTime;
-      if(newPos.x < minX){
-        newPos.x = maxX;
-      }
-      else if(newPos.x > maxX){
-        newPos.x = minX;
-      }
-
       transform.position = newPos;
+
+      if(!spawner.IsInBounds(newPos.x)){
+        spawner.SpawnOutsideCamera();
+        Destroy(gameObject);
+        return;
+      }
     }
   }
 }

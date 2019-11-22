@@ -5,27 +5,44 @@ using UnityEngine;
 namespace Outclaw.City{
   public class PeopleSpawner : MonoBehaviour
   {
-    [Header("People")]
     [SerializeField] private List<GameObject> people;
-    [SerializeField] private int numPeopleToSpawn;
 
-    [Header("Movement Params")]
-    [SerializeField] private LineRenderer line;
+    [Header("Spawning")]
+    [SerializeField] private int numPeopleToSpawn;
+    [SerializeField] private float spawnHeight;
+    [SerializeField] private float distBeyondCamera;
+
+    [Header("Movement")]
     [SerializeField] private float minSpeed;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float boundBeyondCamera;
 
-    private Vector3 minPos;
-    private Vector3 maxPos;
+    [Header("Animation")]
+    [Tooltip("How much of the difference of speed to minSpeed should affect animation")]
+    [SerializeField] private float ratioAnimInfluence = .5f;
+
+    private float minPos;
+    private float maxPos;
+    private float minCamBound;
+    private float maxCamBound;
+    private Camera mainCam;
 
     void Start(){
-      if(line.positionCount != 2){
-        Debug.LogError("LineRenderer must only have 2 points for the ends");
-        return;
-      }
+      mainCam = Camera.main;
       InitBounds();
       RemoveInvalid();
+      SpawnInitial();
+    }
+
+    void Update(){
+      InitBounds();
+    }
+
+    private void SpawnInitial(){
+      Vector3 spawnPos = new Vector3(0, spawnHeight, 0);
       for(int i = 0; i < numPeopleToSpawn; ++i){
-        SpawnPerson(people[Random.Range(0, people.Count)]);
+        spawnPos.x = Mathf.Lerp(minPos, maxPos, Random.Range(0f, 1f));
+        SpawnPerson(people[Random.Range(0, people.Count)], spawnPos);
       }
     }
 
@@ -39,30 +56,36 @@ namespace Outclaw.City{
     }
 
     private void InitBounds(){
-      Vector3 pos0 = line.GetPosition(0);
-      Vector3 pos1 = line.GetPosition(1);
-
-      minPos = new Vector3(
-          Mathf.Min(pos0.x, pos1.x),
-          Mathf.Min(pos0.y, pos1.y),
-          Mathf.Min(pos0.z, pos1.z)
-        );
-      maxPos = new Vector3(
-          Mathf.Max(pos0.x, pos1.x),
-          Mathf.Max(pos0.y, pos1.y),
-          Mathf.Max(pos0.z, pos1.z)
-        );
+      Bounds bounds = mainCam.OrthographicBounds();
+      minCamBound = bounds.min.x;
+      maxCamBound = bounds.max.x;
+      minPos = minCamBound - boundBeyondCamera;
+      maxPos = maxCamBound + boundBeyondCamera;
     }
 
-    private void SpawnPerson(GameObject person){
+    private void SpawnPerson(GameObject person, Vector3 spawnPos, bool? moveLeft = null){
       float speed = Random.Range(minSpeed, maxSpeed);
-      speed *= (Random.Range(0, 2) == 0)? -1 : 1;
-      Vector3 spawnPos = Vector3.Lerp(minPos, maxPos, Random.Range(0f, 1f));
+      speed *= ((moveLeft != null) ? moveLeft.Value : (Random.Range(0, 2) == 0))
+        ? -1 : 1;
 
       // spawn and init
       GameObject newPerson = Instantiate(person, spawnPos, Quaternion.identity, transform);
       MoveAndLoop component = newPerson.GetComponent<MoveAndLoop>();
-      component.Init(minPos.x, maxPos.x, speed);
+      component.Init(this, speed, ((Mathf.Abs(speed) - minSpeed) * ratioAnimInfluence) + 1);
+    }
+
+    public bool IsInBounds(float x){
+      return minPos < x && x < maxPos;
+    }
+
+    public void SpawnOutsideCamera(){
+      GameObject person = people[Random.Range(0, people.Count)];
+      float spawnDist = Random.Range(distBeyondCamera, boundBeyondCamera);
+      bool spawnOnLeft = Random.Range(0, 2) == 0;
+      float spawnX = spawnOnLeft ? minCamBound - spawnDist : maxCamBound + spawnDist;
+
+      // if walk opposite direction of spawned direction
+      SpawnPerson(person, new Vector3(spawnX, spawnHeight, 0), !spawnOnLeft);
     }
   }
 }

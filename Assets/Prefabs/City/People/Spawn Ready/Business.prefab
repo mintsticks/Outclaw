@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visuals: {fileID: 3251955044592167791}
+  anim: {fileID: 4641362683850159541}
 --- !u!210 &6062999959930591294
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -154,22 +155,12 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c6a42862e2d651c459ba8a11adb851b7, type: 2}
-    - target: {fileID: 3428624155725220168, guid: aa8a18d53857c47c8a10cb55ccfae450,
+    - target: {fileID: 657351039779348279, guid: aa8a18d53857c47c8a10cb55ccfae450,
         type: 3}
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3428624155725220168, guid: aa8a18d53857c47c8a10cb55ccfae450,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6795611589513286828, guid: aa8a18d53857c47c8a10cb55ccfae450,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6795611589513286828, guid: aa8a18d53857c47c8a10cb55ccfae450,
+    - target: {fileID: 657351039779348279, guid: aa8a18d53857c47c8a10cb55ccfae450,
         type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -184,22 +175,12 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5257777509664786442, guid: aa8a18d53857c47c8a10cb55ccfae450,
+    - target: {fileID: 3428624155725220168, guid: aa8a18d53857c47c8a10cb55ccfae450,
         type: 3}
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5257777509664786442, guid: aa8a18d53857c47c8a10cb55ccfae450,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 657351039779348279, guid: aa8a18d53857c47c8a10cb55ccfae450,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 657351039779348279, guid: aa8a18d53857c47c8a10cb55ccfae450,
+    - target: {fileID: 3428624155725220168, guid: aa8a18d53857c47c8a10cb55ccfae450,
         type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -210,6 +191,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4770804690354627792, guid: aa8a18d53857c47c8a10cb55ccfae450,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257777509664786442, guid: aa8a18d53857c47c8a10cb55ccfae450,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5257777509664786442, guid: aa8a18d53857c47c8a10cb55ccfae450,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795611589513286828, guid: aa8a18d53857c47c8a10cb55ccfae450,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795611589513286828, guid: aa8a18d53857c47c8a10cb55ccfae450,
         type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -225,6 +226,12 @@ GameObject:
 --- !u!4 &3251955044592167791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3126114538937118275, guid: aa8a18d53857c47c8a10cb55ccfae450,
+    type: 3}
+  m_PrefabInstance: {fileID: 451331373055296812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4641362683850159541 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5055886220846379161, guid: aa8a18d53857c47c8a10cb55ccfae450,
     type: 3}
   m_PrefabInstance: {fileID: 451331373055296812}
   m_PrefabAsset: {fileID: 0}
