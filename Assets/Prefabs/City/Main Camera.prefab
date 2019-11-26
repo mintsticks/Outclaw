@@ -96,11 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea35170ab656aef46b2c197dc469d93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 0.2
+  useBounds: 0
+  smoothSpeed: 0.1
   offset: {x: 0, y: 2, z: -10}
   minBound: {x: -15.93, y: -4.81}
   maxBound: {x: 15.93, y: 10.51}
-  maxSpeed: {x: 11, y: 4}
-  defaultXOffset: 0
-  velocityInfluence: 1
-  yBoundOffset: 2
+  xMoveBound: 3
+  yMoveBound: 2.5
+  yBoundOffset: 2.5
+  xLookAheadOffset: 2
+  lookAheadSmoothing: 0.2

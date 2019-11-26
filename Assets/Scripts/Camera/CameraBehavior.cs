@@ -10,6 +10,7 @@ namespace Outclaw.City {
   }
   
   public class CameraBehavior : MonoBehaviour, ICameraBehavior {
+    [SerializeField] private bool useBounds;
     [SerializeField] private float smoothSpeed = .125f;
     [SerializeField] private Vector3 offset;
 
@@ -17,24 +18,30 @@ namespace Outclaw.City {
     [SerializeField] private Vector2 minBound;
     [SerializeField] private Vector2 maxBound;
 
-    [Header("Movement")]
-    [SerializeField] private Vector2 maxSpeed = new Vector2(1f, 1f);
-
     [Header("X Offset Control")]
-    [SerializeField] private float defaultXOffset = 1;
-    [Tooltip("Multiple of Velocity to add to x offset")]
-    [SerializeField] private float velocityInfluence = .1f;
+    [Tooltip("When player is beyond this distance from the center, move in x direction.")]
+    [SerializeField] private float xMoveBound = 1f;
+    private bool moveInX;
 
     [Header("Y Offset Control")]
+    [Tooltip("When player is beyond this distance from the center, move in y direction.")]
+    [SerializeField] private float yMoveBound = 1f;
     [Tooltip("Distance inside y bounds where camera will just follow the player")]
     [SerializeField] private float yBoundOffset = 3.5f;
+
+    [Header("Look Ahead")]
+    [SerializeField] private float xLookAheadOffset = 2;
+    [SerializeField] [Range(0, 1)] private float lookAheadSmoothing = .2f;
+    private Vector3 currentLookAheadPos;
+    private float currentLookAheadSpeed;
 
     [Inject] private IPlayerMotion player;
     
     private Vector2 currentSpeed = Vector2.zero;
     private Vector3 currentPosition;
     private bool shouldFollow = true;
-    private Vector2 smoothedPlayerVelocity;
+
+    private bool movingLeft;
 
     public bool ShouldFollow {
       get => shouldFollow;
@@ -56,6 +63,7 @@ namespace Outclaw.City {
     void Start(){
       currentPosition = transform.position;
       SnapToPlayer();
+      currentLookAheadPos = player.PlayerTransform.position;
     }
 
     void FixedUpdate() {
@@ -63,11 +71,31 @@ namespace Outclaw.City {
         return;
       }
 
-      KeepPlayerInView();
-      MoveTo(player.PlayerTransform.position + offset);
+      if(useBounds){
+        MoveBasedOnBounds();
+      }
+      else{
+        MoveTo(player.PlayerTransform.position + offset);
+      }
     }
 
-    private void KeepPlayerInView(){
+    private void MoveBasedOnBounds(){
+      Debug.DrawLine(new Vector3(transform.position.x + xMoveBound, -100),
+        new Vector3(transform.position.x + xMoveBound, 100),
+        Color.yellow);
+      Debug.DrawLine(new Vector3(transform.position.x - xMoveBound, -100),
+        new Vector3(transform.position.x - xMoveBound, 100),
+        Color.yellow);
+
+      UpdateLookAhead();
+      currentLookAheadPos.DrawCrosshair(Color.cyan);
+
+      bool moved = KeepPlayerInView();
+      MoveTo(new Vector3(TargetX(), moved ? currentPosition.y : TargetY(), 0));
+    }
+
+    // returns if the player was moved this ways
+    private bool KeepPlayerInView(){
       // player exiting bounds, immediately move camera to keep player inside
       Bounds bounds = Camera.main.OrthographicBounds();
       bounds.Expand(new Vector3(0, -yBoundOffset, 100));
@@ -75,16 +103,76 @@ namespace Outclaw.City {
         Vector3 nearest = bounds.ClosestPoint(player.PlayerTransform.position);
         currentPosition += player.PlayerTransform.position - nearest;
 
-        currentPosition = ClampPosition(currentPosition);
         transform.position = currentPosition;
+        return true;
       }
+
+      return false;
+    }
+
+    private void UpdateLookAhead(){
+      if(Mathf.Abs(player.Velocity.x) < .01f){
+        currentLookAheadPos.x = Mathf.SmoothDamp(currentLookAheadPos.x,
+          player.PlayerTransform.position.x, 
+          ref currentLookAheadSpeed,
+          lookAheadSmoothing);
+      }
+      else if(player.IsFacingLeft){
+        currentLookAheadPos.x = Mathf.SmoothDamp(currentLookAheadPos.x,
+          player.PlayerTransform.position.x - xLookAheadOffset, 
+          ref currentLookAheadSpeed,
+          lookAheadSmoothing);
+      }
+      else{
+        currentLookAheadPos.x = Mathf.SmoothDamp(currentLookAheadPos.x,
+          player.PlayerTransform.position.x + xLookAheadOffset, 
+          ref currentLookAheadSpeed,
+          lookAheadSmoothing);
+      }
+
+      currentLookAheadPos.y = player.PlayerTransform.position.y;
+    }
+
+    private float TargetX(){
+      if(moveInX){
+        if(movingLeft != player.IsFacingLeft || Mathf.Abs(player.Velocity.x) < .01f){
+          moveInX = false;
+          return currentPosition.x;
+        }
+      }
+      else{
+        float diff = currentLookAheadPos.x - currentPosition.x;
+        if(Mathf.Abs(diff) < xMoveBound){
+          return currentPosition.x;
+        }
+        else{
+          moveInX = true;
+          movingLeft = player.IsFacingLeft;
+        }
+      }
+
+      if(player.IsFacingLeft){
+        return currentLookAheadPos.x;
+      }
+      return currentLookAheadPos.x;
+    }
+
+    private float TargetY(){
+      float diff = player.PlayerTransform.position.y - currentPosition.y;
+      if(Mathf.Abs(diff) < yMoveBound){
+        return currentPosition.y;
+      }
+
+      return diff - (Mathf.Sign(diff) * yMoveBound) + currentPosition.y;
     }
 
     private void MoveTo(Vector3 position){
       Vector3 clampedPos = ClampPosition(position);
 
+      clampedPos.DrawCrosshair(Color.magenta);
+
       currentPosition.x = Mathf.SmoothDamp(currentPosition.x, clampedPos.x,
-        ref currentSpeed.x, smoothSpeed);
+        ref currentSpeed.x, smoothSpeed, Mathf.Abs(player.Velocity.x) * 2f);
 
       currentPosition.y = Mathf.SmoothDamp(currentPosition.y, clampedPos.y,
         ref currentSpeed.y, smoothSpeed);
