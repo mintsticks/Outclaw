@@ -25,21 +25,46 @@ namespace Outclaw.Heist{
         return;
       }
 
+      InitMaskScale();
+
+      // set the mask
+      patternMask.sprite = sourceSprite.sprite;
+
+      InitPattern();
+    }
+
+    private void InitMaskScale(){
+      Vector3 newScale = transform.localScale;
+
       // force mask size to be the same size as the sourceSprite size
       if(sourceSprite.transform.lossyScale != transform.lossyScale){
-        transform.localScale = new Vector3(
+        newScale = new Vector3(
             sourceSprite.transform.lossyScale.x / transform.lossyScale.x,
             sourceSprite.transform.lossyScale.y / transform.lossyScale.y,
             1
           );
       }
 
+      // source sprite is expanded beyond default sprite shape
+      if(sourceSprite.drawMode != SpriteDrawMode.Simple){
+        Bounds totalBound = sourceSprite.bounds;
+        Bounds tileBound = sourceSprite.sprite.bounds;
+
+        // multiply by ratio of total / orig size, but need to divide by scale 
+        //   to get true total size
+        newScale.x *= totalBound.size.x / sourceSprite.transform.lossyScale.x 
+          / tileBound.size.x;
+        newScale.y *= totalBound.size.y / sourceSprite.transform.lossyScale.y 
+          / tileBound.size.y;
+      }
+
+      transform.localScale = newScale;
+    }
+
+    private void InitPattern(){
       // invert global scale so pattern is consistent size
       Vector3 origScale = patternTransform.lossyScale;
       patternTransform.localScale = new Vector3(1 / origScale.x, 1 / origScale.y, 1);
-
-      // set the mask
-      patternMask.sprite = sourceSprite.sprite;
 
       // set up pattern
       Bounds bounds = sourceSprite.sprite.bounds;
@@ -50,6 +75,7 @@ namespace Outclaw.Heist{
       patternSize.x *= origScale.x;
       patternSize.y *= origScale.y;
       patternSprite.size = patternSize;
+
     }
   }
 }
