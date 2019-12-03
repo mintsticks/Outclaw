@@ -1,83 +1,76 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
+using Managers;
 using Outclaw.City;
 using UnityEngine;
+using Utility;
 using Zenject;
-using Outclaw.ManagedRoutine;
 
-namespace Outclaw.Heist{
+namespace Outclaw.Heist {
   public class Capture : MonoBehaviour {
-
     [Header("Awareness")]
-    [SerializeField] private float maxAwareness = 1f;
-    private float awareness = 0;
-    [Tooltip("Awareness per second")]
-    [SerializeField] private float awarenessIncreaseRate = 1f;
-    [Tooltip("Awareness per second")]
-    [SerializeField] private float awarenessDecreaseRate = 2f;
+    [SerializeField] private float defaultAwarenessRatePercent = -.25f;
     [SerializeField] private SpriteRenderer alertSprite;
 
     [Inject] private ICapturedMenu captureMenu;
     [Inject] private IPlayer player;
     [Inject] private IHeistInteractionController interactionController;
+    [Inject] private IPlayerCapturedManager playerCapturedManager;
 
-    private ManagedCoroutine captureRoutine;
-    private ManagedCoroutine fadeOutRoutine;
-
-    void Awake(){
-      captureRoutine = new ManagedCoroutine(this, CaptureCoroutine);
-      fadeOutRoutine = new ManagedCoroutine(this, FadeAlertOut);
+    private float currentAwareness;
+    private float currentAwarenessRate;
+    private float currentPercentChange;
+    private float maxAwareness = 1f;
+    
+    private void Start() {
+      currentAwarenessRate = defaultAwarenessRatePercent;
     }
 
-    public void CapturePlayer() {
-      fadeOutRoutine.StopCoroutine();
-      captureRoutine.StartCoroutine();
+    void Update() {
+      UpdateAwareness();
+      UpdateColor();
+      CheckCapture();
     }
 
-    public void CancelCapture(){
-      // already captured, don't cancel
-      if(awareness >= maxAwareness){
+    private void UpdateAwareness() {
+      var awarenessRateInPercent = currentAwarenessRate.IsZero() ? defaultAwarenessRatePercent : currentAwarenessRate;
+      var awarenessChangePerSecond = maxAwareness * awarenessRateInPercent;
+      currentAwareness = currentAwareness.ClampedAdd(awarenessChangePerSecond * Time.deltaTime, 0, maxAwareness);
+    }
+    
+    private void UpdateColor() {
+      var alpha = currentAwareness / maxAwareness;
+      alertSprite.color = alertSprite.color.WithAlpha(alpha);
+    }
+
+    private void CheckCapture() {
+      if (currentAwareness < maxAwareness || playerCapturedManager.IsCaptured) {
         return;
       }
-      captureRoutine.StopCoroutine();
-      fadeOutRoutine.StartCoroutine();
+
+      playerCapturedManager.IsCaptured = true;
+      StartCoroutine(CaptureCoroutine());
     }
 
+    public void AddAwarenessRatePercent(float percentToAdd) {
+      currentAwarenessRate = currentAwarenessRate.ClampedAdd(percentToAdd, 0, 1);
+    }
+    
+    private IEnumerator CaptureCoroutine() {
+      player.InputDisabled = true;
+      yield return new WaitForSeconds(.25f);
+      CapturePlayerImmediate();
+    }
+    
+    [UsedImplicitly]
     public void CapturePlayerImmediate(){
       interactionController.ClearInteractable();
-      awareness = 0;
+      currentAwareness = 0;
+      playerCapturedManager.IsCaptured = false;
       captureMenu.Show();
-    }
-
-    private IEnumerator FadeAlertOut(){
-      var spriteColor = alertSprite.color;
-      while (awareness > 0) {
-        awareness -= awarenessDecreaseRate * Time.deltaTime;
-        alertSprite.color = new Color(spriteColor.r, spriteColor.g, 
-          spriteColor.b, awareness / maxAwareness);
-        yield return null;
-      }
-      alertSprite.gameObject.SetActive(false);
-    }
-
-    private IEnumerator CaptureCoroutine() {
-      yield return FadeAlertIn();
-      player.InputDisabled = true;
-      yield return new WaitForSeconds(.5f);
-      interactionController.ClearInteractable();
-      awareness = 0;
-      captureMenu.Show();
-    }
-
-    private IEnumerator FadeAlertIn() {
-      alertSprite.gameObject.SetActive(true);
-      var spriteColor = alertSprite.color;
-      while (awareness < maxAwareness) {
-        awareness += awarenessIncreaseRate * Time.deltaTime;
-        alertSprite.color = new Color(spriteColor.r, spriteColor.g, 
-          spriteColor.b, awareness / maxAwareness);
-        yield return null;
-      }
     }
   }
 }

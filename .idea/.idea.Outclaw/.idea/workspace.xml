@@ -2,11 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/State Data.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerCapturedManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerCapturedManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/FloatExt.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/FloatExt.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/City/Cats/Instances/Keiko Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/City/Cats/Instances/Keiko Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/City/Talk to Keiko.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/City/Talk to Keiko.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Guard Components/Guard Visual.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Guard Components/Guard Visual.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Patrol Guard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Patrol Guard.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Sentry Guard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Sentry Guard.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/AttentionZone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/AttentionZone.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/Capture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/Capture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Sneak/SneakManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Sneak/SneakManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/GlobalConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/GlobalConstants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +50,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Objective/Heist/Objective.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/InputStringHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PlayerLitManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/FloatExt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Editor/EditorWindow/ZenjectEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sense/AnimationWrapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleTextHelper.cs" root0="FORCE_HIGHLIGHTING" />
@@ -45,8 +59,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Location/ObjectDialogueData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/StartListener.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/VisionCone.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/LineOfSight.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/CharacterController2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/Capture.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/AttentionZone.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Visuals/GuardAnimationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/MovementController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerAnimController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -80,6 +97,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/CheckpointUpdater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ObjectivePointer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Heist/IHideablePlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Factories/PrefabFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/IntroDialogueUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Location/LocationManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -94,6 +112,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/DialogueIconManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Game State/GameStateManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Game State/GameStateList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/ManagedCoroutine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistMovementController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/SpeechBubble.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Game State/GameStateData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -121,6 +140,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sneak/SneakVisual.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sneak/SneakManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PauseGame.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PlayerCapturedManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/DialogueManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/RelationshipManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/IconNameData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -154,20 +174,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInput.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/MovementController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/IconNameData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/Cabinet1.yarn.txt" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/IconNameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/BoundsExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Editor/Scriptable Object/CatDialogueDataEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/HeistDialogueSettings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/CityDialogueSettings.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/DialogueInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/CityInstaller.cs" />
-        <option value="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleTail.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/DialogueSettings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleAnimationHelper.cs" />
@@ -188,11 +200,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/Indicator.cs" />
         <option value="$PROJECT_DIR$/Assets/Prefabs/Heist/Abilities/Vent.prefab" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePointManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePoint.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/Heist/Vent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/Heist/HideArea.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RepeatedBackgroundElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AnimatedBackgroundElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Background/AnimatedBackgroundElement.cs" />
@@ -205,6 +215,16 @@
         <option value="$PROJECT_DIR$/Assets/Dialogue/CatDialogue/Keiko1.yarn.txt" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/InputStringHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/StartListener.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/GlobalConstants.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/VectorUtil.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sneak/SneakManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerCapturedManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/AttentionZone.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/FloatExt.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/Capture.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/SenseManager.cs" />
       </list>
     </option>
   </component>
@@ -284,6 +304,7 @@
       <workItem from="1573309350613" duration="11023000" />
       <workItem from="1574109582744" duration="13547000" />
       <workItem from="1574226483579" duration="14197000" />
+      <workItem from="1575348366385" duration="13790000" />
     </task>
     <servers />
   </component>

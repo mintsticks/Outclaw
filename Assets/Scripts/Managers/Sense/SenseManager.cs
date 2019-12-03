@@ -47,13 +47,8 @@ namespace Outclaw {
       animationWrapper.StartNewAnimation(senseVisuals.ActivateSense());
     }
 
-    private bool CancelSense() {
-      return playerInput.IsLeft() || playerInput.IsRight() || playerInput.IsJump() || playerInput.IsDownPress() ||
-             playerInput.IsInteractDown() || playerInput.IsSneakDown();
-    }
-
     private void UpdateSenseUp() {
-      if (!isSensing || !playerInput.IsSenseUp() && !CancelSense()) {
+      if (!isSensing || !playerInput.IsSenseUp()) {
         isSenseUp = false;
         return;
       }

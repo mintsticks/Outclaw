@@ -1,6 +1,7 @@
 ﻿using System;
 using Outclaw;
 using UnityEngine;
+using Utility;
 using Zenject;
 
 namespace Managers {
@@ -13,6 +14,7 @@ namespace Managers {
   public class SneakManager : MonoBehaviour, ISneakManager {
     [SerializeField] private SneakVisual sneakVisual;
     [SerializeField] private float maxSneakSeconds;
+    [SerializeField] private float notMovingFactor = .5f;
     [SerializeField] private float sneakCooldownFactor = .75f;
     [SerializeField] private float warningPercent = .8f;
     [Inject] private IPlayerInput playerInput;
@@ -64,18 +66,23 @@ namespace Managers {
     private void CooldownSneak() {
       var cooledSneak = sneakSeconds - Time.deltaTime * sneakCooldownFactor;
       sneakSeconds = Mathf.Max(0, cooledSneak);
-      if (Math.Abs(sneakSeconds) < .00001f && visible) {
+      if (sneakSeconds.IsZero() && visible) {
         sneakVisual.DelayedFadeOut();
         visible = false;
       }
     }
 
     private void UseSneak() {
-      if (Math.Abs(sneakSeconds) < .00001f && !visible) {
+      if (sneakSeconds.IsZero() && !visible) {
         sneakVisual.FadeIn();
         visible = true;
       }
-      sneakSeconds += Time.deltaTime;
+
+      if (player.Velocity.x.IsZero()) {
+        
+      }
+      var timeToAdd = player.Velocity.x.IsZero() ? Time.deltaTime * notMovingFactor : Time.deltaTime;
+      sneakSeconds += timeToAdd;
       CheckSneakLimit();
     }
 

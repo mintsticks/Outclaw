@@ -583,6 +583,7 @@
               <e p="TaskEditor.cs" t="Include" />
             </e>
             <e p="SpawnListEditor.cs" t="Include" />
+            <e p="SpriteSkinCullingEditor.cs" t="Include" />
           </e>
           <e p="Enemies" t="Include">
             <e p="CameraMovement.cs" t="Include" />
@@ -655,6 +656,7 @@
               <e p="Task.cs" t="Include" />
             </e>
             <e p="PauseGame.cs" t="Include" />
+            <e p="PlayerCapturedManager.cs" t="Include" />
             <e p="PlayerLitManager.cs" t="Include" />
             <e p="Sense" t="Include">
               <e p="AnimationWrapper.cs" t="Include" />
@@ -676,6 +678,10 @@
               <e p="SneakManager.cs" t="Include" />
               <e p="SneakVisual.cs" t="Include" />
             </e>
+          </e>
+          <e p="People" t="Include">
+            <e p="MoveAndLoop.cs" t="Include" />
+            <e p="PeopleSpawner.cs" t="Include" />
           </e>
           <e p="Physics" t="Include">
             <e p="OneWayPlatform.cs" t="Include" />
@@ -740,6 +746,7 @@
               <e p="MenuItem.cs" t="Include" />
               <e p="MenuItemText.cs" t="Include" />
               <e p="Pause Menu" t="Include">
+                <e p="ControlDisplay.cs" t="Include" />
                 <e p="CurrentObjectiveDisplay.cs" t="Include" />
                 <e p="PauseCreditsItem.cs" t="Include" />
                 <e p="PauseExitItem.cs" t="Include" />
@@ -764,6 +771,7 @@
             <e p="ColorExt.cs" t="Include" />
             <e p="Curver.cs" t="Include" />
             <e p="DebugTool.cs" t="Include" />
+            <e p="FloatExt.cs" t="Include" />
             <e p="GlobalConstants.cs" t="Include" />
             <e p="InputStringHelper.cs" t="Include" />
             <e p="LineHelperExt.cs" t="Include" />
