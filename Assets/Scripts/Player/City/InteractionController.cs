@@ -17,27 +17,14 @@ namespace Outclaw {
 
     private ObjectiveInteractable currentInteractable;
     private IHaveTask currentTask;
-    private bool queuedInteraction;
-    
-    public void UpdateInteraction() {
-      if (player.InputDisabled || 
-          !playerInput.IsInteractDown() || 
-          currentInteractable == null) {
-        return;
-      }
-      
-      if (!currentInteractable.HasInteraction()) {
-        return;
-      }
 
-      if (queuedInteraction) {
+    public void UpdateInteraction() {
+      var invalidInput = player.InputDisabled || !playerInput.IsInteractDown();
+      var invalidInteractable = currentInteractable == null || !currentInteractable.HasInteraction();
+      if (invalidInput || invalidInteractable) {
         return;
       }
       
-      if (player.Velocity != Vector3.zero) {
-        StartCoroutine(QueueInteraction());
-        return;
-      }
       Interact();
     }
 
@@ -47,23 +34,23 @@ namespace Outclaw {
       currentInteractable?.Interact();
       //TODO: zero out velocity. make colliders at base of feet so it cannot be interacted while jumping
     }
-    
-    private IEnumerator QueueInteraction() {
-      queuedInteraction = true;
-      player.InputDisabled = true;
-      while (!player.Velocity.IsZero()) {
-        yield return null;
+
+    private void UpdateCurrentInteractable(Collider2D other) {
+      if (!player.IsGrounded && currentInteractable != null) {
+        other.GetComponentInParent<ObjectiveInteractable>().ExitRange();
+        currentInteractable = null;
+        return;
       }
-      Interact();
-      queuedInteraction = false;
+
+      if (currentInteractable != null || !player.IsGrounded) {
+        return;
+      }
+      
+      currentInteractable = other.GetComponentInParent<ObjectiveInteractable>();
+      currentInteractable.InRange();
     }
     
     public void HandleEnter(Collider2D other) {
-      if ((1 << other.gameObject.layer & interactableLayer) != 0) {
-        currentInteractable = other.GetComponentInParent<ObjectiveInteractable>();
-        currentInteractable.InRange();
-      }
-
       if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) {
         var eventSequence = other.GetComponentInParent<EventSequence>();
         StartCoroutine(eventSequence.ExecuteSequence());
@@ -76,6 +63,10 @@ namespace Outclaw {
     }
 
     public void HandleStay(Collider2D other) {
+      if ((1 << other.gameObject.layer & interactableLayer) != 0) {
+        UpdateCurrentInteractable(other);
+      }
+      
       if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) {
         var eventSequence = other.GetComponentInParent<EventSequence>();
         StartCoroutine(eventSequence.ExecuteSequence());
@@ -83,7 +74,7 @@ namespace Outclaw {
     }
 
     public void HandleExit(Collider2D other) {
-      if ((1 << other.gameObject.layer & interactableLayer) == 0) {
+      if (currentInteractable == null || (1 << other.gameObject.layer & interactableLayer) == 0) {
         return;
       }
 
