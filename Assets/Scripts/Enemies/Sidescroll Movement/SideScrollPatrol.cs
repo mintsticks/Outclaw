@@ -27,7 +27,6 @@ namespace Outclaw.Heist{
     [SerializeField] [Range(0, 360)] private float lookAngle = 30;
     [SerializeField] private float headTurnTime = .1f;
     [SerializeField] private float lookPause = .1f;
-    [SerializeField] private float changeDirPause = .3333f;
 
     private int targetIdx = 0;
     private ManagedCoroutine patrolRoutine = null;

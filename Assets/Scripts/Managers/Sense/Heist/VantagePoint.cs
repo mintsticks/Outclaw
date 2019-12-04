@@ -8,6 +8,9 @@ namespace Outclaw.Heist {
     public Vector3 cameraPosition;
     public float cameraSize;
 
+    public Vector3 CameraPosition => cameraPosition;
+    public float HalfCameraHeight => cameraSize;
+
     public void ShowIndicator() {
       indicator.FadeIn();
     }

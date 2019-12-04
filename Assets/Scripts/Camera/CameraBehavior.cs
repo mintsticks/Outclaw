@@ -68,6 +68,7 @@ namespace Outclaw.City {
 
     void FixedUpdate() {
       if (!ShouldFollow) {
+        currentSpeed = Vector3.zero;
         return;
       }
 

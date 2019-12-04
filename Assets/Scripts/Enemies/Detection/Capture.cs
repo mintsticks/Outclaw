@@ -51,6 +51,10 @@ namespace Outclaw.Heist {
     }
     
     private void UpdateColor() {
+      if(alertSprite == null){
+        return;
+      }
+
       var alpha = currentAwareness / maxAwareness;
       alertSprite.color = alertSprite.color.WithAlpha(alpha);
     }
