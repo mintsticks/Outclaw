@@ -91,7 +91,8 @@ namespace Outclaw.City {
       currentLookAheadPos.DrawCrosshair(Color.cyan);
 
       bool moved = KeepPlayerInView();
-      MoveTo(new Vector3(TargetX(), moved ? currentPosition.y : TargetY(), 0));
+      MoveTo(new Vector3(TargetX(), moved ? currentPosition.y : TargetY(), 0),
+         Mathf.Abs(player.Velocity.x) * 2f);
     }
 
     // returns if the player was moved this ways
@@ -166,13 +167,13 @@ namespace Outclaw.City {
       return diff - (Mathf.Sign(diff) * yMoveBound) + currentPosition.y;
     }
 
-    private void MoveTo(Vector3 position){
+    private void MoveTo(Vector3 position, float maxXSpeed = float.PositiveInfinity){
       Vector3 clampedPos = ClampPosition(position);
 
       clampedPos.DrawCrosshair(Color.magenta);
 
       currentPosition.x = Mathf.SmoothDamp(currentPosition.x, clampedPos.x,
-        ref currentSpeed.x, smoothSpeed, Mathf.Abs(player.Velocity.x) * 2f);
+        ref currentSpeed.x, smoothSpeed, maxXSpeed);
 
       currentPosition.y = Mathf.SmoothDamp(currentPosition.y, clampedPos.y,
         ref currentSpeed.y, smoothSpeed);
