@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utility;
 using Yarn;
 using Yarn.Unity;
 using Zenject;
@@ -50,7 +51,7 @@ namespace Outclaw.City {
       queuedDialogue = true;
       cameraBehavior.ShouldFollow = false;
       player.InputDisabled = true;
-      while (!player.Velocity.IsZero() || !player.IsGrounded) {
+      while (!player.Velocity.x.IsZero() || !player.IsGrounded) {
         yield return null;
       }
       

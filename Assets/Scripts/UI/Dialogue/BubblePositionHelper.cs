@@ -63,14 +63,7 @@ namespace UI.Dialogue {
     }
     
     private void UpdatePosition() {
-      if (invalidBounds.Count == 0) {
-        FindValidPosition(90);
-        return;
-      }
-
-      var interactableCenter = invalidBounds[0].center;
-      var startAngle = Vector3.SignedAngle(Vector3.right, interactableCenter - parent.position, Vector3.forward);
-      FindValidPosition(startAngle);
+      FindValidPosition(90);
     }
 
     private void UpdateTail() {

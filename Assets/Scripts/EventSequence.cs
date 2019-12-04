@@ -24,7 +24,6 @@ namespace Outclaw {
       }
 
       executed = true;
-      yield return BlockUntilStill();
       foreach (var eventInfo in events) {
         player.InputDisabled = true;
         yield return HandleEvent(eventInfo);
@@ -32,14 +31,7 @@ namespace Outclaw {
 
       player.InputDisabled = false;
     }
-
-    private IEnumerator BlockUntilStill() {
-      player.InputDisabled = true;
-      while (!player.Velocity.IsZero()) {
-        yield return null;
-      }
-    }
-
+    
     private IEnumerator HandleEvent(EventInfo eventInfo) {
       switch (eventInfo.eventType) {
         case EventType.WAIT:
