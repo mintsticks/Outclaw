@@ -19,6 +19,11 @@ namespace Outclaw.Heist {
     [SerializeField] private OnDetect onDetectStay = new OnDetect();
     [SerializeField] private OnDetect onDetectLoss = new OnDetect();
     [SerializeField] private AttentionType attentionType = AttentionType.SOUND;
+    [SerializeField] private SpriteBundle attentionIndicator;
+    [SerializeField] private Capture captureScript;
+    
+    [SerializeField] private float minIndicatorOpacity = .1f;
+    [SerializeField] private float maxIndicatorOpacity = .8f;
     
     [Inject] private ISneakManager sneakManager;
     [Inject] private IHideablePlayer hideablePlayer;
@@ -75,7 +80,7 @@ namespace Outclaw.Heist {
         return;
       }
       onDetectLoss.Invoke();
-      detectedLastFrame = false;
+      SetDetectedState(false);
     }
 
     private void EnterDetect(GameObject objectInAttention){
@@ -84,8 +89,28 @@ namespace Outclaw.Heist {
       enterDetectEffect?.Play(effectLocation, directionRay);
 
       onDetect.Invoke();
+      SetDetectedState(true);
+    }
 
-      detectedLastFrame = true;
+    private void SetDetectedState(bool detected) {
+      detectedLastFrame = detected;
+      UpdateAwarenessRate(detected);
+      SetIndicatorOpacity(detected);
+    }
+
+    private void UpdateAwarenessRate(bool detected) {
+      if (detected) {
+        captureScript.RegisterAwarenessType(attentionType);
+        return;
+      }
+      captureScript.DeregisterAwarenessType(attentionType);
+    }
+    
+    private void SetIndicatorOpacity(bool detected) {
+      if (attentionIndicator == null) {
+        return;
+      }
+      attentionIndicator.SetAlpha(detected ? maxIndicatorOpacity : minIndicatorOpacity);
     }
   }
 }

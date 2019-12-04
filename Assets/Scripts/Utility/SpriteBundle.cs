@@ -41,6 +41,15 @@ namespace Outclaw{
       }
     }
 
+    public void SetAlpha(float alpha) {
+      if (sprites == null) {
+        return;
+      }
+      foreach (var sprite in sprites) {
+        sprite.color = sprite.color.WithAlpha(alpha);
+      }
+    }
+    
     public Color GetColor() {
       if (sprites == null || sprites.Length <= 0) {
         return Color.white;

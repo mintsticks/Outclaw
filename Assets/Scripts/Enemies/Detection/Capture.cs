@@ -11,8 +11,10 @@ using Zenject;
 
 namespace Outclaw.Heist {
   public class Capture : MonoBehaviour {
-    [Header("Awareness")]
-    [SerializeField] private float defaultAwarenessRatePercent = -.25f;
+    [Header("Awareness")] 
+    [SerializeField] private float cooldownAwarenessRate = -.25f;
+    [SerializeField] private float cooldownAwarenessTime = .5f;
+    [SerializeField] private AttentionTypeAwarenessData attentionTypeAwarenessData;
     [SerializeField] private SpriteRenderer alertSprite;
 
     [Inject] private ICapturedMenu captureMenu;
@@ -24,10 +26,7 @@ namespace Outclaw.Heist {
     private float currentAwarenessRate;
     private float currentPercentChange;
     private float maxAwareness = 1f;
-    
-    private void Start() {
-      currentAwarenessRate = defaultAwarenessRatePercent;
-    }
+    private float timeSinceAware;
 
     void Update() {
       UpdateAwareness();
@@ -36,9 +35,19 @@ namespace Outclaw.Heist {
     }
 
     private void UpdateAwareness() {
-      var awarenessRateInPercent = currentAwarenessRate.IsZero() ? defaultAwarenessRatePercent : currentAwarenessRate;
+      UpdateTimeSinceAware();
+      var awarenessRateInPercent = timeSinceAware > cooldownAwarenessTime ? cooldownAwarenessRate : currentAwarenessRate;
       var awarenessChangePerSecond = maxAwareness * awarenessRateInPercent;
       currentAwareness = currentAwareness.ClampedAdd(awarenessChangePerSecond * Time.deltaTime, 0, maxAwareness);
+    }
+
+    private void UpdateTimeSinceAware() {
+      if (currentAwarenessRate.IsZero()) {
+        timeSinceAware += Time.deltaTime;
+        return;
+      }
+
+      timeSinceAware = 0;
     }
     
     private void UpdateColor() {
@@ -55,8 +64,18 @@ namespace Outclaw.Heist {
       StartCoroutine(CaptureCoroutine());
     }
 
-    public void AddAwarenessRatePercent(float percentToAdd) {
-      currentAwarenessRate = currentAwarenessRate.ClampedAdd(percentToAdd, 0, 1);
+    public void RegisterAwarenessType(AttentionType type) {
+      currentAwarenessRate = currentAwarenessRate.ClampedAdd(GetAwarenessRateChangeForType(type), 0, 1);
+    }
+    
+    public void DeregisterAwarenessType(AttentionType type) {
+      currentAwarenessRate = currentAwarenessRate.ClampedAdd(-GetAwarenessRateChangeForType(type), 0, 1);
+    }
+
+    private float GetAwarenessRateChangeForType(AttentionType type) {
+      var info = attentionTypeAwarenessData.data.FirstOrDefault(d => d.attentionType == type);
+      var change = info?.awarenessRateChange;
+      return change.GetValueOrDefault();
     }
     
     private IEnumerator CaptureCoroutine() {
@@ -64,13 +83,24 @@ namespace Outclaw.Heist {
       yield return new WaitForSeconds(.25f);
       CapturePlayerImmediate();
     }
-    
+
     [UsedImplicitly]
-    public void CapturePlayerImmediate(){
+    public void CapturePlayerImmediate() {
       interactionController.ClearInteractable();
       currentAwareness = 0;
       playerCapturedManager.IsCaptured = false;
       captureMenu.Show();
     }
+  }
+
+  [Serializable]
+  public class AttentionTypeAwarenessData {
+    public List<AttentionTypeAwarenessInfo> data;
+  }
+
+  [Serializable]
+  public class AttentionTypeAwarenessInfo {
+    public AttentionType attentionType;
+    public float awarenessRateChange;
   }
 }
