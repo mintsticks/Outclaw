@@ -95,13 +95,14 @@ namespace Outclaw {
     }
     
     private IEnumerator HandleTextBubble(Transform parent, string lineText, List<Bounds> bounds) {
-      var bubble = CreateSpeechBubble(parent, bounds);
+      var text = ReplaceVariables(lineText);
+      var bubble = CreateSpeechBubble(parent, bounds, text);
+      bubble.BubbleSetup();
       if (!bubblePositionsForParent.ContainsKey(parent)) {
         bubblePositionsForParent[parent] = bubble.transform.position;
       }
 
       bubbles.Add(bubble);
-      var text = ReplaceVariables(lineText);
       var detectSkip = DetectSkip(bubble);
       StartCoroutine(detectSkip);
       yield return bubble.ShowText(text);
@@ -116,10 +117,10 @@ namespace Outclaw {
       yield return new WaitForEndOfFrame();
     }
 
-    private SpeechBubble CreateSpeechBubble(Transform parent, List<Bounds> bounds) {
+    private SpeechBubble CreateSpeechBubble(Transform parent, List<Bounds> bounds, string text) {
       if (!bubblePositionsForParent.ContainsKey(parent)) {
         return speechBubbleFactory.Create(new SpeechBubble.Data {
-          BubbleText = "",
+          BubbleText = text,
           BubbleParent = parent,
           UIParent = transform,
           InvalidBounds = bounds,
@@ -128,6 +129,7 @@ namespace Outclaw {
       }
       return speechBubbleFactory.Create(new SpeechBubble.Data {
         InitialPosition = bubblePositionsForParent[parent],
+        BubbleText = text,
         UIParent = transform,
         BubbleParent = parent,
         UI = this
@@ -158,6 +160,7 @@ namespace Outclaw {
 
       SetSelectedOption = optionChooser;
       var bubble = CreateThoughtBubble(optionsCollection, player.HeadTransform, bounds);
+      bubble.SetupBubble();
       bubbles.Add(bubble);
 
       while (SetSelectedOption != null) {
@@ -171,11 +174,12 @@ namespace Outclaw {
 
 
     private ThoughtBubble CreateThoughtBubble(Options options, Transform parent, List<Bounds> bounds) {
+      var optionList = ParseOptions(options);
       if (!bubblePositionsForParent.ContainsKey(parent)) {
         return thoughtBubbleFactory.Create(new ThoughtBubble.Data {
-          Options = ParseOptions(options),
+          Options = optionList,
           OnSelect = SetOption,
-          BubbleText = "",
+          BubbleText = LongestOption(optionList),
           BubbleParent = player.HeadTransform,
           UIParent = transform,
           InvalidBounds = bounds,
@@ -183,13 +187,18 @@ namespace Outclaw {
         });
       }
       return thoughtBubbleFactory.Create(new ThoughtBubble.Data {
-        Options = ParseOptions(options),
+        Options = optionList,
         OnSelect = SetOption,
         UIParent = transform,
+        BubbleText = LongestOption(optionList),
         InitialPosition = bubblePositionsForParent[parent],
         BubbleParent = parent,
         UI = this
       });
+    }
+
+    private string LongestOption(List<string> options) {
+      return options.OrderByDescending(s => s.Length).First();
     }
     
     private string ReplaceVariables(string input) {

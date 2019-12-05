@@ -27,18 +27,24 @@ namespace Outclaw.City {
     [SerializeField] private BubblePositionHelper bubblePositionHelper;
     [Inject] private IDialogueSettings dialogueSettings;
 
+    private Data data;
+    
     [Inject]
     public void Initialize(Data data) {
       bubbleImage.color = dialogueSettings.BubbleColor;
       bubbleTail.SetColor(dialogueSettings.BubbleColor);
       transform.SetParent(data.UIParent, false);
-      var invalidBounds = data.InvalidBounds ?? new List<Bounds>();
-      var canvas = data.UI.DialogueCanvas;
-      InitializeBubblePosition(data, canvas, invalidBounds);
-      bubbleTextHelper.Initialize(canvas, bubbleImageTransform, (int)dialogueSettings.FontSize, data.BubbleText);
+      this.data = data;
     }
 
-    private void InitializeBubblePosition(Data data, Canvas canvas, List<Bounds> invalidBounds) {
+    public void BubbleSetup() {
+      var invalidBounds = data.InvalidBounds ?? new List<Bounds>();
+      var canvas = data.UI.DialogueCanvas;
+      bubbleTextHelper.Initialize(canvas, bubbleImageTransform, (int)dialogueSettings.FontSize, data.BubbleText);
+      InitializeBubblePosition(canvas, invalidBounds);
+    }
+    
+    private void InitializeBubblePosition(Canvas canvas, List<Bounds> invalidBounds) {
       if (data.InitialPosition == null) {
         bubblePositionHelper.Initialize(invalidBounds, Camera.main, data.BubbleParent, bubbleImageTransform, canvas);
         return;

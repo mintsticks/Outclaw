@@ -44,14 +44,6 @@ namespace UI.Dialogue {
       UpdateComponent();
     }
 
-    public void Update() {
-      if (!shouldUpdatePosition || parentCachedPos == parent.position) {
-        return;
-      }
-      
-      UpdateComponent();
-    }
-
     private void UpdateComponent() {
       UpdatePosition();
       UpdateTail();
@@ -76,19 +68,27 @@ namespace UI.Dialogue {
     private void FindValidPosition(float startAngle) {
       var cameraBounds = camera.OrthographicBounds();
       cameraBounds.center = new Vector3(cameraBounds.center.x, cameraBounds.center.y, 0);
+      
       for(var i = 0; i <= numPositions; i++) {
         var angle = GetAngleForIndex(i, GlobalConstants.CIRCLE_ANGLE / numPositions, startAngle);
         var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(angle), angle);
         var newPos = camera.WorldToScreenPoint(pos);
-        var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(camera);
-        bubbleBound.center = new Vector3(bubbleBound.center.x, bubbleBound.center.y, 0);
+        var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(camera).WithZ(0);
+        var corners = new Vector3[4];
+        bubbleImage.GetWorldCorners(corners);
+        foreach (var corner in corners) {
+          Debug.Log(corner);
+        }
+        Debug.Log(bubbleImage.sizeDelta);
+        Debug.DrawLine(bubbleBound.min, bubbleBound.max, Color.white, 10);
         
+
         if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
           Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.magenta, 5);
           continue;
         }
 
-        if (invalidBounds.Any(bound => bubbleBound.Intersects(bound))) {
+        if (invalidBounds.Any(bound => bubbleBound.Intersects(bound.WithZ(0)))) {
           Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.red, 5);
           continue;
         }

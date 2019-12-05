@@ -20,7 +20,8 @@ namespace Outclaw {
     [SerializeField] private CanvasGroup canvasGroup;
     
     private float animationProgress;
-
+    private bool showKey = true;
+    
     private void Start() {
       tutorialImage.sprite = info.images.FirstOrDefault(i => i.platform == Application.platform)?.image;
       tutorialText.text = InputStringHelper.GetStringForInput(inputType);
@@ -28,6 +29,10 @@ namespace Outclaw {
 
     public void FadeIn() {
       animationWrapper.StartNewAnimation(FadeInAnim());
+      if (showKey) {
+        return;
+      }
+      UpdateTutorial();
     }
 
     private void UpdateTutorial() {

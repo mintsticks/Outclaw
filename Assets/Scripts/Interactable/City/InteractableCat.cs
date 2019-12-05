@@ -13,6 +13,7 @@ namespace Outclaw.City {
     [SerializeField] private Indicator talkIndicator;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D bound;
+    [SerializeField] private Transform headTransform;
     [SerializeField] private ParticleSystem particleSystem;
     [SerializeField] private CatDialogueData dialogueData;
     [SerializeField] private Task task;
@@ -31,11 +32,9 @@ namespace Outclaw.City {
 
     public Task ContainedTask => task;
     public Transform Location => transform;
-    public Transform ObjectiveTransform => transform;
-
+    public Transform ObjectiveTransform => headTransform == null ? transform : headTransform;
     public Bounds ObjectiveBounds => bound == null ? spriteRenderer.bounds : bound.bounds;
-
-
+    
     public void Awake() {
       objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
@@ -109,7 +108,8 @@ namespace Outclaw.City {
       var dialogueForState = GetDialogueForState(state);
       var gameStateRank = dialogueData.GetGameStateRank(state);
       var dialogue = dialogueForState.catDialogue[gameStateRank].dialogue;
-      dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, transform, this, () => CompleteGameStateDialogue(state));
+      var head = headTransform == null ? transform : headTransform;
+      dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, head, this, () => CompleteGameStateDialogue(state));
     }
 
     private void CompleteGameStateDialogue(GameStateData state) {
@@ -123,7 +123,8 @@ namespace Outclaw.City {
     private void StartRelationshipDialogue() {
       var rank = dialogueData.Rank;
       var dialogue = catDialogues.dialoguesForRank[rank].dialogue;
-      dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, transform, this, CompleteRankDialogue);
+      var head = headTransform == null ? transform : headTransform;
+      dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, head, this, CompleteRankDialogue);
     }
     
     private void CompleteRankDialogue() {
