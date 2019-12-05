@@ -173,10 +173,10 @@ namespace Outclaw.City {
 
       clampedPos.DrawCrosshair(Color.magenta);
 
-      currentPosition.x = Mathf.SmoothDamp(currentPosition.x, clampedPos.x,
+      currentPosition.x = Mathf.SmoothDamp(transform.position.x, clampedPos.x,
         ref currentSpeed.x, smoothSpeed, maxXSpeed);
 
-      currentPosition.y = Mathf.SmoothDamp(currentPosition.y, clampedPos.y,
+      currentPosition.y = Mathf.SmoothDamp(transform.position.y, clampedPos.y,
         ref currentSpeed.y, smoothSpeed);
       transform.position = currentPosition;
     }

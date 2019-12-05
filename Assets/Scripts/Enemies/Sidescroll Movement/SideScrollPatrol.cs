@@ -56,6 +56,10 @@ namespace Outclaw.Heist{
         ++targetIdx;
       }
 
+      if(!movingLeft){
+        movement.TurnBody();
+      }
+
       // set default vision
       ComputeVisionDirection(out Vector3 leftDir, out Vector3 rightDir);
       movement.UpdateVisionCone(movingLeft ? leftDir : rightDir);

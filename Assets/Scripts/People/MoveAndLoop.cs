@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Outclaw.City{
   public class MoveAndLoop : MonoBehaviour
@@ -11,10 +12,11 @@ namespace Outclaw.City{
 
     [SerializeField] private Transform visuals;
     [SerializeField] private Animator anim;
+    [SerializeField] private SortingGroup group;
 
     private PeopleSpawner spawner;
 
-    public void Init(PeopleSpawner spawner, float speed, float animMult){
+    public void Init(PeopleSpawner spawner, float speed, float animMult, int layerID){
       this.spawner = spawner;
       xVelocity = speed;
 
@@ -25,6 +27,8 @@ namespace Outclaw.City{
         );
 
       anim?.SetFloat("animSpeed", animMult);
+
+      group.sortingLayerID = layerID;
     }
 
     void Update(){

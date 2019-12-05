@@ -75,7 +75,8 @@ namespace Outclaw.Heist {
       }
       
       inVantage = false;
-      animationWrapper.StartNewAnimation(UpdateCamera(cameraBehavior.GetCurrentCameraPos(), defaultCameraSize, true,
+      cameraBehavior.ShouldFollow = true;
+      animationWrapper.StartNewAnimation(ReturnCamera(defaultCameraSize,
         shiftBackTime));
     }
     
@@ -95,6 +96,19 @@ namespace Outclaw.Heist {
       main.transform.position = destPos;
       main.orthographicSize = destSize;
       cameraBehavior.ShouldFollow = shouldFollow;
+    }
+
+    private IEnumerator ReturnCamera(float destSize, float shiftTime) {
+      var startSize = main.orthographicSize;
+      var changeSize = destSize - startSize;
+      
+      for (var i = 0f; i < shiftTime; i += GlobalConstants.ANIMATION_FREQ) {
+        animationProgress = i / shiftTime;
+        main.orthographicSize = startSize + changeSize * shiftToAnim.Evaluate(animationProgress);
+        yield return new WaitForSeconds(GlobalConstants.ANIMATION_FREQ);
+      }
+
+      main.orthographicSize = destSize;
     }
   }
 }

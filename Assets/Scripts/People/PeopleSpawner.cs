@@ -11,6 +11,8 @@ namespace Outclaw.City{
     [SerializeField] private int numPeopleToSpawn;
     [SerializeField] private float spawnHeight;
     [SerializeField] private float distBeyondCamera;
+    [Tooltip("Sorting Layers can't be serialized, so strings are used")]
+    [SerializeField] private string[] layers = {"Foreground People", "Background People"};
 
     [Header("Movement")]
     [SerializeField] private float minSpeed;
@@ -28,6 +30,10 @@ namespace Outclaw.City{
     private Camera mainCam;
 
     void Start(){
+      if(layers.Length == 0){
+        Debug.LogError("No sorting layers to place people in");
+      }
+
       mainCam = Camera.main;
       InitBounds();
       RemoveInvalid();
@@ -71,7 +77,8 @@ namespace Outclaw.City{
       // spawn and init
       GameObject newPerson = Instantiate(person, spawnPos, Quaternion.identity, transform);
       MoveAndLoop component = newPerson.GetComponent<MoveAndLoop>();
-      component.Init(this, speed, ((Mathf.Abs(speed) - minSpeed) * ratioAnimInfluence) + 1);
+      component.Init(this, speed, ((Mathf.Abs(speed) - minSpeed) * ratioAnimInfluence) + 1,
+        SortingLayer.NameToID(layers[Random.Range(0, layers.Length)]));
     }
 
     public bool IsInBounds(float x){
