@@ -170,13 +170,13 @@ namespace Outclaw.Heist{
     public void FacePlayer(){
       Vector2 toPlayer = player.PlayerTransform.position - (transform.position 
         + bodyBounds.center);
-      float angle = Vector2.Angle(currentDir, toPlayer);
+      float angle = Vector3.SignedAngle(currentDir, toPlayer, 
+        Vector3.Cross(Vector3.up, currentDir));
 
-      Debug.Log(angle);
-      turned = angle > 90;
+      turned = Mathf.Abs(angle) > 90;
       if(turned){
         TurnBody();
-        angle = 180 - angle;
+        angle = (180f * Mathf.Sign(angle)) - angle;
       }
 
       // activate arm anim and point at player
