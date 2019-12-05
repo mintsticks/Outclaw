@@ -68,11 +68,15 @@ namespace Outclaw.Heist {
     }
 
     private bool PlayerIsNotVisible() {
+      if(hideablePlayer.Hidden){
+        return true;
+      }
+
       if (litManager.IsLit) {
         return false; 
       }
 
-      return sneakManager.IsSneaking || hideablePlayer.Hidden;
+      return sneakManager.IsSneaking;
     }
     
     public void ExitAttention(GameObject objectInAttention) {
