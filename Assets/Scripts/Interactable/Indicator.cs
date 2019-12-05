@@ -22,16 +22,11 @@ namespace Outclaw {
     private float animationProgress;
 
     private void Start() {
-      if (indicatorTask.IsComplete) {
-        return;
-      }
-
       tutorialImage.sprite = info.images.FirstOrDefault(i => i.platform == Application.platform)?.image;
       tutorialText.text = InputStringHelper.GetStringForInput(inputType);
     }
 
     public void FadeIn() {
-      UpdateTutorial();
       animationWrapper.StartNewAnimation(FadeInAnim());
     }
 

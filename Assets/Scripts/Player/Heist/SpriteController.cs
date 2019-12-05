@@ -14,7 +14,9 @@ namespace Outclaw.Heist {
     
     [Inject] private IPlayer player;
     [Inject] private ISneakManager sneakManager;
+    [Inject] private IPlayerLitManager litManager;
     
+    private bool movingToSneakColor;
     
     private void Awake() {
       sprites.SetColor(regularColor);
@@ -25,13 +27,15 @@ namespace Outclaw.Heist {
         return;
       }
 
-      if (sneakManager.IsSneakingDown) {
+      if (!movingToSneakColor && sneakManager.IsSneaking && !litManager.IsLit) {
         animationWrapper.StartNewAnimation(TransitionColor(sneakColor));
+        movingToSneakColor = true;
         return;
       }
 
-      if (sneakManager.IsSneakingUp) {
+      if (movingToSneakColor && (!sneakManager.IsSneaking || litManager.IsLit)) {
         animationWrapper.StartNewAnimation(TransitionColor(regularColor));
+        movingToSneakColor = false;
       }
     }
 
