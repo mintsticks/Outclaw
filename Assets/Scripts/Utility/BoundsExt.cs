@@ -19,5 +19,12 @@ namespace Outclaw {
     public static bool IsFullyInBounds(this Bounds bubbleBound, Bounds bounds) {
       return bounds.Contains(bubbleBound.min) && bounds.Contains(bubbleBound.max);
     }
+
+    public static Bounds WithZ(this Bounds bounds, float z) {
+      var bound = new Bounds();
+      bound.min = new Vector3(bounds.min.x, bounds.min.y, z);
+      bound.max = new Vector3(bounds.max.x, bounds.max.y, z);
+      return bound;
+    }
   }
 }

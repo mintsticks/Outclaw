@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
+using ModestTree;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -25,8 +26,7 @@ namespace Outclaw {
     [Header("Audio")]
     [SerializeField] private AudioClip textScrollClip;
     [Inject] private ISoundManager soundManager;
-
-    private AnimationWrapper animationWrapper;
+    
     private bool skipped;
     private float bottomPadding;
     private StringBuilder currentStringBuilder;
@@ -41,7 +41,11 @@ namespace Outclaw {
           canvas.scaleFactor * horizontalPadding, 
           canvas.scaleFactor * -verticalPadding);
       this.bottomPadding = bottomPadding;
-      animationWrapper = gameObject.AddComponent<AnimationWrapper>();
+
+      if (initialText == null || initialText.IsEmpty()) {
+        return;
+      }
+      ProcessText(initialText);
     }
     
     private string ProcessText(string text) {

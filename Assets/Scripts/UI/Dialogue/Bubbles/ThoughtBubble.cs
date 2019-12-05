@@ -46,7 +46,13 @@ namespace Outclaw.City {
     [Inject] private IDialogueSettings dialogueSettings;
     [Inject] private IPauseGame pause;
 
+    private Canvas canvas;
+    private List<Bounds> invalidBounds;
     private List<string> options;
+    private string bubbleText;
+    private Transform bubbleParent;
+    private Vector3? initialPosition;
+    
     private List<OptionIndicator> indicators;
     private int currentIndex;
     private Action<int> onSelect;
@@ -54,24 +60,23 @@ namespace Outclaw.City {
 
     [Inject]
     public void Initialize(Data data) {
-      bubble.color = dialogueSettings.BubbleColor;
-      bubbleTail.SetColor(dialogueSettings.BubbleColor);
+      invalidBounds = data.InvalidBounds ?? new List<Bounds>();
+      canvas = data.UI.DialogueCanvas;
+      bubbleText = data.BubbleText;
       transform.SetParent(data.UIParent, false);
-      var invalidBounds = data.InvalidBounds ?? new List<Bounds>();
-      var canvas = data.UI.DialogueCanvas;
-      InitializeBubblePosition(data, canvas, invalidBounds);
-      
-      
       options = data.Options;
       onSelect = data.OnSelect;
+      bubbleParent = data.BubbleParent;
+      initialPosition = data.InitialPosition;
+
+      bubble.color = dialogueSettings.BubbleColor;
+      bubbleTail.SetColor(dialogueSettings.BubbleColor);
       currentIndex = 0;
       if (options.Count <= 1) {
         indicatorGrid.gameObject.SetActive(false);
-        bubbleTextHelper.Initialize(canvas, bubbleImageTransform, (int)dialogueSettings.FontSize, data.BubbleText, 0);
         return;
       }
       
-      bubbleTextHelper.Initialize(canvas, bubbleImageTransform, (int)dialogueSettings.FontSize, data.BubbleText, optionPadding);
       indicators = new List<OptionIndicator>();
       for (var i = 0; i < options.Count; i++) {
         var indicator = optionIndicatorFactory.Create();
@@ -79,13 +84,19 @@ namespace Outclaw.City {
         indicators.Add(indicator);
       }
     }
+
+    public void SetupBubble() {
+      var padding = options.Count <= 1 ? 0 : optionPadding;
+      bubbleTextHelper.Initialize(canvas, bubbleImageTransform, (int)dialogueSettings.FontSize, bubbleText, padding);
+      InitializeBubblePosition();
+    }
     
-    private void InitializeBubblePosition(Data data, Canvas canvas, List<Bounds> invalidBounds) {
-      if (data.InitialPosition == null) {
-        bubblePositionHelper.Initialize(invalidBounds, Camera.main, data.BubbleParent, bubbleImageTransform, canvas);
+    private void InitializeBubblePosition() {
+      if (initialPosition == null) {
+        bubblePositionHelper.Initialize(invalidBounds, Camera.main, bubbleParent, bubbleImageTransform, canvas);
         return;
       }
-      bubblePositionHelper.Initialize(data.InitialPosition.Value, data.BubbleParent, Camera.main);
+      bubblePositionHelper.Initialize(initialPosition.Value, bubbleParent, Camera.main);
     }
 
     public Transform BubbleTransform => transform;

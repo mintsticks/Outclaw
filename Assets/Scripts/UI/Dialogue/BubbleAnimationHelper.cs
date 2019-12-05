@@ -9,11 +9,12 @@ namespace UI.Dialogue {
     [SerializeField] private BubbleTail bubbleTail;
     
     public IEnumerator FadeBubble() {
+      if (bubbleTail != null) {
+        bubbleTail.SetOpacity(0);
+      }
+      
       for (var t = 0f; t <= bubbleFadeTime; t += Time.deltaTime) {
         canvasGroup.alpha = 1 - bubbleFade.Evaluate(t / bubbleFadeTime);
-        if (bubbleTail != null) {
-          bubbleTail.SetOpacity(1 - bubbleFade.Evaluate(t / bubbleFadeTime));
-        }
         yield return null;
       }
     }

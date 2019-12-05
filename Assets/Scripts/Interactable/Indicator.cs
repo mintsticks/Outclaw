@@ -20,7 +20,8 @@ namespace Outclaw {
     [SerializeField] private CanvasGroup canvasGroup;
     
     private float animationProgress;
-
+    private bool showKey = true;
+    
     private void Start() {
       if (indicatorTask.IsComplete) {
         return;
@@ -31,8 +32,11 @@ namespace Outclaw {
     }
 
     public void FadeIn() {
-      UpdateTutorial();
       animationWrapper.StartNewAnimation(FadeInAnim());
+      if (showKey) {
+        return;
+      }
+      UpdateTutorial();
     }
 
     private void UpdateTutorial() {
