@@ -28,9 +28,17 @@ namespace Outclaw.Heist{
     [SerializeField] private Image turnIndicator;
 
     [Inject] private IPauseGame pause;
+    [Inject] private City.IPlayer player;
+
+    // player facing
+    private Vector2 currentDir = new Vector2(-1, 0);
+    private float currentArmAngle;
+    private bool turned;
+    private bool facingPlayer = true;
 
     public Quaternion VisionRotation { get => visionConeTransform.rotation; }
     public Bounds BodyBounds { get => bodyBounds; }
+
 
     void Start(){
       anim?.SetFlashlight(visionCone != null);
@@ -40,16 +48,20 @@ namespace Outclaw.Heist{
       }
     }
 
-    public void UpdateVisionCone(Vector3 facingDir){
+    public void UpdateVisionCone(Vector3 lookingDir){
       if(visionCone == null || visionConeTransform == null){
         return;
       }
 
       visionConeTransform.rotation = Quaternion.LookRotation(
-        Vector3.forward, facingDir);
+        Vector3.forward, lookingDir);
     }
 
     public void MoveTowards(Vector3 position, float dt){
+      if(!facingPlayer){
+        return;
+      }
+
       Vector3 moveDir = Vector3.Normalize(position - transform.position);
       Vector3 velocity = moveDir * speed;
       transform.position += velocity * dt;
@@ -57,6 +69,7 @@ namespace Outclaw.Heist{
     }
 
     public void TurnBody(){
+      currentDir.x = -currentDir.x;
       anim?.Turn();
     }
 
@@ -80,7 +93,7 @@ namespace Outclaw.Heist{
       float totalTime = 0;
       float angleRange = 90f - defaultAngle;
       while(totalTime < duration){
-        if(pause.IsPaused){
+        if(pause.IsPaused || !facingPlayer){
           yield return null;
         }
 
@@ -107,6 +120,12 @@ namespace Outclaw.Heist{
       Quaternion endRot =  Quaternion.LookRotation(Vector3.forward, endDir);
       yield return WaitForTurn(lookPause);
       yield return TurnVision(bottomRot, turnTime, visionAngle, false);
+
+      // stall because in facing player
+      while(!facingPlayer){
+        yield return null;
+      }
+
       TurnBody();
       yield return TurnVision(endRot, turnTime, visionAngle, true);
 
@@ -116,6 +135,10 @@ namespace Outclaw.Heist{
 
     private IEnumerator WaitForTurn(float waitTime){
       for(float time = 0; time < waitTime; time += Time.deltaTime){
+        if(!facingPlayer){
+          time -= Time.deltaTime;
+        }
+
         if(turnIndicator != null){
           turnIndicator.fillAmount = time / waitTime;
         }
@@ -131,7 +154,8 @@ namespace Outclaw.Heist{
 
     // pass in angle below horizontal to put arm at (up to 90 degree below)
     public void SetArmAngle(float angle){
-      anim?.SetFlashlightAngle(Mathf.Clamp(angle, 0, 90));
+      currentArmAngle = Mathf.Clamp(angle, 0, 90);
+      anim?.SetFlashlightAngle(currentArmAngle);
     }
 
     public void ToggleVision(bool on){
@@ -141,6 +165,44 @@ namespace Outclaw.Heist{
 
       visionCone.gameObject.SetActive(on);
       anim?.SetFlashlight(visionCone != null);
+    }
+
+    public void FacePlayer(){
+      Vector2 toPlayer = player.PlayerTransform.position - (transform.position 
+        + bodyBounds.center);
+      float angle = Vector2.Angle(currentDir, toPlayer);
+
+      Debug.Log(angle);
+      turned = angle > 90;
+      if(turned){
+        TurnBody();
+        angle = 180 - angle;
+      }
+
+      // activate arm anim and point at player
+      visionCone?.gameObject.SetActive(false);
+      if(visionCone == null){
+        anim?.SetFlashlight(true);
+      }
+      anim?.SetFlashlightAngle(Mathf.Clamp(angle, 0, 90));
+
+      anim?.SetXSpeed(0);
+      facingPlayer = false;
+    }
+
+    public void UndoFacePlayer(){
+      if(turned){
+        TurnBody();
+      }
+
+      // reset arm to precapture state
+      visionCone?.gameObject.SetActive(true);
+      if(visionCone == null){
+        anim?.SetFlashlight(false);
+      }
+      anim?.SetFlashlightAngle(currentArmAngle);
+
+      facingPlayer = true;
     }
 
     void OnTriggerEnter2D(Collider2D other){

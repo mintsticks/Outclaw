@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using Managers;
 using Outclaw.City;
 using UnityEngine;
+using UnityEngine.Events;
 using Utility;
 using Zenject;
 
@@ -16,6 +17,10 @@ namespace Outclaw.Heist {
     [SerializeField] private float cooldownAwarenessTime = .5f;
     [SerializeField] private AttentionTypeAwarenessData attentionTypeAwarenessData;
     [SerializeField] private SpriteRenderer alertSprite;
+
+    [Header("Capture")]
+    [SerializeField] private UnityEvent onCapture;
+    [SerializeField] private UnityEvent onPostCapture;
 
     [Inject] private ICapturedMenu captureMenu;
     [Inject] private IPlayer player;
@@ -84,8 +89,11 @@ namespace Outclaw.Heist {
     
     private IEnumerator CaptureCoroutine() {
       player.InputDisabled = true;
-      yield return new WaitForSeconds(.25f);
+      onCapture.Invoke();
+      yield return new WaitForSeconds(.5f);
       CapturePlayerImmediate();
+      yield return new WaitForSeconds(.15f);
+      onPostCapture.Invoke();
     }
 
     [UsedImplicitly]
