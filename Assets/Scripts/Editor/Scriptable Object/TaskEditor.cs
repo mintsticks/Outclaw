@@ -8,6 +8,8 @@ namespace Outclaw{
   public class TaskEditor : Editor
   {
     public override void OnInspectorGUI(){
+      DrawDefaultInspector();
+      
       Task task = (Task)target;
       EditorGUILayout.LabelField("Is Complete:", "" + task.IsComplete);
       if(GUILayout.Button("Force Complete")){

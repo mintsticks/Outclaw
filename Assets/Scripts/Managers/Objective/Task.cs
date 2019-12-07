@@ -8,6 +8,9 @@ namespace Outclaw{
   public class Task : ScriptableObject
   {
     [System.NonSerialized] private bool completed;
+    [SerializeField] private LocationData location;
+
+    private LocationData Location => location;
 
     public void Complete(){
       completed = true;
