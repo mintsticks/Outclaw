@@ -68,7 +68,6 @@ namespace Outclaw {
 
     private bool HasObjectiveInScene() {
       objectiveManager.UpdateCurrentTask();
-      Debug.Log((objectiveManager.CurrentTask));
       return GetTaskPosition(objectiveManager.CurrentTask) != null;
     }
     

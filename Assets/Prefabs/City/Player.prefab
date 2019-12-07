@@ -127,6 +127,9 @@ MonoBehaviour:
   oneWayTriggerLayer:
     serializedVersion: 2
     m_Bits: 131072
+  conditionalDisplayLayer:
+    serializedVersion: 2
+    m_Bits: 67108864
   animationController: {fileID: 8329074925054491675}
 --- !u!1 &4720145574631599661
 GameObject:
@@ -178,7 +181,7 @@ MonoBehaviour:
     m_Bits: 65536
   triggerMask:
     serializedVersion: 2
-    m_Bits: 8554496
+    m_Bits: 75663360
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -306,7 +309,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &6668054844795081120

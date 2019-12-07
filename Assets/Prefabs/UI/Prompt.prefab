@@ -49,8 +49,7 @@ MonoBehaviour:
   title: {fileID: 5258131544514580468}
   description: {fileID: 4733699305947802730}
   dismissText: {fileID: 570093964050518132}
-  defaultDismiss: '- PRESS Z TO CONTINUE - '
-  xboxDismiss: '- PRESS X TO CONTINUE - '
+  dismissInput: 0
   image: {fileID: 1257993311841444346}
   animationWrapper: {fileID: 6511248672056551332}
   fadeInTime: 0.25
@@ -400,7 +399,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7acb39c03402a9e47b3f205fcc61382b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

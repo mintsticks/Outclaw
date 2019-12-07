@@ -1,6 +1,7 @@
 ﻿using City;
 using Managers;
 using Outclaw.City;
+using UI.DismissablePrompts;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +15,7 @@ namespace Outclaw.Heist {
     [SerializeField] private LayerMask objectiveInteractableLayer;
     [SerializeField] private LayerMask eventSequenceLayer;
     [SerializeField] private LayerMask oneWayTriggerLayer;
+    [SerializeField] private LayerMask conditionalDisplayLayer;
     [SerializeField] private LayerMask guardAttentionLayer;
     [SerializeField] private LayerMask lineOfSightLayer;
     [SerializeField] private LayerMask lightLayer;
@@ -90,6 +92,11 @@ namespace Outclaw.Heist {
         var checkpoint = other.GetComponentInParent<Checkpoint>();
         checkpoint.UpdateLastCheckpoint();
       }
+      
+      if ((1 << other.gameObject.layer & conditionalDisplayLayer) != 0) {
+        var conditionalDisplay = other.GetComponentInParent<ConditionalDisplay>();
+        conditionalDisplay.Show();
+      }
     }
 
     public void HandleStay(Collider2D other) {
@@ -110,6 +117,11 @@ namespace Outclaw.Heist {
       if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) {
         var eventSequence = other.GetComponentInParent<EventSequence>();
         StartCoroutine(eventSequence.ExecuteSequence());
+      }
+      
+      if ((1 << other.gameObject.layer & conditionalDisplayLayer) != 0) {
+        var conditionalDisplay = other.GetComponentInParent<ConditionalDisplay>();
+        conditionalDisplay.UpdateCondition();
       }
     }
 
@@ -141,6 +153,11 @@ namespace Outclaw.Heist {
       if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
         currentZone = other.GetComponentInChildren<AttentionZone>();
         currentZone.ExitAttention(gameObject);
+      }
+      
+      if ((1 << other.gameObject.layer & conditionalDisplayLayer) != 0) {
+        var conditionalDisplay = other.GetComponentInParent<ConditionalDisplay>();
+        conditionalDisplay.Hide();
       }
     }
   }

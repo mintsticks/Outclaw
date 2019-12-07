@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0772911a68b4223b19bc198a045c3d4, type: 3}
   m_Name: CitySense
   m_EditorClassIdentifier: 
-  promptImage: {fileID: 21300000, guid: bf4f10990fe97b14984734138b21f281, type: 3}
-  promptTitle: 'Tutorial: Hints'
-  defaultPromptDescription: If you ever get stuck, press and hold X to reveal an icon
-    leading you to your next objective. You'll also highlight objects that you can
-    interact with. However, you can't sense while moving.
-  xboxDescription: If you ever get stuck, press and hold B to reveal an icon leading
-    you to your next objective. You'll also highlight objects that you can interact
-    with. However, you can't sense while moving.
+  promptImage: {fileID: 21300000, guid: 7acb39c03402a9e47b3f205fcc61382b, type: 3}
+  promptTitle: Current Objective
+  defaultPromptDescription: 'Press and hold X to reveal the above icon, leading you
+    to your next objective. You''ll also highlight objects that you can interact with. '
+  xboxDescription: 'Press and hold Y to reveal the above icon, leading you to your
+    next objective. You''ll also highlight objects that you can interact with. '
   hasImage: 1
   hasTitle: 1

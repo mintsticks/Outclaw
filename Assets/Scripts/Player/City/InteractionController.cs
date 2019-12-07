@@ -2,6 +2,7 @@
 using City;
 using Outclaw.City;
 using Player;
+using UI.DismissablePrompts;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,7 @@ namespace Outclaw {
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private LayerMask eventSequenceLayer;
     [SerializeField] private LayerMask oneWayTriggerLayer;
+    [SerializeField] private LayerMask conditionalDisplayLayer;
     [SerializeField] private AnimationController animationController;
 
     [Inject] private IPlayerInput playerInput;
@@ -60,6 +62,11 @@ namespace Outclaw {
         var oneWayPlatform = other.GetComponentInParent<OneWayPlatform>();
         oneWayPlatform.IntersectTrigger();
       }
+      
+      if ((1 << other.gameObject.layer & conditionalDisplayLayer) != 0) {
+        var conditionalDisplay = other.GetComponentInParent<ConditionalDisplay>();
+        conditionalDisplay.Show();
+      }
     }
 
     public void HandleStay(Collider2D other) {
@@ -71,15 +78,23 @@ namespace Outclaw {
         var eventSequence = other.GetComponentInParent<EventSequence>();
         StartCoroutine(eventSequence.ExecuteSequence());
       }
+      
+      if ((1 << other.gameObject.layer & conditionalDisplayLayer) != 0) {
+        var conditionalDisplay = other.GetComponentInParent<ConditionalDisplay>();
+        conditionalDisplay.UpdateCondition();
+      }
     }
 
     public void HandleExit(Collider2D other) {
-      if (currentInteractable == null || (1 << other.gameObject.layer & interactableLayer) == 0) {
-        return;
+      if (currentInteractable != null && (1 << other.gameObject.layer & interactableLayer) != 0) {
+        other.GetComponentInParent<ObjectiveInteractable>().ExitRange();
+        currentInteractable = null;
       }
-
-      other.GetComponentInParent<ObjectiveInteractable>().ExitRange();
-      currentInteractable = null;
+      
+      if ((1 << other.gameObject.layer & conditionalDisplayLayer) != 0) {
+        var conditionalDisplay = other.GetComponentInParent<ConditionalDisplay>();
+        conditionalDisplay.Hide();
+      }
     }
   }
 }

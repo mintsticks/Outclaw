@@ -16,7 +16,7 @@ namespace UI.Dialogue {
     private List<Bounds> invalidBounds;
     private Camera camera;
     private Transform parent;
-    private Vector3 parentCachedPos;
+    private Vector3 bubblePos;
     private RectTransform bubbleImage;
     private Canvas canvas;
     private bool shouldUpdatePosition;
@@ -47,7 +47,6 @@ namespace UI.Dialogue {
     private void UpdateComponent() {
       UpdatePosition();
       UpdateTail();
-      parentCachedPos = parent.position;
     }
     
     public void StopFollowing() {
@@ -62,6 +61,7 @@ namespace UI.Dialogue {
       var position = parent.position;
       var bubblePos = camera.ScreenToWorldPoint(transform.position);
       var dirVector = (bubblePos- position).normalized;
+      Debug.DrawLine(position + headSize * dirVector, bubblePos, Color.white, 10);
       bubbleTail.UpdatePoints(position + headSize * dirVector,  bubblePos);
     }
 
@@ -74,15 +74,8 @@ namespace UI.Dialogue {
         var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(angle), angle);
         var newPos = camera.WorldToScreenPoint(pos);
         var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(camera).WithZ(0);
-        var corners = new Vector3[4];
-        bubbleImage.GetWorldCorners(corners);
-        foreach (var corner in corners) {
-          Debug.Log(corner);
-        }
-        Debug.Log(bubbleImage.sizeDelta);
-        Debug.DrawLine(bubbleBound.min, bubbleBound.max, Color.white, 10);
-        
 
+        Debug.DrawLine(bubbleBound.min, bubbleBound.max, Color.white, 10);
         if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
           Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.magenta, 5);
           continue;

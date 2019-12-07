@@ -55,6 +55,9 @@ MonoBehaviour:
   oneWayTriggerLayer:
     serializedVersion: 2
     m_Bits: 131072
+  conditionalDisplayLayer:
+    serializedVersion: 2
+    m_Bits: 67108864
   guardAttentionLayer:
     serializedVersion: 2
     m_Bits: 524288
@@ -120,7 +123,7 @@ MonoBehaviour:
     m_Bits: 65536
   triggerMask:
     serializedVersion: 2
-    m_Bits: 33196032
+    m_Bits: 100304896
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 33555456
