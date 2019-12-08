@@ -11,6 +11,7 @@ namespace Outclaw {
     [SerializeField] private PauseGame pause;
     [SerializeField] private GameObject spawnManagerPrefab;
     [SerializeField] private GameObject promptDisplayPrefab;
+    [SerializeField] private RestartGame restart;
 
     /// <summary>
     /// For all classes that are common to all scenes.
@@ -24,6 +25,9 @@ namespace Outclaw {
         .AsSingle();
       Container.Bind<IPauseGame>()
         .FromInstance(pause)
+        .AsSingle();
+      Container.Bind<IRestartGame>()
+        .FromInstance(restart)
         .AsSingle();
 
       InstallManagers();

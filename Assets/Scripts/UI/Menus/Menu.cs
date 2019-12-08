@@ -18,7 +18,8 @@ namespace Outclaw.UI{
     [SerializeField] protected float pauseTime;
     [SerializeField] protected CanvasGroup contents;
 
-    protected int currentIndex;
+    protected const int NO_INDEX = -1;
+    protected int currentIndex = NO_INDEX;
 
     protected bool active = false;
 
@@ -33,13 +34,24 @@ namespace Outclaw.UI{
 
     protected abstract IMenuItem this[int i]{ get; }
     protected abstract int ItemCount();
+    public bool Selectable => currentIndex != NO_INDEX;
 
     protected void Start() {
       upWait = new ManagedCoroutine(this, StallInput);
       downWait = new ManagedCoroutine(this, StallInput);
+
+      for(int i = 0; i < ItemCount(); ++i){
+        if(this[i] is AbstractMouseMenuItem){
+          ((AbstractMouseMenuItem)this[i]).InitMenu(this);
+        }
+      }
     }
 
     protected virtual void CheckSelectionState() {
+      if(currentIndex == NO_INDEX){
+        return;
+      }
+
       CheckDownSelection();
       CheckUpSelection();
       CheckItemSelect();
@@ -101,11 +113,14 @@ namespace Outclaw.UI{
     }
 
     protected IEnumerator FadeInContent() {
+      currentIndex = NO_INDEX;
       for (var i = 0f; i < pauseTime; i += GlobalConstants.ANIMATION_FREQ) {
         contents.alpha = i / pauseTime;
         yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
 
+      currentIndex = 0;
+      this[0].Hover();
       contents.alpha = 1;
     }
     
@@ -120,6 +135,22 @@ namespace Outclaw.UI{
 
     protected IEnumerator StallInput() {
       yield return new WaitForSecondsRealtime(waitTime);
+    }
+
+    public void SelectItem(IMenuItem item){
+      // find item 
+      int newIdx = 0;
+      while(this[newIdx] != item){
+        newIdx++;
+      }
+
+      if(newIdx >= ItemCount()){
+        Debug.LogWarning(item + " is not part of this menu.");
+        return;
+      }
+
+      HoverIndex(currentIndex, newIdx);
+      currentIndex = newIdx;
     }
   }
 }

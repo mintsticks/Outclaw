@@ -3,23 +3,15 @@ using Zenject;
 using Outclaw.UI;
 
 namespace Outclaw {
-  public class PauseResumeItem : MonoBehaviour, IMenuItem {
+  public class PauseResumeItem : AbstractMouseMenuItem {
     [SerializeField]
     private MenuItemText pauseItemText;
     
     [Inject]
     private IPauseMenuManager pauseMenuManager;
     
-    public void Select() {
+    public override void Select() {
       pauseMenuManager.Unpause();
-    }
-
-    public void Hover() {
-      pauseItemText.Hover();
-    }
-
-    public void Unhover() {
-      pauseItemText.Unhover();
     }
   }
 }

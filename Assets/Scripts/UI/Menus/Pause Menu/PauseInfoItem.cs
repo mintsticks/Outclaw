@@ -2,23 +2,12 @@
 using Outclaw.UI;
 
 namespace Outclaw {
-  public class PauseInfoItem : MonoBehaviour, IMenuItem {
+  public class PauseInfoItem : AbstractMouseMenuItem {
     
-    [SerializeField]
-    private MenuItemText pauseItemText;
-    
-    public void Select() {
+    public override void Select() {
       throw new System.NotImplementedException();
       //Open new menu ting
       //Disable input on main menu
-    }
-
-    public void Hover() {
-      pauseItemText.Hover();
-    }
-
-    public void Unhover() {
-      pauseItemText.Unhover();
     }
   }
 }
