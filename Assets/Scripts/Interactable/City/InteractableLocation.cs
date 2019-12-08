@@ -10,16 +10,23 @@ namespace Outclaw.City {
   [Serializable]
   public class LocationDialogueForState {
     public GameStateData gameStateData;
-    public bool isBlocking;
     public SerializedDialogue locationDialogue;
   }
 
   public class InteractableLocation : MonoBehaviour, ObjectiveInteractable, IHaveTask {
     [SerializeField] private Indicator enterIndicator;
-    [SerializeField] private List<LocationDialogueForState> locationDialoguesForState;
     [SerializeField] private LocationData destinationLocation;
     [SerializeField] private BoxCollider2D bound;
     [SerializeField] private Task promptTask;
+
+    [Header("Dialogue")]
+    [Tooltip("Overrides the bottom two. Always grants access for the listed states.")]
+    [SerializeField] private List<LocationDialogueForState> entryDialogue;
+    [Tooltip("Overrides total access. Denies access for the listed states.")]
+    [SerializeField] private List<LocationDialogueForState> uniqueStateBlockingDialogue;
+    [Tooltip("Putting dialogue here will make default action to deny entry.")]
+    [SerializeField] private List<SerializedDialogue> defaultBlockingDialogue;
+    private int defaultDialogueIdx;
     
     [Header("Effects")]
     [SerializeField] private AudioClip enterClip;
@@ -85,13 +92,14 @@ namespace Outclaw.City {
     }
 
     public void Interact() {
-      var locationDialogueForState = GetDialogueForState(gameStateManager.CurrentGameStateData);
+      bool blocking = GetDialogueForState(gameStateManager.CurrentGameStateData,
+        out SerializedDialogue locationDialogueForState);
       if (promptTask != null && !promptTask.IsComplete) {
         promptTask.Complete();
       }
       
       if (locationDialogueForState != null) {
-        HandleDialogue(locationDialogueForState);
+        HandleDialogue(locationDialogueForState, !blocking);
         return;
       }
 
@@ -120,15 +128,15 @@ namespace Outclaw.City {
       particleSystem.gameObject.SetActive(false);
     }
 
-    private void HandleDialogue(LocationDialogueForState locationDialogueForState) {
+    private void HandleDialogue(SerializedDialogue dialogue, bool enter) {
       enterIndicator.FadeOut();
       runningDialogue = true;
 
-      dialogueManager.StartDialogue(locationDialogueForState.locationDialogue.dialogue, 
+      dialogueManager.StartDialogue(dialogue.dialogue, 
         DialogueType.SPEECH,
         player.PlayerTransform, 
         this, 
-        () => CompleteDialogue(!locationDialogueForState.isBlocking));
+        () => CompleteDialogue(enter));
     }
 
     private void CompleteDialogue(bool enter) {
@@ -150,8 +158,28 @@ namespace Outclaw.City {
       sceneTransitionManager.TransitionToScene(destinationLocation);
     }
 
-    private LocationDialogueForState GetDialogueForState(GameStateData state) {
-      return locationDialoguesForState.FirstOrDefault(dialogue => dialogue.gameStateData == state);
+    // returns true if the dialogue should block entry
+    private bool GetDialogueForState(GameStateData state, out SerializedDialogue res) {
+      Func<LocationDialogueForState, bool> filter = 
+        (LocationDialogueForState dialogue) => dialogue.gameStateData == state;
+      res = entryDialogue.FirstOrDefault(filter)?.locationDialogue;
+      if(res != null){
+        return false;
+      }
+
+      res = uniqueStateBlockingDialogue.FirstOrDefault(filter)?.locationDialogue;
+      if(res != null){
+        return true;
+      }
+
+      if(defaultBlockingDialogue.Count > 0){
+        int index = ((defaultDialogueIdx + 1) < defaultBlockingDialogue.Count)
+          ? defaultDialogueIdx++ : (defaultBlockingDialogue.Count - 1);
+        res = defaultBlockingDialogue[index];
+        return true;
+      }
+
+      return false;
     }
 
     public void UpdateElement(float animationProgress) { }
