@@ -121,7 +121,7 @@ namespace Outclaw.UI{
 
       currentIndex = 0;
       this[0].Hover();
-      contents.alpha = 1;
+      SetInteractable(true);
     }
     
     protected IEnumerator FadeOutContent() {
@@ -130,7 +130,7 @@ namespace Outclaw.UI{
         yield return new WaitForSecondsRealtime(GlobalConstants.ANIMATION_FREQ);
       }
 
-      contents.alpha = 0;
+      SetInteractable(false);
     }
 
     protected IEnumerator StallInput() {
@@ -151,6 +151,11 @@ namespace Outclaw.UI{
 
       HoverIndex(currentIndex, newIdx);
       currentIndex = newIdx;
+    }
+
+    protected void SetInteractable(bool interactable){
+      contents.alpha = interactable ? 1 : 0;
+      contents.interactable = contents.blocksRaycasts = interactable;
     }
   }
 }

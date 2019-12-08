@@ -21,9 +21,16 @@ namespace Outclaw.Heist {
     public void Awake() {
       objectiveManager.AddObjective(this);
     }
-    
-    public void InRange() {
-      objectiveIndicator.FadeIn();
+
+    public void InRange(InteractableState state) {
+      switch(state){
+        case InteractableState.DisabledVisible:
+          objectiveIndicator.FadeToDisabled();
+          break;
+        case InteractableState.Enabled:
+          objectiveIndicator.FadeIn();
+          break;
+      }
     }
 
     public void ExitRange() {

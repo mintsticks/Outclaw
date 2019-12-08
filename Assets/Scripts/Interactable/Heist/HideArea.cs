@@ -14,8 +14,15 @@ namespace Outclaw.Heist{
     [Inject] private City.IPlayer player;
     [Inject] private ISoundManager soundManager;
 
-    public void InRange() {
-      hideIndicator.FadeIn();
+    public void InRange(InteractableState state) {
+      switch(state){
+        case InteractableState.DisabledVisible:
+          hideIndicator.FadeToDisabled();
+          break;
+        case InteractableState.Enabled:
+          hideIndicator.FadeIn();
+          break;
+      }
     }
 
     public void ExitRange() {

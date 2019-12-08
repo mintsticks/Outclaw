@@ -40,11 +40,19 @@ namespace Outclaw.City {
       senseVisuals.RegisterSenseElement(this);
     }
 
-    public void InRange() {
+    public void InRange(InteractableState state) {
       if (!HasInteraction()) {
         return;
       }
-      talkIndicator.FadeIn();
+      
+      switch(state){
+        case InteractableState.DisabledVisible:
+          talkIndicator.FadeToDisabled();
+          break;
+        case InteractableState.Enabled:
+          talkIndicator.FadeIn();
+          break;
+      }
     }
 
     public void ExitRange() {
@@ -117,7 +125,9 @@ namespace Outclaw.City {
       if (!HasDialogueForCurrentState()) {
         objectiveManager.CompleteTask(task);
       }
-      InRange();
+      
+      // since player could interact, assume can still interact
+      InRange(InteractableState.Enabled);
     }
     
     private void StartRelationshipDialogue() {
@@ -129,7 +139,9 @@ namespace Outclaw.City {
     
     private void CompleteRankDialogue() {
       relationshipManager.RankUpCat(dialogueData);
-      InRange();
+      
+      // since player could interact, assume can still interact
+      InRange(InteractableState.Enabled);
     }
     
     private CatDialogueForState GetDialogueForState(GameStateData state) {

@@ -63,8 +63,15 @@ namespace Outclaw.City {
       senseVisuals.RegisterSenseElement(this);
     }
 
-    public void InRange() {
-      enterIndicator.FadeIn();
+    public void InRange(InteractableState state) {
+      switch(state){
+        case InteractableState.DisabledVisible:
+          enterIndicator.FadeToDisabled();
+          break;
+        case InteractableState.Enabled:
+          enterIndicator.FadeIn();
+          break;
+      }
     }
 
     public void ExitRange() {
@@ -118,7 +125,8 @@ namespace Outclaw.City {
 
     private void CompleteDialogue(bool enter) {
       if (!enter) {
-        InRange();
+        // since player could interact, assume can still interact
+        InRange(InteractableState.Enabled);
         return;
       }
 

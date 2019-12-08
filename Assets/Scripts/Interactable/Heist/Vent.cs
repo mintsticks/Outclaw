@@ -14,8 +14,15 @@ namespace Outclaw.Heist {
 
     [Inject] private ISoundManager soundManager;
 
-    public void InRange() {
-      ventIndicator.FadeIn();
+    public void InRange(InteractableState state) {
+      switch(state){
+        case InteractableState.DisabledVisible:
+          ventIndicator.FadeToDisabled();
+          break;
+        case InteractableState.Enabled:
+          ventIndicator.FadeIn();
+          break;
+      }
     }
 
     public void ExitRange() {

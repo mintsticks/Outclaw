@@ -18,7 +18,7 @@ namespace Outclaw.Heist{
 
     void Awake(){
       this[0].Hover();
-      contents.alpha = 0;
+      SetInteractable(false);
     }
 
     void Update() {
