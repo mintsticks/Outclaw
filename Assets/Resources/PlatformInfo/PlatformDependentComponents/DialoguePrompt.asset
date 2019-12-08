@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ed5d15295349a9b98aa1616a044801, type: 3}
+  m_Name: DialoguePrompt
+  m_EditorClassIdentifier: 
+  platformData:
+  - platform: 1
+    prefab: {fileID: 6986147113931279823, guid: 137656ff179dcfa449fdef068c91a08c,
+      type: 3}
+  - platform: 2
+    prefab: {fileID: 8283967102593061476, guid: ccc2dbdaa601a0747a0f5077c8696f4e,
+      type: 3}

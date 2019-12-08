@@ -12,10 +12,11 @@ namespace UI.DismissablePrompts {
   public class ConditionalDisplay : MonoBehaviour {
     [SerializeField] private List<ConditionInfo> conditions;
     [SerializeField] private float fadeTime;
-    [SerializeField] private PlatformDependentComponent platformDependentComponent;
+    [SerializeField] private PlatformDependentComponentContainer platformDependentComponent;
     
     [Inject] private IGameStateManager gameStateManager;
     [Inject] private IPlayer player;
+    [Inject] private IDialogueManager dialogueManager;
     [Inject] private PlatformDependentCanvasFactory canvasFactory;
     
     private IPlatformDependentCanvasComponent canvasComponent;
@@ -26,12 +27,7 @@ namespace UI.DismissablePrompts {
     
     private void Start() {
       animationWrapper = gameObject.AddComponent<AnimationWrapper>();
-      if (platformDependentComponent == null) {
-        return;
-      }
-      canvasComponent = canvasFactory.Create(platformDependentComponent);
-      canvasComponent.CanvasGroup.transform.SetParent(transform, false);
-      content =  canvasComponent.CanvasGroup;
+      content = platformDependentComponent.CanvasGroup;
     }
 
     private bool AllConditionsMet() {
@@ -46,6 +42,8 @@ namespace UI.DismissablePrompts {
           return !condition.task.IsComplete;
         case ConditionType.INPUT_ENABLED:
           return !player.InputDisabled;
+        case ConditionType.DIALOGUE_IS_RUNNING:
+          return dialogueManager.IsDialogueRunning;
       }
       return true;
     }
@@ -118,6 +116,7 @@ namespace UI.DismissablePrompts {
     NONE = 0,
     GAMESTATE = 1,
     TASK = 2,
-    INPUT_ENABLED = 3
+    INPUT_ENABLED = 3,
+    DIALOGUE_IS_RUNNING = 4,
   }
 }

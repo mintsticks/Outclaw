@@ -20,7 +20,8 @@ namespace Outclaw {
   public class CatDialogueUI : DialogueUIBehaviour {
     [SerializeField] private List<DialogueVariable> dialogueVariables;
     [SerializeField] private Canvas canvas;
-
+    [SerializeField] private Task dialogueTask;
+    
     [Inject] private SpeechBubble.Factory speechBubbleFactory;
     [Inject] private IconBubble.Factory iconBubbleFactory;
     [Inject] private ThoughtBubble.Factory thoughtBubbleFactory;
@@ -89,6 +90,7 @@ namespace Outclaw {
         yield return null;
       }
 
+      dialogueTask.Complete();
       bubbles.Remove(bubble);
       bubble.StartCoroutine(bubble.FadeBubble()); // make bubble own coroutine so it's never stopped
       yield return new WaitForEndOfFrame();
@@ -112,6 +114,7 @@ namespace Outclaw {
         yield return null;
       }
 
+      dialogueTask.Complete();
       bubbles.Remove(bubble);
       bubble.StartCoroutine(bubble.FadeBubble()); // make bubble own coroutine so it's never stopped
       yield return new WaitForEndOfFrame();
@@ -167,6 +170,7 @@ namespace Outclaw {
         yield return null;
       }
 
+      dialogueTask.Complete();
       bubbles.Remove(bubble);
       bubble.StartCoroutine(bubble.FadeBubble());
       yield return new WaitForEndOfFrame();
