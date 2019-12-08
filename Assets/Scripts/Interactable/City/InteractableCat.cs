@@ -29,6 +29,7 @@ namespace Outclaw.City {
     
     private Transform parent;
     private bool created;
+    private bool runningDialogue;
 
     public Task ContainedTask => task;
     public Transform Location => transform;
@@ -41,7 +42,7 @@ namespace Outclaw.City {
     }
 
     public void InRange(InteractableState state) {
-      if (!HasInteraction()) {
+      if (!HasInteraction() || runningDialogue) {
         return;
       }
       
@@ -118,6 +119,8 @@ namespace Outclaw.City {
       var dialogue = dialogueForState.catDialogue[gameStateRank].dialogue;
       var head = headTransform == null ? transform : headTransform;
       dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, head, this, () => CompleteGameStateDialogue(state));
+
+      runningDialogue = true;
     }
 
     private void CompleteGameStateDialogue(GameStateData state) {
@@ -125,6 +128,7 @@ namespace Outclaw.City {
       if (!HasDialogueForCurrentState()) {
         objectiveManager.CompleteTask(task);
       }
+      runningDialogue = false;
       
       // since player could interact, assume can still interact
       InRange(InteractableState.Enabled);
@@ -135,11 +139,14 @@ namespace Outclaw.City {
       var dialogue = catDialogues.dialoguesForRank[rank].dialogue;
       var head = headTransform == null ? transform : headTransform;
       dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, head, this, CompleteRankDialogue);
+
+      runningDialogue = true;
     }
     
     private void CompleteRankDialogue() {
       relationshipManager.RankUpCat(dialogueData);
-      
+      runningDialogue = false;
+
       // since player could interact, assume can still interact
       InRange(InteractableState.Enabled);
     }

@@ -39,6 +39,8 @@ namespace Outclaw.City {
     [Inject] private IObjectiveTransformManager objectiveTransformManager;
     [Inject] private ISenseVisuals senseVisuals;
 
+    private bool runningDialogue;
+
     public Transform LocationPosition => locationPosition != null ? locationPosition : transform;
     public Task ContainedTask => task;
     public Transform Location => transform;
@@ -64,6 +66,10 @@ namespace Outclaw.City {
     }
 
     public void InRange(InteractableState state) {
+      if(runningDialogue){
+        return;
+      }
+
       switch(state){
         case InteractableState.DisabledVisible:
           enterIndicator.FadeToDisabled();
@@ -116,6 +122,8 @@ namespace Outclaw.City {
 
     private void HandleDialogue(LocationDialogueForState locationDialogueForState) {
       enterIndicator.FadeOut();
+      runningDialogue = true;
+
       dialogueManager.StartDialogue(locationDialogueForState.locationDialogue.dialogue, 
         DialogueType.SPEECH,
         player.PlayerTransform, 
@@ -124,6 +132,7 @@ namespace Outclaw.City {
     }
 
     private void CompleteDialogue(bool enter) {
+      runningDialogue = false;
       if (!enter) {
         // since player could interact, assume can still interact
         InRange(InteractableState.Enabled);

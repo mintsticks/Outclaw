@@ -33,6 +33,7 @@ namespace Outclaw.City {
 
     private Transform parent;
     private bool created;
+    private bool runningDialogue;
 
     public Task ContainedTask => task;
     public Transform Location => transform;
@@ -45,7 +46,7 @@ namespace Outclaw.City {
     }
 
     public void InRange(InteractableState state) {
-      if (!HasInteraction()) {
+      if (!HasInteraction() || runningDialogue) {
         return;
       }
 
@@ -70,6 +71,7 @@ namespace Outclaw.City {
 
       var dialogue = GetObjectDialogue();
       observeIndicator.FadeOut();
+      runningDialogue = true;
       dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, player.HeadTransform, this, CompleteInteraction);
       if (promptTask != null && !promptTask.IsComplete) {
         promptTask.Complete();
@@ -123,6 +125,8 @@ namespace Outclaw.City {
     private void CompleteInteraction() {
       locationManager.IncreaseProgress(dialogueData);
       objectiveManager.CompleteTask(task);
+
+      runningDialogue = false;
 
       // since player could interact, assume can still interact
       InRange(InteractableState.Enabled);
