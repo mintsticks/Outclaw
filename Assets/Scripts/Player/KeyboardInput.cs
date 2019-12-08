@@ -85,5 +85,9 @@ namespace Outclaw {
     public bool IsStartDown() {
       return Input.GetKeyDown(KeyCode.Space);
     }
+    
+    public bool IsMenuSubmitDown(){
+      return Input.GetButtonDown("Submit");
+    }
   }
 }
