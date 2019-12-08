@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ed5d15295349a9b98aa1616a044801, type: 3}
+  m_Name: SensePrompt
+  m_EditorClassIdentifier: 
+  platformData:
+  - platform: 1
+    prefab: {fileID: 3812559357822791102, guid: ac37da6739ef5a541a70bbf06e0f0a02,
+      type: 3}
+  - platform: 2
+    prefab: {fileID: 3734242603946747223, guid: a594c35380c0c6944a1ba7b7970b23ff,
+      type: 3}

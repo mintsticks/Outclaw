@@ -10,22 +10,13 @@ namespace Outclaw {
     [SerializeField] private float fadeTime = .25f;
     [SerializeField] private AnimationWrapper animationWrapper;
     [SerializeField] private Image image;
-    [SerializeField] private InputType inputType = InputType.INTERACT;
     [SerializeField] private GameObject tutorialParent;
-    [SerializeField] private Image tutorialImage;
-    [SerializeField] private Text tutorialText;
-    [SerializeField] private PlatformInfo info;
     [SerializeField] private Task indicatorTask;
 
     [SerializeField] private CanvasGroup canvasGroup;
     
     private float animationProgress;
     private bool showKey = true;
-    
-    private void Start() {
-      tutorialImage.sprite = info.images.FirstOrDefault(i => i.platform == Application.platform)?.image;
-      tutorialText.text = InputStringHelper.GetStringForInput(inputType);
-    }
 
     public void FadeIn() {
       animationWrapper.StartNewAnimation(FadeInAnim());

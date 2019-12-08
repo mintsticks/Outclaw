@@ -12,16 +12,26 @@ namespace UI.DismissablePrompts {
   public class ConditionalDisplay : MonoBehaviour {
     [SerializeField] private List<ConditionInfo> conditions;
     [SerializeField] private float fadeTime;
-    [SerializeField] private CanvasGroup content;
-
+    [SerializeField] private PlatformDependentComponent platformDependentComponent;
+    
     [Inject] private IGameStateManager gameStateManager;
     [Inject] private IPlayer player;
+    [Inject] private PlatformDependentCanvasFactory canvasFactory;
     
+    private IPlatformDependentCanvasComponent canvasComponent;
     private AnimationWrapper animationWrapper;
     private float animationProgress;
     private bool fadingIn;
+    private CanvasGroup content;
+    
     private void Start() {
       animationWrapper = gameObject.AddComponent<AnimationWrapper>();
+      if (platformDependentComponent == null) {
+        return;
+      }
+      canvasComponent = canvasFactory.Create(platformDependentComponent);
+      canvasComponent.CanvasGroup.transform.SetParent(transform, false);
+      content =  canvasComponent.CanvasGroup;
     }
 
     private bool AllConditionsMet() {
