@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Finished Yakuza
   m_EditorClassIdentifier: 
   objectiveText: Unlock the basement!
-  childStates: []
+  childStates:
+  - nextStateData: {fileID: 0}
+    tasks:
+    - {fileID: 11400000, guid: 96370397307d5c748be262043b73e94d, type: 2}
+    persistObjectiveState: 0

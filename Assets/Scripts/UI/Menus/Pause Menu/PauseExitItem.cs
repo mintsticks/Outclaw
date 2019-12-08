@@ -3,10 +3,7 @@ using Zenject;
 using Outclaw.UI;
 
 namespace Outclaw {
-  public class PauseExitItem : MonoBehaviour, IMenuItem {
-    [SerializeField]
-    private MenuItemText pauseItemText;
-
+  public class PauseExitItem : AbstractMouseMenuItem {
     [Inject]
     private ISceneTransitionManager sceneTransitionManager;
 
@@ -16,20 +13,12 @@ namespace Outclaw {
     [Inject]
     private IGameStateManager gameStateManager;
     
-    public void Select() {
+    public override void Select() {
       pauseMenuManager.Unpause();
       sceneTransitionManager.TransitionToScene("Start");
 
       // TODO: replace with actual restart
       gameStateManager.SetGameState(gameStateManager.StateList[0], true);
-    }
-
-    public void Hover() {
-      pauseItemText.Hover();
-    }
-
-    public void Unhover() {
-      pauseItemText.Unhover();
     }
   }
 }

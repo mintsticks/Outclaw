@@ -27,6 +27,7 @@ namespace Outclaw {
     bool IsSneakUp();
     bool IsStart();
     bool IsStartDown();
+    bool IsMenuSubmitDown();
   }
 
   public class PlayerInput : IPlayerInput, ITickable {
@@ -145,6 +146,10 @@ namespace Outclaw {
 
     public bool IsStartDown() {
       return Input.GetButtonDown("Start");
+    }
+
+    public bool IsMenuSubmitDown(){
+      return Input.GetButtonDown("Submit");
     }
   }
 }

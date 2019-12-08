@@ -3,10 +3,11 @@ using System.Text;
 using Outclaw.City;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using Zenject;
 
 namespace Outclaw {
-  public class IntroDialogueUI : MonoBehaviour {
+  public class BlackScreenDialogueUI : MonoBehaviour {
     [SerializeField]
     private float textSpeed = 0.025f;
 
@@ -17,16 +18,14 @@ namespace Outclaw {
     private string[] lines;
 
     [SerializeField]
-    private LocationData nextLocation;
+    private BubbleTextHelper textHelper;
 
     [SerializeField]
-    private BubbleTextHelper textHelper;
+    [Tooltip("Called when text ends")]
+    private UnityEvent onComplete;
 
     [Inject]
     private IPlayerInput playerInput;
-
-    [Inject]
-    private ISceneTransitionManager sceneTransitionManager;
     
     public void Start() {
       StartCoroutine(PrintLines(lines));
@@ -37,7 +36,7 @@ namespace Outclaw {
         yield return StartCoroutine(PrintLine(line));
       }
 
-      sceneTransitionManager.TransitionToScene(nextLocation);
+      onComplete.Invoke();
     }
 
     private IEnumerator PrintLine(string line) {

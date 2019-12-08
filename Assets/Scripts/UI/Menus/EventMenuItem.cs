@@ -4,21 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace Outclaw.UI{
-  public class EventMenuItem : MonoBehaviour, IMenuItem
+  public class EventMenuItem : AbstractMouseMenuItem
   {
-    [SerializeField] private MenuItemText itemText;
     [SerializeField] private UnityEvent onSelect;
 
-    public void Select(){
+    public override void Select(){
       onSelect.Invoke();
-    }
-
-    public void Hover() {
-      itemText.Hover();
-    }
-
-    public void Unhover() {
-      itemText.Unhover();
     }
   }
 }

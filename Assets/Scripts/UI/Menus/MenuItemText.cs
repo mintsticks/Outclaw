@@ -27,5 +27,10 @@ namespace Outclaw.UI {
       itemText.color = defaultColor;
       itemText.fontSize = defaultSize;
     }
+
+    public void Hold(){
+      itemText.color = hoverColor;
+      itemText.fontSize = defaultSize;
+    }
   }
 }

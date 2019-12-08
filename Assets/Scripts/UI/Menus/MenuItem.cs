@@ -3,5 +3,6 @@
     void Select();
     void Hover();
     void Unhover();
+    void Hold();
   }
 }

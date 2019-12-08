@@ -66,9 +66,7 @@ namespace Outclaw {
     void Awake() {
       //Initialize list of pause items. Unity can't serialize interfaces, unfortunately.
       items = new List<IMenuItem> { pauseResumeItem, pauseInfoItem, pauseOptionItem, pauseCreditsItem, pauseExitItem };
-      currentIndex = 0;
-      items[0].Hover();
-      contents.alpha = 0;
+      SetInteractable(false);
 
       isSubmenuActive = false;
       activeSubmenu = null;

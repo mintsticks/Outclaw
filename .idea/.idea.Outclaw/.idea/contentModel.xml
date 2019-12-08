@@ -712,6 +712,7 @@
             <e p="PlayerInput.cs" t="Include" />
           </e>
           <e p="RegionBlur.cs" t="Include" />
+          <e p="RestartGame.cs" t="Include" />
           <e p="Scriptables" t="Include">
             <e p="PlatformDependentComponent.cs" t="Include" />
             <e p="PlatformInfo.cs" t="Include" />
@@ -723,6 +724,7 @@
             <e p="Abilities" t="Include">
               <e p="AbilityCooldownManager.cs" t="Include" />
             </e>
+            <e p="BlackScreenDialogueUI.cs" t="Include" />
             <e p="Dialogue" t="Include">
               <e p="BubbleAnimationHelper.cs" t="Include" />
               <e p="BubblePositionHelper.cs" t="Include" />
@@ -745,8 +747,9 @@
               <e p="PromptData.cs" t="Include" />
               <e p="PromptDisplay.cs" t="Include" />
             </e>
-            <e p="IntroDialogueUI.cs" t="Include" />
             <e p="Menus" t="Include">
+              <e p="AbstractMouseMenuItem.cs" t="Include" />
+              <e p="EventMenu.cs" t="Include" />
               <e p="EventMenuItem.cs" t="Include" />
               <e p="Heist Menu" t="Include">
                 <e p="CapturedMenu.cs" t="Include" />

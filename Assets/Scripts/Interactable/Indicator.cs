@@ -12,14 +12,19 @@ namespace Outclaw {
     [SerializeField] private Image image;
     [SerializeField] private GameObject tutorialParent;
     [SerializeField] private Task indicatorTask;
+    [SerializeField] private float disabledAlpha = .5f;
 
     [SerializeField] private CanvasGroup canvasGroup;
     
     private float animationProgress;
     private bool showKey = true;
+    private InteractableState state;
 
     public void FadeIn() {
-      animationWrapper.StartNewAnimation(FadeInAnim());
+      if(state != InteractableState.Enabled){
+        animationWrapper.StartNewAnimation(FadeInAnim());
+        state = InteractableState.Enabled;
+      }
       if (showKey) {
         return;
       }
@@ -31,27 +36,43 @@ namespace Outclaw {
     }
     
     public void FadeOut() {
-      animationWrapper.StartNewAnimation(FadeOutAnim());
+      if(state != InteractableState.Invisible){
+        animationWrapper.StartNewAnimation(FadeOutAnim());
+        state = InteractableState.Invisible;
+      }
+    }
+
+    public void FadeToDisabled(){
+      if(state != InteractableState.DisabledVisible){
+        animationWrapper.StartNewAnimation(FadeToDisabledAnim());
+        state = InteractableState.DisabledVisible;
+      }
     }
 
     private IEnumerator FadeInAnim() {
       image.enabled = true;
-      yield return UpdateIndicator(animationProgress, 1 - animationProgress);
+      yield return UpdateIndicator(animationProgress, 1);
     }
 
     private IEnumerator FadeOutAnim() {
-      yield return UpdateIndicator(animationProgress,-animationProgress);
+      yield return UpdateIndicator(animationProgress, 0);
       image.enabled = false;
     }
+
+    private IEnumerator FadeToDisabledAnim() {
+      image.enabled = true;
+      yield return UpdateIndicator(animationProgress, disabledAlpha);
+    }
     
-    private IEnumerator UpdateIndicator(float startAmount, float changeAmount) {
+    private IEnumerator UpdateIndicator(float startAmount, float endAmount) {
+      float changeAmount = endAmount - startAmount;
       for (var i = 0f; i < fadeTime; i += GlobalConstants.ANIMATION_FREQ) {
         animationProgress = startAmount + i / fadeTime * changeAmount;
         UpdateIndicator();
         yield return new WaitForSeconds(GlobalConstants.ANIMATION_FREQ);
       }
       
-      animationProgress = Mathf.Round(animationProgress);
+      animationProgress = endAmount;
       UpdateIndicator();
     }
     
