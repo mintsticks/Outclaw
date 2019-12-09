@@ -19,8 +19,7 @@ namespace Outclaw {
     [SerializeField] private float horizontalPadding = 20f;
     [SerializeField] private float verticalPadding = 15f;
     [SerializeField] private float defaultWidth = 200f;
-    [SerializeField] private float resizeTime = .1f;
-    
+
     [SerializeField] private Text bubbleText;
     
     [Header("Audio")]
@@ -93,8 +92,10 @@ namespace Outclaw {
       if (width < bubbleText.rectTransform.sizeDelta.x) {
         bubbleText.rectTransform.sizeDelta = new Vector2(width, height);
       }
-      
-      bubbleImageTransform.sizeDelta = new Vector2(width + horizontalPadding * 2, height + verticalPadding * 2 + bottomPadding);
+      if (bubbleImageTransform != null) {
+        bubbleImageTransform.sizeDelta =
+          new Vector2(width + horizontalPadding * 2, height + verticalPadding * 2 + bottomPadding);
+      }
       bubbleText.color = bubbleText.color.WithAlpha(1f);
     }
 
