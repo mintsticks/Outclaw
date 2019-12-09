@@ -554,6 +554,7 @@
           <e p="GameInstaller.cs" t="Include" />
           <e p="HeistInstaller.cs" t="Include" />
           <e p="IntroInstaller.cs" t="Include" />
+          <e p="PlatformInstaller.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
           <e p="Audio" t="Include">
@@ -711,13 +712,19 @@
             <e p="PlayerInput.cs" t="Include" />
           </e>
           <e p="RegionBlur.cs" t="Include" />
+          <e p="RestartGame.cs" t="Include" />
           <e p="Scriptables" t="Include">
+            <e p="PlatformDependentComponent.cs" t="Include" />
             <e p="PlatformInfo.cs" t="Include" />
+          </e>
+          <e p="Testing" t="Include">
+            <e p="LocationDataGraphTest.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
             <e p="Abilities" t="Include">
               <e p="AbilityCooldownManager.cs" t="Include" />
             </e>
+            <e p="BlackScreenDialogueUI.cs" t="Include" />
             <e p="Dialogue" t="Include">
               <e p="BubbleAnimationHelper.cs" t="Include" />
               <e p="BubblePositionHelper.cs" t="Include" />
@@ -734,12 +741,16 @@
             </e>
             <e p="DismissablePrompts" t="Include">
               <e p="ConditionalDisplay.cs" t="Include" />
+              <e p="InputTextComponent.cs" t="Include" />
+              <e p="PlatformDependentCanvasComponent.cs" t="Include" />
+              <e p="PlatformDependentComponentContainer.cs" t="Include" />
               <e p="PromptAnimationComponent.cs" t="Include" />
               <e p="PromptData.cs" t="Include" />
               <e p="PromptDisplay.cs" t="Include" />
             </e>
-            <e p="IntroDialogueUI.cs" t="Include" />
             <e p="Menus" t="Include">
+              <e p="AbstractMouseMenuItem.cs" t="Include" />
+              <e p="EventMenu.cs" t="Include" />
               <e p="EventMenuItem.cs" t="Include" />
               <e p="Heist Menu" t="Include">
                 <e p="CapturedMenu.cs" t="Include" />
@@ -780,6 +791,7 @@
             <e p="InputStringHelper.cs" t="Include" />
             <e p="LineHelperExt.cs" t="Include" />
             <e p="ManagedCoroutine.cs" t="Include" />
+            <e p="PlatformUtil.cs" t="Include" />
             <e p="SceneSwitcher.cs" t="Include" />
             <e p="SpriteBundle.cs" t="Include" />
             <e p="SpriteSkinCulling.cs" t="Include" />

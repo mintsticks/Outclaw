@@ -2,23 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/ConditionalDisplay.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/ConditionalDisplay.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentComponentContainer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentComponentContainer.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/City/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/City/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prompt Data/CitySense.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prompt Data/CitySense.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/UI/Ring 1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/UI/Ring 1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/City/Dialogue/DialogueUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/City/Dialogue/DialogueUI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/City/Dialogue/SpeechBubble.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/City/Dialogue/SpeechBubble.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/CatIndicator.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/CatIndicator.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/ClimbIndicator.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/ClimbIndicator.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/HideIndicator.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/HideIndicator.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/LocationIndicator.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/LocationIndicator.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/ObjectiveIndicator.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/ObjectiveIndicator.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/VantageIndicator.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Indicators/VantageIndicator.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/PC/InteractKeyboardPrompt.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/PC/InteractKeyboardPrompt.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/PC/KeyboardMovePrompt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/PC/KeyboardMovePrompt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/PC/SenseKeyboardPrompt.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/PC/SenseKeyboardPrompt.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/XBOX/DropPrompt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/XBOX/DropPrompt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/XBOX/JumpPrompt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/XBOX/JumpPrompt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/XBOX/MovePrompt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/XBOX/MovePrompt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/XBOX/SensePrompt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Prompts/XBOX/SensePrompt.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Home.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Home.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubblePositionHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubblePositionHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleTail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleTail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ObjectivePointer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ObjectivePointer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/CatDialogueUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/CatDialogueUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/ConditionalDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/ConditionalDisplay.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +47,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Art/Heist/park/Attention.png.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/PauseMenuManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Sidescroll Movement/SideScrollSentry.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/PlatformUtil.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Util/ReflectionInfoTypeInfoConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PromptData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sense/City/GreyOnSenseElement.cs" root0="FORCE_HIGHLIGHTING" />
@@ -49,6 +58,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Objective/Heist/Objective.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/InputStringHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PlayerLitManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptables/PlatformDependentComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/FloatExt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Editor/EditorWindow/ZenjectEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sense/AnimationWrapper.cs" root0="FORCE_HIGHLIGHTING" />
@@ -78,6 +88,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableLocation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/CameraMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentComponentContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactable/Heist/Interactable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptables/PlatformInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Objective/Task.cs" root0="FORCE_HIGHLIGHTING" />
@@ -99,7 +110,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ObjectivePointer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Heist/IHideablePlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Factories/PrefabFactory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/IntroDialogueUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Location/LocationManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Heist/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Factories/PlaceholderFactory.cs" root0="FORCE_HIGHLIGHTING" />
@@ -120,10 +130,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/ThoughtBubble.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Game State/GameState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/AnimationController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/InputTextComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Factories/Pooling/IMemoryPool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/KeyboardInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentCanvasComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Menu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Heist/SpriteController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Resources/PlatformInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/ColorExt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/VectorUtil.cs" root0="FORCE_HIGHLIGHTING" />
@@ -175,16 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Resources/DialogueInstaller.cs" />
-        <option value="$PROJECT_DIR$/Assets/Resources/CityInstaller.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/DialogueSettings.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/IconBubble.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/PlatformHelper.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Scriptables/PlatformInfo.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PromptDisplay.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableObject.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableLocation.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistMovementController.cs" />
         <option value="$PROJECT_DIR$/Assets/Prefabs/Heist/Abilities/Vent.prefab" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePointManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sense/Heist/VantagePoint.cs" />
@@ -196,7 +199,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Background/ParallaxBackgroundElement.cs" />
         <option value="$PROJECT_DIR$/Assets/Dialogue/CatDialogue/AkioFoundCollar.yarn.txt" />
         <option value="$PROJECT_DIR$/Assets/Dialogue/CatDialogue/Keiko1.yarn.txt" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/InputStringHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/StartListener.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/GlobalConstants.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/VectorUtil.cs" />
@@ -215,17 +217,28 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleAnimationHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableCat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/BoundsExt.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/Indicator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/SpeechBubble.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/ThoughtBubble.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/CatDialogueUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleTextHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/InteractionController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/ConditionalDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubblePositionHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleTail.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/ObjectivePointer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/InputTextComponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/InputStringHelper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentComponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentUIComponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Resources/GameInstaller.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Scriptables/PlatformDependentComponentInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Scriptables/PlatformDependentComponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Resources/PlatformInstaller.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentCanvasComponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/Indicator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/CatDialogueUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentComponentContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/ConditionalDisplay.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/PlatformUtil.cs" />
       </list>
     </option>
   </component>
@@ -305,7 +318,7 @@
       <workItem from="1573309350613" duration="11023000" />
       <workItem from="1574109582744" duration="13547000" />
       <workItem from="1574226483579" duration="14197000" />
-      <workItem from="1575348366385" duration="49344000" />
+      <workItem from="1575348366385" duration="64984000" />
     </task>
     <servers />
   </component>

@@ -14,7 +14,7 @@ namespace Outclaw{
     protected override int ItemCount() => eventItems.Length;
 
     void Awake(){
-      contents.alpha = 0;
+      SetInteractable(false);
     }
 
     void Update() {

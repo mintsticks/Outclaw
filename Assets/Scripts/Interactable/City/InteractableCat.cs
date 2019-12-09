@@ -29,6 +29,7 @@ namespace Outclaw.City {
     
     private Transform parent;
     private bool created;
+    private bool runningDialogue;
 
     public Task ContainedTask => task;
     public Transform Location => transform;
@@ -40,11 +41,19 @@ namespace Outclaw.City {
       senseVisuals.RegisterSenseElement(this);
     }
 
-    public void InRange() {
-      if (!HasInteraction()) {
+    public void InRange(InteractableState state) {
+      if (!HasInteraction() || runningDialogue) {
         return;
       }
-      talkIndicator.FadeIn();
+      
+      switch(state){
+        case InteractableState.DisabledVisible:
+          talkIndicator.FadeToDisabled();
+          break;
+        case InteractableState.Enabled:
+          talkIndicator.FadeIn();
+          break;
+      }
     }
 
     public void ExitRange() {
@@ -110,6 +119,8 @@ namespace Outclaw.City {
       var dialogue = dialogueForState.catDialogue[gameStateRank].dialogue;
       var head = headTransform == null ? transform : headTransform;
       dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, head, this, () => CompleteGameStateDialogue(state));
+
+      runningDialogue = true;
     }
 
     private void CompleteGameStateDialogue(GameStateData state) {
@@ -117,7 +128,10 @@ namespace Outclaw.City {
       if (!HasDialogueForCurrentState()) {
         objectiveManager.CompleteTask(task);
       }
-      InRange();
+      runningDialogue = false;
+      
+      // since player could interact, assume can still interact
+      InRange(InteractableState.Enabled);
     }
     
     private void StartRelationshipDialogue() {
@@ -125,11 +139,16 @@ namespace Outclaw.City {
       var dialogue = catDialogues.dialoguesForRank[rank].dialogue;
       var head = headTransform == null ? transform : headTransform;
       dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, head, this, CompleteRankDialogue);
+
+      runningDialogue = true;
     }
     
     private void CompleteRankDialogue() {
       relationshipManager.RankUpCat(dialogueData);
-      InRange();
+      runningDialogue = false;
+
+      // since player could interact, assume can still interact
+      InRange(InteractableState.Enabled);
     }
     
     private CatDialogueForState GetDialogueForState(GameStateData state) {

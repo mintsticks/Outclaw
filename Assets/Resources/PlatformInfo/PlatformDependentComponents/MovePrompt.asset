@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ed5d15295349a9b98aa1616a044801, type: 3}
+  m_Name: MovePrompt
+  m_EditorClassIdentifier: 
+  platformData:
+  - platform: 1
+    prefab: {fileID: 5115998446749950600, guid: 6ca6239a2319c164c8f39e0fd83524a3,
+      type: 3}
+  - platform: 2
+    prefab: {fileID: 4762543433219917543, guid: fb2e698fb40224e4589341696f20ae71,
+      type: 3}

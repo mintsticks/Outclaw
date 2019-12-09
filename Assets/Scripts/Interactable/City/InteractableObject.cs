@@ -33,6 +33,7 @@ namespace Outclaw.City {
 
     private Transform parent;
     private bool created;
+    private bool runningDialogue;
 
     public Task ContainedTask => task;
     public Transform Location => transform;
@@ -44,12 +45,19 @@ namespace Outclaw.City {
       senseVisuals.RegisterSenseElement(this);
     }
 
-    public void InRange() {
-      if (!HasInteraction()) {
+    public void InRange(InteractableState state) {
+      if (!HasInteraction() || runningDialogue) {
         return;
       }
 
-      observeIndicator.FadeIn();
+      switch(state){
+        case InteractableState.DisabledVisible:
+          observeIndicator.FadeToDisabled();
+          break;
+        case InteractableState.Enabled:
+          observeIndicator.FadeIn();
+          break;
+      }
     }
 
     public void ExitRange() {
@@ -63,6 +71,7 @@ namespace Outclaw.City {
 
       var dialogue = GetObjectDialogue();
       observeIndicator.FadeOut();
+      runningDialogue = true;
       dialogueManager.StartDialogue(dialogue, DialogueType.SPEECH, player.HeadTransform, this, CompleteInteraction);
       if (promptTask != null && !promptTask.IsComplete) {
         promptTask.Complete();
@@ -116,7 +125,11 @@ namespace Outclaw.City {
     private void CompleteInteraction() {
       locationManager.IncreaseProgress(dialogueData);
       objectiveManager.CompleteTask(task);
-      InRange();
+
+      runningDialogue = false;
+
+      // since player could interact, assume can still interact
+      InRange(InteractableState.Enabled);
     }
 
     public void UpdateElement(float animationProgress) {

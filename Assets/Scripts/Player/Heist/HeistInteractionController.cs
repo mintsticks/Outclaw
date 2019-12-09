@@ -37,7 +37,7 @@ namespace Outclaw.Heist {
     }
 
     public void UpdateInteraction() {
-      if (player.InputDisabled) {
+      if (player.InputDisabled || !player.IsGrounded) {
         return;
       }
 
@@ -50,78 +50,117 @@ namespace Outclaw.Heist {
     public void HandleEnter(Collider2D other) {
       if ((1 << other.gameObject.layer & interactableLayer) != 0) {
         currentInteractable = other.GetComponentInParent<Interactable>();
-        currentInteractable.InRange();
+        currentInteractable.InRange(player.IsGrounded 
+          ? InteractableState.Enabled : InteractableState.DisabledVisible);
+        
       }
       
       if ((1 << other.gameObject.layer & objectiveInteractableLayer) != 0) {
         currentObjectiveInteractable = other.GetComponentInParent<ObjectiveInteractable>();
-        currentObjectiveInteractable.InRange();
+        if(currentObjectiveInteractable.HasInteraction()){
+          currentObjectiveInteractable.InRange(player.IsGrounded 
+            ? InteractableState.Enabled : InteractableState.DisabledVisible);
+        }
+        else{
+          currentObjectiveInteractable.ExitRange();
+        }
+        
       }
 
       if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) {
         var eventSequence = other.GetComponentInParent<EventSequence>();
         StartCoroutine(eventSequence.ExecuteSequence());
+        
       }
 
       if ((1 << other.gameObject.layer & oneWayTriggerLayer) != 0) {
         var oneWayPlatform = other.GetComponentInParent<OneWayPlatform>();
         oneWayPlatform.IntersectTrigger();
+        
       }
 
       if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
         currentZone = other.GetComponentInChildren<AttentionZone>();
         currentZone.EnterAttention(gameObject);
+        
       }
       
       if ((1 << other.gameObject.layer & lineOfSightLayer) != 0) {
         currentLineOfSight = other.GetComponentInChildren<LineOfSight>();
         currentLineOfSight.EnterAttention();
+        
       }
       
       if ((1 << other.gameObject.layer & vantageLayer) != 0) {
         var vantage = other.GetComponentInChildren<VantagePoint>();
         vantage.ShowIndicator();
         vantagePointManager.RegisterCurrentVantage(vantage);
+        
       }
       
       if ((1 << other.gameObject.layer & lightLayer) != 0) {
         playerLitManager.IsLit = true;
+        
       }
 
       if ((1 << other.gameObject.layer & checkpointLayer) != 0) {
         var checkpoint = other.GetComponentInParent<Checkpoint>();
         checkpoint.UpdateLastCheckpoint();
+        
       }
       
       if ((1 << other.gameObject.layer & conditionalDisplayLayer) != 0) {
         var conditionalDisplay = other.GetComponentInParent<ConditionalDisplay>();
         conditionalDisplay.Show();
+        
       }
     }
 
     public void HandleStay(Collider2D other) {
+      if ((1 << other.gameObject.layer & interactableLayer) != 0) {
+        currentInteractable = other.GetComponentInParent<Interactable>();
+        currentInteractable.InRange(player.IsGrounded 
+          ? InteractableState.Enabled : InteractableState.DisabledVisible);
+      }
+      
+      if ((1 << other.gameObject.layer & objectiveInteractableLayer) != 0) {
+        currentObjectiveInteractable = other.GetComponentInParent<ObjectiveInteractable>();
+        if(currentObjectiveInteractable.HasInteraction()){
+          currentObjectiveInteractable.InRange(player.IsGrounded 
+            ? InteractableState.Enabled : InteractableState.DisabledVisible);
+        }
+        else{
+          currentObjectiveInteractable.ExitRange();
+        }
+      }
+
       if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
         currentZone = other.GetComponentInChildren<AttentionZone>();
         currentZone.StayAttention(gameObject);
+        
       }
       
       if ((1 << other.gameObject.layer & lineOfSightLayer) != 0) {
         currentLineOfSight = other.GetComponentInChildren<LineOfSight>();
         currentLineOfSight.EnterAttention();
+        
       }
       
       if ((1 << other.gameObject.layer & lightLayer) != 0) {
         playerLitManager.IsLit = true;
+        
       }
       
       if ((1 << other.gameObject.layer & eventSequenceLayer) != 0) {
         var eventSequence = other.GetComponentInParent<EventSequence>();
         StartCoroutine(eventSequence.ExecuteSequence());
+        
       }
       
       if ((1 << other.gameObject.layer & conditionalDisplayLayer) != 0) {
         var conditionalDisplay = other.GetComponentInParent<ConditionalDisplay>();
         conditionalDisplay.UpdateCondition();
+        
       }
     }
 
@@ -130,34 +169,41 @@ namespace Outclaw.Heist {
         //Assumes you can only intersect one interactable at a time.
         other.GetComponentInParent<Interactable>().ExitRange();
         currentInteractable = null;
+        
       }
       
       if ((1 << other.gameObject.layer & objectiveInteractableLayer) != 0) {
         //Assumes you can only intersect one interactable at a time.
         other.GetComponentInParent<ObjectiveInteractable>().ExitRange();
         currentObjectiveInteractable = null;
+        
       }
 
       if ((1 << other.gameObject.layer & vantageLayer) != 0) {
         vantagePointManager.ResetVantage();
+        
       }
       
       if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
         currentZone = null;
+        
       }
       
       if ((1 << other.gameObject.layer & lightLayer) != 0) {
         playerLitManager.IsLit = false;
+        
       }
 
       if ((1 << other.gameObject.layer & guardAttentionLayer) != 0) {
         currentZone = other.GetComponentInChildren<AttentionZone>();
         currentZone.ExitAttention(gameObject);
+        
       }
       
       if ((1 << other.gameObject.layer & conditionalDisplayLayer) != 0) {
         var conditionalDisplay = other.GetComponentInParent<ConditionalDisplay>();
         conditionalDisplay.Hide();
+        
       }
     }
   }

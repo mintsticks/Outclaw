@@ -39,8 +39,15 @@ namespace Outclaw.Heist {
     }
     #endif
 
-    public void InRange() {
-      exitIndicator.FadeIn();
+    public void InRange(InteractableState state) {
+      switch(state){
+        case InteractableState.DisabledVisible:
+          exitIndicator.FadeToDisabled();
+          break;
+        case InteractableState.Enabled:
+          exitIndicator.FadeIn();
+          break;
+      }
     }
 
     public void ExitRange() {

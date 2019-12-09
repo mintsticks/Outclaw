@@ -38,18 +38,20 @@ namespace Outclaw {
     }
 
     private void UpdateCurrentInteractable(Collider2D other) {
-      if (!player.IsGrounded && currentInteractable != null) {
-        other.GetComponentInParent<ObjectiveInteractable>().ExitRange();
+      ObjectiveInteractable interactable = other.GetComponentInParent<ObjectiveInteractable>();
+      if(!interactable.HasInteraction()){
+        interactable.ExitRange();
         currentInteractable = null;
         return;
       }
 
-      if (currentInteractable != null || !player.IsGrounded) {
+      currentInteractable = interactable;
+      if (currentInteractable != null && !player.IsGrounded) {
+        currentInteractable.InRange(InteractableState.DisabledVisible);
         return;
       }
       
-      currentInteractable = other.GetComponentInParent<ObjectiveInteractable>();
-      currentInteractable.InRange();
+      currentInteractable.InRange(InteractableState.Enabled);
     }
     
     public void HandleEnter(Collider2D other) {

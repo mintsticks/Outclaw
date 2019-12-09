@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ed5d15295349a9b98aa1616a044801, type: 3}
+  m_Name: InteractKeyPrompt
+  m_EditorClassIdentifier: 
+  platformData:
+  - platform: 1
+    prefab: {fileID: 3336733750628361766, guid: c56d3711736c89d4db8862a63d0a6a0b,
+      type: 3}
+  - platform: 2
+    prefab: {fileID: 2076605472753708800, guid: ad1020cba7fe2c440b3d993e9234b1cf,
+      type: 3}
