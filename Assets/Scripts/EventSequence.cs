@@ -24,6 +24,11 @@ namespace Outclaw {
       }
 
       executed = true;
+      player.InputDisabled = true;
+      while (!player.Velocity.IsZero()) {
+        yield return null;
+      }
+      
       foreach (var eventInfo in events) {
         player.InputDisabled = true;
         yield return HandleEvent(eventInfo);
