@@ -2,12 +2,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Outclaw.City;
 using Zenject;
 
 namespace Outclaw {
   public interface ISceneTransitionManager {
     void TransitionToScene(LocationData location);
-    void TransitionToScene(string scene);
     bool IsSwitching { get; }
   }
   
@@ -24,6 +24,9 @@ namespace Outclaw {
     [Inject] 
     private ISpawnManager spawnManager;
     
+    [Inject]
+    private ILocationManager locationManager;
+    
     private bool isSwitching;
     private AsyncOperation loadingOp;
 
@@ -31,9 +34,10 @@ namespace Outclaw {
 
     public void TransitionToScene(LocationData location){
       TransitionToScene(location.SceneName);
+      locationManager.CurrentLocation = location;
     }
 
-    public void TransitionToScene(string scene) {
+    private void TransitionToScene(string scene) {
       if (isSwitching) {
         return;
       }

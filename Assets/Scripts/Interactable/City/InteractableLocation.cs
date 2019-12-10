@@ -13,7 +13,7 @@ namespace Outclaw.City {
     public SerializedDialogue locationDialogue;
   }
 
-  public class InteractableLocation : MonoBehaviour, ObjectiveInteractable, IHaveTask {
+  public class InteractableLocation : MonoBehaviour, ObjectiveInteractable {
     [SerializeField] private Indicator enterIndicator;
     [SerializeField] private LocationData destinationLocation;
     [SerializeField] private BoxCollider2D bound;
@@ -34,22 +34,16 @@ namespace Outclaw.City {
     [SerializeField] private Transform locationPosition;
     [SerializeField] private ParticleSystem particleSystem;
 
-    [Header("Objective Tracking")]
-    [SerializeField] private Task task;
-
     [Inject] private IPlayer player;
     [Inject] private IDialogueManager dialogueManager;
     [Inject] private ISoundManager soundManager;
     [Inject] private ISceneTransitionManager sceneTransitionManager;
     [Inject] private IGameStateManager gameStateManager;
-    [Inject] private IObjectiveManager objectiveManager;
-    [Inject] private IObjectiveTransformManager objectiveTransformManager;
     [Inject] private ISenseVisuals senseVisuals;
 
     private bool runningDialogue;
 
     public Transform LocationPosition => locationPosition != null ? locationPosition : transform;
-    public Task ContainedTask => task;
     public Transform Location => transform;
     public LocationData Destination => destinationLocation;
     public Transform ObjectiveTransform => transform;
@@ -68,7 +62,6 @@ namespace Outclaw.City {
     
 
     public void Awake() {
-      objectiveTransformManager.RegisterTask(this);
       senseVisuals.RegisterSenseElement(this);
     }
 
@@ -154,7 +147,6 @@ namespace Outclaw.City {
       if (enterClip != null) {
         soundManager.PlaySFX(enterClip);
       }
-      objectiveManager.CompleteTask(task);
       sceneTransitionManager.TransitionToScene(destinationLocation);
     }
 

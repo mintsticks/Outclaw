@@ -10,7 +10,7 @@ namespace Outclaw{
     [System.NonSerialized] private bool completed;
     [SerializeField] private LocationData location;
 
-    private LocationData Location => location;
+    public LocationData Location => location;
 
     public void Complete(){
       completed = true;

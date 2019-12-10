@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecacbb303ea2e214cab5f65b18300fe6, type: 3}
-  m_Name: Enter Park
+  m_Script: {fileID: 11500000, guid: d160792d672465d45b8b17afe1645cc3, type: 3}
+  m_Name: Intro
   m_EditorClassIdentifier: 
+  sceneName: Intro
+  exits:
+  - {fileID: 11400000, guid: e6278aee2b056024282e3684abeebeaf, type: 2}
