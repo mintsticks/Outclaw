@@ -14,6 +14,9 @@ public class StartListener : MonoBehaviour {
   [SerializeField] 
   private Text startText;
 
+  [SerializeField]
+  private LocationData introLocation;
+
   [Inject]
   private IPlayerInput playerInput;
 
@@ -38,6 +41,6 @@ public class StartListener : MonoBehaviour {
   }
   
   private void LoadIntro() {
-    sceneTransitionManager.TransitionToScene("Intro");
+    sceneTransitionManager.TransitionToScene(introLocation);
   }
 }

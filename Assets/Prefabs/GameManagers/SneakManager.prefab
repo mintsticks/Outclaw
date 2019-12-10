@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 338, y: -167}
-  m_SizeDelta: {x: 60, y: 60}
+  m_SizeDelta: {x: 54, y: 54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1836893217
 CanvasRenderer:
@@ -65,9 +65,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 90e9e1b7f0f28924ba8098c3c37b22e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f1fa6621ae072d49be862dc98de9d78, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -404,6 +404,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  delayFadeIn: 0.5
 --- !u!114 &5739042312342279495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,5 +463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sneakVisual: {fileID: 2600131273708781487}
   maxSneakSeconds: 4
+  notMovingFactor: 0.5
   sneakCooldownFactor: 0.8
   warningPercent: 0.8

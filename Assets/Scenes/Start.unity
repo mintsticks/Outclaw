@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSound: {fileID: 8300000, guid: c880c60c46ac0dd4381e6e4fec420ca0, type: 3}
   startText: {fileID: 750765852}
+  introLocation: {fileID: 11400000, guid: a90b096f13380c44397fee5bfc94d9ea, type: 2}
 --- !u!4 &81343049
 Transform:
   m_ObjectHideFlags: 0
@@ -518,7 +519,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 842bb4f703be7aa449c3e8659c8ffc2d, type: 3}
-    m_FontSize: 16
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -892,6 +893,7 @@ GameObject:
   - component: {fileID: 4213887484835089591}
   - component: {fileID: 4213887484835089588}
   - component: {fileID: 4213887484835089579}
+  - component: {fileID: 4213887484835089580}
   m_Layer: 0
   m_Name: StartContext
   m_TagString: Untagged
@@ -913,6 +915,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 8300000, guid: 07bdf05f0c519c8478d36537514ce590, type: 3}
   ambientSound: {fileID: 0}
+--- !u!114 &4213887484835089580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213887484835089578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdb028330f378145a9cf1177fc35d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: {fileID: 11400000, guid: 40acf4b9283cfc0498b315ab9ce06279, type: 2}
 --- !u!114 &4213887484835089588
 MonoBehaviour:
   m_ObjectHideFlags: 0
