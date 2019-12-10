@@ -156,7 +156,7 @@ namespace Outclaw.City {
     }
 
     [YarnCommand("toScene")]
-    public void ToScene(string dest) {
+    public void ToScene(LocationData dest) {
       sceneTransitionManager.TransitionToScene(dest);
     }
 

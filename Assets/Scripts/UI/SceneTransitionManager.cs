@@ -8,7 +8,6 @@ using Zenject;
 namespace Outclaw {
   public interface ISceneTransitionManager {
     void TransitionToScene(LocationData location);
-    void TransitionToScene(string scene);
     bool IsSwitching { get; }
   }
   
@@ -38,7 +37,7 @@ namespace Outclaw {
       locationManager.CurrentLocation = location;
     }
 
-    public void TransitionToScene(string scene) {
+    private void TransitionToScene(string scene) {
       if (isSwitching) {
         return;
       }

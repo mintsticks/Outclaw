@@ -8,17 +8,14 @@ namespace Outclaw{
   public class SceneSwitcher : MonoBehaviour
   {
     [Inject] private ISceneTransitionManager transition;
-
-    public void SwitchToScene(string scene){
-      transition.TransitionToScene(scene);
-    }
+    [Inject] private City.ILocationManager locationManager;
 
     public void SwitchToLocation(LocationData location){
       transition.TransitionToScene(location);
     }
 
     public void ReloadCurrent(){
-      transition.TransitionToScene(SceneManager.GetActiveScene().name);
+      transition.TransitionToScene(locationManager.CurrentLocation);
     }
   }
 }

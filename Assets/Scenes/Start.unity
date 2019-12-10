@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSound: {fileID: 8300000, guid: c880c60c46ac0dd4381e6e4fec420ca0, type: 3}
   startText: {fileID: 750765852}
+  introLocation: {fileID: 11400000, guid: a90b096f13380c44397fee5bfc94d9ea, type: 2}
 --- !u!4 &81343049
 Transform:
   m_ObjectHideFlags: 0
@@ -518,7 +519,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 842bb4f703be7aa449c3e8659c8ffc2d, type: 3}
-    m_FontSize: 16
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
