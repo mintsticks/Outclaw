@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 636999322695655643}
   - component: {fileID: 311233622411069240}
   - component: {fileID: 6246249019535767102}
+  - component: {fileID: 6745760090527354304}
   m_Layer: 0
   m_Name: Heist Scene Context
   m_TagString: Untagged
@@ -71,6 +72,19 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
+--- !u!114 &6745760090527354304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208133736813907206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdb028330f378145a9cf1177fc35d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: {fileID: 0}
 --- !u!1001 &578904329608597072
 PrefabInstance:
   m_ObjectHideFlags: 0

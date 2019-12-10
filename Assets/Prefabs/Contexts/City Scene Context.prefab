@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1592506306157068992}
   - component: {fileID: 1592506306157068995}
   - component: {fileID: 1592506306157068994}
+  - component: {fileID: 6465538121796161047}
   m_Layer: 0
   m_Name: City Scene Context
   m_TagString: Untagged
@@ -71,6 +72,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 8300000, guid: 5ff2b3d7e9254824ca7da4e3bdbee508, type: 3}
   ambientSound: {fileID: 8300000, guid: cb0ce982ca0798b458108b11873ca8ab, type: 3}
+--- !u!114 &6465538121796161047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592506306157069021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdb028330f378145a9cf1177fc35d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: {fileID: 0}
 --- !u!1001 &552450303406211295
 PrefabInstance:
   m_ObjectHideFlags: 0
