@@ -860,11 +860,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f46db26c905d65a41b8a7470aca9660f,
         type: 2}
-    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -873,6 +868,11 @@ PrefabInstance:
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1483,13 +1483,12 @@ PrefabInstance:
         type: 3}
       propertyPath: task
       value: 
-      objectReference: {fileID: 11400000, guid: 70a857bfefbbf424f9a19cd7c5eda5b3,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7536273395673685281, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: entryDialogue.Array.data[0].gameStateData
       value: 
-      objectReference: {fileID: 11400000, guid: 4063f4ecfcf5331409b28af70c0a1898,
+      objectReference: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b,
         type: 2}
     - target: {fileID: 7536273395673685281, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
@@ -1501,11 +1500,6 @@ PrefabInstance:
       propertyPath: defaultBlockingDialogue.Array.data[0].dialogue.Array.data[0]
       value: 
       objectReference: {fileID: 4900000, guid: aeef4ef4386d108448c903dd06cadc25, type: 3}
-    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -1514,6 +1508,11 @@ PrefabInstance:
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2076,11 +2075,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3f530a1a7fecefa42a1ea22d1f9a1c7a,
         type: 2}
-    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -2089,6 +2083,11 @@ PrefabInstance:
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3654,8 +3653,7 @@ PrefabInstance:
         type: 3}
       propertyPath: task
       value: 
-      objectReference: {fileID: 11400000, guid: 3026f389beb924c46aca22d166af7b0c,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7536273395673685281, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: locationDialoguesForState.Array.data[3].isBlocking
@@ -3692,7 +3690,7 @@ PrefabInstance:
         type: 3}
       propertyPath: entryDialogue.Array.data[0].gameStateData
       value: 
-      objectReference: {fileID: 11400000, guid: f28ff84326acf3a4a81179d10b9e0e19,
+      objectReference: {fileID: 11400000, guid: 5d9b8a98b1bddef49b232a0da2a7beb0,
         type: 2}
     - target: {fileID: 7536273395673685281, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
@@ -3704,11 +3702,6 @@ PrefabInstance:
       propertyPath: defaultBlockingDialogue.Array.data[0].dialogue.Array.data[0]
       value: 
       objectReference: {fileID: 4900000, guid: f142301e5dfca704a806719536de0227, type: 3}
-    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -3717,6 +3710,11 @@ PrefabInstance:
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3906,16 +3904,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c1f527f935367c54fa0fc2ad2cd6941b,
         type: 2}
-    - target: {fileID: 7536273395650674691, guid: d856b02bd97e8bd4d82383f072c0203b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 7536273395650674691, guid: d856b02bd97e8bd4d82383f072c0203b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.29
-      objectReference: {fileID: 0}
     - target: {fileID: 5322932334395742564, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3926,11 +3914,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.44
       objectReference: {fileID: 0}
-    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -3939,6 +3922,21 @@ PrefabInstance:
     - target: {fileID: 2440554802773061586, guid: d856b02bd97e8bd4d82383f072c0203b,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536273395650674691, guid: d856b02bd97e8bd4d82383f072c0203b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536273395650674691, guid: d856b02bd97e8bd4d82383f072c0203b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440554803216088293, guid: d856b02bd97e8bd4d82383f072c0203b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4035,6 +4033,12 @@ PrefabInstance:
       propertyPath: ambientSound
       value: 
       objectReference: {fileID: 8300000, guid: 70a7bc8827620344f9fb8f0d6aa05d39, type: 3}
+    - target: {fileID: 6465538121796161047, guid: 1286c96fdffbf5346b0e24c8efba10a5,
+        type: 3}
+      propertyPath: location
+      value: 
+      objectReference: {fileID: 11400000, guid: 77cfee38660a1da4db378a400a07b085,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1286c96fdffbf5346b0e24c8efba10a5, type: 3}
 --- !u!4 &2098500202 stripped
@@ -5640,6 +5644,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
         type: 3}
+      propertyPath: layers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
+        type: 3}
       propertyPath: people.Array.data[0]
       value: 
       objectReference: {fileID: 540461925072819730, guid: acef629967514a446859fc6326efee20,
@@ -5669,6 +5678,11 @@ PrefabInstance:
         type: 3}
       propertyPath: boundBeyondCamera
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2638969102581303991, guid: 4909a532d4360dc4fa5765e1ecc657d0,
         type: 3}

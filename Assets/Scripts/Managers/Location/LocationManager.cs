@@ -7,11 +7,17 @@ using Zenject;
 
 namespace Outclaw.City {
   public interface ILocationManager {
+    LocationData CurrentLocation { get; set; }
     void IncreaseProgress(ObjectDialogueData data);
   }
 
   public class LocationManager : IInitializable, ILocationManager {
     private LocationData currentLocation;
+
+    public LocationData CurrentLocation {
+      get => currentLocation;
+      set => currentLocation = value;
+    }
 
     private HashSet<ObjectDialogueData> activeData = new HashSet<ObjectDialogueData>();
 

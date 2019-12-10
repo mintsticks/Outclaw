@@ -13,6 +13,7 @@ namespace Outclaw {
     string PreviousScene { get; set; }
     Vector3? GetSpawnPoint();
     Vector3? GetCheckpoint();
+    Vector3? GetExit(LocationData location);
 
     string LastCheckpoint { get; set; }
     List<Checkpoint> Checkpoints { get; }
@@ -59,6 +60,20 @@ namespace Outclaw {
         return null;
       }
       return entryPoint.PointPosition;
+    }
+
+    public Vector3? GetExit(LocationData location) {
+      List<SpawnPoint> spawnList;
+      spawnList = GameObject.FindObjectOfType<SpawnList>()?.SpawnPoints;
+      if(spawnList == null){
+        return null;
+      }
+
+      var exit = spawnList.FirstOrDefault(point => point.EntryLocation.Equals(location));
+      if (exit == null) {
+        return null;
+      }
+      return exit.PointPosition;
     }
 
     public Vector3? GetCheckpoint() {

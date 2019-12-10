@@ -44,6 +44,12 @@ namespace Outclaw {
     [Inject] 
     private IObjectiveTransformManager objectiveTransformManager;
 
+    [Inject] 
+    private ILocationManager locationManager;
+
+    [Inject] 
+    private ISpawnManager spawnManager;
+
     [Inject]
     private ISenseManager senseManager;
 
@@ -104,7 +110,7 @@ namespace Outclaw {
       if (objectivePosition == null) {
         return;
       }
-      
+
       UpdateColor();
       var playerOrigin = player.PlayerTransform.position;
       var playerDest = (Vector3) objectivePosition;
@@ -217,8 +223,20 @@ namespace Outclaw {
     }
 
 
-    private Vector3? GetTaskPosition(Task task){
-      return objectiveTransformManager.GetTransformOfTask(task)?.position;
+    private Vector3? GetTaskPosition(Task task) {
+      Vector3? objectivePosition = null;
+      if (!task.Location.Equals(locationManager.CurrentLocation))
+      {
+        LocationData nextScene = locationManager.CurrentLocation.NextLocationTo(task.Location);
+        if (nextScene == null) {
+          Debug.LogWarning("Could not find location path");
+          return null;
+        }
+        objectivePosition = spawnManager.GetExit(nextScene);
+      } else {
+        objectivePosition = objectiveTransformManager.GetTransformOfTask(task)?.position;
+      }
+      return objectivePosition;
     }
   }
 }
