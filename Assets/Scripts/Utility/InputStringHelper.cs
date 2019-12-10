@@ -36,9 +36,9 @@ namespace Utility {
     private static string GetXboxInputString(InputType type) {
       switch (type) {
         case InputType.INTERACT:
-          return "X";
-        case InputType.SENSE:
           return "B";
+        case InputType.SENSE:
+          return "Y";
         case InputType.JUMP:
           return "A";
         case InputType.DESCEND:

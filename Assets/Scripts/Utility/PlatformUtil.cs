@@ -1,7 +1,7 @@
 ﻿namespace Utility {
   public static class PlatformUtil {
     public static Platform GetPlatform() {
-#if UNITY_XBOXONE
+#if UNITY_WSA
       return Platform.XBOX_ONE;
 #else
       //DEFAULT PLATFORM IS PC
