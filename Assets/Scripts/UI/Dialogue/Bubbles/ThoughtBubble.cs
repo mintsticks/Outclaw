@@ -58,6 +58,8 @@ namespace Outclaw.City {
     private Action<int> onSelect;
     private bool initialized;
 
+    private IEnumerator detectSkip;
+
     [Inject]
     public void Initialize(Data data) {
       invalidBounds = data.InvalidBounds ?? new List<Bounds>();
@@ -109,6 +111,7 @@ namespace Outclaw.City {
       if (!initialized) {
         SetOption(0);
         initialized = true;
+        return;
       }
       
       if (playerInput.IsLeftDown()) {
@@ -119,7 +122,7 @@ namespace Outclaw.City {
         SelectRight();
       }
 
-      if (playerInput.IsInteractDown()) {
+      if (!bubbleTextHelper.IsRunningText && playerInput.IsInteractDown()) {
         Select();
       }
     }
@@ -156,7 +159,7 @@ namespace Outclaw.City {
     }
 
     private void UpdateText(string text) {
-      animationWrapper.StartNewAnimation(bubbleTextHelper.ShowText(text));
+      animationWrapper.StartNewAnimation(RunText(text), StopDetectSkip);
     }
     
     private void UpdateArrows(int index) {
@@ -167,6 +170,17 @@ namespace Outclaw.City {
     public IEnumerator FadeBubble() {
       yield return bubbleAnimationHelper.FadeBubble();
       Destroy(gameObject);
+    }
+    
+    private void StopDetectSkip(){
+      StopCoroutine(detectSkip);
+    }
+
+    private IEnumerator RunText(string text){
+      detectSkip = bubbleTextHelper.DetectSkip();
+      StartCoroutine(detectSkip);
+      yield return bubbleTextHelper.ShowText(text);
+      StopDetectSkip();
     }
   }
 }

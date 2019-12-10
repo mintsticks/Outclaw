@@ -34,7 +34,7 @@ namespace Outclaw {
     }
 
     private IEnumerator HandleLine(string line) {
-      var detectSkip = DetectSkip();
+      var detectSkip = bubbleTextHelper.DetectSkip();
       StartCoroutine(detectSkip);
       yield return bubbleTextHelper.ShowText(line);
       StopCoroutine(detectSkip);
@@ -43,18 +43,6 @@ namespace Outclaw {
         yield return null;
       }
       yield return new WaitForEndOfFrame();
-    }
-    
-    private IEnumerator DetectSkip() {
-      while (true) {
-        if (!playerInput.IsInteractDown()) {
-          yield return null;
-          continue;
-        }
-
-        bubbleTextHelper.SkipText();
-        yield break;
-      }
     }
 
     private bool IsValidDialogueProgression() {

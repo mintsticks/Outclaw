@@ -25,11 +25,16 @@ namespace Outclaw {
     [Header("Audio")]
     [SerializeField] private AudioClip textScrollClip;
     [Inject] private ISoundManager soundManager;
+
+    [Inject] private IPlayerInput playerInput;
     
     private bool skipped;
     private float bottomPadding;
     private StringBuilder currentStringBuilder;
     private RectTransform bubbleImageTransform;
+    private bool isRunningText;
+
+    public bool IsRunningText => isRunningText;
     
     public void Initialize(Canvas canvas, RectTransform bubbleImageTransform, int fontSize, string initialText = "", float bottomPadding = 0f) {
       this.bubbleImageTransform = bubbleImageTransform;
@@ -100,6 +105,7 @@ namespace Outclaw {
     }
 
     public IEnumerator ShowText(string text) {
+      isRunningText = true;
       text = ProcessText(text);
 
       soundManager.PlaySFX(textScrollClip);
@@ -112,6 +118,7 @@ namespace Outclaw {
           skipped = false;
           yield return new WaitForEndOfFrame();
           soundManager.StopSFX();
+          isRunningText = false;
           yield break;
         }
 
@@ -123,6 +130,7 @@ namespace Outclaw {
       }
       StartCoroutine(UpdateCharacterRoutine());
       soundManager.StopSFX();
+      isRunningText = false;
     }
 
     private IEnumerator UpdateCharacterRoutine() {
@@ -157,6 +165,22 @@ namespace Outclaw {
     
     public void SkipText() {
       skipped = true;
+    }
+
+    public IEnumerator DetectSkip() {
+      // wait 1 frame before trying to check for skip because immediately
+      //   when this starts is the same frame as the InteractDown event
+      yield return null;
+      
+      while (true) {
+        if (!playerInput.IsInteractDown()) {
+          yield return null;
+          continue;
+        }
+
+        SkipText();
+        yield break;
+      }
     }
   }
 }

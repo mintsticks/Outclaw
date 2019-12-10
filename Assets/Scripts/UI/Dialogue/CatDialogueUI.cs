@@ -140,6 +140,9 @@ namespace Outclaw {
     }
     
     private IEnumerator DetectSkip(SpeechBubble bubble) {
+      // wait 1 frame before trying to check for skip
+      yield return null;
+      
       while (true) {
         if (!playerInput.IsInteractDown()) {
           yield return null;
