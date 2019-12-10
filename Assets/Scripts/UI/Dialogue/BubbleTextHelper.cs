@@ -147,9 +147,11 @@ namespace Outclaw {
     
     private string UpdateCharacters(string text) {
       var toIncrease = (int) (Time.deltaTime * characterAnimateSpeed);
-      return Regex.Replace(text, "\\d+", m => {
-        var size = Mathf.Min(int.Parse(m.Value) + toIncrease, bubbleText.fontSize);
-        return size.ToString();
+      return Regex.Replace(text, "<size=\\d+>", tag => {
+        return Regex.Replace(tag.Value, "\\d+", m => {
+            var size = Mathf.Min(int.Parse(m.Value) + toIncrease, bubbleText.fontSize);
+            return size.ToString();
+          });
       });
     }
     
