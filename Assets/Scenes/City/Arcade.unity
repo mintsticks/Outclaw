@@ -689,17 +689,22 @@ PrefabInstance:
       propertyPath: playerInstance
       value: 
       objectReference: {fileID: 1678781958}
-    - target: {fileID: 1592506306157068994, guid: 1286c96fdffbf5346b0e24c8efba10a5,
-        type: 3}
-      propertyPath: ambientSound
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6465538121796161047, guid: 1286c96fdffbf5346b0e24c8efba10a5,
         type: 3}
       propertyPath: location
       value: 
       objectReference: {fileID: 11400000, guid: 81ee3898d3306994c963ce8cee40ad61,
         type: 2}
+    - target: {fileID: 1592506306157068994, guid: 1286c96fdffbf5346b0e24c8efba10a5,
+        type: 3}
+      propertyPath: ambientSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592506306157068994, guid: 1286c96fdffbf5346b0e24c8efba10a5,
+        type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 13d786b70ea69ac46afbbe9afa479e28, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1286c96fdffbf5346b0e24c8efba10a5, type: 3}
 --- !u!1 &781850053
