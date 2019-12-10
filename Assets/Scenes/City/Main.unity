@@ -5644,6 +5644,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
         type: 3}
+      propertyPath: layers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
+        type: 3}
       propertyPath: people.Array.data[0]
       value: 
       objectReference: {fileID: 540461925072819730, guid: acef629967514a446859fc6326efee20,
@@ -5673,6 +5678,11 @@ PrefabInstance:
         type: 3}
       propertyPath: boundBeyondCamera
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 509090232473847238, guid: 4909a532d4360dc4fa5765e1ecc657d0,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2638969102581303991, guid: 4909a532d4360dc4fa5765e1ecc657d0,
         type: 3}
