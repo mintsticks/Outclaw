@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &335338032
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -935,8 +935,8 @@ MonoBehaviour:
   characterAnimateSpeed: 500
   isUpperCase: 1
   startFontSize: 1
-  horizontalPadding: 20
-  verticalPadding: 15
+  horizontalPadding: 0
+  verticalPadding: 0
   defaultWidth: 600
   bubbleText: {fileID: 1768742364}
   textScrollClip: {fileID: 8300000, guid: 90d1cb4c6254fbc4daba00094e1fe3b0, type: 3}
