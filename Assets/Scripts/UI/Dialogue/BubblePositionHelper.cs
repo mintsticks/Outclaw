@@ -10,89 +10,74 @@ namespace UI.Dialogue {
     [SerializeField] private int numPositions;
     [SerializeField] private float tailDistance;
     [SerializeField] private float headSize;
-    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private BubbleTail bubbleTail;
-
+    [SerializeField] private float defaultAngle = 90;
+    
     private List<Bounds> invalidBounds;
     private Camera camera;
     private Transform parent;
     private Vector3 bubblePos;
     private RectTransform bubbleImage;
     private Canvas canvas;
-    private bool shouldUpdatePosition;
-
-    public void Initialize(Vector3 inputPosition, Transform parent, Camera camera) {
-      shouldUpdatePosition = false;
-      transform.position = inputPosition;
-      this.parent = parent;
-      this.camera = camera;
-      UpdateTail();
-    }
     
-    public void Initialize(
-      List<Bounds> invalidBounds, 
-      Camera camera, 
-      Transform parent, 
-      RectTransform bubbleImage, 
-      Canvas canvas) {
-      shouldUpdatePosition = true;
+    public void Initialize(List<Bounds> invalidBounds, Camera camera, Transform parent, RectTransform bubbleImage, Canvas canvas, Vector3? initialPosition = null) {
       this.invalidBounds = invalidBounds;
       this.camera = camera;
       this.parent = parent;
       this.bubbleImage = bubbleImage;
       this.canvas = canvas;
-      UpdateComponent();
+      InitializePosition(initialPosition);
     }
-
-    private void UpdateComponent() {
-      UpdatePosition();
+    
+    private void InitializePosition(Vector3? inputPosition) {
+      if (inputPosition == null || !BubblePositionValid(inputPosition.Value)) {
+        transform.position = FindValidPosition(defaultAngle);
+        UpdateTail();
+        return;
+      }
+      transform.position = inputPosition.Value;
       UpdateTail();
     }
     
-    public void StopFollowing() {
-      shouldUpdatePosition = false;
-    }
-    
-    private void UpdatePosition() {
-      FindValidPosition(90);
-    }
-
     private void UpdateTail() {
       var position = parent.position;
       var bubblePos = camera.ScreenToWorldPoint(transform.position);
       var dirVector = (bubblePos- position).normalized;
-      Debug.DrawLine(position + headSize * dirVector, bubblePos, Color.white, 10);
       bubbleTail.UpdatePoints(position + headSize * dirVector,  bubblePos);
     }
 
-    private void FindValidPosition(float startAngle) {
+    private bool BubblePositionValid(Vector3 position) {
       var cameraBounds = camera.OrthographicBounds();
       cameraBounds.center = new Vector3(cameraBounds.center.x, cameraBounds.center.y, 0);
-      
+      var bubbleBound = new Bounds(position, canvas.scaleFactor * bubbleImage.sizeDelta).ScreenToWorld(camera).WithZ(0);
+      if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
+        Debug.DrawLine(bubbleBound.min, bubbleBound.max, Color.cyan, 10);
+        return false;
+      }
+
+      if (invalidBounds.Any(bound => bubbleBound.Intersects(bound.WithZ(0)))) {
+        Debug.DrawLine(bubbleBound.min, bubbleBound.max, Color.cyan, 10);
+        return false;
+      }
+
+      Debug.DrawLine(bubbleBound.min, bubbleBound.max, Color.green, 10);
+      return true;
+    }
+    
+    private Vector3 FindValidPosition(float startAngle) {
       for(var i = 0; i <= numPositions; i++) {
         var angle = GetAngleForIndex(i, GlobalConstants.CIRCLE_ANGLE / numPositions, startAngle);
-        var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(angle), angle);
+        var pos = VectorUtil.GetPositionForAngle(parent.position, tailDistance +  GetPaddingForAngle(angle), angle);
         var newPos = camera.WorldToScreenPoint(pos);
-        var bubbleBound = new Bounds(newPos, bubbleImage.sizeDelta).ScreenToWorld(camera).WithZ(0);
-
-        Debug.DrawLine(bubbleBound.min, bubbleBound.max, Color.white, 10);
-        if (!bubbleBound.IsFullyInBounds(cameraBounds)) {
-          Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.magenta, 5);
-          continue;
-        }
-
-        if (invalidBounds.Any(bound => bubbleBound.Intersects(bound.WithZ(0)))) {
-          Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.red, 5);
+        if (!BubblePositionValid(newPos)) {
           continue;
         }
         
-        Debug.DrawLine(pos, pos + new Vector3(1f, .1f, 1), Color.yellow, 5);
-        transform.position = newPos;
-        return;
+        return newPos;
       }
       
-      var defaultPos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + canvas.scaleFactor * GetPaddingForAngle(startAngle), startAngle);
-      transform.position = camera.WorldToScreenPoint(defaultPos);
+      var defaultPos = VectorUtil.GetPositionForAngle(parent.position, tailDistance + GetPaddingForAngle(startAngle), startAngle);
+      return camera.WorldToScreenPoint(defaultPos);
     }
     
 
@@ -103,7 +88,7 @@ namespace UI.Dialogue {
     
     private float GetPaddingForAngle(float angle) {
       var rad = Mathf.Deg2Rad * angle;
-      var bubbleBound = new Bounds(Vector3.zero,  bubbleImage.sizeDelta).ScreenToWorld(camera);
+      var bubbleBound = new Bounds(Vector3.zero,  canvas.scaleFactor * bubbleImage.sizeDelta).ScreenToWorld(camera);
       var bubbleSize = bubbleBound.extents;
 
       var widthDist = float.MaxValue;

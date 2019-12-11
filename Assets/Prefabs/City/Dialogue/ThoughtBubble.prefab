@@ -68,7 +68,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1039237901
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Positions:
   - {x: 12.804, y: -6.465763, z: 0}
@@ -564,11 +564,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3089b42509a4a60bc62be8e81cfe873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numPositions: 36
+  numPositions: 60
   tailDistance: 1.75
   headSize: 0.25
-  canvasGroup: {fileID: 4517577614179133552}
   bubbleTail: {fileID: 8906763140677170721}
+  defaultAngle: 90
 --- !u!114 &1852561084603397732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +588,6 @@ MonoBehaviour:
   horizontalPadding: 30
   verticalPadding: 15
   defaultWidth: 200
-  resizeTime: 0.1
   bubbleText: {fileID: 945417457593863451}
   textScrollClip: {fileID: 8300000, guid: 90d1cb4c6254fbc4daba00094e1fe3b0, type: 3}
 --- !u!114 &8798214784700120370

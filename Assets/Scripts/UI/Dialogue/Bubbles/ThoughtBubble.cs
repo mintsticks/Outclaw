@@ -94,11 +94,7 @@ namespace Outclaw.City {
     }
     
     private void InitializeBubblePosition() {
-      if (initialPosition == null) {
-        bubblePositionHelper.Initialize(invalidBounds, Camera.main, bubbleParent, bubbleImageTransform, canvas);
-        return;
-      }
-      bubblePositionHelper.Initialize(initialPosition.Value, bubbleParent, Camera.main);
+      bubblePositionHelper.Initialize(invalidBounds, Camera.main, bubbleParent, bubbleImageTransform, canvas, initialPosition);
     }
 
     public Transform BubbleTransform => transform;

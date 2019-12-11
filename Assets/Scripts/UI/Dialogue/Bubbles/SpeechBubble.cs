@@ -45,17 +45,12 @@ namespace Outclaw.City {
     }
     
     private void InitializeBubblePosition(Canvas canvas, List<Bounds> invalidBounds) {
-      if (data.InitialPosition == null) {
-        bubblePositionHelper.Initialize(invalidBounds, Camera.main, data.BubbleParent, bubbleImageTransform, canvas);
-        return;
-      }
-      bubblePositionHelper.Initialize(data.InitialPosition.Value, data.BubbleParent, Camera.main);
+      bubblePositionHelper.Initialize(invalidBounds, Camera.main, data.BubbleParent, bubbleImageTransform, canvas, data.InitialPosition);
     }
 
     public Transform BubbleTransform => transform;
     
     public IEnumerator FadeBubble() {
-      bubblePositionHelper.StopFollowing();
       yield return bubbleAnimationHelper.FadeBubble();
       Destroy(gameObject);
     }

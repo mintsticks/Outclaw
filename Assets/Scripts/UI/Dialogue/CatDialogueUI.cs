@@ -100,7 +100,7 @@ namespace Outclaw {
       var text = ReplaceVariables(lineText);
       var bubble = CreateSpeechBubble(parent, bounds, text);
       bubble.BubbleSetup();
-      if (!bubblePositionsForParent.ContainsKey(parent)) {
+      if (!bubblePositionsForParent.ContainsKey(parent) || bubblePositionsForParent[parent] != bubble.transform.position) {
         bubblePositionsForParent[parent] = bubble.transform.position;
       }
 
@@ -121,21 +121,14 @@ namespace Outclaw {
     }
 
     private SpeechBubble CreateSpeechBubble(Transform parent, List<Bounds> bounds, string text) {
-      if (!bubblePositionsForParent.ContainsKey(parent)) {
-        return speechBubbleFactory.Create(new SpeechBubble.Data {
-          BubbleText = text,
-          BubbleParent = parent,
-          UIParent = transform,
-          InvalidBounds = bounds,
-          UI = this
-        });
-      }
+      var initialPosition = bubblePositionsForParent.ContainsKey(parent) ? bubblePositionsForParent[parent] : null;
       return speechBubbleFactory.Create(new SpeechBubble.Data {
-        InitialPosition = bubblePositionsForParent[parent],
         BubbleText = text,
-        UIParent = transform,
         BubbleParent = parent,
-        UI = this
+        UIParent = transform,
+        InvalidBounds = bounds,
+        UI = this,
+        InitialPosition = initialPosition
       });
     }
     
@@ -159,14 +152,18 @@ namespace Outclaw {
     }
 
     public override IEnumerator RunOptions(Options optionsCollection, OptionChooser optionChooser) {
+      var parent = player.HeadTransform;
       var bounds = new List<Bounds>();
       if (currentInteractable != null) {
         bounds.Add(currentInteractable.ObjectiveBounds);
       }
 
       SetSelectedOption = optionChooser;
-      var bubble = CreateThoughtBubble(optionsCollection, player.HeadTransform, bounds);
+      var bubble = CreateThoughtBubble(optionsCollection, parent, bounds);
       bubble.SetupBubble();
+      if (!bubblePositionsForParent.ContainsKey(parent) || bubblePositionsForParent[parent] != bubble.transform.position) {
+        bubblePositionsForParent[parent] = bubble.transform.position;
+      }
       bubbles.Add(bubble);
 
       while (SetSelectedOption != null) {
@@ -182,25 +179,16 @@ namespace Outclaw {
 
     private ThoughtBubble CreateThoughtBubble(Options options, Transform parent, List<Bounds> bounds) {
       var optionList = ParseOptions(options);
-      if (!bubblePositionsForParent.ContainsKey(parent)) {
-        return thoughtBubbleFactory.Create(new ThoughtBubble.Data {
-          Options = optionList,
-          OnSelect = SetOption,
-          BubbleText = LongestOption(optionList),
-          BubbleParent = player.HeadTransform,
-          UIParent = transform,
-          InvalidBounds = bounds,
-          UI = this
-        });
-      }
+      var initialPosition = bubblePositionsForParent.ContainsKey(parent) ? bubblePositionsForParent[parent] : null;
       return thoughtBubbleFactory.Create(new ThoughtBubble.Data {
         Options = optionList,
         OnSelect = SetOption,
-        UIParent = transform,
         BubbleText = LongestOption(optionList),
-        InitialPosition = bubblePositionsForParent[parent],
-        BubbleParent = parent,
-        UI = this
+        BubbleParent = player.HeadTransform,
+        UIParent = transform,
+        InvalidBounds = bounds,
+        UI = this,
+        InitialPosition = initialPosition
       });
     }
 

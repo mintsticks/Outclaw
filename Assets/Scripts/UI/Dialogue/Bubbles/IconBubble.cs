@@ -35,7 +35,6 @@ namespace Outclaw.City {
     }
 
     public IEnumerator FadeBubble() {
-      bubblePositionHelper.StopFollowing();
       yield return bubbleAnimationHelper.FadeBubble();
       Destroy(gameObject);
     }

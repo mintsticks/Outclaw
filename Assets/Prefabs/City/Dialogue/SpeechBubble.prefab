@@ -176,11 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3089b42509a4a60bc62be8e81cfe873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numPositions: 36
+  numPositions: 60
   tailDistance: 1.5
   headSize: 0.25
-  canvasGroup: {fileID: 7292803557507377925}
   bubbleTail: {fileID: 2314774578742900052}
+  defaultAngle: 90
 --- !u!114 &4769602999149835537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +200,6 @@ MonoBehaviour:
   horizontalPadding: 20
   verticalPadding: 15
   defaultWidth: 200
-  resizeTime: 0.1
   bubbleText: {fileID: 6240400284197850734}
   textScrollClip: {fileID: 8300000, guid: 90d1cb4c6254fbc4daba00094e1fe3b0, type: 3}
 --- !u!114 &2422126734790508103
