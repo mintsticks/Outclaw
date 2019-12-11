@@ -15,8 +15,6 @@ namespace City {
   }
   
   public class ObjectiveManager : MonoBehaviour, IObjectiveManager{
-    [SerializeField]
-    private List<GameState> objectiveInfos;
 
     [Inject]
     private IGameStateManager gameStateManager;
@@ -24,10 +22,11 @@ namespace City {
     private Task currentTask;
     private HashSet<Task> completeTasks = new HashSet<Task>();
 
-    public Task CurrentTask { get => currentTask; }
+    public Task CurrentTask => currentTask;
 
     public void Start(){
       gameStateManager.OnAllReset += Reset;
+      UpdateCurrentTask();
     }
 
     public void CompleteTask(Task task){
@@ -37,8 +36,8 @@ namespace City {
 
       task.Complete();
       completeTasks.Add(task);
-      UpdateCurrentTask();
       UpdateGameState();
+      UpdateCurrentTask();
     }
 
     public void UpdateCurrentTask(){

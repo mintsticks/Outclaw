@@ -61,6 +61,10 @@ namespace Outclaw {
     private Camera main;
     private Quaternion constantIconRotation;
     
+    // caching, done to minimize pathfinding calls from NextLocationTo()
+    private Task lastTaskPointedAt;
+    private Vector3? lastTaskPosition;
+
     private void Awake() {
       main = Camera.main;
       constantIconRotation = iconParent.rotation;
@@ -72,13 +76,12 @@ namespace Outclaw {
       CheckSenseUp();
     }
 
-    private bool HasObjectiveInScene() {
-      objectiveManager.UpdateCurrentTask();
+    private bool HasPointingTarget() {
       return GetTaskPosition(objectiveManager.CurrentTask) != null;
     }
     
     private void CheckSenseDown() {
-      if (!senseManager.IsSenseDown || !HasObjectiveInScene()) {
+      if (!senseManager.IsSenseDown || !HasPointingTarget()) {
         return;
       }
       
@@ -96,7 +99,7 @@ namespace Outclaw {
     }
 
     private void CheckSenseUp() {
-      if (!senseManager.IsSenseUp || !HasObjectiveInScene()) {
+      if (!senseManager.IsSenseUp || !HasPointingTarget()) {
         return;
       }
 
@@ -223,19 +226,51 @@ namespace Outclaw {
     }
 
 
+    private bool IsPointableTask(Task task){
+      if(task == null){
+        Debug.LogWarning("No task to point get position of.");
+        return false;
+      }
+      if(task.Location == null){
+        Debug.LogWarning(task + " does not have a location set.");
+        return false;
+      }
+
+      return true;
+    }
+
+    // if objective pointer lives beyond scenes, also need to check
+    // if last cached value is from current location
+    private bool IsPositionCached(Task task){
+      return task == lastTaskPointedAt;
+    }
+
     private Vector3? GetTaskPosition(Task task) {
+      if(!IsPointableTask(task)){
+        return null;
+      }
+      if(IsPositionCached(task)){
+        return lastTaskPosition;
+      }
+
       Vector3? objectivePosition = null;
-      if (!task.Location.Equals(locationManager.CurrentLocation))
+      LocationData currentLocation = locationManager.CurrentLocation;
+      // task is in another location, find an exit to get closer
+      if (!task.Location.Equals(currentLocation))
       {
-        LocationData nextScene = locationManager.CurrentLocation.NextLocationTo(task.Location);
+        LocationData nextScene = currentLocation.NextLocationTo(task.Location);
         if (nextScene == null) {
-          Debug.LogWarning("Could not find location path");
+          Debug.LogWarning("Could not find location path between " 
+            + currentLocation + " and " + task.Location);
           return null;
         }
         objectivePosition = spawnManager.GetExit(nextScene);
-      } else {
+      } else { // task is in current location, find position in scene
         objectivePosition = objectiveTransformManager.GetTransformOfTask(task)?.position;
       }
+
+      lastTaskPointedAt = task;
+      lastTaskPosition = objectivePosition;
       return objectivePosition;
     }
   }

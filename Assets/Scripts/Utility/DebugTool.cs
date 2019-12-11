@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Zenject;
+using City;
 
 namespace Outclaw {
   public class DebugTool : MonoBehaviour {
@@ -9,9 +10,13 @@ namespace Outclaw {
     [Inject]
     private IGameStateManager gameStateManager;
 
+    [Inject]
+    private IObjectiveManager objectiveManager;
+
     [ContextMenu("SetGameState")]
     private void SetGameState() {
       gameStateManager.SetGameState(debugGameState, true);
+      objectiveManager.UpdateCurrentTask();
     }
 
     [ContextMenu("PrintGameState")]
