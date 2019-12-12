@@ -3,16 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/FoundCode.yarn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/FoundCode.yarn.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/Yakuza Base/lookAtFiles.yarn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/Yakuza Base/lookAtFiles.yarn.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Patrol Guard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Patrol Guard.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Sentry Guard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Heist/Guards/Sentry Guard.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Arcade.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Arcade.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Cafe.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Cafe.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Home 1.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Home 1.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/PauseMenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/PauseMenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SceneTransitionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SceneTransitionManager.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -177,14 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/RepeatedBackgroundElement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AnimatedBackgroundElement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Background/AnimatedBackgroundElement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Background/ParallaxBackgroundElement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Dialogue/CatDialogue/AkioFoundCollar.yarn.txt" />
-        <option value="$PROJECT_DIR$/Assets/Dialogue/CatDialogue/Keiko1.yarn.txt" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/StartListener.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/GlobalConstants.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/VectorUtil.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sneak/SneakManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerCapturedManager.cs" />
@@ -195,7 +179,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/SpriteBundle.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/AttentionZone.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemies/Detection/Capture.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/DialogueManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleAnimationHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableCat.cs" />
@@ -214,20 +197,29 @@
         <option value="$PROJECT_DIR$/Assets/Resources/PlatformInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentCanvasComponent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/Indicator.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/ConditionalDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentComponentContainer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/BlackScreenDialogueUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleTextHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/GumWrapper/GumWrapper.txt" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EventSequence.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/PlatformUtil.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/IconBubble.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/ThoughtBubble.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubblePositionHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/SpeechBubble.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/CatDialogueUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/Yakuza Base/lookAtFiles.yarn.txt" />
         <option value="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/FoundCode.yarn.txt" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/CatDialogueUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/PlatformUtil.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Utility/GlobalConstants.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/ConditionalDisplay.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/City/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/CharacterController2D.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistMovementController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Dialogue/CatDialogue/Keiko1.yarn.txt" />
+        <option value="$PROJECT_DIR$/Assets/Dialogue/ObjectDialogue/Collar.txt" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interactable/City/InteractableLocation.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/SceneTransitionManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/PauseMenuManager.cs" />
       </list>
     </option>
   </component>
@@ -308,7 +300,7 @@
       <workItem from="1574109582744" duration="13547000" />
       <workItem from="1574226483579" duration="14197000" />
       <workItem from="1575348366385" duration="74177000" />
-      <workItem from="1576035917161" duration="8013000" />
+      <workItem from="1576035917161" duration="13837000" />
     </task>
     <servers />
   </component>

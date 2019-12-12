@@ -37,7 +37,7 @@ namespace UI.DismissablePrompts {
     private bool DisplayConditionMet(ConditionInfo condition) {
       switch (condition.conditionType) {
         case ConditionType.GAMESTATE:
-          return gameStateManager.CurrentGameStateData == condition.gameStateData;
+          return CheckGameState(condition.gameStateData);
         case ConditionType.TASK:
           return !condition.task.IsComplete;
         case ConditionType.INPUT_ENABLED:
@@ -46,6 +46,11 @@ namespace UI.DismissablePrompts {
           return dialogueManager.IsDialogueRunning;
       }
       return true;
+    }
+
+    private bool CheckGameState(List<GameStateData> validGameStates) {
+      Debug.Log(gameStateManager.CurrentGameStateData);
+      return validGameStates.Contains(gameStateManager.CurrentGameStateData);
     }
     
     public void Show() {
@@ -109,7 +114,7 @@ namespace UI.DismissablePrompts {
   public class ConditionInfo {
     public ConditionType conditionType;
     public Task task;
-    public GameStateData gameStateData;
+    public List<GameStateData> gameStateData;
   }
   
   public enum ConditionType {

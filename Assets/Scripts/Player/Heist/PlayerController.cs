@@ -103,6 +103,7 @@ namespace Outclaw.Heist {
       }
       transform.position = spawnPoint.Value;
       rb.position = spawnPoint.Value;
+      movementController.ResetVelocity();
     }
   }
 }

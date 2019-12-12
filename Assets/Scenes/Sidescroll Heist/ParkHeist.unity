@@ -1049,10 +1049,12 @@ MonoBehaviour:
   conditions:
   - conditionType: 1
     task: {fileID: 0}
-    gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    gameStateData:
+    - {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
   - conditionType: 3
     task: {fileID: 0}
-    gameStateData: {fileID: 0}
+    gameStateData:
+    - {fileID: 0}
   fadeTime: 0.2
   platformDependentComponent: {fileID: 135162494}
 --- !u!4 &137051383 stripped
@@ -1622,10 +1624,12 @@ MonoBehaviour:
   conditions:
   - conditionType: 1
     task: {fileID: 0}
-    gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    gameStateData:
+    - {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
   - conditionType: 3
     task: {fileID: 0}
-    gameStateData: {fileID: 0}
+    gameStateData:
+    - {fileID: 0}
   fadeTime: 0.2
   platformDependentComponent: {fileID: 172496806}
 --- !u!1001 &175059170
@@ -2969,10 +2973,12 @@ MonoBehaviour:
   conditions:
   - conditionType: 1
     task: {fileID: 0}
-    gameStateData: {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
+    gameStateData:
+    - {fileID: 11400000, guid: 04929c1b1a135b7448bd9c5b28f8ca0b, type: 2}
   - conditionType: 3
     task: {fileID: 0}
-    gameStateData: {fileID: 0}
+    gameStateData:
+    - {fileID: 0}
   fadeTime: 0.2
   platformDependentComponent: {fileID: 321526529}
 --- !u!1 &336073080
@@ -3755,7 +3761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &511216402
 Transform:
   m_ObjectHideFlags: 0
