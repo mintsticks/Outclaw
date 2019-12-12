@@ -105,7 +105,7 @@ namespace Outclaw {
       }
 
       bubbles.Add(bubble);
-      var detectSkip = DetectSkip(bubble);
+      var detectSkip = bubble.DetectSkip();
       StartCoroutine(detectSkip);
       yield return bubble.ShowText(text);
       StopCoroutine(detectSkip);
@@ -130,21 +130,6 @@ namespace Outclaw {
         UI = this,
         InitialPosition = initialPosition
       });
-    }
-    
-    private IEnumerator DetectSkip(SpeechBubble bubble) {
-      // wait 1 frame before trying to check for skip
-      yield return null;
-      
-      while (true) {
-        if (!playerInput.IsInteractDown()) {
-          yield return null;
-          continue;
-        }
-
-        bubble.SkipText();
-        yield break;
-      }
     }
 
     private bool IsValidDialogueProgression() {
