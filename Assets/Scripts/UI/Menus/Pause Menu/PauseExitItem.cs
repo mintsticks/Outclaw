@@ -5,7 +5,7 @@ using Outclaw.UI;
 namespace Outclaw {
   public class PauseExitItem : AbstractMouseMenuItem {
 
-    [SerializeField] private LocationData startLocation;
+    [SerializeField] private RestartGame restart;
 
     [Inject]
     private ISceneTransitionManager sceneTransitionManager;
@@ -18,10 +18,7 @@ namespace Outclaw {
     
     public override void Select() {
       pauseMenuManager.Unpause();
-      sceneTransitionManager.TransitionToScene(startLocation);
-
-      // TODO: replace with actual restart
-      gameStateManager.SetGameState(gameStateManager.StateList[0], true);
+      restart.Restart();
     }
   }
 }

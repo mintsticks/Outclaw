@@ -19,7 +19,7 @@ namespace Outclaw{
     public void Restart(){
 
       sceneTransitionManager.TransitionToScene(startScene);
-      gameStateManager.SetGameState(gameStateManager.StateList[0], true);
+      gameStateManager.SetGameState(gameStateManager.StateList[0]);
     }
   }
 }

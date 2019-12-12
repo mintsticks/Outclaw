@@ -774,6 +774,7 @@ GameObject:
   - component: {fileID: 6141920488250786702}
   - component: {fileID: 9136921645557236682}
   - component: {fileID: 5739524558849422564}
+  - component: {fileID: 7423597707629338467}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -855,7 +856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemText: {fileID: 5739524558849422564}
-  startLocation: {fileID: 11400000, guid: 40acf4b9283cfc0498b315ab9ce06279, type: 2}
+  restart: {fileID: 7423597707629338467}
 --- !u!114 &5739524558849422564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,6 +874,19 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   hoverSize: 34
   defaultSize: 28
+--- !u!114 &7423597707629338467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5849319106339591733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab190bdfb056b347bfddb5ed4493dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startScene: {fileID: 11400000, guid: 40acf4b9283cfc0498b315ab9ce06279, type: 2}
 --- !u!1 &5875738696299420217
 GameObject:
   m_ObjectHideFlags: 0
