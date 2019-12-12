@@ -56,6 +56,7 @@ namespace Outclaw {
     private bool isJumping;
     private bool isDescending;
     private Collider2D descendingColliderToIgnore;
+    private bool shouldReset;
     
     private Vector3 deltaMovement;
     private Vector3 velocity;
@@ -70,19 +71,23 @@ namespace Outclaw {
       float dist = skinWidth + (landingTime * Mathf.Abs(velocity.y)) 
         + (.5f * gravity * landingTime * landingTime);
 
-      Vector3 origin = raycastOrigins.bottomLeft;
+      var origin = raycastOrigins.bottomLeft;
       for (var i = 0; i < totalVerticalRays; i++) {
         Vector3 rayOrigin = new Vector2(origin.x + i * horizontalDistanceBetweenRays, origin.y);
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector3.down, dist, 
+        var hit = Physics2D.Raycast(rayOrigin, Vector3.down, dist, 
           platformMask | (isDescending ? 0 : (int)oneWayPlatformMask));
 
         Debug.DrawRay(rayOrigin, Vector3.down * dist, Color.black);
 
-        float diff = hit.distance - skinWidth;
+        var diff = hit.distance - skinWidth;
         if(hit.collider != null && (diff > -epsilon))
           return true;
       }
       return false;
+    }
+
+    public void ResetVelocity() {
+      shouldReset = true;
     }
     
     private void Awake() {
@@ -139,6 +144,12 @@ namespace Outclaw {
       if (isGoingUpSlope) {
         velocity.y = 0;
       }
+
+      if (!shouldReset) {
+        return;
+      }
+      velocity = Vector2.zero;
+      shouldReset = false;
     }
 
     private void UpdateHorizontal() {

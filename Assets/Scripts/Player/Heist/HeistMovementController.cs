@@ -66,6 +66,10 @@ namespace Outclaw.Heist {
       velocity = controller.Velocity;
       inputVelocity = controller.Velocity;
     }
+
+    public void ResetVelocity() {
+      controller.ResetVelocity();
+    }
     
     private void UpdateHorizontal() {
       var moveDir = MoveDirection();
