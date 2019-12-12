@@ -82,7 +82,7 @@ namespace Outclaw.City {
       indicators = new List<OptionIndicator>();
       for (var i = 0; i < options.Count; i++) {
         var indicator = optionIndicatorFactory.Create();
-        indicator.transform.SetParent(indicatorGrid);
+        indicator.transform.SetParent(indicatorGrid, false);
         indicators.Add(indicator);
       }
     }

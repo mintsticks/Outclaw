@@ -49,7 +49,18 @@ namespace Outclaw.Heist {
       }
     }
 
+    private void RemoveColinear(List<Vector3> meshVerts){
+      // check current and previous 2 for colinear, remove middle point
+      for(int i = meshVerts.Count - 1; i > 2; --i){
+        if(IsColinear(meshVerts[i], meshVerts[i - 1], meshVerts[i - 2])){
+          meshVerts.RemoveAt(i - 1);
+        }
+      }
+    }
+
     private void CreateMesh(List<Vector3> meshVerts) {
+      RemoveColinear(meshVerts);
+
       Mesh m = filter.mesh;
       m.Clear();
       m.vertices = meshVerts.ToArray();
@@ -205,6 +216,8 @@ namespace Outclaw.Heist {
       meshBoarder.Add(hitPt);
       target = target ?? (FoundTarget(objHit) ? objHit : null);
       bool prevCastMissed = objHit == null;
+
+      Vector3 preHit, mainHit, postHit;
 
       // test point directly and some offset around the point
       int i = startIdx;
