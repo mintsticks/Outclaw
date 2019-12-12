@@ -28,8 +28,8 @@ namespace Outclaw {
     [SerializeField] 
     private EventMenuItem pauseInfoItem;
     
-    [SerializeField]
-    private PauseOptionItem pauseOptionItem;
+    //[SerializeField]
+    //private PauseOptionItem pauseOptionItem;
 
     [SerializeField]
     private EventMenuItem pauseCreditsItem;
@@ -39,7 +39,7 @@ namespace Outclaw {
 
     [SerializeField] private Submenu creditsSubmenu;
 
-    [SerializeField] private Submenu optionsSubmenu;
+    //[SerializeField] private Submenu optionsSubmenu;
 
     [SerializeField] private Submenu infoSubmenu;
     
@@ -65,13 +65,13 @@ namespace Outclaw {
 
     void Awake() {
       //Initialize list of pause items. Unity can't serialize interfaces, unfortunately.
-      items = new List<IMenuItem> { pauseResumeItem, pauseInfoItem, pauseOptionItem, pauseCreditsItem, pauseExitItem };
+      items = new List<IMenuItem> { pauseResumeItem, pauseInfoItem, pauseCreditsItem, pauseExitItem };
       SetInteractable(false);
 
       isSubmenuActive = false;
       activeSubmenu = null;
       infoSubmenu.gameObject.SetActive(false);
-      optionsSubmenu.gameObject.SetActive(false);
+      //optionsSubmenu.gameObject.SetActive(false);
       creditsSubmenu.gameObject.SetActive(false);
     }
     
