@@ -122,8 +122,8 @@ namespace Outclaw {
         if (skipped) {
           bubbleText.text = text;
           skipped = false;
-          yield return new WaitForEndOfFrame();
           soundManager.StopSFX();
+          yield return null; // wait and extra frame so full dialogue is out for a frame before a down event
           StoppedDialogue();
           yield break;
         }
@@ -136,6 +136,7 @@ namespace Outclaw {
       }
       StartCoroutine(UpdateCharacterRoutine());
       soundManager.StopSFX();
+      yield return null; // wait and extra frame so full dialogue is out for a frame before a down event
       StoppedDialogue();
     }
 
