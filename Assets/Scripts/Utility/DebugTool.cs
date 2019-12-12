@@ -16,7 +16,6 @@ namespace Outclaw {
     [ContextMenu("SetGameState")]
     private void SetGameState() {
       gameStateManager.SetGameState(debugGameState, true);
-      objectiveManager.UpdateCurrentTask();
     }
 
     [ContextMenu("PrintGameState")]

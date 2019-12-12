@@ -21,7 +21,7 @@ namespace Outclaw {
     private IHaveTask currentTask;
 
     public void UpdateInteraction() {
-      var invalidInput = player.InputDisabled || !playerInput.IsInteractDown();
+      var invalidInput = player.InputDisabled || !playerInput.IsInteractDown() || !player.IsGrounded;
       var invalidInteractable = currentInteractable == null || !currentInteractable.HasInteraction();
       if (invalidInput || invalidInteractable) {
         return;
