@@ -177,6 +177,84 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2590957, y: 0.71221733}
   m_EdgeRadius: 0
+--- !u!1 &11777741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 11777742}
+  - component: {fileID: 11777744}
+  - component: {fileID: 11777743}
+  m_Layer: 15
+  m_Name: Post Base
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &11777742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11777741}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13.635, y: -6.67, z: 96.12708}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 56730681}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11777743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11777741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5942f8d354cc524b910f783e067437e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventType: 3
+    dialogue:
+    - {fileID: 4900000, guid: be2954af9ff130543aec52218ed46448, type: 3}
+    waitTime: 0
+    promptInfo: {fileID: 0}
+    location: {fileID: 0}
+  eventGameState: {fileID: 11400000, guid: 6cc79530861f03142bcc90c03493e69b, type: 2}
+--- !u!61 &11777744
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11777741}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.1310368, y: 1.1163487}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.2620735, y: 3.2326975}
+  m_EdgeRadius: 0
 --- !u!1 &22694936
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +287,7 @@ Transform:
   m_Children:
   - {fileID: 1014933115}
   m_Father: {fileID: 56730681}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &22694938
 BoxCollider2D:
@@ -381,6 +459,7 @@ Transform:
   m_Children:
   - {fileID: 1002161793}
   - {fileID: 958702454}
+  - {fileID: 11777742}
   - {fileID: 722304584}
   - {fileID: 22694937}
   - {fileID: 1268236567}
@@ -1384,6 +1463,7 @@ MonoBehaviour:
   promptTask: {fileID: 11400000, guid: 97d64a436ab3f3f45be43e9e1ce378a1, type: 2}
   spriteRenderer: {fileID: 656790587}
   particleSystem: {fileID: 1127259958}
+  hideOnComplete: 0
   task: {fileID: 11400000, guid: 15a019a2ced2b784aa23b3df09cca47a, type: 2}
 --- !u!4 &284740117
 Transform:
@@ -1469,7 +1549,7 @@ Transform:
   m_Children:
   - {fileID: 1269650780}
   m_Father: {fileID: 56730681}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &323138249
 BoxCollider2D:
@@ -1668,6 +1748,7 @@ MonoBehaviour:
   promptTask: {fileID: 11400000, guid: 97d64a436ab3f3f45be43e9e1ce378a1, type: 2}
   spriteRenderer: {fileID: 1099322505}
   particleSystem: {fileID: 680033820}
+  hideOnComplete: 0
   task: {fileID: 11400000, guid: 41b1a4622ad482f4b90659953ef9ab5e, type: 2}
 --- !u!4 &379560027
 Transform:
@@ -1890,6 +1971,7 @@ MonoBehaviour:
   promptTask: {fileID: 11400000, guid: 97d64a436ab3f3f45be43e9e1ce378a1, type: 2}
   spriteRenderer: {fileID: 77781440}
   particleSystem: {fileID: 1469858598}
+  hideOnComplete: 0
   task: {fileID: 11400000, guid: 4220f945deddf6f4e967d3958181971b, type: 2}
 --- !u!4 &467188775 stripped
 Transform:
@@ -2047,6 +2129,7 @@ MonoBehaviour:
   promptTask: {fileID: 11400000, guid: 97d64a436ab3f3f45be43e9e1ce378a1, type: 2}
   spriteRenderer: {fileID: 866821680}
   particleSystem: {fileID: 79198616}
+  hideOnComplete: 0
   task: {fileID: 11400000, guid: 83346012ecbd7d04fb187988128dcfff, type: 2}
 --- !u!1 &561404907
 GameObject:
@@ -2598,7 +2681,7 @@ Transform:
   m_Children:
   - {fileID: 1404534093}
   m_Father: {fileID: 56730681}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &722304585
 BoxCollider2D:
@@ -3260,7 +3343,7 @@ GameObject:
   - component: {fileID: 958702456}
   - component: {fileID: 958702455}
   m_Layer: 15
-  m_Name: PostHeist
+  m_Name: Post Park
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4307,7 +4390,7 @@ Transform:
   m_Children:
   - {fileID: 1768894233}
   m_Father: {fileID: 56730681}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1268236568
 BoxCollider2D:
@@ -5629,6 +5712,7 @@ MonoBehaviour:
   promptTask: {fileID: 11400000, guid: 97d64a436ab3f3f45be43e9e1ce378a1, type: 2}
   spriteRenderer: {fileID: 1629020094}
   particleSystem: {fileID: 467188776}
+  hideOnComplete: 0
   task: {fileID: 11400000, guid: 52238c9c0e631654a97f856d63ace1c2, type: 2}
 --- !u!4 &1666310725
 Transform:
@@ -6353,7 +6437,7 @@ Transform:
   m_Children:
   - {fileID: 2120966896}
   m_Father: {fileID: 56730681}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1947743219
 BoxCollider2D:
