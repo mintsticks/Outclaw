@@ -50,6 +50,19 @@ namespace Outclaw.Heist {
     }
 
     private void CreateMesh(List<Vector3> meshVerts) {
+      Color[] colors = {
+        Color.red,
+        Color.yellow,
+        Color.green,
+        Color.blue,
+        Color.magenta
+      };
+      for(int i = 0; i < meshVerts.Count; ++i){
+
+        transform.TransformPoint(meshVerts[i]).DrawCrosshair(
+          colors[i % colors.Length]);
+      }
+
       Mesh m = filter.mesh;
       m.Clear();
       m.vertices = meshVerts.ToArray();
@@ -206,6 +219,8 @@ namespace Outclaw.Heist {
       target = target ?? (FoundTarget(objHit) ? objHit : null);
       bool prevCastMissed = objHit == null;
 
+      Vector3 preHit, mainHit, postHit;
+
       // test point directly and some offset around the point
       int i = startIdx;
       for(; i < points.Count && angleCache[points[i]] < maxAngle; ++i){
@@ -213,22 +228,28 @@ namespace Outclaw.Heist {
         Vector3 dir = (points[i] - transform.position).normalized;
 
         // need to smooth vert across arc if previous and current both missed
-        hitPt = TestRay(negRot * dir, out objHit);
+        preHit = TestRay(negRot * dir, out objHit);
         CheckRangeBetween(meshBoarder, 
           (i == startIdx) ? minAngle : angleCache[points[i - 1]], 
           prevCastMissed,
           angleCache[points[i]], 
           objHit == null);
-        meshBoarder.Add(hitPt);
         target = target ?? (FoundTarget(objHit) ? objHit : null);
         
-        hitPt = TestRay(dir, out objHit);
-        meshBoarder.Add(hitPt);
+        mainHit = TestRay(dir, out objHit);
         target = target ?? (FoundTarget(objHit) ? objHit : null);
 
-        hitPt = TestRay(posRot * dir, out objHit);
-        meshBoarder.Add(hitPt);
+        postHit = TestRay(posRot * dir, out objHit);
         target = target ?? (FoundTarget(objHit) ? objHit : null);
+
+        if(!IsColinear(preHit, mainHit, postHit)){
+          meshBoarder.Add(preHit);
+          meshBoarder.Add(mainHit);
+          meshBoarder.Add(postHit);
+        }
+        else{
+          meshBoarder.Add(mainHit);
+        }
 
         prevCastMissed = objHit == null;
       }
