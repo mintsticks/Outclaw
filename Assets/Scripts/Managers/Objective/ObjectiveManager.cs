@@ -26,6 +26,7 @@ namespace City {
 
     public void Start(){
       gameStateManager.OnAllReset += Reset;
+      gameStateManager.OnAllReset += UpdateCurrentTask;
       UpdateCurrentTask();
     }
 
