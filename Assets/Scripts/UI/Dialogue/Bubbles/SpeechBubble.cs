@@ -58,10 +58,8 @@ namespace Outclaw.City {
     public IEnumerator ShowText(string text) {
       yield return bubbleTextHelper.ShowText(text);
     }
-    
-    public void SkipText() {
-      bubbleTextHelper.SkipText();
-    }
+
+    public IEnumerator DetectSkip() => bubbleTextHelper.DetectSkip();
   }
 
   public enum DialogueType {
