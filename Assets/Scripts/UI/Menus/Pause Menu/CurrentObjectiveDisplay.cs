@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ModestTree;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -12,7 +13,8 @@ namespace Outclaw {
     [Inject] private IGameStateManager gameStateManager;
 
     [SerializeField] private Text objectiveText;
-
+    [SerializeField] private string defaultText = "Explore the world!";
+    
     private GameStateData gameStateData;
 
     void Awake() {
@@ -29,6 +31,15 @@ namespace Outclaw {
     }
 
     private void UpdateDisplay() {
+      if (gameStateData == null) {
+        return;
+      }
+
+      if (gameStateData.ObjectiveText.IsEmpty()) {
+        objectiveText.text = defaultText;
+        return;
+      }
+      
       objectiveText.text = gameStateData.ObjectiveText;
     }
   }

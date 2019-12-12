@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d027d883-b6fd-4b44-8e4e-b3ed7352b502" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/ThoughtBubble.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/ThoughtBubble.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Outclaw/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/UI/sneak.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/UI/sneak.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/PauseBack.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/PauseBack.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Menu/CreditsSubmenu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Menu/CreditsSubmenu.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Menu/InfoSubmenu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Menu/InfoSubmenu.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Menu/PauseManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Menu/PauseManager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/City/Cafe.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/City/Cafe.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/CurrentObjectiveDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/CurrentObjectiveDisplay.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +29,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Util/CheatSheet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Art/Heist/park/Attention.png.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/PauseMenuManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/Submenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemies/Sidescroll Movement/SideScrollSentry.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/PlatformUtil.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/CurrentObjectiveDisplay.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/PauseCreditsItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Util/ReflectionInfoTypeInfoConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PromptData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Sense/City/GreyOnSenseElement.cs" root0="FORCE_HIGHLIGHTING" />
@@ -113,6 +123,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/KeyboardInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentCanvasComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/Menu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menus/MenuItemText.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Heist/SpriteController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Resources/PlatformInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/Interactables/Heist/Checkpoint.prefab" root0="FORCE_HIGHLIGHTING" />
@@ -128,6 +139,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Providers/SubContainerCreators/SubContainerCreatorByInstance.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/Yakuza Base.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/Dialogue/DialogueSettings.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Prefabs/UI/Menu/Captured Menu.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/Sidescroll Heist/ParkHeist.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EventSequence.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/GlobalConstants.cs" root0="FORCE_HIGHLIGHTING" />
@@ -168,7 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Sneak/SneakManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerCapturedManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Resources/HeistInstaller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/VectorExt.cs" />
@@ -185,7 +196,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Heist/HeistInteractionController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/BubbleTail.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/ObjectivePointer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/InputTextComponent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Utility/InputStringHelper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentComponent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/PlatformDependentUIComponent.cs" />
@@ -219,6 +229,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/PauseGame.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/SceneTransitionManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Dialogue/Bubbles/ThoughtBubble.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DismissablePrompts/InputTextComponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/Menus/Pause Menu/CurrentObjectiveDisplay.cs" />
       </list>
     </option>
   </component>
@@ -299,7 +311,7 @@
       <workItem from="1574109582744" duration="13547000" />
       <workItem from="1574226483579" duration="14197000" />
       <workItem from="1575348366385" duration="74177000" />
-      <workItem from="1576035917161" duration="14566000" />
+      <workItem from="1576035917161" duration="17125000" />
     </task>
     <servers />
   </component>
