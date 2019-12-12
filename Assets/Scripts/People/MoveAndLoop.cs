@@ -31,9 +31,9 @@ namespace Outclaw.City{
       group.sortingLayerID = layerID;
     }
 
-    void Update(){
+    void FixedUpdate(){
       Vector3 newPos = transform.position;
-      newPos.x += xVelocity * Time.deltaTime;
+      newPos.x += xVelocity * Time.fixedDeltaTime;
       transform.position = newPos;
 
       if(!spawner.IsInBounds(newPos.x)){

@@ -155,7 +155,7 @@ namespace Outclaw.City {
     }
 
     private void UpdateText(string text) {
-      animationWrapper.StartNewAnimation(RunText(text), StopDetectSkip);
+      animationWrapper.StartNewAnimation(RunText(text), StopDialogue);
     }
     
     private void UpdateArrows(int index) {
@@ -168,15 +168,16 @@ namespace Outclaw.City {
       Destroy(gameObject);
     }
     
-    private void StopDetectSkip(){
+    private void StopDialogue(){
       StopCoroutine(detectSkip);
+      bubbleTextHelper.StoppedDialogue();
     }
 
     private IEnumerator RunText(string text){
       detectSkip = bubbleTextHelper.DetectSkip();
       StartCoroutine(detectSkip);
       yield return bubbleTextHelper.ShowText(text);
-      StopDetectSkip();
+      StopDialogue();
     }
   }
 }

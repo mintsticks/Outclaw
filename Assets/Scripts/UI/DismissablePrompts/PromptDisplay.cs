@@ -64,7 +64,7 @@ namespace Outclaw {
 
     private void HandleDescriptionData(Data data) {
       dismissText.text = "- PRESS " + InputStringHelper.GetStringForInput(dismissInput) + " TO CONTINUE -";
-      if (Application.platform == RuntimePlatform.XboxOne) {
+      if (PlatformUtil.GetPlatform() == Platform.XBOX_ONE) {
         description.text = ParseDescription(data.Info.xboxDescription);
         return;
       }

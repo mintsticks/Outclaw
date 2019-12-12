@@ -104,6 +104,12 @@ namespace Outclaw {
       bubbleText.color = bubbleText.color.WithAlpha(1f);
     }
 
+
+    // call if coroutines here were stopped externally
+    public void StoppedDialogue(){
+      isRunningText = false;
+    }
+    
     public IEnumerator ShowText(string text) {
       isRunningText = true;
       text = ProcessText(text);
@@ -118,7 +124,7 @@ namespace Outclaw {
           skipped = false;
           yield return new WaitForEndOfFrame();
           soundManager.StopSFX();
-          isRunningText = false;
+          StoppedDialogue();
           yield break;
         }
 
@@ -130,7 +136,7 @@ namespace Outclaw {
       }
       StartCoroutine(UpdateCharacterRoutine());
       soundManager.StopSFX();
-      isRunningText = false;
+      StoppedDialogue();
     }
 
     private IEnumerator UpdateCharacterRoutine() {
@@ -168,9 +174,8 @@ namespace Outclaw {
     }
 
     public IEnumerator DetectSkip() {
-      // wait 1 frame before trying to check for skip because immediately
-      //   when this starts is the same frame as the InteractDown event
-      yield return null;
+      // waits until dialogue starts
+      yield return new WaitUntil(TextRunning);
       
       while (true) {
         if (!playerInput.IsInteractDown()) {
@@ -181,6 +186,10 @@ namespace Outclaw {
         SkipText();
         yield break;
       }
+    }
+
+    private bool TextRunning(){
+      return isRunningText;
     }
   }
 }
