@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Utility {
   public class InputStringHelper {
     public static string GetStringForInput(InputType type) {
-      if (Application.platform == RuntimePlatform.XboxOne) {
+      if (PlatformUtil.GetPlatform() == Platform.XBOX_ONE) {
         return GetXboxInputString(type);
       }
 
@@ -52,7 +52,7 @@ namespace Utility {
         case InputType.START:
           return "start";
       }
-      return "X";
+      return "B";
     }
   }
 
