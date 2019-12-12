@@ -10,29 +10,22 @@ namespace Outclaw {
     void TransitionToScene(LocationData location);
     bool IsSwitching { get; }
   }
-  
+
   public class SceneTransitionManager : MonoBehaviour, ISceneTransitionManager {
-    [SerializeField]
-    private CanvasGroup content;
+    [SerializeField] private CanvasGroup content;
+    [SerializeField] private float fadeTime;
+    [SerializeField] private float waitTime;
 
-    [SerializeField]
-    private float fadeTime;
-
-    [SerializeField]
-    private float waitTime;
-
-    [Inject] 
-    private ISpawnManager spawnManager;
-    
-    [Inject]
-    private ILocationManager locationManager;
+    [Inject] private ISpawnManager spawnManager;
+    [Inject] private ILocationManager locationManager;
+    [Inject] private IPauseGame pauseGame;
     
     private bool isSwitching;
     private AsyncOperation loadingOp;
 
     public bool IsSwitching => isSwitching;
 
-    public void TransitionToScene(LocationData location){
+    public void TransitionToScene(LocationData location) {
       TransitionToScene(location.SceneName);
       locationManager.CurrentLocation = location;
     }
@@ -41,24 +34,27 @@ namespace Outclaw {
       if (isSwitching) {
         return;
       }
+
       spawnManager.PreviousScene = SceneManager.GetActiveScene().name;
       spawnManager.ClearCheckpoints();
       isSwitching = true;
       StopAllCoroutines(); // can still switch when fading out, so stop any lingering coroutines
       StartCoroutine(TransitionRoutine(scene));
     }
-    
+
     private IEnumerator TransitionRoutine(string scene) {
+      pauseGame.Pause();
       yield return FadeIn();
-      
+
       loadingOp = SceneManager.LoadSceneAsync(scene);
       yield return loadingOp;
+      pauseGame.Unpause();
       
       isSwitching = false;
       yield return FadeOut();
     }
-    
-    
+
+
     // lerps starting from current alpha in case of mid fadeOut start
     private IEnumerator FadeIn() {
       float startAlpha = content.alpha;
