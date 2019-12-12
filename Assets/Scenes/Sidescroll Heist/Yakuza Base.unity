@@ -4564,11 +4564,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5290488612717389672, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
-        type: 3}
-      propertyPath: orthographic size
-      value: 7.061985
-      objectReference: {fileID: 0}
     - target: {fileID: 5290488612717389674, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
         type: 3}
       propertyPath: minBound.x
@@ -4588,6 +4583,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxBound.x
       value: 60.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290488612717389672, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6,
+        type: 3}
+      propertyPath: orthographic size
+      value: 7.061985
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c5bf7e0c69f1c542beb2f8e9d1686d6, type: 3}
@@ -44715,6 +44715,11 @@ PrefabInstance:
       propertyPath: objectInfo.dialoguesForStates.Array.data[0].objectDialogues.Array.data[0].dialogue.Array.data[0]
       value: 
       objectReference: {fileID: 4900000, guid: 34c688acef57ca84fb97b67d36e53600, type: 3}
+    - target: {fileID: 2290543102887624433, guid: 007737a5cf2a66c41adc62261a0bf32c,
+        type: 3}
+      propertyPath: hideOnComplete
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2290543102887624435, guid: 007737a5cf2a66c41adc62261a0bf32c,
         type: 3}
       propertyPath: m_Offset.y

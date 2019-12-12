@@ -86,11 +86,12 @@ namespace Outclaw {
       });
       bubbles.Add(bubble);
       
+      // wait a frame so bubble lives for at least a frame before a down event
+      yield return null;
+      
       while (!IsValidDialogueProgression()) {
         yield return null;
       }
-      // wait a frame so bubble lives for at least a frame before a down event
-      yield return null;
 
       dialogueTask.Complete();
       bubbles.Remove(bubble);

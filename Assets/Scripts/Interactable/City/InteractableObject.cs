@@ -19,6 +19,8 @@ namespace Outclaw.City {
     [Header("Effects")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private ParticleSystem particleSystem;
+    [Tooltip("Lazily implemented. Disables object after interacting.")]
+    [SerializeField] private bool hideOnComplete;
 
     [Header("Objective Tracking")]
     [SerializeField] private Task task;
@@ -125,6 +127,10 @@ namespace Outclaw.City {
     private void CompleteInteraction() {
       locationManager.IncreaseProgress(dialogueData);
       objectiveManager.CompleteTask(task);
+      if(hideOnComplete){
+        gameObject.SetActive(false);
+      }
+
 
       runningDialogue = false;
 
